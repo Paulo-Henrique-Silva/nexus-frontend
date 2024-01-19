@@ -7,13 +7,17 @@ import { AtribuicoesListaComponent } from './atribuicoes-lista/atribuicoes-lista
 import { AtribuicoesDetalhesComponent } from './atribuicoes-detalhes/atribuicoes-detalhes.component';
 import { MaterialModule } from '../compartilhado/material/material.module';
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
+import { AtribuicoesAcoesComponent } from './atribuicoes-acoes/atribuicoes-acoes.component';
+import { AtribuicoesCardComponent } from './atribuicoes-card/atribuicoes-card.component';
 
 
 @NgModule({
   declarations: [
     AtribuicoesComponent,
     AtribuicoesListaComponent,
-    AtribuicoesDetalhesComponent
+    AtribuicoesDetalhesComponent,
+    AtribuicoesAcoesComponent,
+    AtribuicoesCardComponent
   ],
   imports: [
     CommonModule,

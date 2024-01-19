@@ -1,0 +1,13 @@
+<div class="mb-3">
+    <mat-card [routerLink]="['/atribuicoes', atribuicao.UID, 'detalhes']">
+        <mat-card-header class="mb-2">
+            <mat-card-title>{{ atribuicao.nome }}</mat-card-title>
+            <mat-card-subtitle>
+                {{ 'Prazo para: ' + atribuicao.dataVencimento }}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ atribuicao.cicloVida.nome }}</p> <!--Nome do objeto em ciclo-->
+        </mat-card-content>
+    </mat-card>
+</div>
