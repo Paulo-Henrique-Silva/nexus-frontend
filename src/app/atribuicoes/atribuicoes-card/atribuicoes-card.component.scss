@@ -1,0 +1,6 @@
+@use '../../../styles/variables' as v;
+
+mat-card:hover {
+    box-shadow: v.$shadow;
+    cursor: pointer
+}
