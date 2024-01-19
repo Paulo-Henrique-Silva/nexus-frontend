@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './compartilhado/material.module';
+import { MaterialModule } from './compartilhado/material/material.module';
 import { AtivosModule } from './ativos/ativos.module';
 import { ConfiguracoesModule } from './configuracoes/configuracoes.module';
 import { NotificacoesModule } from './notificacoes/notificacoes.module';
 import { AtribuicoesModule } from './atribuicoes/atribuicoes.module';
+import { CompartilhadoModule } from './compartilhado/compartilhado.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AtribuicoesModule } from './atribuicoes/atribuicoes.module';
     AtribuicoesModule,
     ConfiguracoesModule,
     NotificacoesModule,
+    CompartilhadoModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],

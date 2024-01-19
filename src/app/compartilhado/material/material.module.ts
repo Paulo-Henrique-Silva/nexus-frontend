@@ -75,5 +75,7 @@ const materialModules = [
   exports: [
     ...materialModules
   ],
+  declarations: [
+  ],
 })
 export class MaterialModule { }

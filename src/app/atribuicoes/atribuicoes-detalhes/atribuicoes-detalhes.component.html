@@ -1,0 +1,44 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened class="w-25">
+        <mat-tab-group dynamicHeight>
+            <mat-tab label="Ações">
+                <div class="d-flex flex-column" >
+                    <button mat-button>
+                        Aprovar
+                    </button>
+                    <button mat-button>
+                        Reprovar
+                    </button>
+                </div>
+            </mat-tab>
+            <mat-tab label="Nome Objeto">
+                <div class="d-flex flex-column">
+                    <button mat-button>
+                        Atualizar
+                    </button>
+                    <button mat-button>
+                        Excluir
+                    </button>
+                    <button mat-button>
+                        Ver Detalhes
+                    </button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-sidenav>
+    <mat-sidenav-content class="p-3">
+        <nexus-botao-voltar></nexus-botao-voltar>
+        
+        <div class="d-flex justify-content-between mb-3" >
+            <div>
+                <h2>Nome do passo</h2>
+                <div>Nome do Objeto - TAF-PJ-002-012</div>
+            </div>
+            <div>29/12/2023 - 14:30</div>
+        </div>
+
+        <div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, voluptatibus esse suscipit illo ex, exercitationem mollitia eaque cum ducimus ipsam accusamus, corrupti praesentium excepturi delectus quam minus dolores dicta autem.</p>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
