@@ -10,6 +10,7 @@ import { ConfiguracoesModule } from './configuracoes/configuracoes.module';
 import { NotificacoesModule } from './notificacoes/notificacoes.module';
 import { AtribuicoesModule } from './atribuicoes/atribuicoes.module';
 import { CompartilhadoModule } from './compartilhado/compartilhado.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CompartilhadoModule } from './compartilhado/compartilhado.module';
     ConfiguracoesModule,
     NotificacoesModule,
     CompartilhadoModule,
+    LoginModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],

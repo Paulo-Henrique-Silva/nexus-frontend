@@ -1,5 +1,5 @@
-import { NexusResposta } from "../../compartilhado/nexus-resposta";
-import { Token } from "./token";
+import { NexusResposta } from "../compartilhado/nexus-resposta";
+import { Token } from "../configuracoes/model/token";
 
 export class UsuarioResposta extends NexusResposta {
     public nomeAcesso: string = ''
