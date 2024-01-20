@@ -1,19 +1,19 @@
-<mat-sidenav-container class="example-container">
-    <mat-sidenav mode="side" opened class="w-75">
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened class="w-25">
+        <nexus-atribuicoes-acoes></nexus-atribuicoes-acoes>
+    </mat-sidenav>
+    <mat-sidenav-content class="p-3">
         <div class="d-flex justify-content-between mb-3 me-3">
             <div>
                 <nexus-botao-voltar caminho="/atribuicoes"></nexus-botao-voltar>
                 <h2>{{ atribuicao.nome }}</h2>
-                <div>{{ atribuicao.cicloVida.nome }}</div> Nome obj em ciclo
+                <div>{{ atribuicao.cicloVida.nome }}</div> <!--Nome obj em ciclo-->
             </div>
             <div>Vence {{ atribuicao.dataVencimento }}</div>
         </div>
-
+    
         <div>
             <p>{{ atribuicao.descricao }}</p>
         </div>
-    </mat-sidenav>
-    <mat-sidenav-content class="p-3">
-        <nexus-atribuicoes-acoes></nexus-atribuicoes-acoes>
     </mat-sidenav-content>
 </mat-sidenav-container>

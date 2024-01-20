@@ -1,6 +1,6 @@
 import { ReferenciaObjeto } from "../compartilhado/referencia-objeto";
 
-export class Usuario {
+export class UsuarioPerfil {
     constructor(
         public usuario: ReferenciaObjeto,
         public projeto: ReferenciaObjeto,
