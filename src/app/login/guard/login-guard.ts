@@ -3,7 +3,7 @@ import { AuthService } from "../auth/auth.service";
 import { inject } from "@angular/core";
 import { Observable } from "rxjs";
 
-export const canActivate: CanActivateFn = (
+export const conferirAutenticacao: CanActivateFn = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
 ): Observable<boolean> | boolean => {

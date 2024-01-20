@@ -4,9 +4,11 @@ import { ConfiguracoesComponent } from './configuracoes.component';
 import { ConfiguracoesEditarSenhaComponent } from './configuracoes-editar-senha/configuracoes-editar-senha.component';
 import { ConfiguracoesUsuarioComponent } from './configuracoes-usuario/configuracoes-usuario.component';
 import { ConfiguracoesPerfilComponent } from './configuracoes-perfil/configuracoes-perfil.component';
+import { conferirAutenticacao } from '../login/guard/login-guard';
 
 const routes: Routes = [
-  { path: 'configuracoes', component: ConfiguracoesComponent, children: [
+  { path: 'configuracoes', component: ConfiguracoesComponent,  canActivate:[conferirAutenticacao],
+  children: [
     { path: 'perfil', component: ConfiguracoesPerfilComponent },
     { path: 'usuario-detalhes', component: ConfiguracoesUsuarioComponent },
     { path: 'editar-senha', component: ConfiguracoesEditarSenhaComponent },
