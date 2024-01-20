@@ -34,6 +34,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { provideNativeDateAdapter } from '@angular/material/core';
+
 const materialModules = [
   CdkTreeModule,
   MatAutocompleteModule,
@@ -79,5 +81,8 @@ const materialModules = [
   ],
   declarations: [
   ],
+  providers: [
+    provideNativeDateAdapter()
+  ]
 })
 export class MaterialModule { }

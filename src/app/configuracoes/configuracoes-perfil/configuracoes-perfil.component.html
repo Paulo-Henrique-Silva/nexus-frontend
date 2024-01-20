@@ -7,10 +7,50 @@
         </mat-card-header>
         <mat-card-content>
             <div class="d-flex flex-column">
-                <mat-slide-toggle class="mb-3" hideIcon="true">Administrador</mat-slide-toggle>
-                <mat-slide-toggle class="mb-3" hideIcon="true">Coordenador</mat-slide-toggle>
-                <mat-slide-toggle class="mb-3" hideIcon="true">Suporte</mat-slide-toggle>
-                <mat-slide-toggle class="mb-3" hideIcon="true">Visualizador</mat-slide-toggle>
+                <mat-accordion>
+                    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Nome Projeto
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      
+                      <div class="d-flex flex-column">
+                          <mat-radio-button>Administrador</mat-radio-button>
+                          <mat-radio-button>Coordenador</mat-radio-button>
+                          <mat-radio-button>Suporte</mat-radio-button>
+                          <mat-radio-button>Leitor</mat-radio-button>
+                      </div>
+                    </mat-expansion-panel>
+                  
+                    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" 
+                    hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            PJ-002
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      
+                      <div class="d-flex flex-column">
+                          <mat-radio-button>Suporte</mat-radio-button>
+                          <mat-radio-button>Leitor</mat-radio-button>
+                      </div>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" 
+                    hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            PJ-003
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      
+                      <div class="d-flex flex-column">
+                          <mat-radio-button>Leitor</mat-radio-button>
+                      </div>
+                    </mat-expansion-panel>
+                  
+                  </mat-accordion>                  
             </div>
         </mat-card-content>
         <mat-card-actions [align]="'end'">
