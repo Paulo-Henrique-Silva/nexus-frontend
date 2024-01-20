@@ -1,11 +1,8 @@
 <div class="d-flex justify-content-between mb-3" >
-    <div>
-        <h2>Requisição aprovada</h2>
-        <div>Nome do Objeto - TAF-PJ-002-012</div>
-    </div>
-    <div>29/12/2023 - 14:30</div>
+    <h2>{{ notificacao.nome }}</h2>
+    <div>{{ notificacao.dataCriacao }}</div>
 </div>
 
 <div>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, voluptatibus esse suscipit illo ex, exercitationem mollitia eaque cum ducimus ipsam accusamus, corrupti praesentium excepturi delectus quam minus dolores dicta autem.</p>
+    <p>{{ notificacao.descricao }}</p>
 </div>

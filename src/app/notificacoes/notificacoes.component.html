@@ -7,10 +7,9 @@
 <mat-sidenav-container class="example-container">
     <mat-sidenav mode="side" opened class="w-25">
       <div class="d-flex flex-column">
-        <nexus-notificacoes-card></nexus-notificacoes-card>
-        <nexus-notificacoes-card></nexus-notificacoes-card>
-        <nexus-notificacoes-card></nexus-notificacoes-card>
-        <nexus-notificacoes-card></nexus-notificacoes-card>
+        <nexus-notificacoes-card *ngFor="let notificacao of notificacoes" 
+        [notificacao]="notificacao">
+        </nexus-notificacoes-card>
       </div>
     </mat-sidenav>
     <mat-sidenav-content class="p-3">

@@ -1,8 +1,24 @@
-<mat-card [routerLink]="['/notificacoes', 1]">
+
+
+<mat-card [routerLink]="['/notificacoes', notificacao.UID]" 
+*ngIf="notificacao.vista; else notificacaoNaoVista" class="vista">
     <mat-card-header>
-        <mat-card-title>Requisição aprovada</mat-card-title>
+        <mat-card-title>{{ notificacao.nome }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <p>Nome do Objeto - TAF-PJ-002-012</p>
+        <p>{{notificacao.descricao }}</p>
     </mat-card-content>
 </mat-card>
+
+<ng-template #notificacaoNaoVista>
+    <mat-card [routerLink]="['/notificacoes', notificacao.UID]">
+        <mat-card-header>
+            <mat-card-title matBadge="!" matBadgeColor="accent">
+                {{ notificacao.nome }}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p >{{notificacao.descricao }}</p>
+        </mat-card-content>
+    </mat-card>
+</ng-template>
