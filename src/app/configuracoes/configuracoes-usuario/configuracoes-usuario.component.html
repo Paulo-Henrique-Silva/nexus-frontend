@@ -1,0 +1,36 @@
+<nexus-botao-voltar caminho="/"></nexus-botao-voltar>
+
+<div class="d-flex justify-content-center">
+    <mat-card class="col-12 col-md-6 p-3">
+        <mat-card-header class="mb-4">
+            <mat-card-title>Usuário</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="d-flex flex-column">
+                <mat-form-field class="mb-3" floatLabel="always">
+                    <mat-label>Nome</mat-label>
+                    <input readonly matInput value="Paulo Silva">
+                </mat-form-field>
+
+                <mat-form-field class="mb-3" floatLabel="always">
+                    <mat-label>Título do Trabalho</mat-label>
+                    <input readonly matInput value="Estagiário">
+                </mat-form-field>
+
+                <mat-form-field class="mb-3" floatLabel="always">
+                    <mat-label>Nome de Acesso</mat-label>
+                    <input readonly matInput value="paulo.silva">
+                </mat-form-field>
+
+                <mat-form-field class="mb-3" floatLabel="always">
+                    <mat-label>Senha</mat-label>
+                    <input type="password" readonly matInput value="lorem ipsum">
+                    <button matSuffix mat-icon-button color="primary" 
+                    routerLink="/configuracoes/editar-senha">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

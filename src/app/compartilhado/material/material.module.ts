@@ -31,6 +31,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 const materialModules = [
@@ -65,6 +66,7 @@ const materialModules = [
   MatGridListModule,
   MatRadioModule,
   MatDatepickerModule,
+  MatSlideToggleModule,
   MatTooltipModule
 ];
 @NgModule({

@@ -1,0 +1,16 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened class="w-25">
+      <div class="d-flex flex-column">
+        <button mat-button routerLink="/configuracoes/perfil">
+            <mat-icon>business_center</mat-icon>Perfil
+        </button>
+        <button mat-button routerLink="/configuracoes/usuario-detalhes">
+            <mat-icon>person</mat-icon>Usuário
+        </button>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="p-3">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+  
