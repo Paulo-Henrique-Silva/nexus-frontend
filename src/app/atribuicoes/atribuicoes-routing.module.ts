@@ -7,7 +7,7 @@ import { AtribuicoesDetalhesComponent } from './atribuicoes-detalhes/atribuicoes
 const routes: Routes = [
   { path: 'atribuicoes', component: AtribuicoesComponent, children: [
     { path: '', component: AtribuicoesListaComponent },
-    { path: ':uid/detalhes', component: AtribuicoesDetalhesComponent }
+    { path: ':uid', component: AtribuicoesDetalhesComponent }
   ]}
 ];
 

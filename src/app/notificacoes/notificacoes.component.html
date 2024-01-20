@@ -1,0 +1,21 @@
+<!--
+    TODO: 
+    Testar listas com dados mocados em notificações e configurações.
+    Ver se classes models condizem com resposta da API.
+-->
+
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened class="w-25">
+      <div class="d-flex flex-column">
+        <nexus-notificacoes-card></nexus-notificacoes-card>
+        <nexus-notificacoes-card></nexus-notificacoes-card>
+        <nexus-notificacoes-card></nexus-notificacoes-card>
+        <nexus-notificacoes-card></nexus-notificacoes-card>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="p-3">
+        <nexus-botao-voltar></nexus-botao-voltar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+  
