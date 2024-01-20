@@ -1,7 +1,10 @@
 <!--Navbar-->
 <nav *ngIf="usuarioAutenticado">
-  <mat-toolbar class="d-flex justify-content-between">
-    <span>Nexus</span>
+  <mat-toolbar class="d-flex justify-content-between" color="primary">
+    <div class="d-flex justify-content-between align-items-center">
+      <img src="../assets/nexus-logo.svg" class="me-3" width="50px" height="50px"/>
+      <span>Nexus</span>
+    </div>
 
     <mat-form-field class="mt-3">
       <input type="text" matInput>
@@ -10,7 +13,7 @@
 
     <div>
       <button class="me-3" routerLink="/configuracoes/perfil" mat-button>Perfil</button>
-      <button mat-raised-button color="primary" routerLink="/configuracoes/usuario-detalhes">Usuário</button>
+      <button mat-raised-button routerLink="/configuracoes/usuario-detalhes">Usuário</button>
     </div>
   </mat-toolbar>
 </nav>
