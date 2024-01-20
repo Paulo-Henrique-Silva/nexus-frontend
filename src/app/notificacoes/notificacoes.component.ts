@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Notificacao } from './notificacao';
+import { NotificacaoResposta } from './models/notificacao-resposta';
 import { ReferenciaObjeto } from '../compartilhado/referencia-objeto';
 
 @Component({
@@ -8,15 +8,46 @@ import { ReferenciaObjeto } from '../compartilhado/referencia-objeto';
   styleUrl: './notificacoes.component.scss'
 })
 export class NotificacoesComponent {
-  notificacoes: Notificacao[] = [
-    new Notificacao("1", "Requisição aprovada", "Coordenador aprovou a requisição de compra.", 
-    new ReferenciaObjeto("2", "Paulo Silva"), false, new Date(2024, 1, 30), 
-    new ReferenciaObjeto("2", "Paulo Silva"), new ReferenciaObjeto("2", "Paulo Silva"), 
-    new Date(2024, 1, 30)),
-
-    new Notificacao("1", "Manutenção completada", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat dictum est. Maecenas malesuada imperdiet elit, non porttitor odio pulvinar quis. Curabitur ultrices aliquet pellentesque. Donec tristique commodo ornare. Curabitur sit amet facilisis lorem. Nunc et sollicitudin dui. Mauris dictum eleifend mi, vitae dapibus ex bibendum vel. Nam auctor tincidunt dapibus. Integer erat augue, vehicula eget massa quis, elementum ultricies turpis. Mauris a nibh viverra, tempor est eu, congue tellus. Donec arcu purus, egestas non euismod id, luctus sed est.", 
-    new ReferenciaObjeto("2", "Paulo Silva"), true, new Date(2024, 1, 30), 
-    new ReferenciaObjeto("2", "Paulo Silva"), new ReferenciaObjeto("2", "Paulo Silva"), 
-    new Date(2024, 1, 30))
+  notificacoes: NotificacaoResposta[] = [
+    { 
+      UID: "1",
+      nome: "Requisição aprovada",
+      descricao: "A abordagem de ter DTOs separados para operações de envio e resposta é comum em muitos sistemas, incluindo .NET. Essa prática ajuda a manter uma clara separação de responsabilidades entre o que o cliente envia e o que o servidor retorna. Essa separação também facilita a evolução independente dos modelos de envio e resposta ao longo do tempo.",
+      usuario: {
+        UID: '1',
+        nome: 'PAUlO SILVA'
+      },
+      vista: true,
+      dataUltimaAtualizacao: new Date(2024, 1, 20),
+      atualizadoPor: {
+        UID: '',
+        nome: ''
+      },
+      usuarioCriador: {
+        UID: '',
+        nome: ''
+      },
+      dataCriacao: new Date(2024, 1, 20)
+    },
+    { 
+      UID: "1",
+      nome: "Coordenador completou a manutenção.",
+      descricao: "Aprove a descrição conforme dito.",
+      usuario: {
+        UID: '1',
+        nome: 'PAUlO SILVA'
+      },
+      vista: false,
+      dataUltimaAtualizacao: new Date(2024, 1, 20),
+      atualizadoPor: {
+        UID: '',
+        nome: ''
+      },
+      usuarioCriador: {
+        UID: '',
+        nome: ''
+      },
+      dataCriacao: new Date(2024, 1, 20)
+    }
   ]
 }

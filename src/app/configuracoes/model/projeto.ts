@@ -1,6 +1,6 @@
-import { ReferenciaObjeto } from "../compartilhado/referencia-objeto";
+import { ReferenciaObjeto } from "../../compartilhado/referencia-objeto";
 
-export class Pefil {
+export class Projeto {
     constructor(
         public UID: string,
         public nome: string,
