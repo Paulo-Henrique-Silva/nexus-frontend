@@ -1,0 +1,9 @@
+@use '../../styles/variables' as v;
+
+.bg-primary {
+    background-color: v.$primary;
+}
+
+mat-card {
+    box-shadow: v.$shadow;
+}

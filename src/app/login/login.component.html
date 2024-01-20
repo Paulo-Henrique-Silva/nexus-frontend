@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center align-items-center h-100vh m-3">
+<div class="d-flex justify-content-center align-items-center h-100vh bg-primary">
     <mat-card class="col-12 col-md-4 p-3">
         <mat-card-header class="d-flex flex-column text-center mb-4">
             <div class="w-100 mb-1">
@@ -6,7 +6,7 @@
             </div>
             <div class="w-100">
                 <mat-card-title>
-                    Nexus
+                    <h1 style="font-size: 2rem;">Nexus</h1>
                 </mat-card-title>
                 <mat-card-subtitle>
                     Sistema de Gerenciamento de Ativos de TI
@@ -14,19 +14,22 @@
             </div>
         </mat-card-header>
         <mat-card-content>
-            <form class="d-flex flex-column">
+            <form class="d-flex flex-column" [formGroup]="formulario">
                 <mat-form-field class="mb-3" >
                     <mat-label>Usuário</mat-label>
-                    <input type="text" matInput>
+                    <input type="text" matInput formControlName="usuario">
                 </mat-form-field>
 
                 <mat-form-field class="mb-3">
                     <mat-label>Senha</mat-label>
-                    <input type="password" matInput>
+                    <input type="password" matInput formControlName="senha">
                 </mat-form-field>
 
                 <mat-card-actions align="end">
-                    <button type="submit" mat-raised-button color="primary">Entrar</button>
+                    <button type="submit" mat-raised-button color="primary" (click)="onSubmit()"
+                    [disabled]="formulario.invalid">
+                        Entrar
+                    </button>
                   </mat-card-actions>
             </form>
         </mat-card-content>

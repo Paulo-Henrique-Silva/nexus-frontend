@@ -7,15 +7,15 @@ export const canActivate: CanActivateFn = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
 ): Observable<boolean> | boolean => {
-
     const authService = inject(AuthService)
     const router = inject(Router)
 
-/*     //Logica para decidir se pode ser ativada
-    if (authService.usuarioEstaAutenticado) {
+    //Se o login for bem sucedido, deixa entrar na rota.
+    //senão, volta para o login.
+    if (authService.loginSucedido) {
         return true
     }
- */
+ 
     router.navigate(['login'])
     return false
 };
