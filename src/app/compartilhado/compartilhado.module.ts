@@ -4,13 +4,17 @@ import { BotaoVoltarComponent } from './botao-voltar/botao-voltar.component';
 import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
 import { BotaoMenuComponent } from './botao-menu/botao-menu.component';
+import { AtivosOpcoesComponent } from './ativos-opcoes/ativos-opcoes.component';
+import { AtivosVoltarComponent } from './ativos-voltar/ativos-voltar.component';
 
 
 
 @NgModule({
   declarations: [
     BotaoVoltarComponent,
-    BotaoMenuComponent
+    BotaoMenuComponent,
+    AtivosOpcoesComponent,
+    AtivosVoltarComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +23,9 @@ import { BotaoMenuComponent } from './botao-menu/botao-menu.component';
   ],
   exports: [
     BotaoVoltarComponent,
-    BotaoMenuComponent
+    BotaoMenuComponent,
+    AtivosOpcoesComponent,
+    AtivosVoltarComponent
   ]
 })
 export class CompartilhadoModule { }

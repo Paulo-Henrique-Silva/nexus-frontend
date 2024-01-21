@@ -1,0 +1,21 @@
+@use '../../../styles/variables' as v;
+
+.bg-primary {
+    background-color: v.$primary;
+}
+
+.icone {
+    font-size: 2rem;
+    width: auto;
+    height: auto;
+}
+
+mat-card {
+    color: white;
+}
+
+mat-card:hover {
+    cursor: pointer;
+    background-color: v.$accent;
+    box-shadow: v.$shadow;
+}
