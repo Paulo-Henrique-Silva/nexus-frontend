@@ -18,11 +18,17 @@
                 <mat-form-field class="mb-3" >
                     <mat-label>Usuário</mat-label>
                     <input type="text" matInput formControlName="usuario">
+                    <mat-error *ngIf="campoInvalido('usuario')">
+                        {{ obterMensagem('usuario') }}
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="mb-3">
                     <mat-label>Senha</mat-label>
                     <input type="password" matInput formControlName="senha">
+                    <mat-error *ngIf="campoInvalido('senha')">
+                        {{ obterMensagem('senha') }}
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-card-actions align="end">

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AtribuicaoResposta } from '../models/atribuicao-resposta';
-import { ReferenciaObjeto } from '../../compartilhado/referencia-objeto';
+import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 
 @Component({
   selector: 'nexus-atribuicoes-card',

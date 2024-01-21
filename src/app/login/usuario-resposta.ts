@@ -1,4 +1,4 @@
-import { NexusResposta } from "../compartilhado/nexus-resposta";
+import { NexusResposta } from "../compartilhado/models/nexus-resposta";
 import { Token } from "../configuracoes/model/token";
 
 export class UsuarioResposta extends NexusResposta {

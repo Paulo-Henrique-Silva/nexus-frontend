@@ -3,6 +3,7 @@ import { AuthService } from './auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioEnvio } from './usuario-envio';
 import { Router } from '@angular/router';
+import { MensagensValidacaoService } from '../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 
 @Component({
   selector: 'nexus-login',
@@ -20,6 +21,7 @@ export class LoginComponent {
     private authService : AuthService, 
     private formBuilder: FormBuilder,
     private router: Router,
+    private mensagemValidacaoService: MensagensValidacaoService
   ) {}
 
   onSubmit(): void {
@@ -29,5 +31,26 @@ export class LoginComponent {
 
     this.authService.fazerLogin(usuario)
     this.router.navigate(['']);
+  }
+
+  campoInvalido(nomeCampo: string): boolean {
+    const campo = this.formulario.get(nomeCampo)
+
+    if (!campo) {
+      return false
+    }
+
+    return campo.invalid
+  }
+
+  obterMensagem(nomeCampo: string): string {
+    const campo = this.formulario.get(nomeCampo)
+
+    //se o campo não existe, retorna nada.
+    if (!campo) {
+      return ''
+    }
+
+    return this.mensagemValidacaoService.obterMensagem(campo)
   }
 }

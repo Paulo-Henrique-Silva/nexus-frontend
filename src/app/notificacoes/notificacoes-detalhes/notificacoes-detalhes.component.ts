@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NotificacaoResposta } from '../models/notificacao-resposta';
-import { ReferenciaObjeto } from '../../compartilhado/referencia-objeto';
+import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 
 @Component({
   selector: 'nexus-notificacoes-detalhes',

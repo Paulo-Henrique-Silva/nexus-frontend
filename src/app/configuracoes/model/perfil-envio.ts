@@ -1,4 +1,4 @@
-import { NexusEnvio } from "../../compartilhado/nexus-envio";
+import { NexusEnvio } from "../../compartilhado/models/nexus-envio";
 
 export class PerfilEnvio extends NexusEnvio {
 

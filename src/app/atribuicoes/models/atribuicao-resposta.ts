@@ -1,5 +1,5 @@
-import { NexusResposta } from "../../compartilhado/nexus-resposta";
-import { ReferenciaObjeto } from "../../compartilhado/referencia-objeto";
+import { NexusResposta } from "../../compartilhado/models/nexus-resposta";
+import { ReferenciaObjeto } from "../../compartilhado/models/referencia-objeto";
 
 export class AtribuicaoResposta extends NexusResposta {
     public usuario: ReferenciaObjeto = new ReferenciaObjeto();
