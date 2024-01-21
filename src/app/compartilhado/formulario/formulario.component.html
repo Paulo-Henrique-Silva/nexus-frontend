@@ -1,0 +1,11 @@
+<form class="d-flex flex-column" [formGroup]="formulario">
+
+    <mat-form-field class="mb-3" *ngFor="let campo of obterCampos(); let i = index">
+        <mat-label>{{ camposMostrarComo[i] }}</mat-label>
+        <input type="text" matInput formControlName="{{ campo }}">
+        <mat-error *ngIf="campoInvalido(campo)">
+            {{ obterMensagemErro(campo) }}
+        </mat-error>
+    </mat-form-field>
+    
+</form>

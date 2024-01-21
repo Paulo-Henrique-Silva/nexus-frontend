@@ -6,23 +6,8 @@
             <mat-card-title>Adicionar Localização</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <form class="d-flex flex-column" [formGroup]="formulario">
-                <mat-form-field class="mb-3">
-                    <mat-label>Nome</mat-label>
-                    <input type="text" matInput formControlName="nome">
-                    <mat-error *ngIf="campoInvalido('nome')">
-                        {{ obterMensagemErro('nome') }}
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="mb-3">
-                    <mat-label>Descricão</mat-label>
-                    <input type="text" matInput formControlName="descricao">
-                    <mat-error *ngIf="campoInvalido('descricao')">
-                        {{ obterMensagemErro('descricao') }}
-                    </mat-error>
-                </mat-form-field>
-            </form>
+            <nexus-formulario [formulario]="formulario" [camposMostrarComo]="['Nome', 'Descrição']">
+            </nexus-formulario>
         </mat-card-content>
         <mat-card-actions [align]="'end'">
             <button mat-raised-button color="primary" (click)="onSubmit()" 

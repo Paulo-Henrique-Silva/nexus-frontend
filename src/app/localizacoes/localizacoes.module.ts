@@ -8,13 +8,15 @@ import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { MaterialModule } from '../compartilhado/material/material.module';
 import { LocalizacoesAdicionarComponent } from './localizacoes-adicionar/localizacoes-adicionar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LocalizacoesBuscarComponent } from './localizacoes-buscar/localizacoes-buscar.component';
 
 
 @NgModule({
   declarations: [
     LocalizacoesComponent,
     LocalizacoesMenuComponent,
-    LocalizacoesAdicionarComponent
+    LocalizacoesAdicionarComponent,
+    LocalizacoesBuscarComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    CompartilhadoModule,
     LocalizacoesRoutingModule
   ]
 })

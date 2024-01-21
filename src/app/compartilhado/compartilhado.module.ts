@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { BotaoMenuComponent } from './botao-menu/botao-menu.component';
 import { AtivosOpcoesComponent } from './ativos-opcoes/ativos-opcoes.component';
 import { AtivosVoltarComponent } from './ativos-voltar/ativos-voltar.component';
+import { FormularioComponent } from './formulario/formulario.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,18 +16,22 @@ import { AtivosVoltarComponent } from './ativos-voltar/ativos-voltar.component';
     BotaoVoltarComponent,
     BotaoMenuComponent,
     AtivosOpcoesComponent,
-    AtivosVoltarComponent
+    AtivosVoltarComponent,
+    FormularioComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule
   ],
   exports: [
     BotaoVoltarComponent,
     BotaoMenuComponent,
     AtivosOpcoesComponent,
-    AtivosVoltarComponent
+    AtivosVoltarComponent,
+    FormularioComponent
   ]
 })
 export class CompartilhadoModule { }

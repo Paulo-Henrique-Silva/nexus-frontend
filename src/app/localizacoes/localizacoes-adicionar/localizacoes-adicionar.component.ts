@@ -23,6 +23,8 @@ export class LocalizacoesAdicionarComponent extends NexusFormulario {
       nome: [null, Validators.required],
       descricao: [null, Validators.required]
     })
+
+    this.camposMostrarComo = [ 'Nome', 'Descrição' ]
   }
 
   override onSubmit(): void {
