@@ -11,6 +11,13 @@ import { NotificacoesModule } from './notificacoes/notificacoes.module';
 import { AtribuicoesModule } from './atribuicoes/atribuicoes.module';
 import { CompartilhadoModule } from './compartilhado/compartilhado.module';
 import { LoginModule } from './login/login.module';
+import { AdministracaoModule } from './administracao/administracao.module';
+import { ComponentesModule } from './componentes/componentes.module';
+import { EquipamentosModule } from './equipamentos/equipamentos.module';
+import { LocalizacoesModule } from './localizacoes/localizacoes.module';
+import { ManutencoesModule } from './manutencoes/manutencoes.module';
+import { RequisicoesModule } from './requisicoes/requisicoes.module';
+import { SoftwaresModule } from './softwares/softwares.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +32,13 @@ import { LoginModule } from './login/login.module';
     NotificacoesModule,
     CompartilhadoModule,
     LoginModule,
+    AdministracaoModule,
+    ComponentesModule,
+    EquipamentosModule,
+    LocalizacoesModule,
+    ManutencoesModule,
+    RequisicoesModule,
+    SoftwaresModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],

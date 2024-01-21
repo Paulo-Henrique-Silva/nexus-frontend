@@ -22,8 +22,8 @@
 <mat-sidenav-container *ngIf="usuarioAutenticado; else paginaLogin">
   <mat-sidenav mode="side" opened>
     <div class="d-flex flex-column">
-      <nexus-botao-menu routerLink="/" routerLinkActive="active" nome="Ativos"
-      icone="device_hub" [routerLinkActiveOptions]="{ exact: true }">
+      <nexus-botao-menu routerLink="/ativos" routerLinkActive="active" nome="Ativos"
+      icone="device_hub">
       </nexus-botao-menu>
       <nexus-botao-menu routerLink="/atribuicoes" routerLinkActive="active" nome="Atribuições" 
       icone="view_list">

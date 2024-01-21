@@ -5,7 +5,7 @@ import { conferirAutenticacao } from '../login/guard/login-guard';
 import { AtivosListaComponent } from './ativos-lista/ativos-lista.component';
 
 const routes: Routes = [
-  { path: '', component: AtivosComponent, canActivate:[conferirAutenticacao], children: [
+  { path: 'ativos', component: AtivosComponent, canActivate:[conferirAutenticacao], children: [
     { path: '', component: AtivosListaComponent}
   ]}
 ];

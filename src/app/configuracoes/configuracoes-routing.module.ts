@@ -12,7 +12,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'usuario-detalhes', pathMatch: 'full' },
     { path: 'perfil', component: ConfiguracoesPerfilComponent },
     { path: 'usuario-detalhes', component: ConfiguracoesUsuarioComponent },
-    { path: 'editar-senha', component: ConfiguracoesEditarSenhaComponent }
+    { path: 'usuario-detalhes/editar-senha', component: ConfiguracoesEditarSenhaComponent }
   ]}
 ];
 
