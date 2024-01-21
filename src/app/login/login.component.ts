@@ -21,8 +21,8 @@ export class LoginComponent extends NexusFormulario {
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService)
     this.formulario = this.formBuilder.group({
-      usuario: [null, Validators.required],
-      senha: [null, Validators.required]
+      usuario: [new Date(), Validators.required],
+      senha: ['', Validators.required]
     })
   }
 

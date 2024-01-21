@@ -42,7 +42,6 @@ import { SoftwaresModule } from './softwares/softwares.module';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
