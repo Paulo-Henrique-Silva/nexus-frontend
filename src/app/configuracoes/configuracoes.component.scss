@@ -1,0 +1,18 @@
+@use '../../styles/variables.scss' as v;
+
+.config-menu {
+    text-align: left;
+}
+
+.config-menu.active {
+    color: white;
+    background-color: v.$primary;
+    border-radius: 0;
+    font-size: 1rem;
+}
+
+.config-menu mat-icon {
+    font-size: 1.5rem;
+    width: auto;
+    height: auto;
+}

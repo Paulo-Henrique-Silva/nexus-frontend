@@ -7,11 +7,12 @@ import { ConfiguracoesPerfilComponent } from './configuracoes-perfil/configuraco
 import { conferirAutenticacao } from '../login/guard/login-guard';
 
 const routes: Routes = [
-  { path: 'configuracoes', component: ConfiguracoesComponent,  canActivate:[conferirAutenticacao],
+  { path: 'configuracoes', component: ConfiguracoesComponent, canActivate:[conferirAutenticacao],
   children: [
+    { path: '', redirectTo: 'usuario-detalhes', pathMatch: 'full' },
     { path: 'perfil', component: ConfiguracoesPerfilComponent },
     { path: 'usuario-detalhes', component: ConfiguracoesUsuarioComponent },
-    { path: 'editar-senha', component: ConfiguracoesEditarSenhaComponent },
+    { path: 'editar-senha', component: ConfiguracoesEditarSenhaComponent }
   ]}
 ];
 
