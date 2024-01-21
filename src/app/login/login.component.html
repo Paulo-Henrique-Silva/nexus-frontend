@@ -19,7 +19,7 @@
                     <mat-label>Usuário</mat-label>
                     <input type="text" matInput formControlName="usuario">
                     <mat-error *ngIf="campoInvalido('usuario')">
-                        {{ obterMensagem('usuario') }}
+                        {{ obterMensagemErro('usuario') }}
                     </mat-error>
                 </mat-form-field>
 
@@ -27,7 +27,7 @@
                     <mat-label>Senha</mat-label>
                     <input type="password" matInput formControlName="senha">
                     <mat-error *ngIf="campoInvalido('senha')">
-                        {{ obterMensagem('senha') }}
+                        {{ obterMensagemErro('senha') }}
                     </mat-error>
                 </mat-form-field>
 
