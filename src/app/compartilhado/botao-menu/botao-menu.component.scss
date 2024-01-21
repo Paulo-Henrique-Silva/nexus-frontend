@@ -1,5 +1,22 @@
+@use '../../../styles/variables.scss' as v;
+
 mat-card {
-    background-color: transparent;
-    border: none;
     border-radius: 0;
+    margin: 0;
+}
+
+mat-icon {
+    font-size: 1.75rem;
+    width: auto;
+    height: auto;
+}
+
+mat-card-title {
+    font-size: 1rem;
+}
+
+mat-card:hover {
+    cursor: pointer;
+    background-color: v.$background-color;
+    color: v.$primary;
 }

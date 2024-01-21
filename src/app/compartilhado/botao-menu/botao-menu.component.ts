@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'nexus-botao-menu',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './botao-menu.component.scss'
 })
 export class BotaoMenuComponent {
+  @Input()
+  nome: string = ''
 
+  @Input()
+  icone: string = ''
 }

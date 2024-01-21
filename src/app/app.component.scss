@@ -1,0 +1,6 @@
+@use '../styles/variables.scss' as v;
+
+nexus-botao-menu.active {
+    border-left: 5px solid v.$primary;
+    color: v.$primary;
+}
