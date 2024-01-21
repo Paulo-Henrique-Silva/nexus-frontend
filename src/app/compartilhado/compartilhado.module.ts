@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { BotaoVoltarComponent } from './botao-voltar/botao-voltar.component';
 import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
+import { BotaoMenuComponent } from './botao-menu/botao-menu.component';
 
 
 
 @NgModule({
   declarations: [
-    BotaoVoltarComponent
+    BotaoVoltarComponent,
+    BotaoMenuComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   exports: [
-    BotaoVoltarComponent
+    BotaoVoltarComponent,
+    BotaoMenuComponent
   ]
 })
 export class CompartilhadoModule { }

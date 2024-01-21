@@ -21,19 +21,19 @@
 <!--Menu de módulos-->
 <mat-sidenav-container *ngIf="usuarioAutenticado; else paginaLogin">
   <mat-sidenav mode="side" opened>
-    <div class="d-flex flex-column p-3">
-      <button mat-button routerLink="/" routerLinkActive="active">
+    <div class="d-flex flex-column">
+      <nexus-botao-menu routerLink="/" routerLinkActive="active">
         Ativos
-      </button>
-      <button mat-button routerLink="/atribuicoes" routerLinkActive="active">
+      </nexus-botao-menu>
+      <nexus-botao-menu routerLink="/atribuicoes" routerLinkActive="active">
         Atribuições
-      </button>
-      <button mat-button routerLink="/notificacoes" routerLinkActive="active">
+      </nexus-botao-menu>
+      <nexus-botao-menu routerLink="/notificacoes" routerLinkActive="active">
         Notificações
-      </button>
-      <button mat-button routerLink="/configuracoes/usuario-detalhes" routerLinkActive="active">
+      </nexus-botao-menu>
+      <nexus-botao-menu routerLink="/configuracoes/usuario-detalhes" routerLinkActive="active">
         Configurações
-      </button>
+      </nexus-botao-menu>
     </div>
   </mat-sidenav>
   <mat-sidenav-content class="p-3">
