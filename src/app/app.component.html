@@ -19,7 +19,7 @@
 </nav>
 
 <!--Menu de módulos-->
-<mat-sidenav-container *ngIf="usuarioAutenticado; else paginaLogin">
+<mat-sidenav-container *ngIf="usuarioAutenticado; else paginaLogin" >
   <mat-sidenav mode="side" opened>
     <div class="d-flex flex-column">
       <nexus-botao-menu routerLink="/ativos" routerLinkActive="active" nome="Ativos"

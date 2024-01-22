@@ -1,26 +1,13 @@
 
 <mat-sidenav-container>
     <mat-sidenav mode="side" class="w-25" [opened]="clicouParaVerAcoes">
-        <div class="p-3">
-            <h2>OBJETO-002</h2>
-        </div>
-        <div class="d-flex flex-column">
-            <button mat-button>
-                Atualizar
-            </button>
-            <button mat-button>
-                Excluir
-            </button>
-            <button mat-button>
-                Ver Detalhes
-            </button>
-        </div>
+        <nexus-localizacoes-acoes></nexus-localizacoes-acoes>
     </mat-sidenav>
     <mat-sidenav-content class="p-3">
         <nexus-botao-voltar caminho="/ativos/localizacoes"></nexus-botao-voltar>
 
         <div class="mat-elevation-z8">
-            <table mat-table [dataSource]="dados" matSort>
+            <table class="mat-table" mat-table [dataSource]="dados" matSort>
 
                 <ng-container *ngFor="let coluna of colunas; let i = index" [matColumnDef]="coluna">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ colunasMostrarComo[i] }} </th>
@@ -36,7 +23,7 @@
             <mat-paginator [pageSize]="25" showFirstLastButtons
                     aria-label="Página selecionada de tarefas.">
             </mat-paginator>
-            </div>        
+        </div>        
     </mat-sidenav-content>
 </mat-sidenav-container>
   
