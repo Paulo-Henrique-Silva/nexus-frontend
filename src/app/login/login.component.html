@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center align-items-center h-100vh bg-primary">
-    <mat-card class="col-12 col-md-4 p-3">
+    <mat-card class="col-12 col-sm-8 col-md-4 p-3">
         <mat-card-header class="d-flex flex-column text-center mb-4">
             <div class="w-100 mb-1">
                 <img src="../../assets/nexus-logo.svg" height="200px" width="200px"/>
@@ -14,8 +14,23 @@
             </div>
         </mat-card-header>
         <mat-card-content>
-            <nexus-formulario [formulario]="formulario" [camposMostrarComo]="['Usuário', 'Senha']">
-            </nexus-formulario>
+            <form [formGroup]="formulario" class="d-flex flex-column">
+                <mat-form-field class="mb-3">
+                    <mat-label>Usuário</mat-label>
+                    <input type="text" matInput formControlName="usuario">
+                    <mat-error *ngIf="campoInvalido('usuario')">
+                        {{ obterMensagemErro('usuario') }}
+                    </mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="mb-3">
+                    <mat-label>Senha</mat-label>
+                    <input type="password" matInput formControlName="senha">
+                    <mat-error *ngIf="campoInvalido('senha')">
+                        {{ obterMensagemErro('senha') }}
+                    </mat-error>
+                </mat-form-field>
+            </form>
         </mat-card-content>
 
         <mat-card-actions align="end">
@@ -26,3 +41,7 @@
         </mat-card-actions>
     </mat-card>
 </div>
+
+<pre>
+    {{ formulario.value | json }}
+</pre>

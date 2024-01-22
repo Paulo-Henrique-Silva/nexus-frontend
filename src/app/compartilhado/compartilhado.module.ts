@@ -7,7 +7,6 @@ import { BotaoMenuComponent } from './botao-menu/botao-menu.component';
 import { AtivosOpcoesComponent } from './ativos-opcoes/ativos-opcoes.component';
 import { AtivosVoltarComponent } from './ativos-voltar/ativos-voltar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormularioComponent } from './formulario/formulario.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,6 @@ import { FormularioComponent } from './formulario/formulario.component';
     BotaoMenuComponent,
     AtivosOpcoesComponent,
     AtivosVoltarComponent,
-    FormularioComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +27,6 @@ import { FormularioComponent } from './formulario/formulario.component';
     BotaoMenuComponent,
     AtivosOpcoesComponent,
     AtivosVoltarComponent,
-    FormularioComponent
   ]
 })
 export class CompartilhadoModule { }

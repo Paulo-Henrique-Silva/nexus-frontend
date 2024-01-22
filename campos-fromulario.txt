@@ -1,0 +1,88 @@
+<div>
+
+    <mat-form-field class="mb-3">
+        <mat-label>{{ mostrarComo }}</mat-label>
+        <input type="text" matInput formControlName="{{ nomeCampo }}">
+        <mat-error *ngIf="campoInvalido(nomeCampo)">
+            {{ obterMensagemErro(nomeCampo) }}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="mb-3">
+        <mat-label>Usuário</mat-label>
+        <input type="text" matInput formControlName="{{ nomeCampo }}">
+        <mat-error *ngIf="campoInvalido(nomeCampo)">
+            {{ obterMensagemErro(nomeCampo) }}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="mb-3">
+        <mat-label>{{ mostrarComo }}</mat-label>
+        <input type="number" matInput formControlName="{{ nomeCampo }}">
+        <mat-error *ngIf="campoInvalido(nomeCampo)">
+            {{ obterMensagemErro(nomeCampo) }}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="mb-3">
+        <mat-label>{{ mostrarComo }}</mat-label>
+        <input formControlName="{{ nomeCampo }}" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="campoInvalido(nomeCampo)">
+            {{ obterMensagemErro(nomeCampo) }}
+        </mat-error>
+    </mat-form-field>
+
+    <div class="mb-3">
+        <mat-checkbox formControlName="{{ nomeCampo }}">
+            {{ mostrarComo }}
+        </mat-checkbox>
+        <mat-error *ngIf="campoInvalido(nomeCampo)">
+            {{ obterMensagemErro(nomeCampo) }}
+        </mat-error>
+    </div>
+
+    <mat-form-field class="mb-3">
+        <mat-label>{{ mostrarComo }}</mat-label>
+        <input #input type="text" matInput [formControlName]="nomeCampo" 
+        [matAutocomplete]="auto" (input)="filter(nomeCampo)" (focus)="filter(nomeCampo)">
+
+        <mat-autocomplete requireSelection #auto="matAutocomplete">
+            <mat-option *ngFor="let objeto of opcoesFiltradas" [value]="objeto">
+                {{ objeto }}
+            </mat-option>
+        </mat-autocomplete>
+
+        <mat-error *ngIf="campoInvalido(nomeCampo)">
+            {{ obterMensagemErro(nomeCampo) }}
+        </mat-error>
+    </mat-form-field>
+</div>
+
+
+---------------------------------------
+
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMM YYYY',
+  },
+};
+
+@Component({
+  selector: 'nexus-campo-formulario',
+  templateUrl: './campo-formulario.component.html',
+  styleUrl: './campo-formulario.component.scss',
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+  ]
+})

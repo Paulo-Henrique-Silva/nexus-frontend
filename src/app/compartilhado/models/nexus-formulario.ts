@@ -17,4 +17,25 @@ export abstract class NexusFormulario {
   
     abstract onSubmit(): void
 
+    
+  obterMensagemErro(nomeCampo: string): string {
+    const campo = this.formulario.get(nomeCampo)
+    
+    //se o campo não existe, retorna nada.
+    if (!campo) {
+      throw new Error('Campo não existe.')
+    }
+    
+    return this.mensagemValidacaoService.obterMensagem(campo)
+  }
+  
+  campoInvalido(nomeCampo: string): boolean {
+    const campo = this.formulario.get(nomeCampo)
+
+    if (!campo) {
+      throw new Error('Campo não existe.')
+    }
+
+    return campo.invalid
+  }
 }
