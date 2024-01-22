@@ -5,6 +5,7 @@ import { UsuarioEnvio } from './usuario-envio';
 import { Router } from '@angular/router';
 import { MensagensValidacaoService } from '../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { NexusFormulario } from '../compartilhado/models/nexus-formulario';
+import { ReferenciaObjeto } from '../compartilhado/models/referencia-objeto';
 
 @Component({
   selector: 'nexus-login',
@@ -21,7 +22,7 @@ export class LoginComponent extends NexusFormulario {
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService)
     this.formulario = this.formBuilder.group({
-      usuario: [new Date(), Validators.required],
+      usuario: [new ReferenciaObjeto(), Validators.required],
       senha: ['', Validators.required]
     })
   }

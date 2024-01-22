@@ -20,8 +20,8 @@ export class LocalizacoesAdicionarComponent extends NexusFormulario {
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService)
     this.formulario = this.formBuilder.group({
-      nome: [null, Validators.required],
-      descricao: [null, Validators.required]
+      nome: ['', Validators.required],
+      descricao: ['', Validators.required]
     })
 
     this.camposMostrarComo = [ 'Nome', 'Descrição' ]

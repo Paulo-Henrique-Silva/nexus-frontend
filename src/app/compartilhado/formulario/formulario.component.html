@@ -21,7 +21,7 @@
 
             <mat-form-field *ngSwitchCase="'date'" class="mb-3">
                 <mat-label>{{ camposMostrarComo[i] }}</mat-label>
-                <input matInput [matDatepicker]="picker">
+                <input formControlName="{{ campo }}" matInput [matDatepicker]="picker">
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="campoInvalido(campo)">
@@ -29,6 +29,35 @@
                 </mat-error>
             </mat-form-field>
 
+            <div *ngSwitchCase="'boolean'" class="mb-3">
+                <mat-checkbox formControlName="{{ campo }}">
+                    {{ camposMostrarComo[i] }}
+                </mat-checkbox>
+                <mat-error *ngIf="campoInvalido(campo)">
+                    {{ obterMensagemErro(campo) }}
+                </mat-error>
+            </div>
+
+            <mat-form-field *ngSwitchCase="'referencia-obj'" class="mb-3">
+                <mat-label>{{ camposMostrarComo[i] }}</mat-label>
+                <input #input type="text" matInput [formControlName]="campo" 
+                [matAutocomplete]="auto" (input)="filter(campo)" (focus)="filter(campo)">
+
+                <!--TODO: Fazer opção de autocomplete funcionar e criar componente de tabela-->
+                <mat-autocomplete requireSelection #auto="matAutocomplete">
+                @for (option of filteredOptions; track option) {
+                    <mat-option [value]="option">{{option}}</mat-option>
+                }
+                </mat-autocomplete>
+
+                <mat-error *ngIf="campoInvalido(campo)">
+                    {{ obterMensagemErro(campo) }}
+                </mat-error>
+            </mat-form-field>
         </div>
     </div>
 </form>
+
+<pre>
+    {{ formulario.value | json }}
+</pre>
