@@ -29,6 +29,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: h
   background-color: v.$background-color;
 }
 
-mat-sidenav-container { 
-  height: 100%;
-}
+mat-sidenav-container { height: 100%; }
+
+/* Evita que o contéudo da sidenav fica fora dos limites da tela */
+mat-sidenav-content { max-height: calc(100% - 3rem); }
