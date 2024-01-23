@@ -1,9 +1,8 @@
-
 <mat-sidenav-container>
     <mat-sidenav mode="side" class="w-25" [opened]="clicouParaVerAcoes">
         <nexus-localizacoes-acoes></nexus-localizacoes-acoes>
     </mat-sidenav>
-    <mat-sidenav-content class="p-3">
+    <mat-sidenav-content>
         <nexus-botao-voltar caminho="/ativos/localizacoes"></nexus-botao-voltar>
 
         <div class="mat-elevation-z8">
@@ -15,8 +14,7 @@
                 </ng-container>
             
                 <tr mat-header-row *matHeaderRowDef="colunas"></tr>
-                <tr mat-row *matRowDef="let row; columns: colunas;" 
-                (click)="mostarAcoes()">
+                <tr mat-row *matRowDef="let row; columns: colunas;" (click)="mostarAcoes()">
                 </tr>
             </table>
             
