@@ -2,7 +2,7 @@
     <mat-sidenav mode="side" class="w-25" [opened]="clicouParaVerAcoes">
         <nexus-localizacoes-acoes></nexus-localizacoes-acoes>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content class="p-3">
         <nexus-botao-voltar caminho="/ativos/localizacoes"></nexus-botao-voltar>
 
         <div class="mat-elevation-z8">
@@ -10,12 +10,11 @@
 
                 <ng-container *ngFor="let coluna of colunas; let i = index" [matColumnDef]="coluna">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ colunasMostrarComo[i] }} </th>
-                    <td mat-cell *matCellDef="let element"> {{element[coluna] }} </td>
+                    <td mat-cell *matCellDef="let element">{{ element[coluna] }}</td>
                 </ng-container>
             
                 <tr mat-header-row *matHeaderRowDef="colunas"></tr>
-                <tr mat-row *matRowDef="let row; columns: colunas;" (click)="mostarAcoes()">
-                </tr>
+                <tr mat-row *matRowDef="let row; columns: colunas;" (click)="mostarAcoes()"></tr>
             </table>
             
             <mat-paginator [pageSize]="25" showFirstLastButtons
