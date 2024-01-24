@@ -7,9 +7,9 @@ export class NexusResposta {
 
     public descricao: string = ''
 
-    public dataUltimaAtualizacao: Date = new Date();
+    public dataUltimaAtualizacao: Date | null = new Date();
 
-    public atualizadoPor: ReferenciaObjeto = new ReferenciaObjeto()
+    public atualizadoPor: ReferenciaObjeto | null = new ReferenciaObjeto()
 
     public usuarioCriador: ReferenciaObjeto = new ReferenciaObjeto()
 

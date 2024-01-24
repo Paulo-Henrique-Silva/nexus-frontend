@@ -12,6 +12,7 @@ import { LocalizacoesBuscarComponent } from './localizacoes-buscar/localizacoes-
 import { LocalizacoesAcoesComponent } from './localizacoes-acoes/localizacoes-acoes.component';
 import { LocalizacoesDetalhesComponent } from './localizacoes-detalhes/localizacoes-detalhes.component';
 import { LocalizacoesEditarComponent } from './localizacoes-editar/localizacoes-editar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { LocalizacoesEditarComponent } from './localizacoes-editar/localizacoes-
     FormsModule,
     ReactiveFormsModule,
     CompartilhadoModule,
+    HttpClientModule,
     LocalizacoesRoutingModule
   ]
 })
