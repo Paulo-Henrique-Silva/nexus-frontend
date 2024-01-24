@@ -1,5 +1,5 @@
 import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from "@angular/forms"
-import { Router } from "@angular/router"
+import { ActivatedRoute, Router } from "@angular/router"
 import { AuthService } from "../../login/auth/auth.service"
 import { MensagensValidacaoService } from "../services/mensagens-validacao/mensagens-validacao.service"
 
@@ -12,7 +12,8 @@ export abstract class NexusFormulario {
       protected authService : AuthService, 
       protected formBuilder: FormBuilder,
       protected router: Router,
-      protected mensagemValidacaoService: MensagensValidacaoService
+      protected mensagemValidacaoService: MensagensValidacaoService,
+      protected activatedRoute: ActivatedRoute
     ) {}
   
     abstract onSubmit(): void

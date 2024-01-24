@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioEnvio } from './usuario-envio';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MensagensValidacaoService } from '../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { NexusFormulario } from '../compartilhado/models/nexus-formulario';
 
@@ -17,9 +17,10 @@ export class LoginComponent extends NexusFormulario {
     authService : AuthService, 
     formBuilder: FormBuilder,
     router: Router,
-    mensagemValidacaoService: MensagensValidacaoService
+    mensagemValidacaoService: MensagensValidacaoService,
+    activatedRoute: ActivatedRoute
   ) {
-    super(authService, formBuilder, router, mensagemValidacaoService)
+    super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute)
     this.formulario = this.formBuilder.group({
       usuario: ['', Validators.required],
       senha: ['', Validators.required]

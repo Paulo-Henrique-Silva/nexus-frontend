@@ -13,17 +13,17 @@ export class LocalizacoesService {
     { 
       UID: '1', nome: 'SAL1', descricao: 'Sala de Aula 1', 
       projeto: { UID: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
-      dataCriacao: new Date(2024, 1, 24), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
+      dataCriacao: new Date(), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
     },
     { 
       UID: '2', nome: 'SAL2', descricao: 'Sala de Aula 2', 
       projeto: { UID: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
-      dataCriacao: new Date(2024, 1, 24), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
+      dataCriacao: new Date(), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
     },
     { 
       UID: '3', nome: 'SAL3', descricao: 'Sala de Aula 3', 
       projeto: { UID: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
-      dataCriacao: new Date(2024, 1, 24), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
+      dataCriacao: new Date(), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
     }
   ]
 
@@ -44,7 +44,7 @@ export class LocalizacoesService {
       descricao: localizacaoEnvio.descricao,
       projeto: { UID: 'PJ1', nome: 'GRU' },
       dataUltimaAtualizacao: null,
-      dataCriacao: new Date(2024, 1, 24), 
+      dataCriacao: new Date(), 
       atualizadoPor: null,
       usuarioCriador: { UID: '1', nome: 'Paulo Silva'}
     }
@@ -52,11 +52,28 @@ export class LocalizacoesService {
     this.localizacoes.push(localizacaoResposta);
   }
 
-  editar(uid: string, LocalizacaoEnvio: LocalizacaoEnvio) {
+  editar(uid: string, localizacaoEnvio: LocalizacaoEnvio) {
+    const localizacaoResposta: LocalizacaoResposta = {
+      UID: String(Math.floor((Math.random() * 10000) + 1)),
+      nome: localizacaoEnvio.nome,
+      descricao: localizacaoEnvio.descricao,
+      projeto: { UID: 'PJ1', nome: 'GRU' },
+      dataUltimaAtualizacao: new Date(),
+      dataCriacao: new Date(), 
+      atualizadoPor: { UID: '1', nome: 'Paulo Silva'},
+      usuarioCriador: { UID: '1', nome: 'Paulo Silva'}
+    }
 
+    this.localizacoes = this.localizacoes.map((obj) => {
+      return obj.UID === uid ? localizacaoResposta : obj;
+    })
   }
 
   deletar(uid: string) {
+    const localizacao = this.localizacoes.find(obj => obj.UID === uid);
 
+    if (localizacao) {
+      this.localizacoes.splice(this.localizacoes.indexOf(localizacao), 1);
+    }
   }
 }

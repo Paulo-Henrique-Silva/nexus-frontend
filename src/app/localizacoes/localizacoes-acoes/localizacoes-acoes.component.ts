@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 
 @Component({
   selector: 'nexus-localizacoes-acoes',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './localizacoes-acoes.component.scss'
 })
 export class LocalizacoesAcoesComponent {
-
+  @Input()
+  objeto: ReferenciaObjeto = new ReferenciaObjeto();
 }

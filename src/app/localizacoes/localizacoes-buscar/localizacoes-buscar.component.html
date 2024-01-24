@@ -1,6 +1,6 @@
 <mat-sidenav-container>
-    <mat-sidenav mode="side" class="w-25" [opened]="clicouParaVerAcoes">
-        <nexus-localizacoes-acoes></nexus-localizacoes-acoes>
+    <mat-sidenav mode="side" class="w-25" [opened]="selecionouObjeto">
+        <nexus-localizacoes-acoes [objeto]="objetoSelecionado"></nexus-localizacoes-acoes>
     </mat-sidenav>
     <mat-sidenav-content class="p-3">
         <nexus-botao-voltar caminho="/ativos/localizacoes"></nexus-botao-voltar>
@@ -14,7 +14,7 @@
                 </ng-container>
             
                 <tr mat-header-row *matHeaderRowDef="colunas"></tr>
-                <tr mat-row *matRowDef="let row; columns: colunas;" (click)="mostarAcoes()"></tr>
+                <tr mat-row *matRowDef="let linha; columns: colunas;" (click)="mostarAcoes(linha)"></tr>
             </table>
             
             <mat-paginator [pageSize]="25" showFirstLastButtons

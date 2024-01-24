@@ -4,6 +4,7 @@ import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LocalizacoesService } from '../localizacoes.service';
+import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 
 @Component({
   selector: 'app-localizacoes-buscar',
@@ -37,7 +38,8 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl {
   override firstPageLabel = 'Primeira página';
   override lastPageLabel = 'Última página';
   
-  clicouParaVerAcoes: boolean = false;
+  objetoSelecionado: ReferenciaObjeto = new ReferenciaObjeto();
+  selecionouObjeto: boolean = false;
 
   constructor(
     private localizacaoService: LocalizacoesService
@@ -64,7 +66,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl {
       for (let propriedade in dado) {
         //Se for uma data, converte o valor para algo legível.
         if (dado[propriedade] instanceof Date) {
-          dado[propriedade] = pipe.transform(dado[propriedade], 'dd/MM/yyyy hh:mm:ss');
+          dado[propriedade] = pipe.transform(dado[propriedade], 'dd/MM/yyyy HH:mm:ss');
         }
 
         //Se for uma referência, retorna o nome do objeto.
@@ -77,8 +79,14 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl {
     return dadosTratados;
   }
 
-  mostarAcoes() {
-    this.clicouParaVerAcoes = !this.clicouParaVerAcoes
+  mostarAcoes(linha: any) {
+    const obj: ReferenciaObjeto = {
+      UID: linha.UID,
+      nome: linha.nome,
+    };
+
+    this.objetoSelecionado = obj;
+    this.selecionouObjeto = !this.selecionouObjeto;
   }
 
   override getRangeLabel = (page: number, pageSize: number, length: number): string => {

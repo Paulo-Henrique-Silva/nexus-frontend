@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { LocalizacoesService } from '../localizacoes.service';
@@ -19,9 +19,10 @@ export class LocalizacoesAdicionarComponent extends NexusFormulario {
     formBuilder: FormBuilder,
     router: Router,
     mensagemValidacaoService: MensagensValidacaoService,
-    private localizacaoService: LocalizacoesService
+    activatedRoute: ActivatedRoute,
+    private localizacaoService: LocalizacoesService,
   ) {
-    super(authService, formBuilder, router, mensagemValidacaoService)
+    super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute)
     this.formulario = this.formBuilder.group({
       nome: ['', Validators.required],
       descricao: ['', Validators.required]

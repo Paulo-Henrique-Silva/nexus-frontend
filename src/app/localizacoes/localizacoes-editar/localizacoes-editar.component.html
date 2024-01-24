@@ -22,13 +22,13 @@
                         {{ obterMensagemErro('descricao') }}
                     </mat-error>
                 </mat-form-field>
+                <mat-card-actions [align]="'end'">
+                    <button mat-raised-button color="primary" (click)="onSubmit()" 
+                    [disabled]="formulario.invalid">
+                        Editar
+                    </button>
+                </mat-card-actions>
             </form>
         </mat-card-content>
-        <mat-card-actions [align]="'end'">
-            <button mat-raised-button color="primary" (click)="onSubmit()" 
-            [disabled]="formulario.invalid">
-                Editar
-            </button>
-        </mat-card-actions>
     </mat-card>
 </div>
