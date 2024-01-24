@@ -7,6 +7,7 @@ import { BotaoMenuComponent } from './botao-menu/botao-menu.component';
 import { AtivosOpcoesComponent } from './ativos-opcoes/ativos-opcoes.component';
 import { AtivosVoltarComponent } from './ativos-voltar/ativos-voltar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogDeletarComponent } from './dialog-deletar/dialog-deletar.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BotaoMenuComponent,
     AtivosOpcoesComponent,
     AtivosVoltarComponent,
+    DialogDeletarComponent,
   ],
   imports: [
     CommonModule,

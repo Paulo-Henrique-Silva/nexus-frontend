@@ -33,6 +33,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { provideNativeDateAdapter } from '@angular/material/core';
 
@@ -69,7 +70,8 @@ const materialModules = [
   MatRadioModule,
   MatDatepickerModule,
   MatSlideToggleModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatDialogModule
 ];
 @NgModule({
   imports: [
