@@ -1,0 +1,34 @@
+<nexus-botao-voltar caminho="/ativos/localizacoes/buscar"></nexus-botao-voltar>
+
+<div class="d-flex justify-content-center">
+    <mat-card class="col-12 col-md-6 p-3">
+        <mat-card-header class="mb-4">
+            <mat-card-title>Editar Localização</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="formulario" class="d-flex flex-column">
+                <mat-form-field class="mb-3">
+                    <mat-label>Nome</mat-label>
+                    <input type="text" matInput formControlName="nome">
+                    <mat-error *ngIf="campoInvalido('nome')">
+                        {{ obterMensagemErro('nome') }}
+                    </mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="mb-3">
+                    <mat-label>Descrição</mat-label>
+                    <input type="text" matInput formControlName="descricao">
+                    <mat-error *ngIf="campoInvalido('descricao')">
+                        {{ obterMensagemErro('descricao') }}
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions [align]="'end'">
+            <button mat-raised-button color="primary" (click)="onSubmit()" 
+            [disabled]="formulario.invalid">
+                Editar
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -4,13 +4,13 @@
         <mat-divider></mat-divider>
     </div>
     <div class="d-flex flex-column">
-        <button mat-button>
-            Atualizar
+        <button mat-button [routerLink]="['/ativos/localizacoes/editar', 1]">
+            Editar
         </button>
         <button mat-button>
-            Excluir
+            Deletar
         </button>
-        <button mat-button>
+        <button mat-button [routerLink]="['/ativos/localizacoes/detalhes', 1]">
             Ver Detalhes
         </button>
     </div>

@@ -5,6 +5,8 @@ import { conferirAutenticacao } from '../login/guard/login-guard';
 import { LocalizacoesMenuComponent } from './localizacoes-menu/localizacoes-menu.component';
 import { LocalizacoesAdicionarComponent } from './localizacoes-adicionar/localizacoes-adicionar.component';
 import { LocalizacoesBuscarComponent } from './localizacoes-buscar/localizacoes-buscar.component';
+import { LocalizacoesDetalhesComponent } from './localizacoes-detalhes/localizacoes-detalhes.component';
+import { LocalizacoesEditarComponent } from './localizacoes-editar/localizacoes-editar.component';
 
 const routes: Routes = [
   { path: 'ativos/localizacoes', component: LocalizacoesComponent, canActivate:[conferirAutenticacao],
@@ -12,6 +14,8 @@ const routes: Routes = [
     { path: '', component: LocalizacoesMenuComponent },
     { path: 'adicionar', component: LocalizacoesAdicionarComponent },
     { path: 'buscar', component: LocalizacoesBuscarComponent },
+    { path: 'detalhes/:uid', component: LocalizacoesDetalhesComponent },
+    { path: 'editar/:uid', component: LocalizacoesEditarComponent },
   ]}
 ];
 

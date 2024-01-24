@@ -10,6 +10,8 @@ import { LocalizacoesAdicionarComponent } from './localizacoes-adicionar/localiz
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocalizacoesBuscarComponent } from './localizacoes-buscar/localizacoes-buscar.component';
 import { LocalizacoesAcoesComponent } from './localizacoes-acoes/localizacoes-acoes.component';
+import { LocalizacoesDetalhesComponent } from './localizacoes-detalhes/localizacoes-detalhes.component';
+import { LocalizacoesEditarComponent } from './localizacoes-editar/localizacoes-editar.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { LocalizacoesAcoesComponent } from './localizacoes-acoes/localizacoes-ac
     LocalizacoesMenuComponent,
     LocalizacoesAdicionarComponent,
     LocalizacoesBuscarComponent,
-    LocalizacoesAcoesComponent
+    LocalizacoesAcoesComponent,
+    LocalizacoesDetalhesComponent,
+    LocalizacoesEditarComponent
   ],
   imports: [
     CommonModule,
