@@ -8,11 +8,11 @@ import { JWTToken } from '../../configuracoes/model/token';
   providedIn: 'root'
 })
 export class AuthService {
-  private uidUsuario: string = '';
+  private uidUsuario?: string;
+  private token?: JWTToken;
 
   private _loginSucedido: boolean = false;
 
-  private token: JWTToken = new JWTToken();
 
   usuarioAutenticado$: Subject<any> = new Subject<any>();
 
@@ -35,6 +35,13 @@ export class AuthService {
           }
         }
       });
+  }
+
+  sairDaConta() {
+    this.token = undefined;
+    this.uidUsuario = undefined;
+    this.usuarioAutenticado$.next(false);
+    this._loginSucedido = false;
   }
 
   get loginSucedido(): boolean {

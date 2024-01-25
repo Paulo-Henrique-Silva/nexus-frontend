@@ -13,7 +13,18 @@
 
     <div>
       <button class="me-3" routerLink="/configuracoes/perfil" mat-button>Perfil</button>
-      <button mat-raised-button routerLink="/configuracoes/usuario-detalhes">Usuário</button>
+
+      <button mat-raised-button [matMenuTriggerFor]="menu">Usuário</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/configuracoes/usuario-detalhes">
+          <mat-icon matPrefix>settings</mat-icon>
+          Configurações
+        </button>
+        <button mat-menu-item (click)="sairDaConta()">
+          <mat-icon matPrefix>logout</mat-icon>
+          Sair da Conta
+        </button>
+      </mat-menu>
     </div>
   </mat-toolbar>
 </nav>
