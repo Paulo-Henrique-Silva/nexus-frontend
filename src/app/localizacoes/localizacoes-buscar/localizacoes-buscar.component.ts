@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,7 +16,7 @@ import { LocalizacaoResposta } from '../models/localizacao-resposta';
     { provide: MatPaginatorIntl, useClass: LocalizacoesBuscarComponent }
   ]
 })
-export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnInit, OnDestroy {
+export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) 
   paginator?: MatPaginator;
   
@@ -32,7 +32,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
     'Usuário Criador', 'Data Criação'
   ];
 
-  dadosTabela = new MatTableDataSource<any>();
+  dadosTabela: MatTableDataSource<any> = new MatTableDataSource<any>();
   
   override itemsPerPageLabel = 'Itens por página:';
   override nextPageLabel = 'Próxima página';
@@ -51,9 +51,9 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
     super();
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
     this.carregarTabela();
-
+    
     if (this.paginator && this.sort) {
       this.dadosTabela.paginator = this.paginator;
       this.dadosTabela.sort = this.sort;
