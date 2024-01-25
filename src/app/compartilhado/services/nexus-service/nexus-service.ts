@@ -8,7 +8,9 @@ import { Observable, take } from "rxjs";
 export class NexusService<T extends NexusEnvio, O extends NexusResposta> {
     url: string = ''
     
-    constructor(private http: HttpClient) { }
+    constructor(protected http: HttpClient, url: string) { 
+        this.url = url;
+    }
 
     obterPorUID(uid: string): Observable<O> {
         return this.http.get<O>(this.url + '/' + uid).pipe(take(1))

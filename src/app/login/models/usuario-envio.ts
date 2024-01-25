@@ -1,4 +1,4 @@
-import { NexusEnvio } from "../compartilhado/models/nexus-envio"
+import { NexusEnvio } from "../../compartilhado/models/nexus-envio"
 
 export class UsuarioEnvio extends NexusEnvio {
     public nomeAcesso: string = ''

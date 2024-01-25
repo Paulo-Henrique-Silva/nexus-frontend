@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './login/auth/auth.service';
-import { take } from 'rxjs';
+import { take, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.usuarioAutenticado.pipe(take(1)).subscribe(usuarioAutenticado => 
+    this.authService.usuarioAutenticado$.pipe().subscribe(usuarioAutenticado => 
       this.usuarioAutenticado = usuarioAutenticado)
   }
 
