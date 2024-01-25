@@ -1,7 +1,7 @@
 import { ReferenciaObjeto } from "./referencia-objeto";
 
 export class NexusResposta {
-    public UID: string = ''
+    public uid: string = ''
 
     public nome: string = ''
 

@@ -9,7 +9,7 @@ import { AtribuicaoResposta } from '../models/atribuicao-resposta';
 export class AtribuicoesListaComponent {
   atribuicoes: AtribuicaoResposta[] = [
     { 
-      UID: "1",
+      uid: "1",
       nome: "Aprovar requisição",
       descricao: "Aprove a descrição conforme dito.",
       usuario: {
@@ -35,7 +35,7 @@ export class AtribuicoesListaComponent {
       dataCriacao: new Date(2024, 1, 20)
     },
     { 
-      UID: "2",
+      uid: "2",
       nome: "Complete a manutenção",
       descricao: "Aprove a descrição conforme dito.",
       usuario: {

@@ -11,17 +11,17 @@ export class LocalizacoesService {
 
   localizacoes : LocalizacaoResposta[] = [
     { 
-      UID: '1', nome: 'SAL1', descricao: 'Sala de Aula 1', 
+      uid: '1', nome: 'SAL1', descricao: 'Sala de Aula 1', 
       projeto: { UID: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
       dataCriacao: new Date(), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
     },
     { 
-      UID: '2', nome: 'SAL2', descricao: 'Sala de Aula 2', 
+      uid: '2', nome: 'SAL2', descricao: 'Sala de Aula 2', 
       projeto: { UID: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
       dataCriacao: new Date(), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
     },
     { 
-      UID: '3', nome: 'SAL3', descricao: 'Sala de Aula 3', 
+      uid: '3', nome: 'SAL3', descricao: 'Sala de Aula 3', 
       projeto: { UID: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
       dataCriacao: new Date(), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
     }
@@ -30,7 +30,7 @@ export class LocalizacoesService {
   constructor(private http: HttpClient) { }
 
   obterPorUID(uid: string) : LocalizacaoResposta | undefined {
-    return this.localizacoes.find(obj => obj.UID === uid);
+    return this.localizacoes.find(obj => obj.uid === uid);
   }
 
   obterTudo(pagina: number) : LocalizacaoResposta[] {
@@ -39,7 +39,7 @@ export class LocalizacoesService {
 
   adicionar(localizacaoEnvio: LocalizacaoEnvio) {
     const localizacaoResposta: LocalizacaoResposta = {
-      UID: String(Math.floor((Math.random() * 10000) + 1)),
+      uid: String(Math.floor((Math.random() * 10000) + 1)),
       nome: localizacaoEnvio.nome,
       descricao: localizacaoEnvio.descricao,
       projeto: { UID: 'PJ1', nome: 'GRU' },
@@ -54,7 +54,7 @@ export class LocalizacoesService {
 
   editar(uid: string, localizacaoEnvio: LocalizacaoEnvio) {
     const localizacaoResposta: LocalizacaoResposta = {
-      UID: String(Math.floor((Math.random() * 10000) + 1)),
+      uid: String(Math.floor((Math.random() * 10000) + 1)),
       nome: localizacaoEnvio.nome,
       descricao: localizacaoEnvio.descricao,
       projeto: { UID: 'PJ1', nome: 'GRU' },
@@ -65,12 +65,12 @@ export class LocalizacoesService {
     }
 
     this.localizacoes = this.localizacoes.map((obj) => {
-      return obj.UID === uid ? localizacaoResposta : obj;
+      return obj.uid === uid ? localizacaoResposta : obj;
     })
   }
 
   deletar(uid: string) {
-    const localizacao = this.localizacoes.find(obj => obj.UID === uid);
+    const localizacao = this.localizacoes.find(obj => obj.uid === uid);
 
     if (localizacao) {
       this.localizacoes.splice(this.localizacoes.indexOf(localizacao), 1);

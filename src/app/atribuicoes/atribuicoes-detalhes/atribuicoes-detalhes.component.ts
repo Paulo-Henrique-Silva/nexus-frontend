@@ -9,7 +9,7 @@ import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 })
 export class AtribuicoesDetalhesComponent {
   atribuicao: AtribuicaoResposta = { 
-    UID: "1",
+    uid: "1",
     nome: "Aprovar requisição",
     descricao: "Aprove a descrição conforme dito.",
     usuario: {

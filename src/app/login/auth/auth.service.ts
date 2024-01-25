@@ -8,9 +8,12 @@ import { JWTToken } from '../../configuracoes/model/token';
   providedIn: 'root'
 })
 export class AuthService {
+  private uidUsuario: string = '';
 
   private _loginSucedido: boolean = false;
+
   private token: JWTToken = new JWTToken();
+
   usuarioAutenticado$: Subject<any> = new Subject<any>();
 
   constructor(private usuarioService: UsuariosService) { }
@@ -19,13 +22,13 @@ export class AuthService {
     this.usuarioService.login(usuarioEnvio)
       .subscribe( {
         next: (dados) => {
-          this.token = dados.token
+          this.token = dados.token;
+          this.uidUsuario = dados.uid
   
           this.usuarioAutenticado$.next(true);
           this._loginSucedido = true;
         },
         error: (error: any) => {
-          console.log(error.status)
           if (error.status == 401) {
             this.usuarioAutenticado$.next(false);
             this._loginSucedido = false;
