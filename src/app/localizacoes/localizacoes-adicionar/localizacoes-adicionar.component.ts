@@ -43,6 +43,6 @@ export class LocalizacoesAdicionarComponent extends NexusFormulario {
 
     this.localizacaoService.adicionar(localizacao);
 
-    this.router.navigate(['/ativos/localizacoes/buscar']);
+    //this.router.navigate(['/ativos/localizacoes/buscar']);
   }
 }

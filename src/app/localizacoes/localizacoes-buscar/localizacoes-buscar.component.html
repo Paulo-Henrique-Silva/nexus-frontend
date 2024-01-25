@@ -14,7 +14,7 @@
                 </ng-container>
             
                 <tr mat-header-row *matHeaderRowDef="colunas"></tr>
-                <tr mat-row *matRowDef="let linha; columns: colunas;" (click)="mostarAcoes(linha)"></tr>
+                <tr mat-row *matRowDef="let linha; columns: colunas;" (click)="mostrarAcoes(linha)"></tr>
             </table>
             
             <mat-paginator [pageSize]="25" showFirstLastButtons

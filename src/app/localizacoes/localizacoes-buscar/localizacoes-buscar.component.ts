@@ -1,11 +1,12 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LocalizacoesService } from '../localizacoes.service';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 import { Subscription } from 'rxjs';
+import { LocalizacaoResposta } from '../models/localizacao-resposta';
 
 @Component({
   selector: 'app-localizacoes-buscar',
@@ -19,7 +20,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
   @ViewChild(MatPaginator) 
   paginator?: MatPaginator;
   
-  @ViewChild(MatSort) 
+  @ViewChild(MatSort)
   sort?: MatSort;
 
   colunas: string[] = [ 
@@ -49,17 +50,17 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
   ) {
     super();
   }
-  
+
   ngOnInit(): void {
+    this.carregarTabela();
+
     if (this.paginator && this.sort) {
       this.dadosTabela.paginator = this.paginator;
       this.dadosTabela.sort = this.sort;
-      
+
       this.inscricaoPaginator = this.paginator.page
-      .subscribe(resultado => this.paginaAtual = resultado.pageIndex);
+       .subscribe(resultado => this.paginaAtual = resultado.pageIndex);
     }
-    
-    this.carregarTabela();
   }
   
   ngOnDestroy(): void {
@@ -70,7 +71,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
   carregarTabela() {
     let dadosTratados: any[] = this.localizacaoService.obterTudo(this.paginaAtual);
     const pipe = new DatePipe('en-US');
-
+ 
     dadosTratados.forEach(dado => {
       for (let propriedade in dado) {
         //Se for uma data, converte o valor para algo legível.
@@ -89,13 +90,12 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
     this.dadosTabela = new MatTableDataSource<any>(dadosTratados);
   }
 
-  mostarAcoes(linha: any) {
-    const obj: ReferenciaObjeto = {
+  mostrarAcoes(linha: any) {
+    this.objetoSelecionado = {
       UID: linha.UID,
       nome: linha.nome,
     };
 
-    this.objetoSelecionado = obj;
     this.selecionouObjeto = !this.selecionouObjeto;
   }
 
@@ -103,6 +103,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
     if (length === 0 || pageSize === 0) {
       return `0 de ${length}`;
     }
+
     length = Math.max(length, 0);
     const startIndex = page * pageSize;
     const endIndex = startIndex < length ?
