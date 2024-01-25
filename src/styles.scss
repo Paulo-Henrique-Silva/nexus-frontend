@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @use 'styles/variables' as v;
 @use 'styles/global-classes';
+@use 'styles/style-classes';
 
 @use '@angular/material' as mat;
 @include mat.core();
@@ -23,11 +24,6 @@ $custom-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: hidden;}
-
-.mat-table tr:hover {
-  cursor: pointer;
-  background-color: v.$background-color;
-}
 
 mat-sidenav-container { height: 100%; }
 

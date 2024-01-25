@@ -1,11 +1,5 @@
 @use '../../../styles/variables' as v;
 
-p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 mat-card {
   background-color: v.$primary-light2;
 }

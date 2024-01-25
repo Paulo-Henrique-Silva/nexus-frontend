@@ -17,6 +17,8 @@ export class LocalizacoesAcoesComponent {
   @Output() 
   deletou = new EventEmitter<any>();
 
+  @Output() 
+  fechou = new EventEmitter<any>();
 
   constructor(
     private localizacoService: LocalizacoesService,
@@ -35,5 +37,9 @@ export class LocalizacoesAcoesComponent {
       }
     })
 
+  }
+
+  fecharAcoes() {
+    this.fechou.emit();
   }
 }

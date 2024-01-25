@@ -44,6 +44,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
   selecionouObjeto: boolean = false;
   paginaAtual: number = 1;
   inscricaoPaginator: Subscription = new Subscription();
+  indexLinhaSelecionada: number = -1;
 
   constructor(
     private localizacaoService: LocalizacoesService
@@ -90,13 +91,17 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
     this.dadosTabela = new MatTableDataSource<any>(dadosTratados);
   }
 
-  mostrarAcoes(linha: any) {
+  mostrarAcoes(linha: any, indexLinha: number) {
     this.objetoSelecionado = {
       UID: linha.UID,
       nome: linha.nome,
     };
 
     this.selecionouObjeto = !this.selecionouObjeto;
+    
+    //Caso haja um objeto selecinado, aplico o estilo na linha. Senão, marca o index como -1
+    //para resetar os estilos na tabela.
+    this.indexLinhaSelecionada = this.selecionouObjeto ? indexLinha : -1;
   }
 
   override getRangeLabel = (page: number, pageSize: number, length: number): string => {

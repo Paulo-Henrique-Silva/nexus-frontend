@@ -1,0 +1,9 @@
+@use '../../../styles/variables' as v;
+
+.selecionada {
+    background-color: v.$primary-light1;
+}
+
+.selecionada:hover {
+    background-color: v.$primary-light1;
+}

@@ -1,12 +1,16 @@
 <mat-sidenav-container>
     <mat-sidenav mode="side" class="w-25" [opened]="selecionouObjeto">
-        <nexus-localizacoes-acoes [objeto]="objetoSelecionado" (deletou)="carregarTabela()"></nexus-localizacoes-acoes>
+
+        <nexus-localizacoes-acoes [objeto]="objetoSelecionado" (deletou)="carregarTabela()"
+        (fechou)="selecionouObjeto = false">
+        </nexus-localizacoes-acoes>
+        
     </mat-sidenav>
     <mat-sidenav-content class="p-3">
         <nexus-botao-voltar caminho="/ativos/localizacoes"></nexus-botao-voltar>
 
         <div class="mat-elevation-z8">
-            <table class="mat-table" mat-table [dataSource]="dadosTabela" matSort>
+            <table class="buscar-table" mat-table [dataSource]="dadosTabela" matSort>
 
                 <ng-container *ngFor="let coluna of colunas; let i = index" [matColumnDef]="coluna">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ colunasMostrarComo[i] }} </th>
@@ -14,7 +18,9 @@
                 </ng-container>
             
                 <tr mat-header-row *matHeaderRowDef="colunas"></tr>
-                <tr mat-row *matRowDef="let linha; columns: colunas;" (click)="mostrarAcoes(linha)"></tr>
+                <tr mat-row *matRowDef="let linha; columns: colunas; let i = index" 
+                (click)="mostrarAcoes(linha, i)" [class.selecionada]="i == indexLinhaSelecionada">
+                </tr>
             </table>
             
             <mat-paginator [pageSize]="25" showFirstLastButtons
