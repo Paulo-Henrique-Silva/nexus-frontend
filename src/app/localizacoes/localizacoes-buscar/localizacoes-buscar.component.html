@@ -1,12 +1,12 @@
 <mat-sidenav-container>
     <mat-sidenav mode="side" class="w-25" [opened]="selecionouObjeto">
-        <nexus-localizacoes-acoes [objeto]="objetoSelecionado"></nexus-localizacoes-acoes>
+        <nexus-localizacoes-acoes [objeto]="objetoSelecionado" (deletou)="carregarTabela()"></nexus-localizacoes-acoes>
     </mat-sidenav>
     <mat-sidenav-content class="p-3">
         <nexus-botao-voltar caminho="/ativos/localizacoes"></nexus-botao-voltar>
 
         <div class="mat-elevation-z8">
-            <table class="mat-table" mat-table [dataSource]="dados" matSort>
+            <table class="mat-table" mat-table [dataSource]="dadosTabela" matSort>
 
                 <ng-container *ngFor="let coluna of colunas; let i = index" [matColumnDef]="coluna">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ colunasMostrarComo[i] }} </th>

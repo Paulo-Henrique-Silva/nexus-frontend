@@ -13,6 +13,7 @@ export class DialogDeletarComponent {
   ) {}
 
   deletar(): void {
-    this.dialogRef.close('deletou');
+    //Retorna true caso tenha deletado o objeto.
+    this.dialogRef.close(true);
   }
 }

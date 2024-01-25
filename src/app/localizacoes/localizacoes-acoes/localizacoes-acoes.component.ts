@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 import { LocalizacoesService } from '../localizacoes.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,11 +13,14 @@ import { Router } from '@angular/router';
 export class LocalizacoesAcoesComponent {
   @Input()
   objeto: ReferenciaObjeto = new ReferenciaObjeto();
+  
+  @Output() 
+  deletou = new EventEmitter<any>();
+
 
   constructor(
     private localizacoService: LocalizacoesService,
-    private dialog: MatDialog,
-    private router: Router
+    private dialog: MatDialog
   ) { }
 
   deletarObjeto() {
@@ -25,8 +28,9 @@ export class LocalizacoesAcoesComponent {
       data: this.objeto.nome
     });
 
-    dialogExcluir.afterClosed().subscribe(resultado => {
-      if (resultado === 'deletou') {
+    dialogExcluir.afterClosed().subscribe(deletou => {
+      if (deletou) {
+        this.deletou.emit();
         this.localizacoService.deletar(this.objeto.UID);
       }
     })

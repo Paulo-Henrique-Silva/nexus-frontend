@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LocalizacoesService } from '../localizacoes.service';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-localizacoes-buscar',
@@ -14,7 +15,7 @@ import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
     { provide: MatPaginatorIntl, useClass: LocalizacoesBuscarComponent }
   ]
 })
-export class LocalizacoesBuscarComponent extends MatPaginatorIntl {
+export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) 
   paginator?: MatPaginator;
   
@@ -30,7 +31,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl {
     'Usuário Criador', 'Data Criação'
   ];
 
-  dados = new MatTableDataSource<any>();
+  dadosTabela = new MatTableDataSource<any>();
   
   override itemsPerPageLabel = 'Itens por página:';
   override nextPageLabel = 'Próxima página';
@@ -40,26 +41,34 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl {
   
   objetoSelecionado: ReferenciaObjeto = new ReferenciaObjeto();
   selecionouObjeto: boolean = false;
+  paginaAtual: number = 1;
+  inscricaoPaginator: Subscription = new Subscription();
 
   constructor(
     private localizacaoService: LocalizacoesService
   ) {
     super();
-    this.dados = new MatTableDataSource<any>(this.obterDadosTratados());
-
-    if (this.paginator && this.sort) {
-      this.dados.paginator = this.paginator;
-      this.dados.sort = this.sort;
-    }
   }
-
-  ngAfterViewInit() {
+  
+  ngOnInit(): void {
+    if (this.paginator && this.sort) {
+      this.dadosTabela.paginator = this.paginator;
+      this.dadosTabela.sort = this.sort;
+      
+      this.inscricaoPaginator = this.paginator.page
+      .subscribe(resultado => this.paginaAtual = resultado.pageIndex);
+    }
     
+    this.carregarTabela();
+  }
+  
+  ngOnDestroy(): void {
+    this.inscricaoPaginator.unsubscribe();
   }
 
   //Aqui será feita o tratamento dos dados para que sejam mostrados na tabela.
-  obterDadosTratados() {
-    let dadosTratados: any[] = this.localizacaoService.obterTudo(1);
+  carregarTabela() {
+    let dadosTratados: any[] = this.localizacaoService.obterTudo(this.paginaAtual);
     const pipe = new DatePipe('en-US');
 
     dadosTratados.forEach(dado => {
@@ -76,7 +85,8 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl {
       }
     })
 
-    return dadosTratados;
+    this.selecionouObjeto = false;
+    this.dadosTabela = new MatTableDataSource<any>(dadosTratados);
   }
 
   mostarAcoes(linha: any) {
