@@ -93,12 +93,11 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
 
   mostrarAcoes(linha: any, indexLinha: number) {
     this.objetoSelecionado = {
-      UID: linha.UID,
+      uid: linha.uid,
       nome: linha.nome,
     };
-
     this.selecionouObjeto = !this.selecionouObjeto;
-    
+
     //Caso haja um objeto selecinado, aplico o estilo na linha. Senão, marca o index como -1
     //para resetar os estilos na tabela.
     this.indexLinhaSelecionada = this.selecionouObjeto ? indexLinha : -1;

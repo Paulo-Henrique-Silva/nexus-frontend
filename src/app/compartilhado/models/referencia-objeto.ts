@@ -1,4 +1,4 @@
 export class ReferenciaObjeto {
-    public UID: string = ''
+    public uid: string = ''
     public nome: string = ''
 }

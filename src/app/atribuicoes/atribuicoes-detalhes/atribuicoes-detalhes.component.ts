@@ -13,23 +13,23 @@ export class AtribuicoesDetalhesComponent {
     nome: "Aprovar requisição",
     descricao: "Aprove a descrição conforme dito.",
     usuario: {
-      UID: '1',
+      uid: '1',
       nome: 'PAUlO SILVA'
     },
     tipoAtribuicao: 0,
     concluida: false,
     cicloVida: {
-      UID: '1',
+      uid: '1',
       nome: 'Análise do Coordenador'
     },
     dataVencimento: new Date(2024, 5, 7),
     dataUltimaAtualizacao: new Date(2024, 1, 20),
     atualizadoPor: {
-      UID: '',
+      uid: '',
       nome: ''
     },
     usuarioCriador: {
-      UID: '',
+      uid: '',
       nome: ''
     },
     dataCriacao: new Date(2024, 1, 20)

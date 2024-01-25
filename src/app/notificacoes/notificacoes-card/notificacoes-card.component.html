@@ -1,4 +1,4 @@
-<mat-card [routerLink]="['/notificacoes', notificacao.UID]" 
+<mat-card [routerLink]="['/notificacoes', notificacao.uid]" 
 *ngIf="notificacao.vista; else notificacaoNaoVista" class="vista">
     <mat-card-header>
         <mat-card-title class="text-ellipis">
@@ -11,7 +11,7 @@
 </mat-card>
 
 <ng-template #notificacaoNaoVista>
-    <mat-card [routerLink]="['/notificacoes', notificacao.UID]">
+    <mat-card [routerLink]="['/notificacoes', notificacao.uid]">
         <mat-card-header>
             <mat-card-title matBadge="!" matBadgeColor="accent" class="text-ellipis">
                 {{ notificacao.nome }}

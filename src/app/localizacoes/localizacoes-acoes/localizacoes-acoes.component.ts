@@ -33,7 +33,7 @@ export class LocalizacoesAcoesComponent {
     dialogExcluir.afterClosed().subscribe(deletou => {
       if (deletou) {
         this.deletou.emit();
-        this.localizacoService.deletar(this.objeto.UID);
+        this.localizacoService.deletar(this.objeto.uid);
       }
     })
 

@@ -12,18 +12,18 @@ export class LocalizacoesService {
   localizacoes : LocalizacaoResposta[] = [
     { 
       uid: '1', nome: 'SAL1', descricao: 'Sala de Aula 1', 
-      projeto: { UID: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
-      dataCriacao: new Date(), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
+      projeto: { uid: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
+      dataCriacao: new Date(), usuarioCriador: { uid: '1', nome: 'Paulo Silva'} 
     },
     { 
       uid: '2', nome: 'SAL2', descricao: 'Sala de Aula 2', 
-      projeto: { UID: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
-      dataCriacao: new Date(), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
+      projeto: { uid: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
+      dataCriacao: new Date(), usuarioCriador: { uid: '1', nome: 'Paulo Silva'} 
     },
     { 
       uid: '3', nome: 'SAL3', descricao: 'Sala de Aula 3', 
-      projeto: { UID: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
-      dataCriacao: new Date(), usuarioCriador: { UID: '1', nome: 'Paulo Silva'} 
+      projeto: { uid: 'PJ1', nome: 'GRU' }, atualizadoPor: null, dataUltimaAtualizacao: null, 
+      dataCriacao: new Date(), usuarioCriador: { uid: '1', nome: 'Paulo Silva'} 
     }
   ]
 
@@ -42,11 +42,11 @@ export class LocalizacoesService {
       uid: String(Math.floor((Math.random() * 10000) + 1)),
       nome: localizacaoEnvio.nome,
       descricao: localizacaoEnvio.descricao,
-      projeto: { UID: 'PJ1', nome: 'GRU' },
+      projeto: { uid: 'PJ1', nome: 'GRU' },
       dataUltimaAtualizacao: null,
       dataCriacao: new Date(), 
       atualizadoPor: null,
-      usuarioCriador: { UID: '1', nome: 'Paulo Silva'}
+      usuarioCriador: { uid: '1', nome: 'Paulo Silva'}
     }
 
     this.localizacoes.push(localizacaoResposta);
@@ -57,11 +57,11 @@ export class LocalizacoesService {
       uid: String(Math.floor((Math.random() * 10000) + 1)),
       nome: localizacaoEnvio.nome,
       descricao: localizacaoEnvio.descricao,
-      projeto: { UID: 'PJ1', nome: 'GRU' },
+      projeto: { uid: 'PJ1', nome: 'GRU' },
       dataUltimaAtualizacao: new Date(),
       dataCriacao: new Date(), 
-      atualizadoPor: { UID: '1', nome: 'Paulo Silva'},
-      usuarioCriador: { UID: '1', nome: 'Paulo Silva'}
+      atualizadoPor: { uid: '1', nome: 'Paulo Silva'},
+      usuarioCriador: { uid: '1', nome: 'Paulo Silva'}
     }
 
     this.localizacoes = this.localizacoes.map((obj) => {

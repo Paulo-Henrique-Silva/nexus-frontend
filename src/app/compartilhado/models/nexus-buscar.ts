@@ -92,7 +92,7 @@ extends MatPaginatorIntl implements AfterViewInit, OnDestroy {
   
     mostrarAcoes(linha: any, indexLinha: number) {
       this.objetoSelecionado = {
-        UID: linha.UID,
+        uid: linha.UID,
         nome: linha.nome,
       };
   
