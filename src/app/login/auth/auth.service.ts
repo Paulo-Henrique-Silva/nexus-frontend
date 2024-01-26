@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
-import { JWTToken } from '../../configuracoes/model/token';
 import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
 
 @Injectable({
@@ -22,7 +21,7 @@ export class AuthService {
     this.usuarioService.login(usuarioEnvio)
       .subscribe( {
         next: (dados) => {
-          this.usuarioSessaoService.token = dados.token.token;
+          this.usuarioSessaoService.token = dados.token;
           this.usuarioSessaoService.uidUsuario = dados.uid
   
           this.usuarioAutenticado$.next(true);

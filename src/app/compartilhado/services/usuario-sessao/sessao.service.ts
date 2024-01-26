@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { JWTToken } from '../../../configuracoes/model/token';
 
 @Injectable({
   providedIn: 'root'
