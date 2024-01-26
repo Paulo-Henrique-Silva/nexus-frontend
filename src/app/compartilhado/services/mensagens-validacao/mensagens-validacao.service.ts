@@ -14,6 +14,11 @@ export class MensagensValidacaoService {
       return 'O campo é obrigatório.';
     }
 
+    if (control.hasError('campoIgual')) {
+      return 'Os campos devem ter valores iguais.';
+    }
+
+
     return ''
   }
 }

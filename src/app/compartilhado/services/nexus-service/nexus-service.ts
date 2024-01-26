@@ -13,7 +13,7 @@ export class NexusService<T extends NexusEnvio, O extends NexusResposta> {
 
     constructor(
         protected http: HttpClient, 
-        protected usuarioSessaoService: SessaoService,
+        protected sessaoService: SessaoService,
         url: string) { 
 
         this.url = url;
@@ -22,48 +22,51 @@ export class NexusService<T extends NexusEnvio, O extends NexusResposta> {
     obterPorUID(uid: string): Observable<O> {
         this.header = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.usuarioSessaoService.token}`,
+            'Authorization': `Bearer ${this.sessaoService.token}`,
         });
 
-        return this.http.get<O>(this.url + '/' + uid, { headers: this.header }).pipe(take(1))
+        return this.http.get<O>(this.url + '/' + uid, { headers: this.header }).pipe(take(1));
     }
 
     obterTudo(pagina: number): Observable<O[]> {
         this.header = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.usuarioSessaoService.token}`,
+            'Authorization': `Bearer ${this.sessaoService.token}`,
         });
 
         const params = new HttpParams()
             .set('parametro2', pagina.toString());
 
-        return this.http.get<O[]>(this.url, { params: params }).pipe(take(1))
+        return this.http.get<O[]>(this.url, { params: params }).pipe(take(1));
     }
 
     adicionar(envio: T): Observable<O> {
         this.header = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.usuarioSessaoService.token}`,
+            'Authorization': `Bearer ${this.sessaoService.token}`,
         });
 
-        return this.http.post<O>(this.url, envio).pipe(take(1))
+        return this.http.post<O>(this.url, envio, { headers: this.header })
+            .pipe(take(1));
     }
 
     editar(uid: string, envio: T): Observable<O> {
         this.header = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.usuarioSessaoService.token}`,
+            'Authorization': `Bearer ${this.sessaoService.token}`,
         });
 
-        return this.http.put<O>(this.url + '/' + uid, envio).pipe(take(1))
+        return this.http.put<O>(this.url + '/' + uid, envio,  { headers: this.header })
+            .pipe(take(1));
     }
 
     deletar(uid: string): void {
         this.header = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.usuarioSessaoService.token}`,
+            'Authorization': `Bearer ${this.sessaoService.token}`,
         });
 
-        this.http.delete<O>(this.url + '/' + uid).pipe(take(1))
+        this.http.delete<O>(this.url + '/' + uid, { headers: this.header })
+            .pipe(take(1));
     }
 }
