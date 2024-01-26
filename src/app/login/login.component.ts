@@ -35,8 +35,7 @@ export class LoginComponent extends NexusFormulario implements OnDestroy {
       senha: ['', Validators.required]
     });
 
-    //desiscreve depois de 2 porque, assim, retornará o resultado para a toolbar 
-    //e para sidenav
+    //Executa após fazer o login.
     this.inscricaoAuth = authService.usuarioAutenticado$
       .subscribe(usuarioAutenticado => {
         if (usuarioAutenticado == true) {
@@ -50,6 +49,8 @@ export class LoginComponent extends NexusFormulario implements OnDestroy {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu.');
           this.formulario.reset();
         }
+
+        this.carregando = false;
       });
   }
   
@@ -59,6 +60,7 @@ export class LoginComponent extends NexusFormulario implements OnDestroy {
     usuario.senha = this.formulario.get('senha')?.value;
     
     this.authService.fazerLogin(usuario);
+    this.carregando = true;
   }
 
   ngOnDestroy(): void {

@@ -33,7 +33,7 @@
 
                 <mat-card-actions align="end">
                     <button type="submit" mat-raised-button color="primary" (click)="onSubmit()"
-                    [disabled]="formulario.invalid">
+                    [disabled]="formulario.invalid || carregando">
                         Entrar
                     </button>
                 </mat-card-actions>

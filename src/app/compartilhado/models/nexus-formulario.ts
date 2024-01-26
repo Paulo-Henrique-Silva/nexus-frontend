@@ -6,9 +6,11 @@ import { MatSnackBar } from "@angular/material/snack-bar"
 import { SessaoService } from "../services/usuario-sessao/sessao.service"
 
 export abstract class NexusFormulario {
-    public formulario: FormGroup = this.formBuilder.group({ })
+    public formulario: FormGroup = this.formBuilder.group({ });
 
-    public camposMostrarComo: string[] = [ ]
+    public camposMostrarComo: string[] = [ ];
+
+    public carregando: boolean = false;
     
     constructor(
       protected authService : AuthService, 
