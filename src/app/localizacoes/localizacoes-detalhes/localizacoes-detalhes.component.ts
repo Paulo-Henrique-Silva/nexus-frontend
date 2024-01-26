@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { LocalizacoesService } from '../localizacoes.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UsuarioSessaoService } from '../../compartilhado/services/usuario-sessao/usuario-sessao.service';
 
 @Component({
   selector: 'app-localizacoes-detalhes',
@@ -18,15 +20,19 @@ export class LocalizacoesDetalhesComponent extends NexusFormulario {
     router: Router,
     mensagemValidacaoService: MensagensValidacaoService,
     activatedRoute: ActivatedRoute,
+    snackBar: MatSnackBar,
+    usuarioSessaoService: UsuarioSessaoService,
     private localizacaoService: LocalizacoesService
   ) {
-    super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute)
+    super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
+      snackBar, usuarioSessaoService);
+
     this.formulario = this.formBuilder.group({
       nome: [''],
       descricao: ['']
-    })
+    });
 
-    this.camposMostrarComo = [ 'Nome', 'Descrição' ]
+    this.camposMostrarComo = [ 'Nome', 'Descrição' ];
   }
 
   ngOnInit() {

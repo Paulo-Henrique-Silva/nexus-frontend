@@ -2,6 +2,8 @@ import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from
 import { ActivatedRoute, Router } from "@angular/router"
 import { AuthService } from "../../login/auth/auth.service"
 import { MensagensValidacaoService } from "../services/mensagens-validacao/mensagens-validacao.service"
+import { MatSnackBar } from "@angular/material/snack-bar"
+import { UsuarioSessaoService } from "../services/usuario-sessao/usuario-sessao.service"
 
 export abstract class NexusFormulario {
     public formulario: FormGroup = this.formBuilder.group({ })
@@ -13,7 +15,9 @@ export abstract class NexusFormulario {
       protected formBuilder: FormBuilder,
       protected router: Router,
       protected mensagemValidacaoService: MensagensValidacaoService,
-      protected activatedRoute: ActivatedRoute
+      protected activatedRoute: ActivatedRoute,
+      protected snackBar: MatSnackBar,
+      protected usuarioSessaoService: UsuarioSessaoService,
     ) {}
   
     abstract onSubmit(): void
@@ -38,5 +42,9 @@ export abstract class NexusFormulario {
     }
 
     return campo.invalid
+  }
+
+  mostrarSnackBarOk(texto: string) {
+    this.snackBar.open(texto, 'Ok')._dismissAfter(3000);
   }
 }

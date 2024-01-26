@@ -6,20 +6,20 @@
             <mat-card-title>Usuário</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <form class="d-flex flex-column">
+            <form class="d-flex flex-column" [formGroup]="formulario">
                 <mat-form-field class="mb-3" floatLabel="always">
                     <mat-label>Nome</mat-label>
-                    <input readonly matInput value="Paulo Silva">
+                    <input readonly matInput formControlName="nome">
                 </mat-form-field>
 
                 <mat-form-field class="mb-3" floatLabel="always">
-                    <mat-label>Título do Trabalho</mat-label>
-                    <input readonly matInput value="Estagiário">
+                    <mat-label>Descrição</mat-label>
+                    <input readonly matInput formControlName="descricao">
                 </mat-form-field>
 
                 <mat-form-field class="mb-3" floatLabel="always">
                     <mat-label>Nome de Acesso</mat-label>
-                    <input readonly matInput value="paulo.silva">
+                    <input readonly matInput formControlName="nomeAcesso">
                 </mat-form-field>
 
                 <mat-form-field class="mb-3" floatLabel="always">

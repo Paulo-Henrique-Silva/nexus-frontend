@@ -8,6 +8,7 @@ import { ConfiguracoesUsuarioComponent } from './configuracoes-usuario/configura
 import { ConfiguracoesPerfilComponent } from './configuracoes-perfil/configuracoes-perfil.component';
 import { ConfiguracoesEditarSenhaComponent } from './configuracoes-editar-senha/configuracoes-editar-senha.component';
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,6 +22,8 @@ import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
     CommonModule,
     MaterialModule,
     CompartilhadoModule,
+    FormsModule,
+    ReactiveFormsModule,
     ConfiguracoesRoutingModule
   ]
 })

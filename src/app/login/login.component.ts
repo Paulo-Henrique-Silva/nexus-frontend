@@ -7,6 +7,7 @@ import { MensagensValidacaoService } from '../compartilhado/services/mensagens-v
 import { NexusFormulario } from '../compartilhado/models/nexus-formulario';
 import { Subscription, take, takeUntil, takeWhile } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UsuarioSessaoService } from '../compartilhado/services/usuario-sessao/usuario-sessao.service';
 
 @Component({
   selector: 'nexus-login',
@@ -23,13 +24,16 @@ export class LoginComponent extends NexusFormulario implements OnDestroy {
     router: Router,
     mensagemValidacaoService: MensagensValidacaoService,
     activatedRoute: ActivatedRoute,
-    snackBar: MatSnackBar
+    snackBar: MatSnackBar,
+    usuarioSessaoService: UsuarioSessaoService
   ) {
-    super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute)
+    super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
+      snackBar, usuarioSessaoService);
+
     this.formulario = this.formBuilder.group({
       usuario: ['', Validators.required],
       senha: ['', Validators.required]
-    })
+    });
 
     //desiscreve depois de 2 porque, assim, retornará o resultado para a toolbar 
     //e para sidenav
@@ -39,22 +43,22 @@ export class LoginComponent extends NexusFormulario implements OnDestroy {
           router.navigate(['ativos']) 
         }
         else if (usuarioAutenticado == false) {
-          snackBar.open('Credenciais incorretas!', 'Ok')._dismissAfter(3000);
+          this.mostrarSnackBarOk('Credenciais incorretas!');
           this.formulario.reset();
         }
         else {
-          snackBar.open('Um erro inesperado aconteceu.', 'Ok')._dismissAfter(3000);
+          this.mostrarSnackBarOk('Um erro inesperado aconteceu.');
           this.formulario.reset();
         }
       });
   }
   
   override onSubmit(): void {
-    const usuario: UsuarioEnvio = new UsuarioEnvio()
-    usuario.nomeAcesso = this.formulario.get('usuario')?.value
-    usuario.senha = this.formulario.get('senha')?.value
+    const usuario: UsuarioEnvio = new UsuarioEnvio();
+    usuario.nomeAcesso = this.formulario.get('usuario')?.value;
+    usuario.senha = this.formulario.get('senha')?.value;
     
-    this.authService.fazerLogin(usuario)
+    this.authService.fazerLogin(usuario);
   }
 
   ngOnDestroy(): void {

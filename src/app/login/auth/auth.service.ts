@@ -3,27 +3,27 @@ import { Subject } from 'rxjs';
 import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
 import { JWTToken } from '../../configuracoes/model/token';
+import { UsuarioSessaoService } from '../../compartilhado/services/usuario-sessao/usuario-sessao.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private uidUsuario?: string;
-  private token?: JWTToken;
-
   private _loginSucedido: boolean = false;
-
 
   usuarioAutenticado$: Subject<any> = new Subject<any>();
 
-  constructor(private usuarioService: UsuariosService) { }
+  constructor(
+    private usuarioService: UsuariosService,
+    private usuarioSessaoService: UsuarioSessaoService
+  ) { }
   
   fazerLogin(usuarioEnvio: UsuarioEnvio): void {
     this.usuarioService.login(usuarioEnvio)
       .subscribe( {
         next: (dados) => {
-          this.token = dados.token;
-          this.uidUsuario = dados.uid
+          this.usuarioSessaoService.token = dados.token.token;
+          this.usuarioSessaoService.uidUsuario = dados.uid
   
           this.usuarioAutenticado$.next(true);
           this._loginSucedido = true;
@@ -38,8 +38,9 @@ export class AuthService {
   }
 
   sairDaConta() {
-    this.token = undefined;
-    this.uidUsuario = undefined;
+    this.usuarioSessaoService.token = ''
+    this.usuarioSessaoService.uidUsuario = '';
+    
     this.usuarioAutenticado$.next(false);
     this._loginSucedido = false;
   }

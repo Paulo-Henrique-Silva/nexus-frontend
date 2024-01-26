@@ -6,6 +6,8 @@ import { MensagensValidacaoService } from '../../compartilhado/services/mensagen
 import { AuthService } from '../../login/auth/auth.service';
 import { LocalizacoesService } from '../localizacoes.service';
 import { LocalizacaoEnvio } from '../models/localizacao-envio';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UsuarioSessaoService } from '../../compartilhado/services/usuario-sessao/usuario-sessao.service';
 
 @Component({
   selector: 'app-localizacoes-editar',
@@ -20,9 +22,12 @@ export class LocalizacoesEditarComponent extends NexusFormulario {
     router: Router,
     mensagemValidacaoService: MensagensValidacaoService,
     activatedRoute: ActivatedRoute,
+    snackBar: MatSnackBar,
+    usuarioSessaoService: UsuarioSessaoService,
     private localizacaoService: LocalizacoesService
   ) {
-    super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute)
+    super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
+      snackBar, usuarioSessaoService);
 
     this.formulario = this.formBuilder.group({
       nome: ['', Validators.required],
