@@ -13,7 +13,7 @@ import { UsuariosService } from './login/usuarios.service';
 export class AppComponent implements OnInit {
 
   usuarioAutenticado: boolean = false;
-  nomeUsuario: string = '';
+  nomeAcesso: string = '';
 
   constructor(
     private authService: AuthService,
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     this.authService.usuarioAutenticado$.pipe().subscribe(usuarioAutenticado => 
       {
         this.usuarioService.obterPorUID(this.sessaoService.uidUsuario)
-          .subscribe(usuario => this.nomeUsuario = usuario.nome);
+          .subscribe(usuario => this.nomeAcesso = usuario.nomeAcesso);
           
         this.usuarioAutenticado = usuarioAutenticado
       });
