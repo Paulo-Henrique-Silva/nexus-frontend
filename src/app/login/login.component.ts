@@ -7,7 +7,7 @@ import { MensagensValidacaoService } from '../compartilhado/services/mensagens-v
 import { NexusFormulario } from '../compartilhado/models/nexus-formulario';
 import { Subscription, take, takeUntil, takeWhile } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UsuarioSessaoService } from '../compartilhado/services/usuario-sessao/usuario-sessao.service';
+import { SessaoService } from '../compartilhado/services/usuario-sessao/sessao.service';
 
 @Component({
   selector: 'nexus-login',
@@ -25,7 +25,7 @@ export class LoginComponent extends NexusFormulario implements OnDestroy {
     mensagemValidacaoService: MensagensValidacaoService,
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
-    usuarioSessaoService: UsuarioSessaoService
+    usuarioSessaoService: SessaoService
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
       snackBar, usuarioSessaoService);

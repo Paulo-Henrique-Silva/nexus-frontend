@@ -4,7 +4,7 @@ import { JWTToken } from '../../../configuracoes/model/token';
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioSessaoService {
+export class SessaoService {
   private _uidUsuario: string = '';
   private _token: string = '';
   private _uidPerfilSelecionado: string = '';

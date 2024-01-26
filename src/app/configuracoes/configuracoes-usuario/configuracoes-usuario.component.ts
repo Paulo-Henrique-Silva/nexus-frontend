@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioSessaoService } from '../../compartilhado/services/usuario-sessao/usuario-sessao.service';
+import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
 import { UsuariosService } from '../../login/usuarios.service';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
 import { FormBuilder } from '@angular/forms';
@@ -23,7 +23,7 @@ export class ConfiguracoesUsuarioComponent extends NexusFormulario implements On
     mensagemValidacaoService: MensagensValidacaoService,
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
-    usuarioSessaoService: UsuarioSessaoService,
+    usuarioSessaoService: SessaoService,
     private usuarioService: UsuariosService
     ) {
       super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 

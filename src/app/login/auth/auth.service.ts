@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
 import { JWTToken } from '../../configuracoes/model/token';
-import { UsuarioSessaoService } from '../../compartilhado/services/usuario-sessao/usuario-sessao.service';
+import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(
     private usuarioService: UsuariosService,
-    private usuarioSessaoService: UsuarioSessaoService
+    private usuarioSessaoService: SessaoService
   ) { }
   
   fazerLogin(usuarioEnvio: UsuarioEnvio): void {

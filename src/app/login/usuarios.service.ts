@@ -4,8 +4,7 @@ import { UsuarioEnvio } from './models/usuario-envio';
 import { UsuarioResposta } from './models/usuario-resposta';
 import { HttpClient } from '@angular/common/http';
 import { Observable, take } from 'rxjs';
-import { AuthService } from './auth/auth.service';
-import { UsuarioSessaoService } from '../compartilhado/services/usuario-sessao/usuario-sessao.service';
+import { SessaoService } from '../compartilhado/services/usuario-sessao/sessao.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +13,9 @@ export class UsuariosService extends NexusService<UsuarioEnvio, UsuarioResposta>
 
   constructor(
     http: HttpClient,
-    usuarioSessaoService: UsuarioSessaoService
+    sessaoService: SessaoService
   ) {
-    super(http, usuarioSessaoService, 'https://localhost:7172/api/Usuario');
+    super(http, sessaoService, 'https://localhost:7172/api/Usuario');
   }
 
   login(envio: UsuarioEnvio): Observable<UsuarioResposta> {

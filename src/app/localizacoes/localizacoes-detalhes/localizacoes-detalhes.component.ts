@@ -6,7 +6,7 @@ import { MensagensValidacaoService } from '../../compartilhado/services/mensagen
 import { AuthService } from '../../login/auth/auth.service';
 import { LocalizacoesService } from '../localizacoes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UsuarioSessaoService } from '../../compartilhado/services/usuario-sessao/usuario-sessao.service';
+import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
 
 @Component({
   selector: 'app-localizacoes-detalhes',
@@ -21,7 +21,7 @@ export class LocalizacoesDetalhesComponent extends NexusFormulario {
     mensagemValidacaoService: MensagensValidacaoService,
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
-    usuarioSessaoService: UsuarioSessaoService,
+    usuarioSessaoService: SessaoService,
     private localizacaoService: LocalizacoesService
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 

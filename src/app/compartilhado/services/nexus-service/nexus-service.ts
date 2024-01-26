@@ -3,7 +3,7 @@ import { NexusEnvio } from "../../models/nexus-envio";
 import { NexusResposta } from "../../models/nexus-resposta";
 import { Observable, take } from "rxjs";
 import { AuthService } from "../../../login/auth/auth.service";
-import { UsuarioSessaoService } from "../usuario-sessao/usuario-sessao.service";
+import { SessaoService } from "../usuario-sessao/sessao.service";
 
 //T - Envio
 //O - Resposta
@@ -13,7 +13,7 @@ export class NexusService<T extends NexusEnvio, O extends NexusResposta> {
 
     constructor(
         protected http: HttpClient, 
-        protected usuarioSessaoService: UsuarioSessaoService,
+        protected usuarioSessaoService: SessaoService,
         url: string) { 
 
         this.url = url;
@@ -63,7 +63,7 @@ export class NexusService<T extends NexusEnvio, O extends NexusResposta> {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${this.usuarioSessaoService.token}`,
         });
-        
+
         this.http.delete<O>(this.url + '/' + uid).pipe(take(1))
     }
 }
