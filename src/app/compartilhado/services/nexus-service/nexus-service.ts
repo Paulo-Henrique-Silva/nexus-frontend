@@ -19,7 +19,6 @@ export class NexusService<T extends NexusEnvio, O extends NexusResposta> {
     }
 
     obterPorUID(uid: string): Observable<O> {
-
         return this.http.get<O>(this.url + '/' + uid, { headers: this.header }).pipe(take(1));
     }
 

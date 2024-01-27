@@ -14,15 +14,16 @@ export class AuthService {
 
   constructor(
     private usuarioService: UsuariosService,
-    private usuarioSessaoService: SessaoService
+    private sessaoService: SessaoService
   ) { }
   
+  //Verifica se o dados do usuário estão corretos.
   fazerLogin(usuarioEnvio: UsuarioEnvio): void {
     this.usuarioService.login(usuarioEnvio)
       .subscribe( {
         next: (dados) => {
-          this.usuarioSessaoService.token = dados.token;
-          this.usuarioSessaoService.uidUsuario = dados.uid
+          this.sessaoService.token = dados.token;
+          this.sessaoService.uidUsuario = dados.uid
   
           this.usuarioAutenticado$.next(true);
           this._loginSucedido = true;
@@ -36,9 +37,10 @@ export class AuthService {
       });
   }
 
+  //Reinicia a sessão atual.
   sairDaConta() {
-    this.usuarioSessaoService.token = ''
-    this.usuarioSessaoService.uidUsuario = '';
+    this.sessaoService.token = ''
+    this.sessaoService.uidUsuario = '';
     
     this.usuarioAutenticado$.next(false);
     this._loginSucedido = false;

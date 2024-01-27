@@ -1,64 +1,74 @@
 <!--Navbar-->
-<nav *ngIf="usuarioAutenticado">
-  <mat-toolbar class="d-flex justify-content-between" color="primary">
-    <div class="d-flex justify-content-between align-items-center">
-      <img src="../assets/nexus-logo-fundo-branco.svg" class="me-3" width="50px" height="50px"/>
-      <span>Nexus</span>
-    </div>
+<div *ngIf="carregandoInfoUsuario; else telaPrincipal" 
+class="d-flex flex-column justify-content-center align-items-center h-100">
 
-    <mat-form-field class="mt-3">
-      <input type="text" matInput>
-      <mat-icon matSuffix color="primary">search</mat-icon>
-    </mat-form-field>
+  <mat-spinner class="mb-3"></mat-spinner>
+  <h3>Obtendo informações...</h3>
 
-    <div>
-      <button class="me-3" routerLink="/configuracoes/perfil" mat-button>
-        <mat-icon matPrefix>business_center</mat-icon>
-        Perfil
-      </button>
+</div>
 
-      <button mat-raised-button [matMenuTriggerFor]="menu">
-        <mat-icon matPrefix>person</mat-icon>
-        {{ nomeAcesso }}
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/configuracoes/usuario-detalhes">
-          <mat-icon matPrefix>settings</mat-icon>
-          Configurações
+<ng-template #telaPrincipal>
+  <nav *ngIf="usuarioAutenticado">
+    <mat-toolbar class="d-flex justify-content-between" color="primary">
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="../assets/nexus-logo-fundo-branco.svg" class="me-3" width="50px" height="50px"/>
+        <span>Nexus</span>
+      </div>
+  
+      <mat-form-field class="mt-3">
+        <input type="text" matInput>
+        <mat-icon matSuffix color="primary">search</mat-icon>
+      </mat-form-field>
+  
+      <div>
+        <button class="me-3" routerLink="/configuracoes/perfil" mat-button>
+          <mat-icon matPrefix>business_center</mat-icon>
+          Perfil
         </button>
-        <button mat-menu-item (click)="sairDaConta()">
-          <mat-icon matPrefix>logout</mat-icon>
-          Sair da Conta
+  
+        <button mat-raised-button [matMenuTriggerFor]="menu">
+          <mat-icon matPrefix>person</mat-icon>
+          {{ nomeAcesso }}
         </button>
-      </mat-menu>
-    </div>
-  </mat-toolbar>
-</nav>
-
-<!--Menu de módulos-->
-<mat-sidenav-container *ngIf="usuarioAutenticado; else paginaLogin">
-  <mat-sidenav mode="side" opened>
-    <div class="d-flex flex-column">
-      <nexus-botao-menu routerLink="/ativos" routerLinkActive="active" nome="Ativos"
-      icone="device_hub">
-      </nexus-botao-menu>
-      <nexus-botao-menu routerLink="/atribuicoes" routerLinkActive="active" nome="Atribuições" 
-      icone="view_list">
-      </nexus-botao-menu>
-      <nexus-botao-menu routerLink="/notificacoes" routerLinkActive="active" nome="Notificações"
-      icone="notifications">
-      </nexus-botao-menu>
-      <nexus-botao-menu routerLink="/configuracoes" routerLinkActive="active" 
-      nome="Configurações" icone="settings">
-      </nexus-botao-menu>
-    </div>
-  </mat-sidenav>
-  <mat-sidenav-content class="p-3">
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/configuracoes/usuario-detalhes">
+            <mat-icon matPrefix>settings</mat-icon>
+            Configurações
+          </button>
+          <button mat-menu-item (click)="sairDaConta()">
+            <mat-icon matPrefix>logout</mat-icon>
+            Sair da Conta
+          </button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+  </nav>
+  
+  <!--Menu de módulos-->
+  <mat-sidenav-container *ngIf="usuarioAutenticado">
+    <mat-sidenav mode="side" opened>
+      <div class="d-flex flex-column">
+        <nexus-botao-menu routerLink="/ativos" routerLinkActive="active" nome="Ativos"
+        icone="device_hub">
+        </nexus-botao-menu>
+        <nexus-botao-menu routerLink="/atribuicoes" routerLinkActive="active" nome="Atribuições" 
+        icone="view_list">
+        </nexus-botao-menu>
+        <nexus-botao-menu routerLink="/notificacoes" routerLinkActive="active" nome="Notificações"
+        icone="notifications">
+        </nexus-botao-menu>
+        <nexus-botao-menu routerLink="/configuracoes" routerLinkActive="active" 
+        nome="Configurações" icone="settings">
+        </nexus-botao-menu>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="p-3">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+  <!--Página de login sem menu ou navbar-->
+  <div *ngIf="!usuarioAutenticado">
     <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-<!--Página de login sem menu ou navbar-->
-<ng-template #paginaLogin>
-  <router-outlet></router-outlet>
+  </div>
 </ng-template>
