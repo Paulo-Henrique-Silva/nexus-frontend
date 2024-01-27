@@ -19,8 +19,14 @@ import { delay } from 'rxjs';
 export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnInit {
   
   step: number = 0;
+
+  //O formulário deve ter o painel do perfil selecionado aberto no começo.
+  //Variavel é utilizada para saber se isso já ocorreu.
+  marcouPerfilPadrao: boolean = false;
+
   projetoPerfis: ProjetoPerfil = {}
-  uidsProjetos: string[] = []
+  projetosChaves: string[] = []
+
   slipter: string = '@SPLIT@';
 
   constructor(
@@ -68,7 +74,7 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
       if (!agrupado[chave]) {
         // Se não existir, cria um novo array para essa chave e adiciona a lista de projetos.
         agrupado[chave] = [];
-        this.uidsProjetos.push(chave);
+        this.projetosChaves.push(chave);
       }
   
       agrupado[chave].push(objeto);
@@ -83,6 +89,15 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
 
   setStep(index: number) {
     this.step = index;
+  }
+
+  //Evita que múltiplos paineis fiquem abertos de uma só vez.
+  //Se já tiver marcado, não irá abrir o painel padrão de novo.
+  mudarStepPerfilPadrao(index: number) {
+    if (!this.marcouPerfilPadrao) {
+      this.step = index;
+      this.marcouPerfilPadrao = true;
+    }
   }
 
   nextStep() {

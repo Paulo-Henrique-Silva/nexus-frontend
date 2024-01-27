@@ -1,44 +1,52 @@
 <nexus-botao-voltar caminho="/ativos"></nexus-botao-voltar>
 
 <div class="d-flex justify-content-center">
-    <mat-card class="col-12 col-md-6 p-3">
-        <!--Spinner de carregando.-->
-        <div *ngIf="carregando; else telaPrincipal" 
-        class="d-flex flex-column justify-content-center align-items-center h-100">
-            <mat-spinner></mat-spinner>
-        </div>
+<mat-card class="col-12 col-md-6 p-3">
+    <!--Spinner de carregando.-->
+    <div *ngIf="carregando; else telaPrincipal" 
+    class="d-flex flex-column justify-content-center align-items-center h-100">
+        <mat-spinner></mat-spinner>
+    </div>
 
-        <ng-template #telaPrincipal>
-            <mat-card-header class="mb-4">
-                <mat-card-title>Alterar Perfil</mat-card-title>
-            </mat-card-header>
-            <mat-card-content class="mb-3">
-                <div class="d-flex flex-column">
-                    <mat-accordion>
-                        <!--Itera pelos projetos disponíveis par ao usuário.-->
-                        <mat-expansion-panel *ngFor="let uidProjeto of uidsProjetos; let i = index" 
-                        [expanded]="step === i" (opened)="setStep(i)" hideToggle>
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                {{ uidProjeto.split(slipter)[1] }}
-                            </mat-panel-title>
-                          </mat-expansion-panel-header>
-                          
+    <ng-template #telaPrincipal>
+        <mat-card-header class="mb-4">
+            <mat-card-title>Alterar Perfil</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mb-3">
+            <div class="d-flex flex-column">
+                <mat-accordion>
+                    <!--Itera pelos projetos disponíveis par ao usuário.-->
+                    <mat-expansion-panel *ngFor="let projetoChave of projetosChaves; 
+                    let i = index;" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+                        <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <!--Obtém o segundo da array item, pois é o nome do projeto.-->
+                            {{ projetoChave.split(slipter)[1] }}
+                        </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        
                         <!--Mostra os perfis disponíveis para aquele projeto.-->
                         <div class="d-flex flex-column">
-                            <mat-radio-button *ngFor="let usuarioPerfil of projetoPerfis[uidProjeto]" 
+                            <mat-radio-button 
+                            *ngFor="let usuarioPerfil of projetoPerfis[projetoChave]" 
                             [checked]="usuarioPerfil.ativado">
+
                                 {{ usuarioPerfil.perfil.nome }}
+
+                                <ng-component *ngIf="usuarioPerfil.ativado">
+                                    {{ mudarStepPerfilPadrao(i) }}
+                                </ng-component>
                             </mat-radio-button>
                         </div>
-                        </mat-expansion-panel>
-                      
-                      </mat-accordion>                  
-                </div>
-            </mat-card-content>
-            <mat-card-actions [align]="'end'">
-                <button mat-raised-button color="primary">Salvar</button>
-            </mat-card-actions>
-        </ng-template>
-    </mat-card>
+                    </mat-expansion-panel>
+                    </mat-accordion>                  
+            </div>
+        </mat-card-content>
+        <mat-card-actions [align]="'end'">
+            <button mat-raised-button color="primary" [disabled]="formulario.pristine">
+                Salvar
+            </button>
+        </mat-card-actions>
+    </ng-template>
+</mat-card>
 </div>
