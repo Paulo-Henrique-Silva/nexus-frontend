@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { take } from 'rxjs';
+import { delay, take } from 'rxjs';
 
 @Component({
   selector: 'app-configuracoes-usuario',
@@ -37,34 +37,25 @@ export class ConfiguracoesUsuarioComponent extends NexusFormulario implements On
     }
     
   ngOnInit(): void {
+    this.carregando = true;
+
     this.usuarioService.obterPorUID(this.sessaoService.uidUsuario)
-      .pipe(take(1))
       .subscribe({
         next: usuario => {
-          if (!usuario) {
-            this.erroAoObterUsuario();
-          }
-  
           this.formulario.setValue({
             nome: usuario.nome,
             descricao: usuario.descricao,
             nomeAcesso: usuario.nomeAcesso
-          })
+          });
+
+          this.carregando = false;
         },
-        error: error => {
-          this.erroAoObterUsuario();
+        error: () => {
+          this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
+          this.carregando = false;
         }
       });
   }
 
   override onSubmit(): void {}
-
-  erroAoObterUsuario() {
-    this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
-        
-    this.router.navigate(['/login']);
-    this.authService.sairDaConta();
-
-    throw new Error('Um erro aconteceu.');
-  }
 }

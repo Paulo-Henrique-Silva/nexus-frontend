@@ -9,6 +9,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { AuthService } from '../../login/auth/auth.service';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-configuracoes-perfil',
@@ -39,6 +40,8 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
   }
 
   ngOnInit(): void {
+    this.carregando = true;
+
     this.usuarioPerfilService.obterTudoPorUsuarioUID(1, this.sessaoService.uidUsuario)
       .subscribe({
         next: (usuarioPerfis) => {
@@ -46,10 +49,13 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
           //UID do projeto + @SPLIT@ + nome.
           //Logo, há um objeto que contém todos os perfis do usuários que podem ser acessados
           //caso a chave sera inserida.
+
           this.projetoPerfis = this.agruparPorProjeto(usuarioPerfis);
+          this.carregando = false;
         },
         error: () => {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
+          this.carregando = false;
         }
       });
   }

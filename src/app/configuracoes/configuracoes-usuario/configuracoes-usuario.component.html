@@ -2,37 +2,45 @@
 
 <div class="d-flex justify-content-center">
     <mat-card class="col-12 col-md-6 p-3">
-        <mat-card-header class="mb-4">
-            <mat-card-title>Usuário</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <form class="d-flex flex-column" [formGroup]="formulario">
-                <mat-form-field class="mb-3" floatLabel="always">
-                    <mat-label>Nome</mat-label>
-                    <input readonly matInput formControlName="nome">
-                </mat-form-field>
+        <!--Spinner de carregando.-->
+        <div *ngIf="carregando; else telaPrincipal" 
+        class="d-flex flex-column justify-content-center align-items-center h-100">
+            <mat-spinner></mat-spinner>
+        </div>
 
-                <mat-form-field class="mb-3" floatLabel="always">
-                    <mat-label>Descrição</mat-label>
-                    <input readonly matInput formControlName="descricao">
-                </mat-form-field>
-
-                <mat-form-field class="mb-3" floatLabel="always">
-                    <mat-label>Nome de Acesso</mat-label>
-                    <input readonly matInput formControlName="nomeAcesso">
-                </mat-form-field>
-
-                <mat-form-field class="mb-3" floatLabel="always">
-                    <mat-label>Senha</mat-label>
-                    <input type="password" readonly matInput value="lorem ipsum">
-
-                    <button matSuffix mat-icon-button color="primary" matTooltip="Editar Senha"
-                    routerLink="/configuracoes/usuario-detalhes/editar-senha">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-
-                </mat-form-field>
-            </form>
-        </mat-card-content>
+        <!--Conteúdo principal-->
+        <ng-template #telaPrincipal>
+            <mat-card-header class="mb-4">
+                <mat-card-title>Usuário</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="d-flex flex-column" [formGroup]="formulario">
+                    <mat-form-field class="mb-3" floatLabel="always">
+                        <mat-label>Nome</mat-label>
+                        <input readonly matInput formControlName="nome">
+                    </mat-form-field>
+    
+                    <mat-form-field class="mb-3" floatLabel="always">
+                        <mat-label>Descrição</mat-label>
+                        <input readonly matInput formControlName="descricao">
+                    </mat-form-field>
+    
+                    <mat-form-field class="mb-3" floatLabel="always">
+                        <mat-label>Nome de Acesso</mat-label>
+                        <input readonly matInput formControlName="nomeAcesso">
+                    </mat-form-field>
+    
+                    <mat-form-field class="mb-3" floatLabel="always">
+                        <mat-label>Senha</mat-label>
+                        <input type="password" readonly matInput value="lorem ipsum">
+    
+                        <button matSuffix mat-icon-button color="primary" matTooltip="Editar Senha"
+                        routerLink="/configuracoes/usuario-detalhes/editar-senha">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+        </ng-template>
     </mat-card>
 </div>
