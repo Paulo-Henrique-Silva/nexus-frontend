@@ -9,12 +9,19 @@
     </div>
 
     <ng-template #telaPrincipal>
+    <!--Formulário-->
+    <form [formGroup]="formulario">
+        <!--Header-->
         <mat-card-header class="mb-4">
             <mat-card-title>Alterar Perfil</mat-card-title>
         </mat-card-header>
+
+        <!--Contéudo-->
         <mat-card-content class="mb-3">
             <div class="d-flex flex-column">
+            <mat-radio-group  formControlName="perfilAtivado">
                 <mat-accordion>
+                    <!--Paineis-->
                     <!--Itera pelos projetos disponíveis par ao usuário.-->
                     <mat-expansion-panel *ngFor="let projetoChave of projetosChaves; 
                     let i = index;" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
@@ -24,28 +31,35 @@
                             {{ projetoChave.split(slipter)[1] }}
                         </mat-panel-title>
                         </mat-expansion-panel-header>
-                        
+
                         <!--Mostra os perfis disponíveis para aquele projeto.-->
                         <div class="d-flex flex-column">
-                            <mat-radio-button 
-                            *ngFor="let usuarioPerfil of projetoPerfis[projetoChave]" 
-                            [checked]="usuarioPerfil.ativado">
+                            <mat-radio-button
+                            *ngFor="let usuarioPerfil of projetoPerfisAgrupados[projetoChave]" 
+                            [checked]="usuarioPerfil.ativado" 
+                            [value]="usuarioPerfil.projeto.uid + slipter + usuarioPerfil.perfil.uid">
 
                                 {{ usuarioPerfil.perfil.nome }}
 
+                                <!--Ativa o radio do perfil ativado do usuário da sessão.-->
                                 <div *ngIf="mudarStepPerfilPadrao(i, usuarioPerfil.ativado)">
                                 </div>
                             </mat-radio-button>
                         </div>
                     </mat-expansion-panel>
-                    </mat-accordion>                  
+                </mat-accordion>                  
+            </mat-radio-group>
             </div>
         </mat-card-content>
+
+        <!--Ações-->
         <mat-card-actions [align]="'end'">
-            <button mat-raised-button color="primary" [disabled]="formulario.pristine">
+            <button mat-raised-button color="primary" [disabled]="formulario.pristine"
+            (click)="onSubmit()">
                 Salvar
             </button>
         </mat-card-actions>
+    </form>
     </ng-template>
 </mat-card>
 </div>

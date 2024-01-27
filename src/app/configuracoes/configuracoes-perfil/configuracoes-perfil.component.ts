@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { delay } from 'rxjs';
+import { UsuarioPerfilEnvio } from '../model/usuario-perfil-envio';
 
 @Component({
   selector: 'app-configuracoes-perfil',
@@ -24,7 +25,7 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
   //Variavel é utilizada para saber se isso já ocorreu.
   marcouPerfilPadrao: boolean = false;
 
-  projetoPerfis: ProjetoPerfil = {}
+  projetoPerfisAgrupados: ProjetoPerfil = {}
   projetosChaves: string[] = []
 
   slipter: string = '@SPLIT@';
@@ -43,13 +44,16 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
       snackBar, sessaoService);
 
-    this.formulario = this.formBuilder.group({});
+    this.formulario = this.formBuilder.group({
+      perfilAtivado: [null]
+    });
   }
 
   ngOnInit(): void {
     this.carregando = true;
+    this.projetoPerfisAgrupados = {};
 
-    this.usuarioPerfilService.obterTudoPorUsuarioUID(1, this.sessaoService.uidUsuario)
+    this.usuarioPerfilService.obterTudoPorUsuarioUID(this.sessaoService.uidUsuario)
       .subscribe({
         next: (usuarioPerfis) => {
           //O projetos serão agrupados por meio de chaves, que são compostas pelo 
@@ -57,7 +61,7 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
           //Logo, há um objeto que contém todos os perfis do usuários que podem ser acessados
           //caso a chave sera inserida.
 
-          this.projetoPerfis = this.agruparPorProjeto(usuarioPerfis);
+          this.projetoPerfisAgrupados = this.agruparPorProjeto(usuarioPerfis);
           this.carregando = false;
         },
         error: () => {
@@ -83,8 +87,47 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
     }, {} as ProjetoPerfil);
   }
 
-  override onSubmit(): void {
+  //Evita que múltiplos paineis fiquem abertos de uma só vez.
+  //Se já tiver marcado, não irá abrir o painel padrão de novo.
+  mudarStepPerfilPadrao(index: number, perfilAtivado: boolean) {
+    if (perfilAtivado && !this.marcouPerfilPadrao) {
+      this.marcouPerfilPadrao = true;
+      this.step = index;
+      this.cdr.detectChanges(); //Evita erros não detecção de mudanças.
+    }
+    
+    return perfilAtivado;
+  }
 
+  override onSubmit(): void {
+    const perfilPorProjetoChave: string = this.formulario.get('perfilAtivado')?.value;
+
+    if (perfilPorProjetoChave) {
+      this.carregando = true;
+
+      const projetoUID = perfilPorProjetoChave.split(this.slipter)[0];
+      const perfilUID = perfilPorProjetoChave.split(this.slipter)[1];
+
+      const usuarioPerfil: UsuarioPerfilEnvio = { 
+        usuarioUID: this.sessaoService.uidUsuario,
+        projetoUID: projetoUID,
+        perfilUID: perfilUID,
+        ativado: true
+      }
+
+      //atualiza o perfil atual como ativado(true)
+      this.usuarioPerfilService.editar(usuarioPerfil).subscribe({
+        next: () => {
+          //Atualiza o formulário.
+          this.projetoPerfisAgrupados = { };
+          this.projetosChaves = [];
+          this.ngOnInit();
+        },
+        error: () => {
+          this.mostrarSnackBarOk('Um erro inesperado aconteceu.')
+        }
+      });
+    }
   }
 
   setStep(index: number) {
@@ -97,18 +140,6 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
   
   prevStep() {
     this.step--;
-  }
-  
-  //Evita que múltiplos paineis fiquem abertos de uma só vez.
-  //Se já tiver marcado, não irá abrir o painel padrão de novo.
-  mudarStepPerfilPadrao(index: number, perfilAtivado: boolean) {
-    if (perfilAtivado && !this.marcouPerfilPadrao) {
-      this.marcouPerfilPadrao = true;
-      this.step = index;
-      this.cdr.detectChanges(); //Evita erros não detecção de mudanças.
-    }
-    
-    return perfilAtivado;
   }
 }
 

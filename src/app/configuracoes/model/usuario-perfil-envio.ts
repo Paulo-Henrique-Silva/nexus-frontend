@@ -1,8 +1,11 @@
 export class UsuarioPerfilEnvio {
+    usuarioUID: string = ''
+    
+    projetoUID: string = ''
+
+    perfilUID: string = ''
+
+    ativado: boolean = false
     constructor(
-        public usuarioUID: string,
-        public projetoUID: string,
-        public perfilUID: string,
-        public ativado: boolean,
     ){}
 }

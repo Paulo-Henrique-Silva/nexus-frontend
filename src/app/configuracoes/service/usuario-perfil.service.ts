@@ -18,23 +18,21 @@ export class UsuarioPerfilService {
   }
 
   obterPorUID(uid: string): Observable<UsuarioPerfilResposta> {
-      return this.http.get<UsuarioPerfilResposta>(this.url + '/' + uid, { headers: this.header }).pipe(take(1));
-  }
-
-  obterTudo(pagina: number): Observable<UsuarioPerfilResposta[]> {
-      const params = new HttpParams()
-          .set('pagina', pagina.toString());
-
-      return this.http.get<UsuarioPerfilResposta[]>(this.url, { params: params, headers: this.header })
+    return this.http.get<UsuarioPerfilResposta>(this.url + '/' + uid, { headers: this.header })
         .pipe(take(1));
   }
 
-  obterTudoPorUsuarioUID(pagina: number, usuarioUID: string): Observable<UsuarioPerfilResposta[]> {
-      const params = new HttpParams()
-          .set('pagina', pagina.toString());
+  obterTudo(pagina: number): Observable<UsuarioPerfilResposta[]> {
+    const params = new HttpParams()
+        .set('pagina', pagina.toString());
 
-      return this.http.get<UsuarioPerfilResposta[]>(this.url + '/usuario/' + usuarioUID, 
-        { params: params, headers: this.header }).pipe(take(1));
+    return this.http.get<UsuarioPerfilResposta[]>(this.url, { params: params, headers: this.header })
+    .pipe(take(1));
+  }
+
+  obterTudoPorUsuarioUID(usuarioUID: string): Observable<UsuarioPerfilResposta[]> {
+    return this.http.get<UsuarioPerfilResposta[]>(this.url + '/usuario/' + usuarioUID, 
+    { headers: this.header }).pipe(take(1));
   }
 
   adicionar(envio: UsuarioPerfilEnvio): Observable<UsuarioPerfilResposta> {
@@ -42,14 +40,18 @@ export class UsuarioPerfilService {
           .pipe(take(1));
   }
 
-  editar(uid: string, envio: UsuarioPerfilEnvio): Observable<UsuarioPerfilResposta> {
-      return this.http.put<UsuarioPerfilResposta>(this.url + '/' + uid, envio,  
-      { headers: this.header }).pipe(take(1));
+  editar(envio: UsuarioPerfilEnvio): Observable<UsuarioPerfilResposta> {
+    const uids = `${envio.usuarioUID},${envio.projetoUID},${envio.perfilUID}`;
+
+    return this.http.put<UsuarioPerfilResposta>(this.url + '/' + uids, 
+      envio, { headers: this.header }).pipe(take(1));
   }
 
-  deletar(uid: string): void {
-      this.http.delete<UsuarioPerfilResposta>(this.url + '/' + uid, { headers: this.header })
-          .pipe(take(1));
+  deletar(envio: UsuarioPerfilEnvio): void {
+    const uids = `${envio.usuarioUID},${envio.projetoUID},${envio.perfilUID}`;
+
+    this.http.delete<UsuarioPerfilResposta>(this.url + '/' + uids, { headers: this.header })
+        .pipe(take(1));
   }
 
   get header(): HttpHeaders {
