@@ -95,8 +95,8 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
   //Se já tiver marcado, não irá abrir o painel padrão de novo.
   mudarStepPerfilPadrao(index: number) {
     if (!this.marcouPerfilPadrao) {
-      this.step = index;
       this.marcouPerfilPadrao = true;
+      this.step = index;
     }
   }
 
@@ -106,6 +106,10 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
 
   prevStep() {
     this.step--;
+  }
+
+  teste() {
+    //console.log('d')
   }
 }
 
