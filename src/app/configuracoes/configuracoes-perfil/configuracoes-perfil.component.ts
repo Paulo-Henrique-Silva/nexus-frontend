@@ -122,8 +122,6 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
           this.projetoPerfisAgrupados = { };
           this.projetosChaves = [];
 
-          console.log(resposta);
-
           //Atualiza sessão
           this.sessaoService.uidPerfilSelecionado = perfilUID;
           this.sessaoService.projetoEPerfil$.next(`${resposta.projeto.nome} - ${resposta.perfil.nome}`);
