@@ -33,14 +33,10 @@
 
                                 {{ usuarioPerfil.perfil.nome }}
 
-                                <ng-container *ngIf="usuarioPerfil.ativado">
-                                    {{ mudarStepPerfilPadrao(i) }}
-                                </ng-container>
+                                <div *ngIf="mudarStepPerfilPadrao(i, usuarioPerfil.ativado)">
+                                </div>
                             </mat-radio-button>
                         </div>
-                        <ng-component>
-                            {{ teste() }}
-                        </ng-component>
                     </mat-expansion-panel>
                     </mat-accordion>                  
             </div>

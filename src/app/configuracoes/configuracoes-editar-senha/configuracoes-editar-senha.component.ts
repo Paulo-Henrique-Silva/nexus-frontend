@@ -61,7 +61,6 @@ export class ConfiguracoesEditarSenhaComponent extends NexusFormulario {
               },
               error: () => {
                 this.mostrarSnackBarOk('Não foi possível atualizar a senha.');
-                this.carregando = false;
               }});
         }
         else {
@@ -71,7 +70,6 @@ export class ConfiguracoesEditarSenhaComponent extends NexusFormulario {
       },
       error: () => {
         this.mostrarSnackBarOk('Não foi possível atualizar a senha.');
-        this.carregando = false;
       }});
 
     this.formulario.reset();

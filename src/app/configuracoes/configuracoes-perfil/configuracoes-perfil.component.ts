@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { UsuarioPerfilService } from '../service/usuario-perfil.service';
 import { UsuarioPerfilResposta } from '../model/usuario-perfil-resposta';
@@ -37,7 +37,8 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
-    private usuarioPerfilService: UsuarioPerfilService
+    private usuarioPerfilService: UsuarioPerfilService,
+    private cdr: ChangeDetectorRef
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
       snackBar, sessaoService);
@@ -61,7 +62,6 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
         },
         error: () => {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
-          this.carregando = false;
         }
       });
   }
@@ -91,25 +91,24 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
     this.step = index;
   }
 
-  //Evita que múltiplos paineis fiquem abertos de uma só vez.
-  //Se já tiver marcado, não irá abrir o painel padrão de novo.
-  mudarStepPerfilPadrao(index: number) {
-    if (!this.marcouPerfilPadrao) {
-      this.marcouPerfilPadrao = true;
-      this.step = index;
-    }
-  }
-
   nextStep() {
     this.step++;
   }
-
+  
   prevStep() {
     this.step--;
   }
-
-  teste() {
-    //console.log('d')
+  
+  //Evita que múltiplos paineis fiquem abertos de uma só vez.
+  //Se já tiver marcado, não irá abrir o painel padrão de novo.
+  mudarStepPerfilPadrao(index: number, perfilAtivado: boolean) {
+    if (perfilAtivado && !this.marcouPerfilPadrao) {
+      this.marcouPerfilPadrao = true;
+      this.step = index;
+      this.cdr.detectChanges(); //Evita erros não detecção de mudanças.
+    }
+    
+    return perfilAtivado;
   }
 }
 

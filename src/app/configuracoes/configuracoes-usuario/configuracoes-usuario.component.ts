@@ -52,7 +52,6 @@ export class ConfiguracoesUsuarioComponent extends NexusFormulario implements On
         },
         error: () => {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
-          this.carregando = false;
         }
       });
   }
