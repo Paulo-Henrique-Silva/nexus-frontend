@@ -5,50 +5,25 @@
         <mat-card-header class="mb-4">
             <mat-card-title>Alterar Perfil</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content class="mb-3">
             <div class="d-flex flex-column">
                 <mat-accordion>
-                    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" 
-                    hideToggle>
+                    <!--Itera pelos projetos disponíveis par ao usuário.-->
+                    <mat-expansion-panel *ngFor="let uidProjeto of uidsProjetos; let i = index" 
+                    [expanded]="step === i" (opened)="setStep(i)" hideToggle>
                       <mat-expansion-panel-header>
                         <mat-panel-title>
-                            Nome Projeto
+                            {{ uidProjeto.split(slipter)[1] }}
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       
-                      <div class="d-flex flex-column">
-                          <mat-radio-button>Administrador</mat-radio-button>
-                          <mat-radio-button>Coordenador</mat-radio-button>
-                          <mat-radio-button>Suporte</mat-radio-button>
-                          <mat-radio-button>Leitor</mat-radio-button>
-                      </div>
-                    </mat-expansion-panel>
-                  
-                    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" 
-                    hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            PJ-002
-                        </mat-panel-title>
-                      </mat-expansion-panel-header>
-                      
-                      <div class="d-flex flex-column">
-                          <mat-radio-button>Suporte</mat-radio-button>
-                          <mat-radio-button>Leitor</mat-radio-button>
-                      </div>
-                    </mat-expansion-panel>
-
-                    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" 
-                    hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            PJ-003
-                        </mat-panel-title>
-                      </mat-expansion-panel-header>
-                      
-                      <div class="d-flex flex-column">
-                          <mat-radio-button>Leitor</mat-radio-button>
-                      </div>
+                    <!--Mostra os perfis disponíveis para aquele projeto.-->
+                    <div class="d-flex flex-column">
+                        <mat-radio-button *ngFor="let usuarioPerfil of projetoPerfis[uidProjeto]" 
+                        [checked]="usuarioPerfil.ativado">
+                            {{ usuarioPerfil.perfil.nome }}
+                        </mat-radio-button>
+                    </div>
                     </mat-expansion-panel>
                   
                   </mat-accordion>                  

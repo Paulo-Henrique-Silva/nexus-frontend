@@ -18,7 +18,9 @@ import { AuthService } from '../../login/auth/auth.service';
 export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnInit {
   
   step: number = 0;
-  usuarioPerfis: UsuarioPerfilResposta[] = []
+  projetoPerfis: ProjetoPerfil = {}
+  uidsProjetos: string[] = []
+  slipter: string = '@SPLIT@';
 
   constructor(
     authService : AuthService, 
@@ -40,11 +42,29 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
     this.usuarioPerfilService.obterTudoPorUsuarioUID(1, this.sessaoService.uidUsuario)
       .subscribe({
         next: (usuarioPerfis) => {
+          this.projetoPerfis = this.agruparPorProjeto(usuarioPerfis);
         },
         error: () => {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
         }
       });
+  }
+
+  agruparPorProjeto(array: UsuarioPerfilResposta[]): ProjetoPerfil {
+    return array.reduce((agrupado, objeto) => {
+      const chave = objeto.projeto.uid + '@SPLIT@' + objeto.projeto.nome;
+  
+      // Verifica se a chave já existe na nova array agrupada
+      if (!agrupado[chave]) {
+        // Se não existir, cria um novo array para essa chave e adiciona a lista de projetos.
+        agrupado[chave] = [];
+        this.uidsProjetos.push(chave);
+      }
+  
+      agrupado[chave].push(objeto);
+  
+      return agrupado;
+    }, {} as ProjetoPerfil);
   }
 
   override onSubmit(): void {
@@ -62,4 +82,9 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
   prevStep() {
     this.step--;
   }
+}
+
+//Agrupa perfis por uma chave (UID do projeto + @SPLIT@ + nome).
+interface ProjetoPerfil {
+  [chave: string]: UsuarioPerfilResposta[];
 }
