@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './login/auth/auth.service';
 import { Router } from '@angular/router';
-import { SessaoService } from './compartilhado/services/usuario-sessao/sessao.service';
+import { SessaoService } from './compartilhado/services/sessao/sessao.service';
 import { UsuariosService } from './login/usuarios.service';
 import { EMPTY, catchError, delay, of, switchMap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
         const usuarioPerfilAtivado = resultados.find(o => o.ativado == true);
         
         if (usuarioPerfilAtivado) {
-          this.projetoEPerfil = `${usuarioPerfilAtivado.projeto.nome} - ${usuarioPerfilAtivado.perfil.nome}`
+          this.sessaoService.projetoEPerfil$.next(`${usuarioPerfilAtivado.projeto.nome} - ${usuarioPerfilAtivado.perfil.nome}`);
         }
         else {
           this.projetoEPerfil = 'Não Configurado';
@@ -73,6 +73,9 @@ export class AppComponent implements OnInit {
         this.tratarErroCarregamentoUsuario();
       }
     });
+
+    this.sessaoService.projetoEPerfil$
+      .subscribe(projetoEPerfil => this.projetoEPerfil = projetoEPerfil);
   }
 
   tratarErroCarregamentoUsuario(): void {

@@ -7,7 +7,7 @@ import { AuthService } from '../../login/auth/auth.service';
 import { LocalizacoesService } from '../localizacoes.service';
 import { LocalizacaoEnvio } from '../models/localizacao-envio';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
+import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 
 @Component({
   selector: 'app-localizacoes-adicionar',

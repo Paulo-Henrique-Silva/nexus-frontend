@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,8 @@ export class SessaoService {
   private _uidUsuario: string = '';
   private _token: string = '';
   private _uidPerfilSelecionado: string = '';
+
+  public projetoEPerfil$: Subject<string> = new Subject<string>;
   
   public get uidUsuario(): string {
     return this._uidUsuario;

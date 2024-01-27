@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
+import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { UsuariosService } from '../../login/usuarios.service';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
 import { FormBuilder } from '@angular/forms';

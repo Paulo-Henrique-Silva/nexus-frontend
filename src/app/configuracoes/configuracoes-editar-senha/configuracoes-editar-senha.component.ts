@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } fro
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
-import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
+import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { UsuariosService } from '../../login/usuarios.service';
 import { UsuarioEnvio } from '../../login/models/usuario-envio';

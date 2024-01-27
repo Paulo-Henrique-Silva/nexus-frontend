@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject, delay, switchMap } from 'rxjs';
 import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
-import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
+import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { UsuarioPerfilService } from '../../configuracoes/service/usuario-perfil.service';
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
+import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { UsuarioPerfilResposta } from '../model/usuario-perfil-resposta';
 import { UsuarioPerfilEnvio } from '../model/usuario-perfil-envio';
 

@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { UsuarioPerfilService } from '../service/usuario-perfil.service';
 import { UsuarioPerfilResposta } from '../model/usuario-perfil-resposta';
-import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
+import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
 import { FormBuilder } from '@angular/forms';
@@ -117,14 +117,16 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
 
       //atualiza o perfil atual como ativado(true)
       this.usuarioPerfilService.editar(usuarioPerfil).subscribe({
-        next: () => {
+        next: (resposta) => {
           //Atualiza o formulário.
           this.projetoPerfisAgrupados = { };
           this.projetosChaves = [];
 
+          console.log(resposta);
+
           //Atualiza sessão
           this.sessaoService.uidPerfilSelecionado = perfilUID;
-
+          this.sessaoService.projetoEPerfil$.next(`${resposta.projeto.nome} - ${resposta.perfil.nome}`);
           this.ngOnInit();
         },
         error: () => {

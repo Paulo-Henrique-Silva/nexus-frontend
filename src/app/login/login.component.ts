@@ -7,7 +7,7 @@ import { MensagensValidacaoService } from '../compartilhado/services/mensagens-v
 import { NexusFormulario } from '../compartilhado/models/nexus-formulario';
 import { Subscription, delay, take, takeUntil, takeWhile } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SessaoService } from '../compartilhado/services/usuario-sessao/sessao.service';
+import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 
 @Component({
   selector: 'nexus-login',

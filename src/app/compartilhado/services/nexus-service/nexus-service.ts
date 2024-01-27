@@ -3,7 +3,7 @@ import { NexusEnvio } from "../../models/nexus-envio";
 import { NexusResposta } from "../../models/nexus-resposta";
 import { Observable, take } from "rxjs";
 import { AuthService } from "../../../login/auth/auth.service";
-import { SessaoService } from "../usuario-sessao/sessao.service";
+import { SessaoService } from "../sessao/sessao.service";
 
 //T - Envio
 //O - Resposta
