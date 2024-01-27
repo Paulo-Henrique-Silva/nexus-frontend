@@ -42,6 +42,10 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
     this.usuarioPerfilService.obterTudoPorUsuarioUID(1, this.sessaoService.uidUsuario)
       .subscribe({
         next: (usuarioPerfis) => {
+          //O projetos serão agrupados por meio de chaves, que são compostas pelo 
+          //UID do projeto + @SPLIT@ + nome.
+          //Logo, há um objeto que contém todos os perfis do usuários que podem ser acessados
+          //caso a chave sera inserida.
           this.projetoPerfis = this.agruparPorProjeto(usuarioPerfis);
         },
         error: () => {
@@ -84,7 +88,7 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
   }
 }
 
-//Agrupa perfis por uma chave (UID do projeto + @SPLIT@ + nome).
+//Agrupa perfis por uma chave 
 interface ProjetoPerfil {
   [chave: string]: UsuarioPerfilResposta[];
 }
