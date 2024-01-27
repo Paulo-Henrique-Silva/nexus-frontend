@@ -1,8 +1,13 @@
 <div class="d-flex justify-content-center align-items-center h-100vh bg-primary">
     <mat-card class="col-12 col-sm-8 col-md-4 p-3">
         <mat-card-header class="d-flex flex-column text-center mb-4">
-            <div class="w-100 mb-1">
-                <img src="../../assets/nexus-logo.svg" height="200px" width="200px"/>
+            <div class="w-100 d-flex justify-content-center mb-3">
+                <img *ngIf="!carregando; else spinner" 
+                src="../../assets/nexus-logo.svg" height="200px" width="200px"/>
+
+                <ng-template #spinner class="w-100">
+                    <mat-spinner></mat-spinner>
+                </ng-template>
             </div>
             <div class="w-100">
                 <mat-card-title>
@@ -14,6 +19,7 @@
             </div>
         </mat-card-header>
         <mat-card-content>
+            
             <form [formGroup]="formulario" class="d-flex flex-column">
                 <mat-form-field class="mb-3">
                     <mat-label>Usuário</mat-label>
@@ -39,5 +45,7 @@
                 </mat-card-actions>
             </form>
         </mat-card-content>
+        
     </mat-card>
 </div>
+

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, delay } from 'rxjs';
 import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
 import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
