@@ -39,6 +39,8 @@ export class ConfiguracoesEditarSenhaComponent extends NexusFormulario {
       }
 
   override onSubmit(): void {
+    this.carregando = true;
+
     const senhaAtual = this.formulario.get('senhaAtual')?.value;
     const senhaNova = this.formulario.get('senhaNova')?.value;
 
@@ -55,18 +57,21 @@ export class ConfiguracoesEditarSenhaComponent extends NexusFormulario {
               next: () => {
                 this.mostrarSnackBarOk('Senha alterada com sucesso!');
                 this.router.navigate(['/configuracoes/usuario-detalhes']);
+                this.carregando = false;
               },
               error: () => {
                 this.mostrarSnackBarOk('Não foi possível atualizar a senha.');
+                this.carregando = false;
               }});
         }
         else {
           this.mostrarSnackBarOk('Senha atual incorreta!');
+          this.carregando = false;
         }
       },
       error: () => {
         this.mostrarSnackBarOk('Não foi possível atualizar a senha.');
-
+        this.carregando = false;
       }});
 
     this.formulario.reset();
