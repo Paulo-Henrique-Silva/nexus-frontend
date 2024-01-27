@@ -8,6 +8,7 @@ import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessa
 import { AuthService } from '../../login/auth/auth.service';
 import { UsuariosService } from '../../login/usuarios.service';
 import { UsuarioEnvio } from '../../login/models/usuario-envio';
+import { EMPTY, catchError, switchMap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-configuracoes-editar-senha',
@@ -48,25 +49,26 @@ export class ConfiguracoesEditarSenhaComponent extends NexusFormulario {
     usuarioEnvio.senha = senhaAtual;
     
     this.usuarioService.confirmarSenha(usuarioEnvio)
-      .subscribe({ next: (senhaCorreta) => {
+    .pipe(
+      switchMap((senhaCorreta) => {
         if (senhaCorreta) {
           usuarioEnvio.senha = senhaNova;
-
-          this.usuarioService.editar(this.sessaoService.uidUsuario, usuarioEnvio)
-            .subscribe({ 
-              next: () => {
-                this.mostrarSnackBarOk('Senha alterada com sucesso!');
-                this.router.navigate(['/configuracoes/usuario-detalhes']);
-                this.carregando = false;
-              },
-              error: () => {
-                this.mostrarSnackBarOk('Não foi possível atualizar a senha.');
-              }});
+          return this.usuarioService.editar(this.sessaoService.uidUsuario, usuarioEnvio);
         }
-        else {
-          this.mostrarSnackBarOk('Senha atual incorreta!');
-          this.carregando = false;
-        }
+        
+        return throwError(() => Error('Senha atual incorreta!'));
+      }),
+      catchError((error: Error) => {
+        this.mostrarSnackBarOk(error.message);
+        this.carregando = false;
+        return EMPTY;
+      })
+    )
+    .subscribe({ 
+      next: () => {
+        this.mostrarSnackBarOk('Senha alterada com sucesso!');
+        this.router.navigate(['/configuracoes/usuario-detalhes']);
+        this.carregando = false;
       },
       error: () => {
         this.mostrarSnackBarOk('Não foi possível atualizar a senha.');

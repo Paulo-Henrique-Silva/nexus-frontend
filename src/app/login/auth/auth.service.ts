@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, delay } from 'rxjs';
+import { Subject, delay, switchMap } from 'rxjs';
 import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
 import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
@@ -22,37 +22,33 @@ export class AuthService {
   //Verifica se o dados do usuário estão corretos.
   fazerLogin(usuarioEnvio: UsuarioEnvio): void {
     this.usuarioService.login(usuarioEnvio)
-      .subscribe( {
-        next: (dados) => {
-          this.sessaoService.token = dados.token;
-          this.sessaoService.uidUsuario = dados.uid
-  
-          this.usuarioAutenticado$.next(true);
-          this._loginSucedido = true;
+    .pipe(
+      switchMap(dados => {
+        this.sessaoService.token = dados.token;
+        this.sessaoService.uidUsuario = dados.uid
+    
+        this.usuarioAutenticado$.next(true);
+        this._loginSucedido = true;
 
-          //Obtém o perfil do usuário.
-          this.usuarioPerfilService.obterTudoPorUsuarioUID(dados.uid)
-            .subscribe({
-              next: (resultados) => {
-                const usuarioPerfilAtivado = resultados.find(o => o.ativado == true);
+        return this.usuarioPerfilService.obterTudoPorUsuarioUID(dados.uid);
+      }))
+      .subscribe({
+          next: (resultados) => {
+            //Obtém o perfil do usuário.
+            const usuarioPerfilAtivado = resultados.find(o => o.ativado == true);
 
-                if (usuarioPerfilAtivado) {
-                  this.sessaoService.uidPerfilSelecionado = usuarioPerfilAtivado.perfil.uid;
-                }
-              },
-              error: () => {
-                this.usuarioAutenticado$.next(false);
-                this._loginSucedido = false;
-              }
-            });
-        },
-        error: (error: any) => {
-          if (error.status == 401) {
-            this.usuarioAutenticado$.next(false);
-            this._loginSucedido = false;
+            if (usuarioPerfilAtivado) {
+              this.sessaoService.uidPerfilSelecionado = usuarioPerfilAtivado.perfil.uid;
+            }
+          },
+          error: (error: any) => {
+            //Erro de credenciais incorretas.
+            if (error.status === 401) {
+              this.usuarioAutenticado$.next(false);
+              this._loginSucedido = false;
+            }
           }
-        }
-      });
+        });
   }
 
   //Reinicia a sessão atual.

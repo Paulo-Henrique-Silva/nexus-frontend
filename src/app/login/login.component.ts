@@ -38,18 +38,14 @@ export class LoginComponent extends NexusFormulario implements OnDestroy {
     //Executa após fazer o login.
     this.inscricaoAuth = authService.usuarioAutenticado$
       .subscribe(usuarioAutenticado => {
-        if (usuarioAutenticado == true) {
+        if (usuarioAutenticado) {
           router.navigate(['ativos']) 
         }
-        else if (usuarioAutenticado == false) {
+        else {
           this.mostrarSnackBarOk('Credenciais incorretas!');
           this.formulario.reset();
         }
-        else {
-          this.mostrarSnackBarOk('Um erro inesperado aconteceu.');
-          this.formulario.reset();
-        }
-
+        
         this.carregando = false;
       });
   }
