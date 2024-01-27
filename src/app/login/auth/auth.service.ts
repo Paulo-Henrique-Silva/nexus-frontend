@@ -3,6 +3,7 @@ import { Subject, delay } from 'rxjs';
 import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
 import { SessaoService } from '../../compartilhado/services/usuario-sessao/sessao.service';
+import { UsuarioPerfilService } from '../../configuracoes/service/usuario-perfil.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
 
   constructor(
     private usuarioService: UsuariosService,
+    private usuarioPerfilService: UsuarioPerfilService,
     private sessaoService: SessaoService
   ) { }
   
@@ -27,6 +29,22 @@ export class AuthService {
   
           this.usuarioAutenticado$.next(true);
           this._loginSucedido = true;
+
+          //Obtém o perfil do usuário.
+          this.usuarioPerfilService.obterTudoPorUsuarioUID(dados.uid)
+            .subscribe({
+              next: (resultados) => {
+                const usuarioPerfilAtivado = resultados.find(o => o.ativado == true);
+
+                if (usuarioPerfilAtivado) {
+                  this.sessaoService.uidPerfilSelecionado = usuarioPerfilAtivado.perfil.uid;
+                }
+              },
+              error: () => {
+                this.usuarioAutenticado$.next(false);
+                this._loginSucedido = false;
+              }
+            });
         },
         error: (error: any) => {
           if (error.status == 401) {

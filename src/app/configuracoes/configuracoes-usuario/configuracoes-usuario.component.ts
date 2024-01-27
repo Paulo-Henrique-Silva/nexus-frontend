@@ -23,11 +23,11 @@ export class ConfiguracoesUsuarioComponent extends NexusFormulario implements On
     mensagemValidacaoService: MensagensValidacaoService,
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
-    usuarioSessaoService: SessaoService,
+    sessaoService: SessaoService,
     private usuarioService: UsuariosService
     ) {
       super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-        snackBar, usuarioSessaoService);
+        snackBar, sessaoService);
 
       this.formulario = this.formBuilder.group({
         nome: [''],

@@ -121,6 +121,10 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
           //Atualiza o formulário.
           this.projetoPerfisAgrupados = { };
           this.projetosChaves = [];
+
+          //Atualiza sessão
+          this.sessaoService.uidPerfilSelecionado = perfilUID;
+
           this.ngOnInit();
         },
         error: () => {
