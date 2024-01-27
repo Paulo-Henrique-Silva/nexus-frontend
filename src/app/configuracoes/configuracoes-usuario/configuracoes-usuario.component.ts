@@ -37,7 +37,7 @@ export class ConfiguracoesUsuarioComponent extends NexusFormulario implements On
     }
     
   ngOnInit(): void {
-    this.usuarioService.obterPorUID(this.usuarioSessaoService.uidUsuario)
+    this.usuarioService.obterPorUID(this.sessaoService.uidUsuario)
       .pipe(take(1))
       .subscribe({
         next: usuario => {

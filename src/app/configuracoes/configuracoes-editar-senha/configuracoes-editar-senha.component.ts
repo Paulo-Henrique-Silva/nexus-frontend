@@ -50,7 +50,7 @@ export class ConfiguracoesEditarSenhaComponent extends NexusFormulario {
         if (senhaCorreta) {
           usuarioEnvio.senha = senhaNova;
 
-          this.usuarioService.editar(this.usuarioSessaoService.uidUsuario, usuarioEnvio)
+          this.usuarioService.editar(this.sessaoService.uidUsuario, usuarioEnvio)
             .subscribe({ 
               next: () => {
                 this.mostrarSnackBarOk('Senha alterada com sucesso!');

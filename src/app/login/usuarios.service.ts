@@ -23,11 +23,6 @@ export class UsuariosService extends NexusService<UsuarioEnvio, UsuarioResposta>
   }
 
   confirmarSenha(envio: UsuarioEnvio): Observable<boolean> {
-    this.header = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.sessaoService.token}`,
-    });
-
     return this.http.post<boolean>(this.url + '/' + this.sessaoService.uidUsuario 
     + '/senha', envio, { headers: this.header })
       .pipe(

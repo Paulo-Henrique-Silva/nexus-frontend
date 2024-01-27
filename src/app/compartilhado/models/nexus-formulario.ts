@@ -19,7 +19,7 @@ export abstract class NexusFormulario {
       protected mensagemValidacaoService: MensagensValidacaoService,
       protected activatedRoute: ActivatedRoute,
       protected snackBar: MatSnackBar,
-      protected usuarioSessaoService: SessaoService,
+      protected sessaoService: SessaoService,
     ) {}
   
     abstract onSubmit(): void
