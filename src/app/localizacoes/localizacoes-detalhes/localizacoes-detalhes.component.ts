@@ -7,6 +7,7 @@ import { AuthService } from '../../login/auth/auth.service';
 import { LocalizacoesService } from '../localizacoes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-localizacoes-detalhes',
@@ -31,22 +32,28 @@ export class LocalizacoesDetalhesComponent extends NexusFormulario {
       nome: [''],
       descricao: ['']
     });
-
-    this.camposMostrarComo = [ 'Nome', 'Descrição' ];
   }
 
   ngOnInit() {
+    this.carregando = true;
     const uid = this.activatedRoute.snapshot.params['uid'];
-    const localizacao = this.localizacaoService.obterPorUID(uid);
 
-    if (!localizacao) {
-      throw new Error('Objeto não existe.');
-    }
+    this.localizacaoService.obterPorUID(uid)
+    .subscribe({
+      next: (localizacao) => {
+        if (!localizacao) {
+          throwError(() => Error('Localização não encontrada.'));
+        }
+    
+        this.formulario.setValue({
+          nome: localizacao.nome,
+          descricao: localizacao.descricao
+        })
 
-    this.formulario.setValue({
-      nome: localizacao.nome,
-      descricao: localizacao.descricao
-    })
+        this.carregando = false;
+      },
+      error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
+    });
   }
   
   override onSubmit(): void { }

@@ -8,6 +8,7 @@ import { LocalizacoesService } from '../localizacoes.service';
 import { LocalizacaoEnvio } from '../models/localizacao-envio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
+import { switchMap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-localizacoes-adicionar',
@@ -33,21 +34,39 @@ export class LocalizacoesAdicionarComponent extends NexusFormulario {
       nome: ['', Validators.required],
       descricao: ['', Validators.required]
     })
-
-    this.camposMostrarComo = [ 'Nome', 'Descrição' ]
   }
 
   override onSubmit(): void {
+    this.carregando = true;
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;
+    
+    this.sessaoService.projetoSelecionado$
+    .pipe(
+      switchMap(projeto => {
+        if (!projeto) {
+          throwError(() => Error('Projeto não encontrado.'));
+        }
 
-    const localizacao: LocalizacaoEnvio = {
-      nome: nome,
-      descricao: descricao,
-      projetoUID: '1'
-    };
+        const projetoUID = projeto.uid;
 
-    this.localizacaoService.adicionar(localizacao);
-    this.router.navigate(['/ativos/localizacoes/buscar']);
+        const localizacao: LocalizacaoEnvio = {
+          nome: nome,
+          descricao: descricao,
+          projetoUID: projetoUID
+        };
+
+        return this.localizacaoService.adicionar(localizacao);
+      })
+    )
+    .subscribe({
+      next: () => {
+        this.mostrarSnackBarOk('Localização adicionada com sucesso!');
+        this.router.navigate(['/ativos/localizacoes/buscar']);
+      },
+      error: () => {
+        this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
+      }
+    })
   }
 }

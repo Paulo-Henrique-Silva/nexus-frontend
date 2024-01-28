@@ -8,8 +8,6 @@ import { SessaoService } from "../services/sessao/sessao.service"
 export abstract class NexusFormulario {
     public formulario: FormGroup = this.formBuilder.group({ });
 
-    public camposMostrarComo: string[] = [ ];
-
     public carregando: boolean = false;
     
     constructor(

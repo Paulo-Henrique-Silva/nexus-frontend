@@ -8,6 +8,7 @@ import { LocalizacoesService } from '../localizacoes.service';
 import { LocalizacaoEnvio } from '../models/localizacao-envio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
+import { switchMap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-localizacoes-editar',
@@ -34,36 +35,61 @@ export class LocalizacoesEditarComponent extends NexusFormulario {
       descricao: ['', Validators.required]
     })
 
-    this.camposMostrarComo = [ 'Nome', 'Descrição' ]
   }
 
   ngOnInit() {
     const uid = this.activatedRoute.snapshot.params['uid'];
-    const localizacao = this.localizacaoService.obterPorUID(uid);
+    this.carregando = true;
 
-    if (!localizacao) {
-      throw new Error('Objeto não existe.');
-    }
+    this.localizacaoService.obterPorUID(uid)
+    .subscribe({
+      next: (localizacao) => {
+        if (!localizacao) {
+          throw new Error('Objeto não existe.');
+        }
+    
+        this.formulario.setValue({
+          nome: localizacao.nome,
+          descricao: localizacao.descricao
+        })
+      },
+      error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
+    });
 
-    this.formulario.setValue({
-      nome: localizacao.nome,
-      descricao: localizacao.descricao
-    })
   }
   
   override onSubmit(): void {
     const uid = this.activatedRoute.snapshot.params['uid'];
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;
+    this.carregando = true;
+    
+    this.sessaoService.projetoSelecionado$
+    .pipe(
+      switchMap(projeto => {
+        if (!projeto) {
+          throwError(() => Error('Projeto não encontrado.'));
+        }
 
-    const localizacao: LocalizacaoEnvio = {
-      nome: nome,
-      descricao: descricao,
-      projetoUID: '1'
-    };
+        const projetoUID = projeto.uid;
 
-    this.localizacaoService.editar(uid, localizacao);
+        const localizacao: LocalizacaoEnvio = {
+          nome: nome,
+          descricao: descricao,
+          projetoUID: projetoUID
+        };
 
-    this.router.navigate(['/ativos/localizacoes/buscar']);
+        return this.localizacaoService.editar(uid, localizacao);
+      })
+    )
+    .subscribe({
+      next: () => {
+        this.mostrarSnackBarOk('Localização editada com sucesso!');
+        this.router.navigate(['/ativos/localizacoes/buscar']);
+      },
+      error: () => {
+        this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
+      }
+    })
   }
 }
