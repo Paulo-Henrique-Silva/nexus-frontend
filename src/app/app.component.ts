@@ -3,7 +3,7 @@ import { AuthService } from './login/auth/auth.service';
 import { Router } from '@angular/router';
 import { SessaoService } from './compartilhado/services/sessao/sessao.service';
 import { UsuariosService } from './login/usuarios.service';
-import { EMPTY, catchError, delay, forkJoin, of, switchMap, throwError } from 'rxjs';
+import { EMPTY, catchError, combineLatest, delay, forkJoin, merge, of, switchMap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuarioPerfilService } from './configuracoes/service/usuario-perfil.service';
 
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
       }
     });
 
-    forkJoin([this.sessaoService.projetoSelecionado$, this.sessaoService.perfilSelecionado$])
+    combineLatest([this.sessaoService.projetoSelecionado$, this.sessaoService.perfilSelecionado$])
     .subscribe({
       next: ([projeto, perfil]) => {
         this.projetoEPerfil = `${projeto.nome} - ${perfil.nome}`;

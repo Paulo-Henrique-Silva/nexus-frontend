@@ -41,9 +41,6 @@ export class AuthService {
             if (usuarioPerfilAtivado) {
               this.sessaoService.perfilSelecionado$.next(usuarioPerfilAtivado.perfil);
               this.sessaoService.projetoSelecionado$.next(usuarioPerfilAtivado.projeto);
-
-              this.sessaoService.projetoSelecionado$.complete();
-              this.sessaoService.perfilSelecionado$.complete();
             }
           },
           error: (error: any) => {
