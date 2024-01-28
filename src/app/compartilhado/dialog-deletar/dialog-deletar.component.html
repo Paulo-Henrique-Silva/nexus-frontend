@@ -3,6 +3,6 @@
   Tem certeza que deseja excluir <strong>{{ nomeObjeto }}</strong>?
 </div>
 <div mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
-  <button mat-button mat-dialog-close (click)="deletar()">Sim</button>
+  <button mat-button mat-dialog-close cdkFocusInitial color="primary">Cancelar</button>
+  <button mat-button mat-dialog-close color="warn" (click)="deletar()">Sim</button>
 </div>

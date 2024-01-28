@@ -4,7 +4,8 @@ import { LocalizacoesService } from '../localizacoes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialog-deletar.component';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
+import { EMPTY, switchMap, take } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'nexus-localizacoes-acoes',
@@ -23,24 +24,37 @@ export class LocalizacoesAcoesComponent {
 
   constructor(
     private localizacoService: LocalizacoesService,
+    private snackbar: MatSnackBar,
     private dialog: MatDialog
   ) { }
 
-  deletarObjeto() {
+  deletarObjeto(): void {
     const dialogExcluir = this.dialog.open(DialogDeletarComponent, {
       data: this.objeto.nome
     });
 
-    dialogExcluir.afterClosed().pipe(take(1)).subscribe(deletou => {
-      if (deletou) {
+    dialogExcluir.afterClosed()
+    .pipe(
+      take(1),
+      switchMap(deletou => {
+          return deletou ? this.localizacoService.deletar(this.objeto.uid) : EMPTY;
+      })
+    )
+    .subscribe({
+      next: () => {
+        //emite para carregar a tabela novamente.
         this.deletou.emit();
-        this.localizacoService.deletar(this.objeto.uid);
-      }
+        this.mostrarSnackBarOk(`Objeto deletado com sucesso!`);
+      },
+      error: () => this.mostrarSnackBarOk('Não foi possível excluir!')
     })
-
   }
 
-  fecharAcoes() {
+  mostrarSnackBarOk(texto: string): void {
+    this.snackbar.open(texto, 'Ok')._dismissAfter(3000);
+  }
+
+  fecharAcoes(): void {
     this.fechou.emit();
   }
 }

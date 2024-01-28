@@ -40,8 +40,8 @@ export class NexusService<T extends NexusEnvio, O extends NexusResposta> {
             .pipe(take(1));
     }
 
-    deletar(uid: string): void {
-        this.http.delete<O>(this.url + '/' + uid, { headers: this.header })
+    deletar(uid: string): Observable<void> {
+        return this.http.delete<void>(this.url + '/' + uid, { headers: this.header })
             .pipe(take(1));
     }
 

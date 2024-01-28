@@ -49,14 +49,14 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
 
   indexLinhaSelecionada: number = -1;
 
-  carregando: boolean = false;
+  carregando: boolean = true;
 
   constructor(
     private localizacaoService: LocalizacoesService,
     private snackBar: MatSnackBar
   ) {
     super();
-    this.carregando = true;
+
   }
 
   ngAfterViewInit() {
@@ -77,6 +77,8 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
 
   //Aqui será feita o tratamento dos dados para que sejam mostrados na tabela.
   carregarTabela() {
+    this.carregando = true;
+
     this.localizacaoService.obterTudo(this.paginaAtual)
     .subscribe({
       next: (dados) => {
