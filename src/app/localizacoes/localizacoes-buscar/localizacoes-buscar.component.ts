@@ -56,6 +56,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
     private snackBar: MatSnackBar
   ) {
     super();
+    this.carregando = true;
   }
 
   ngAfterViewInit() {
@@ -76,8 +77,6 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
 
   //Aqui será feita o tratamento dos dados para que sejam mostrados na tabela.
   carregarTabela() {
-    this.carregando = true;
-
     this.localizacaoService.obterTudo(this.paginaAtual)
     .subscribe({
       next: (dados) => {
@@ -100,7 +99,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
     
         this.selecionouObjeto = false;
         this.carregando = false;
-        //this.dadosTabela = new MatTableDataSource<any>(dadosTratados);
+        this.dadosTabela = new MatTableDataSource<any>(dadosTratados);
       },
       error: () => {
         this.mostrarSnackBarOk('Não foi possível carregar as informações.');
