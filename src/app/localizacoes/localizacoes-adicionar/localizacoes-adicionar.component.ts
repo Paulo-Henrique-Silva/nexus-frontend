@@ -40,33 +40,24 @@ export class LocalizacoesAdicionarComponent extends NexusFormulario {
     this.carregando = true;
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;
+
+    const projetoUID = this.sessaoService.projetoSelecionado.uid;
     
-    this.sessaoService.projetoSelecionado$
-    .pipe(
-      switchMap(projeto => {
-        if (!projeto) {
-          throwError(() => Error('Projeto não encontrado.'));
+    const localizacao: LocalizacaoEnvio = {
+      nome: nome,
+      descricao: descricao,
+      projetoUID: projetoUID
+    };
+    
+    this.localizacaoService.adicionar(localizacao)
+      .subscribe({
+        next: () => {
+          this.mostrarSnackBarOk('Localização adicionada com sucesso!');
+          this.router.navigate(['/ativos/localizacoes/buscar']);
+        },
+        error: () => {
+          this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
         }
-
-        const projetoUID = projeto.uid;
-
-        const localizacao: LocalizacaoEnvio = {
-          nome: nome,
-          descricao: descricao,
-          projetoUID: projetoUID
-        };
-
-        return this.localizacaoService.adicionar(localizacao);
       })
-    )
-    .subscribe({
-      next: () => {
-        this.mostrarSnackBarOk('Localização adicionada com sucesso!');
-        this.router.navigate(['/ativos/localizacoes/buscar']);
-      },
-      error: () => {
-        this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
-      }
-    })
-  }
+    }
 }

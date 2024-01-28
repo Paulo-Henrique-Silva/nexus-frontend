@@ -4,6 +4,7 @@ import { LocalizacoesService } from '../localizacoes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialog-deletar.component';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'nexus-localizacoes-acoes',
@@ -30,7 +31,7 @@ export class LocalizacoesAcoesComponent {
       data: this.objeto.nome
     });
 
-    dialogExcluir.afterClosed().subscribe(deletou => {
+    dialogExcluir.afterClosed().pipe(take(1)).subscribe(deletou => {
       if (deletou) {
         this.deletou.emit();
         this.localizacoService.deletar(this.objeto.uid);

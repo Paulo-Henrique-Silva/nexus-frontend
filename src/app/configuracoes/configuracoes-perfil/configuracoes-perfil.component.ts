@@ -127,6 +127,9 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
           this.sessaoService.projetoSelecionado$.next(resposta.projeto);
           this.sessaoService.perfilSelecionado$.next(resposta.perfil);
 
+          this.sessaoService.perfilSelecionado = resposta.perfil;
+          this.sessaoService.projetoSelecionado = resposta.projeto;
+
           //recarrega form.
           this.ngOnInit();
         },

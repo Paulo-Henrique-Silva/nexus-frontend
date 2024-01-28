@@ -8,8 +8,12 @@ import { ReferenciaObjeto } from '../../models/referencia-objeto';
 export class SessaoService {
   private _uidUsuario: string = '';
   private _token: string = '';
+
   private _perfilSelecionado$: Subject<ReferenciaObjeto> = new Subject<ReferenciaObjeto>();
   private _projetoSelecionado$: Subject<ReferenciaObjeto> = new Subject<ReferenciaObjeto>();
+
+  private _perfilSelecionado: ReferenciaObjeto = new ReferenciaObjeto();
+  private _projetoSelecionado: ReferenciaObjeto = new ReferenciaObjeto();
 
   public get uidUsuario(): string {
     return this._uidUsuario;
@@ -42,5 +46,22 @@ export class SessaoService {
   public set perfilSelecionado$(value: Subject<ReferenciaObjeto>) {
     this._perfilSelecionado$ = value;
   }
+    
+  public get projetoSelecionado(): ReferenciaObjeto {
+    return this._projetoSelecionado;
+  }
+
+  public set projetoSelecionado(value: ReferenciaObjeto) {
+    this._projetoSelecionado = value;
+  }
+
+  public get perfilSelecionado(): ReferenciaObjeto {
+    return this._perfilSelecionado;
+  }
+
+  public set perfilSelecionado(value: ReferenciaObjeto) {
+    this._perfilSelecionado = value;
+  }
+
   constructor() { }
 }

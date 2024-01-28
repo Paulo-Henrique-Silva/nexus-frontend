@@ -8,7 +8,8 @@ import { LocalizacoesService } from '../localizacoes.service';
 import { LocalizacaoEnvio } from '../models/localizacao-envio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { switchMap, throwError } from 'rxjs';
+import { last, switchMap, throwError } from 'rxjs';
+import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 
 @Component({
   selector: 'app-localizacoes-editar',
@@ -59,37 +60,29 @@ export class LocalizacoesEditarComponent extends NexusFormulario {
   }
   
   override onSubmit(): void {
+    this.carregando = true;
     const uid = this.activatedRoute.snapshot.params['uid'];
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;
-    this.carregando = true;
+
+    const projetoUID = this.sessaoService.projetoSelecionado.uid;
     
-    this.sessaoService.projetoSelecionado$
-    .pipe(
-      switchMap(projeto => {
-        if (!projeto) {
-          throwError(() => Error('Projeto não encontrado.'));
+    const localizacao: LocalizacaoEnvio = {
+      nome: nome,
+      descricao: descricao,
+      projetoUID: projetoUID
+    };
+    
+    this.localizacaoService.editar(uid, localizacao)
+      .subscribe({
+        next: () => {
+          this.mostrarSnackBarOk('Localização editada com sucesso!');
+          this.router.navigate(['/ativos/localizacoes/buscar']);
+        },
+        error: () => {
+          this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
         }
-
-        const projetoUID = projeto.uid;
-
-        const localizacao: LocalizacaoEnvio = {
-          nome: nome,
-          descricao: descricao,
-          projetoUID: projetoUID
-        };
-
-        return this.localizacaoService.editar(uid, localizacao);
       })
-    )
-    .subscribe({
-      next: () => {
-        this.mostrarSnackBarOk('Localização editada com sucesso!');
-        this.router.navigate(['/ativos/localizacoes/buscar']);
-      },
-      error: () => {
-        this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
-      }
-    })
+    }
   }
-}
+  
