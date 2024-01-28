@@ -36,9 +36,14 @@ export class AuthService {
           next: (resultados) => {
             //Obtém o perfil do usuário.
             const usuarioPerfilAtivado = resultados.find(o => o.ativado == true);
-
+            
+            //Atualiza a sessão.
             if (usuarioPerfilAtivado) {
-              this.sessaoService.uidPerfilSelecionado = usuarioPerfilAtivado.perfil.uid;
+              this.sessaoService.perfilSelecionado$.next(usuarioPerfilAtivado.perfil);
+              this.sessaoService.projetoSelecionado$.next(usuarioPerfilAtivado.projeto);
+
+              this.sessaoService.projetoSelecionado$.complete();
+              this.sessaoService.perfilSelecionado$.complete();
             }
           },
           error: (error: any) => {

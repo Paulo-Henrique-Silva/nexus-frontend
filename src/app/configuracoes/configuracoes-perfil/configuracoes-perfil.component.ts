@@ -123,8 +123,12 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
           this.projetosChaves = [];
 
           //Atualiza sessão
-          this.sessaoService.uidPerfilSelecionado = perfilUID;
-          this.sessaoService.projetoEPerfil$.next(`${resposta.projeto.nome} - ${resposta.perfil.nome}`);
+          this.sessaoService.projetoSelecionado$.next(resposta.projeto);
+          this.sessaoService.perfilSelecionado$.next(resposta.perfil);
+
+          //this.sessaoService.projetoSelecionado$.complete();
+          //this.sessaoService.perfilSelecionado$.complete();
+
           this.ngOnInit();
         },
         error: () => {

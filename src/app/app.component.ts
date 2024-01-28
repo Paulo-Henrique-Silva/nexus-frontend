@@ -3,7 +3,7 @@ import { AuthService } from './login/auth/auth.service';
 import { Router } from '@angular/router';
 import { SessaoService } from './compartilhado/services/sessao/sessao.service';
 import { UsuariosService } from './login/usuarios.service';
-import { EMPTY, catchError, delay, of, switchMap, throwError } from 'rxjs';
+import { EMPTY, catchError, delay, forkJoin, of, switchMap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuarioPerfilService } from './configuracoes/service/usuario-perfil.service';
 
@@ -33,49 +33,44 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     //Obtém se o usuário autenticado ou não. 
     //Não se desiscreve, pois permanecerá por toda a execução do aplicativo.
+    
     this.authService.usuarioAutenticado$
     .pipe(
       switchMap(usuarioAutenticado => {
         //Obtém se o usuário está autenticado.
         this.usuarioAutenticado = usuarioAutenticado;
-
+        
         if (usuarioAutenticado) {
           this.carregandoInfoUsuario = true;
           return this.usuarioService.obterPorUID(this.sessaoService.uidUsuario)
         }
 
         return EMPTY; //encera a execução dos observables.
-      }),
-      switchMap(usuario => {
+      }))
+      .subscribe({
+        next: (usuario) => {
         //Obtém informações do usuário.
         if (usuario) {
           this.nomeAcesso = usuario.nomeAcesso
-          return this.usuarioPerfilService.obterTudoPorUsuarioUID(usuario.uid)
         }
         
         return throwError(() => Error('Usuário não encontrado!'));
-      })
-    )
-    .subscribe({
-      next: (resultados) => {
-        const usuarioPerfilAtivado = resultados.find(o => o.ativado == true);
-        
-        if (usuarioPerfilAtivado) {
-          this.sessaoService.projetoEPerfil$.next(`${usuarioPerfilAtivado.projeto.nome} - ${usuarioPerfilAtivado.perfil.nome}`);
-        }
-        else {
-          this.projetoEPerfil = 'Não Configurado';
-        }
-        
-        this.carregandoInfoUsuario = false;
       },
       error: () => {
         this.tratarErroCarregamentoUsuario();
       }
     });
 
-    this.sessaoService.projetoEPerfil$
-      .subscribe(projetoEPerfil => this.projetoEPerfil = projetoEPerfil);
+    forkJoin([this.sessaoService.projetoSelecionado$, this.sessaoService.perfilSelecionado$])
+    .subscribe({
+      next: ([projeto, perfil]) => {
+        this.projetoEPerfil = `${projeto.nome} - ${perfil.nome}`;
+        this.carregandoInfoUsuario = false;
+      },
+      error: () => {
+        this.tratarErroCarregamentoUsuario();
+      }
+    });
   }
 
   tratarErroCarregamentoUsuario(): void {

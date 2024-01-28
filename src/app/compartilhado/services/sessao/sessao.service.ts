@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { ReferenciaObjeto } from '../../models/referencia-objeto';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +8,9 @@ import { Subject } from 'rxjs';
 export class SessaoService {
   private _uidUsuario: string = '';
   private _token: string = '';
-  private _uidPerfilSelecionado: string = '';
+  private _perfilSelecionado$: Subject<ReferenciaObjeto> = new Subject<ReferenciaObjeto>();
+  private _projetoSelecionado$: Subject<ReferenciaObjeto> = new Subject<ReferenciaObjeto>();
 
-  public projetoEPerfil$: Subject<string> = new Subject<string>;
-  
   public get uidUsuario(): string {
     return this._uidUsuario;
   }
@@ -26,14 +26,21 @@ export class SessaoService {
   public set token(value: string) {
     this._token = value;
   }
-  
-  public get uidPerfilSelecionado():  string {
-    return this._uidPerfilSelecionado;
+
+  public get projetoSelecionado$(): Subject<ReferenciaObjeto> {
+    return this._projetoSelecionado$;
   }
 
-  public set uidPerfilSelecionado(value: string) {
-    this._uidPerfilSelecionado = value;
+  public set projetoSelecionado$(value: Subject<ReferenciaObjeto>) {
+    this._projetoSelecionado$ = value;
   }
-  
+
+  public get perfilSelecionado$(): Subject<ReferenciaObjeto> {
+    return this._perfilSelecionado$;
+  }
+
+  public set perfilSelecionado$(value: Subject<ReferenciaObjeto>) {
+    this._perfilSelecionado$ = value;
+  }
   constructor() { }
 }
