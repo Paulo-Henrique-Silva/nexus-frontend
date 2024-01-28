@@ -22,11 +22,14 @@ export class LocalizacoesAcoesComponent {
   @Output() 
   fechou = new EventEmitter<any>();
 
+  protected textoObjetoDeletado: string = 'Localização deletada com sucesso!';
+
   constructor(
     private localizacoService: LocalizacoesService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog
-  ) { }
+  ) { 
+  }
 
   deletarObjeto(): void {
     const dialogExcluir = this.dialog.open(DialogDeletarComponent, {
@@ -44,7 +47,7 @@ export class LocalizacoesAcoesComponent {
       next: () => {
         //emite para carregar a tabela novamente.
         this.deletou.emit();
-        this.mostrarSnackBarOk(`Objeto deletado com sucesso!`);
+        this.mostrarSnackBarOk(this.textoObjetoDeletado);
       },
       error: () => this.mostrarSnackBarOk('Não foi possível excluir!')
     })

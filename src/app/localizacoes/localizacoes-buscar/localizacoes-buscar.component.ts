@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     { provide: MatPaginatorIntl, useClass: LocalizacoesBuscarComponent }
   ]
 })
-export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements AfterViewInit, OnDestroy {
+export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnInit, DoCheck, OnDestroy {
   @ViewChild(MatPaginator) 
   paginator?: MatPaginator;
   
@@ -56,21 +56,23 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
     private snackBar: MatSnackBar
   ) {
     super();
-
-  }
-
-  ngAfterViewInit() {
-    this.carregarTabela();
-    
-    if (this.paginator && this.sort) {
-      this.dadosTabela.paginator = this.paginator;
-      this.dadosTabela.sort = this.sort;
-
-      this.inscricaoPaginator = this.paginator.page
-       .subscribe(resultado => this.paginaAtual = resultado.pageIndex);
-    }
   }
   
+  ngOnInit(): void {
+    this.carregarTabela();
+  }
+  
+  ngDoCheck(): void {
+    //Após o carregamento da tabela, carrega a paginação e sort.
+    if (this.paginator && this.sort && !this.dadosTabela.paginator && !this.dadosTabela.sort) {
+      this.dadosTabela.paginator = this.paginator;
+      this.dadosTabela.sort = this.sort;
+  
+      this.inscricaoPaginator = this.paginator.page
+        .subscribe(resultado => this.paginaAtual = resultado.pageIndex);
+    }
+  }
+
   ngOnDestroy(): void {
     this.inscricaoPaginator.unsubscribe();
   }
@@ -87,6 +89,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
       
         dadosTratados.forEach(dado => {
           for (let propriedade in dado) {
+            //Se for data, converte para uma string legível.
             if (this.eData(dado[propriedade])) {
               dado[propriedade] = pipe
                 .transform(dado[propriedade], 'dd/MM/yyyy HH:mm:ss');
@@ -109,7 +112,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements Aft
     });
   }
 
-  mostrarAcoes(linha: any, indexLinha: number) {
+  mostrarAcoes(linha: any, indexLinha: number): void {
     this.objetoSelecionado = {
       uid: linha.uid,
       nome: linha.nome,
