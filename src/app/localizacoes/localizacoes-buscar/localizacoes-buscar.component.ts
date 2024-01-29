@@ -7,6 +7,7 @@ import { LocalizacoesService } from '../localizacoes.service';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 import { Subscription, delay } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 
 @Component({
   selector: 'app-localizacoes-buscar',
@@ -53,7 +54,8 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
 
   constructor(
     private localizacaoService: LocalizacoesService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private sessaoService: SessaoService
   ) {
     super();
   }
@@ -80,8 +82,9 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
   //Aqui será feita o tratamento dos dados para que sejam mostrados na tabela.
   carregarTabela() {
     this.carregando = true;
+    const projetoUID = this.sessaoService.projetoSelecionado.uid;
 
-    this.localizacaoService.obterTudo(this.paginaAtual)
+    this.localizacaoService.obterTudoPorProjetoUID(this.paginaAtual, projetoUID)
     .subscribe({
       next: (dados) => {
         const pipe = new DatePipe('en-US');

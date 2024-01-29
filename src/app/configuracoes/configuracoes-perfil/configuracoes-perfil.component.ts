@@ -58,11 +58,19 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
         next: (usuarioPerfis) => {
           //O projetos serão agrupados por meio de chaves, que são compostas pelo 
           //UID do projeto + @SPLIT@ + nome.
-          //Logo, há um objeto que contém todos os perfis do usuários que podem ser acessados
+          //Logo, há um objeto que contém todos os perfis do usuário que podem ser acessados
           //caso a chave sera inserida.
 
           this.projetoPerfisAgrupados = this.agruparPorProjeto(usuarioPerfis);
           this.carregando = false;
+
+          //Ordena pelo nome do projeto (segunda parte da chave)
+          this.projetosChaves.sort((a, b) => a.split(this.slipter)[1] < b.split(this.slipter)[1] 
+          ? -1 : 1);
+
+          //Ordena os perfis por ordem alfabética.
+          this.projetosChaves.forEach(chave => this.projetoPerfisAgrupados[chave]
+            .sort((a, b) => a.perfil.nome < b.perfil.nome ? -1 : 1));
         },
         error: () => {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
@@ -80,9 +88,9 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
         agrupado[chave] = [];
         this.projetosChaves.push(chave);
       }
-  
+      
       agrupado[chave].push(objeto);
-  
+
       return agrupado;
     }, {} as ProjetoPerfil);
   }
