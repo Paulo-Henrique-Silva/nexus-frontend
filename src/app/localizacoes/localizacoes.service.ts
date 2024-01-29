@@ -6,6 +6,7 @@ import { ReferenciaObjeto } from '../compartilhado/models/referencia-objeto';
 import { NexusService } from '../compartilhado/services/nexus-service/nexus-service';
 import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 import { Observable, take } from 'rxjs';
+import { NexusListaResposta } from '../compartilhado/models/nexus-lista-resposta';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,12 @@ export class LocalizacoesService extends NexusService<LocalizacaoEnvio, Localiza
     super(http, sessaoService, 'https://localhost:7172/api/Localizacao');
   }
 
-  obterTudoPorProjetoUID(pagina: number, projetoUID: string): Observable<LocalizacaoResposta[]> {
+  obterTudoPorProjetoUID(pagina: number, projetoUID: string): 
+  Observable<NexusListaResposta<LocalizacaoResposta>> {
     const params = new HttpParams()
         .set('pagina', pagina.toString());
 
-    return this.http.get<LocalizacaoResposta[]>(this.url + '/Projeto/' + projetoUID, 
+    return this.http.get<NexusListaResposta<LocalizacaoResposta>>(this.url + '/Projeto/' + projetoUID, 
     { params: params, headers: this.header }).pipe(take(1));
   }
 

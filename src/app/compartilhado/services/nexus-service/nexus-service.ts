@@ -4,6 +4,7 @@ import { NexusResposta } from "../../models/nexus-resposta";
 import { Observable, take } from "rxjs";
 import { AuthService } from "../../../login/auth/auth.service";
 import { SessaoService } from "../sessao/sessao.service";
+import { NexusListaResposta } from "../../models/nexus-lista-resposta";
 
 //T - Envio
 //O - Resposta
@@ -22,12 +23,12 @@ export class NexusService<T extends NexusEnvio, O extends NexusResposta> {
         return this.http.get<O>(this.url + '/' + uid, { headers: this.header }).pipe(take(1));
     }
 
-    obterTudo(pagina: number): Observable<O[]> {
+    obterTudo(pagina: number): Observable<NexusListaResposta<O>> {
         const params = new HttpParams()
             .set('pagina', pagina.toString());
 
-        return this.http.get<O[]>(this.url, { params: params, headers: this.header })
-            .pipe(take(1));
+        return this.http.get<NexusListaResposta<O>>(this.url, 
+            { params: params, headers: this.header }).pipe(take(1));
     }
 
     adicionar(envio: T): Observable<O> {

@@ -30,7 +30,7 @@
                     </tr>
                 </table>
                 
-                <mat-paginator [pageSize]="25" showFirstLastButtons
+                <mat-paginator [pageSize]="25" [length]="totalItens" showFirstLastButtons
                         aria-label="Página selecionada de tarefas." 
                         (page)="selecionouObjeto = false">
                 </mat-paginator>

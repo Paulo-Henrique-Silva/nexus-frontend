@@ -53,7 +53,8 @@ export class LocalizacoesAdicionarComponent extends NexusFormulario {
       .subscribe({
         next: () => {
           this.mostrarSnackBarOk('Localização adicionada com sucesso!');
-          this.router.navigate(['/ativos/localizacoes/buscar']);
+          this.carregando = false;
+          //this.router.navigate(['/ativos/localizacoes/buscar']);
         },
         error: () => {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');

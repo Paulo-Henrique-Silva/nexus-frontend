@@ -47,6 +47,7 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
   //Guarda a página para fazer requisições.
   inscricaoPaginator: Subscription = new Subscription();
   paginaAtual: number = 1;
+  totalItens: number = 0;
 
   indexLinhaSelecionada: number = -1;
 
@@ -88,7 +89,11 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
     .subscribe({
       next: (dados) => {
         const pipe = new DatePipe('en-US');
-        let dadosTratados: any[] = dados;
+
+        console.log(dados);
+
+        let dadosTratados: any[] = dados.itens;
+        this.totalItens = dados.totalItens;
       
         dadosTratados.forEach(dado => {
           for (let propriedade in dado) {
