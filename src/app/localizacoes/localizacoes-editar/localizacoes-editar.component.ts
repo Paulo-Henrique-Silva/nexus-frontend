@@ -77,7 +77,7 @@ export class LocalizacoesEditarComponent extends NexusFormulario {
       .subscribe({
         next: () => {
           this.mostrarSnackBarOk('Localização editada com sucesso!');
-          this.router.navigate(['/ativos/localizacoes/buscar']);
+          this.router.navigate(['/ativos/localizacoes']);
         },
         error: () => {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');

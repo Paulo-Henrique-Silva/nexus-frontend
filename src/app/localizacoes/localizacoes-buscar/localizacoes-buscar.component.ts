@@ -46,8 +46,11 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
 
   //Guarda a página para fazer requisições.
   inscricaoPaginator: Subscription = new Subscription();
-  paginaAtual: number = 1;
+
+  //começa no zero, pois o paginator também inicia no zero.
+  paginaAtual: number = 0;
   totalItens: number = 0;
+  tamanhoPagina: number = 25;
 
   indexLinhaSelecionada: number = -1;
 
@@ -66,31 +69,24 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
   }
   
   ngDoCheck(): void {
-    //Após o carregamento da tabela, carrega a paginação e sort.
-    if (this.paginator && this.sort && !this.dadosTabela.paginator && !this.dadosTabela.sort) {
-      this.dadosTabela.paginator = this.paginator;
+    //Após o carregamento da tabela, carrega o sort.
+    if (this.sort && !this.dadosTabela.sort) {
       this.dadosTabela.sort = this.sort;
-  
-      this.inscricaoPaginator = this.paginator.page
-        .subscribe(resultado => this.paginaAtual = resultado.pageIndex);
     }
   }
 
   ngOnDestroy(): void {
-    this.inscricaoPaginator.unsubscribe();
   }
 
   //Aqui será feita o tratamento dos dados para que sejam mostrados na tabela.
-  carregarTabela() {
+  carregarTabela(): void {
     this.carregando = true;
     const projetoUID = this.sessaoService.projetoSelecionado.uid;
 
-    this.localizacaoService.obterTudoPorProjetoUID(this.paginaAtual, projetoUID)
+    this.localizacaoService.obterTudoPorProjetoUID(this.paginaAtual + 1, projetoUID)
     .subscribe({
       next: (dados) => {
         const pipe = new DatePipe('en-US');
-
-        console.log(dados);
 
         let dadosTratados: any[] = dados.itens;
         this.totalItens = dados.totalItens;
@@ -131,6 +127,28 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
     //Caso haja um objeto selecinado, aplico o estilo na linha. Senão, marca o index como -1
     //para resetar os estilos na tabela.
     this.indexLinhaSelecionada = this.selecionouObjeto ? indexLinha : -1;
+  }
+
+  mudarPagina(event: any): void {
+    this.selecionouObjeto = false;
+    let paginaIndex = event.pageIndex;
+
+    if (paginaIndex == 0) {
+      this.paginaAtual = 0;
+    }
+    else if (paginaIndex == this.paginaAtual + 1) {
+      this.paginaAtual++;
+    }
+    else if (paginaIndex < this.paginaAtual) {
+      this.paginaAtual--;
+    }
+    else { //caso o usuário tenha clicado para ir à ultima página.
+
+      //Faz o cálculo da últimap página.
+      this.paginaAtual = Math.floor(this.totalItens / this.tamanhoPagina);
+    }
+
+    this.carregarTabela();
   }
 
   override getRangeLabel = (page: number, pageSize: number, length: number): string => {
