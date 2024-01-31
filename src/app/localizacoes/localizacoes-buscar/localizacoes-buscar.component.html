@@ -7,7 +7,19 @@
         
     </mat-sidenav>
     <mat-sidenav-content class="p-3">
-        <nexus-botao-voltar caminho="/ativos/localizacoes"></nexus-botao-voltar>
+        <div class="d-flex justify-content-between align-items-center">
+            <nexus-botao-voltar caminho="/ativos/localizacoes"></nexus-botao-voltar>
+
+            <h2>Localizações<mat-icon>room</mat-icon></h2>
+    
+            <mat-form-field class="mt-3" appearance="outline">
+                <input type="text" matInput>
+
+                <button matSuffix mat-icon-button matTooltip="Pesquisar">
+                    <mat-icon color="primary">search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
 
         <div *ngIf="carregando; else telaPrincipal" 
         class="d-flex flex-column justify-content-center align-items-center h-100">
