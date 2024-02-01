@@ -52,6 +52,9 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
   totalItens: number = 0;
   tamanhoPagina: number = 25;
 
+  //Nome que será usado na pesquisa
+  nomePesquisa: string = '';
+
   indexLinhaSelecionada: number = -1;
 
   carregando: boolean = true;
@@ -79,13 +82,14 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
   }
 
   //Aqui será feita o tratamento dos dados para que sejam mostrados na tabela.
-  carregarTabela(): void {
+  carregarTabela(nomePesquisa: string | null = null): void {
     this.carregando = true;
     const projetoUID = this.sessaoService.projetoSelecionado.uid;
 
-    this.localizacaoService.obterTudoPorProjetoUID(this.paginaAtual + 1, projetoUID)
+    this.localizacaoService.obterTudoPorProjetoUID(this.paginaAtual + 1, projetoUID, nomePesquisa)
     .subscribe({
       next: (dados) => {
+        console.log(dados);
         const pipe = new DatePipe('en-US');
 
         let dadosTratados: any[] = dados.itens;
