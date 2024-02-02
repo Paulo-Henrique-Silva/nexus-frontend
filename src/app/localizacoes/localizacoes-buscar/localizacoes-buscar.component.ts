@@ -54,6 +54,8 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
 
   //Nome que será usado na pesquisa
   nomePesquisa: string = '';
+  tabelaFoiFiltrada: boolean = false;
+  nomeFiltro: string = '';
 
   indexLinhaSelecionada: number = -1;
 
@@ -86,10 +88,14 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
     this.carregando = true;
     const projetoUID = this.sessaoService.projetoSelecionado.uid;
 
+    if (nomePesquisa != null) {
+      this.tabelaFoiFiltrada = true;
+      this.nomeFiltro = nomePesquisa;
+    }
+
     this.localizacaoService.obterTudoPorProjetoUID(this.paginaAtual + 1, projetoUID, nomePesquisa)
     .subscribe({
       next: (dados) => {
-        console.log(dados);
         const pipe = new DatePipe('en-US');
 
         let dadosTratados: any[] = dados.itens;
@@ -120,6 +126,14 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
     });
   }
 
+  removerFiltro(): void {
+    this.tabelaFoiFiltrada = false;
+    this.nomePesquisa = '';
+    this.nomeFiltro = '';
+
+    this.carregarTabela();
+  }
+
   mostrarAcoes(linha: any, indexLinha: number): void {
     this.objetoSelecionado = {
       uid: linha.uid,
@@ -147,7 +161,6 @@ export class LocalizacoesBuscarComponent extends MatPaginatorIntl implements OnI
       this.paginaAtual--;
     }
     else { //caso o usuário tenha clicado para ir à ultima página.
-
       //Faz o cálculo da últimap página.
       this.paginaAtual = Math.floor(this.totalItens / this.tamanhoPagina);
     }
