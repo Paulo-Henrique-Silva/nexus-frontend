@@ -2,6 +2,13 @@
 
 .config-menu {
     text-align: left;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+}
+
+.config-menu:hover {
+    background-color: v.$background-color;
 }
 
 .config-menu.active {
@@ -12,7 +19,7 @@
 }
 
 .config-menu mat-icon {
-    font-size: 1.5rem;
+    font-size: 2rem;
     width: auto;
     height: auto;
 }

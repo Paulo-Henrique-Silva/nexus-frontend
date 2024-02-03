@@ -1,16 +1,37 @@
 <mat-sidenav-container>
+    <!--Opções-->
     <mat-sidenav mode="side" opened class="w-25">
       <div class="d-flex flex-column">
-        <button mat-button routerLink="/configuracoes/perfil" class="config-menu" 
+        <!-- <button mat-button routerLink="/configuracoes/perfil" class="config-menu" 
         routerLinkActive="active">
             <mat-icon>business_center</mat-icon>Perfil
         </button>
         <button mat-button routerLink="/configuracoes/usuario-detalhes" class="config-menu" 
         routerLinkActive="active">
+          <div class="p-3">
             <mat-icon>person</mat-icon>Usuário
-        </button>
+          </div>
+        </button> -->
+
+        <mat-card class="bg-primary" class="config-menu" routerLink="/configuracoes/perfil"
+        routerLinkActive="active" matRipple>
+          <div class="p-2 d-flex justify-content-start">
+            <mat-icon class="icone me-2">business_center</mat-icon>
+            <mat-card-title>Perfil</mat-card-title>
+          </div>
+        </mat-card>
+
+        <mat-card class="bg-primary" class="config-menu" routerLink="/configuracoes/usuario-detalhes"
+        routerLinkActive="active" matRipple>
+          <div class="p-2 d-flex justify-content-start">
+            <mat-icon class="icone me-2">person</mat-icon>
+            <mat-card-title>Usuário</mat-card-title>
+          </div>
+        </mat-card>
+        
       </div>
     </mat-sidenav>
+    <!--Conteúdo-->
     <mat-sidenav-content class="p-3">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
