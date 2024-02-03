@@ -12,6 +12,7 @@ import { LocalizacoesBuscarComponent } from './localizacoes-buscar/localizacoes-
 import { LocalizacoesDetalhesComponent } from './localizacoes-detalhes/localizacoes-detalhes.component';
 import { LocalizacoesEditarComponent } from './localizacoes-editar/localizacoes-editar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LocalizacoesAcoesComponent } from './localizacoes-acoes/localizacoes-acoes.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     LocalizacoesAdicionarComponent,
     LocalizacoesBuscarComponent,
     LocalizacoesDetalhesComponent,
-    LocalizacoesEditarComponent
+    LocalizacoesEditarComponent,
+    LocalizacoesAcoesComponent
   ],
   imports: [
     CommonModule,

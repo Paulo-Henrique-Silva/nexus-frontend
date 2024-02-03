@@ -14,16 +14,15 @@
     <div class="p-3">
         
         <div class="d-flex flex-column">
+
             <nexus-botao-acoes icone="edit" texto="Atualizar" 
-            [link]="['/ativos/localizacoes/editar', objeto.uid]">
+            [link]="['/ativos/localizacoes/editar', objeto.uid]"
+            *ngIf="!perfil.nome.includes('Leitor')">
             </nexus-botao-acoes>
             
-            <mat-divider></mat-divider>
-            
-            <nexus-botao-acoes icone="delete" texto="Deletar" (click)="deletarObjeto()">
+            <nexus-botao-acoes icone="delete" texto="Deletar" (click)="deletarObjeto()"
+            *ngIf="perfil.nome.includes('Administrador')">
             </nexus-botao-acoes>
-            
-            <mat-divider></mat-divider>
             
             <nexus-botao-acoes icone="info" texto="Ver Detalhes" 
             [link]="['/ativos/localizacoes/detalhes', objeto.uid]">

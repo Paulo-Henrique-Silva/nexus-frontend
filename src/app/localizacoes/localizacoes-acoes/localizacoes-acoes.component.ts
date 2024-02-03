@@ -2,24 +2,19 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { take, switchMap, EMPTY } from 'rxjs';
-import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
-import { DialogDeletarComponent } from '../dialog-deletar/dialog-deletar.component';
-import { ReferenciaObjeto } from '../models/referencia-objeto';
+import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialog-deletar.component';
+import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { LocalizacoesService } from '../localizacoes.service';
+import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 
 @Component({
-  selector: 'nexus-ativos-acoes',
-  templateUrl: './ativos-acoes.component.html',
-  styleUrl: './ativos-acoes.component.scss'
+  selector: 'nexus-localizacoes-acoes',
+  templateUrl: './localizacoes-acoes.component.html',
+  styleUrl: './localizacoes-acoes.component.scss'
 })
-export class AtivosAcoesComponent {
+export class LocalizacoesAcoesComponent {
   @Input()
   objeto: ReferenciaObjeto = new ReferenciaObjeto();
-
-  @Input('textoDeletado')
-  textoObjetoDeletado: string = 'Objeto deletado com sucesso!';
-
-  @Input()
-  service: any;
 
   @Output() 
   deletou = new EventEmitter<any>();
@@ -27,10 +22,15 @@ export class AtivosAcoesComponent {
   @Output() 
   fechou = new EventEmitter<any>();
 
+  perfil: ReferenciaObjeto = new ReferenciaObjeto();
+
   constructor(
+    private service: LocalizacoesService,
+    private sessaoService: SessaoService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog
   ) {
+    this.perfil = sessaoService.perfilSelecionado;
   }
 
   deletarObjeto(): void {
@@ -49,7 +49,7 @@ export class AtivosAcoesComponent {
       next: () => {
         //emite para carregar a tabela novamente.
         this.deletou.emit();
-        this.mostrarSnackBarOk(this.textoObjetoDeletado);
+        this.mostrarSnackBarOk('Localização deletada com sucesso!');
       },
       error: () => this.mostrarSnackBarOk('Não foi possível excluir!')
     })
