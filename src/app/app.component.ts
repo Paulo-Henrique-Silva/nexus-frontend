@@ -6,6 +6,18 @@ import { UsuariosService } from './login/usuarios.service';
 import { EMPTY, combineLatest, switchMap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMM YYYY',
+  },
+};
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

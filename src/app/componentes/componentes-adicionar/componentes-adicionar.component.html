@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-center">
     <mat-card class="col-12 col-md-6 p-3">
         <mat-card-header class="mb-4">
-            <mat-card-title>Adicionar Localização</mat-card-title>
+            <mat-card-title>Adicionar Componente</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <div *ngIf="carregando; else telaPrincipal" 
@@ -13,8 +13,9 @@
 
             <ng-template #telaPrincipal>
                 <form [formGroup]="formulario" class="d-flex flex-column">
+
                     <mat-form-field class="mb-3">
-                        <mat-label>Número de Série</mat-label>
+                        <mat-label>Nome</mat-label>
                         <input type="text" matInput formControlName="nome">
                         <mat-error *ngIf="campoInvalido('nome')">
                             {{ obterMensagemErro('nome') }}
@@ -23,11 +24,79 @@
         
                     <mat-form-field class="mb-3">
                         <mat-label>Descrição</mat-label>
-                        <input type="text" matInput formControlName="descricao">
+                        <textarea type="text" matInput formControlName="descricao">
+                        </textarea>
                         <mat-error *ngIf="campoInvalido('descricao')">
                             {{ obterMensagemErro('descricao') }}
                         </mat-error>
                     </mat-form-field>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Número de série</mat-label>
+                        <input type="text" matInput formControlName="numeroSerie">
+                        <mat-error *ngIf="campoInvalido('numeroSerie')">
+                            {{ obterMensagemErro('numeroSerie') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Marca</mat-label>
+                        <input type="text" matInput formControlName="marca">
+                        <mat-error *ngIf="campoInvalido('marca')">
+                            {{ obterMensagemErro('marca') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Modelo</mat-label>
+                        <input type="text" matInput formControlName="modelo">
+                        <mat-error *ngIf="campoInvalido('modelo')">
+                            {{ obterMensagemErro('modelo') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Tipo</mat-label>
+                        <mat-select formControlName="tipo">
+                            <mat-option [value]="6">1</mat-option>
+                            <mat-option [value]="2">2</mat-option>
+                            <mat-option [value]="3">3</mat-option>
+                            <mat-option [value]="4">4</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="campoInvalido('tipo')">
+                            {{ obterMensagemErro('tipo') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Localização</mat-label>
+                        <mat-select formControlName="localizacao">
+                            <mat-option>
+                                <ngx-mat-select-search placeholderLabel="Buscar..." 
+                                noEntriesFoundLabel="Nenhum resultado foi encontrado."
+                                #iptLocalizacao
+                                (ngModelChange)="onKey(iptLocalizacao)">
+                            </ngx-mat-select-search>
+                            </mat-option>
+                            <mat-option *ngFor="let l of localizacoes" [value]="l.uid">
+                                {{ l.nome }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="campoInvalido('localizacao')">
+                            {{ obterMensagemErro('localizacao') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Data de Aquisição</mat-label>
+                        <input formControlName="dataAquisicao" matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="campoInvalido('dataAquisicao')">
+                            {{ obterMensagemErro('dataAquisicao') }}
+                        </mat-error>
+                    </mat-form-field>
+
                     <mat-card-actions [align]="'end'">
                         <button type="submit" mat-raised-button color="primary" (click)="onSubmit()" 
                         [disabled]="formulario.invalid">
@@ -39,3 +108,5 @@
         </mat-card-content>
     </mat-card>
 </div>
+
+<pre> {{ formulario.value | json }}</pre>

@@ -23,7 +23,8 @@
         
                     <mat-form-field class="mb-3">
                         <mat-label>Descrição</mat-label>
-                        <input type="text" matInput formControlName="descricao">
+                        <textarea type="text" matInput formControlName="descricao">
+                        </textarea>
                         <mat-error *ngIf="campoInvalido('descricao')">
                             {{ obterMensagemErro('descricao') }}
                         </mat-error>

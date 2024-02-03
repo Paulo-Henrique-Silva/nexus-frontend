@@ -19,6 +19,7 @@ import { ManutencoesModule } from './manutencoes/manutencoes.module';
 import { RequisicoesModule } from './requisicoes/requisicoes.module';
 import { SoftwaresModule } from './softwares/softwares.module';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,9 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
     SoftwaresModule,
     AppRoutingModule,
     BrowserAnimationsModule
+  ],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,13 +8,20 @@ import { SessaoService } from '../../compartilhado/services/sessao/sessao.servic
 import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
 import { LocalizacaoEnvio } from '../../localizacoes/models/localizacao-envio';
 import { AuthService } from '../../login/auth/auth.service';
+import { ComponentesService } from '../componentes.service';
+import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 
 @Component({
   selector: 'app-componentes-adicionar',
   templateUrl: './componentes-adicionar.component.html',
-  styleUrl: './componentes-adicionar.component.scss'
+  styleUrl: './componentes-adicionar.component.scss',
 })
-export class ComponentesAdicionarComponent extends NexusFormulario {
+export class ComponentesAdicionarComponent extends NexusFormulario implements OnInit {
+
+  tipo: ReferenciaObjeto[] = []
+
+  localizacoes: ReferenciaObjeto[] = []
+
   constructor(
     authService : AuthService, 
     formBuilder: FormBuilder,
@@ -22,22 +29,41 @@ export class ComponentesAdicionarComponent extends NexusFormulario {
     mensagemValidacaoService: MensagensValidacaoService,
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
-    usuarioSessaoService: SessaoService,
+    sessaoService: SessaoService,
+    private service: ComponentesService,
     private localizacaoService: LocalizacoesService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, usuarioSessaoService);
+      snackBar, sessaoService);
       
     this.formulario = this.formBuilder.group({
-      nome: ['', Validators.required],
-      descricao: ['', Validators.required],
-      numeroSerie: ['', Validators.required],
-      marca: ['', Validators.required],
-      modelo: ['', Validators.required],
-      tipo: ['', Validators.required],
-      localizacao: ['', Validators.required],
-      dataAquisicao: ['', Validators.required],
+      nome: ['', [Validators.required, Validators.maxLength(200)]],
+      descricao: ['', [Validators.required, Validators.maxLength(400)]],
+      numeroSerie: ['', [Validators.required, Validators.maxLength(200)]],
+      marca: ['', [Validators.required, Validators.maxLength(200)]],
+      modelo: ['', [Validators.required, Validators.maxLength(200)]],
+      tipo: ['', [Validators.required]],
+      localizacao: ['', [Validators.required]],
+      dataAquisicao: ['', [Validators.required]],
     })
+  }
+
+  ngOnInit(): void {
+  }
+
+  onKey(texto: any) {
+    let localizacoesFiltradas: ReferenciaObjeto[] = [
+      { uid: '1', nome: 'SAL1'}, 
+      { uid: '2', nome: 'SAL2'}, 
+      { uid: '3', nome: 'SAL3'},
+      { uid: '4', nome: 'SEE'},
+      { uid: '5', nome: 'BIB'},
+    ]
+
+    console.log(texto)
+    console.log(localizacoesFiltradas.filter(l => l.nome.includes(texto)))
+
+    //this.localizacoes = ;
   }
 
   override onSubmit(): void {
@@ -53,7 +79,7 @@ export class ComponentesAdicionarComponent extends NexusFormulario {
       projetoUID: projetoUID
     };
     
-    this.localizacaoService.adicionar(localizacao)
+    this.service.adicionar(localizacao)
       .subscribe({
         next: () => {
           this.mostrarSnackBarOk('Localização adicionada com sucesso!');

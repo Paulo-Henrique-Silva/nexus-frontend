@@ -36,6 +36,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 const materialModules = [
   CdkTreeModule,
@@ -71,7 +72,8 @@ const materialModules = [
   MatDatepickerModule,
   MatSlideToggleModule,
   MatTooltipModule,
-  MatDialogModule
+  MatDialogModule,
+  NgxMatSelectSearchModule
 ];
 @NgModule({
   imports: [
