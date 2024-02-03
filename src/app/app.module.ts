@@ -18,10 +18,12 @@ import { LocalizacoesModule } from './localizacoes/localizacoes.module';
 import { ManutencoesModule } from './manutencoes/manutencoes.module';
 import { RequisicoesModule } from './requisicoes/requisicoes.module';
 import { SoftwaresModule } from './softwares/softwares.module';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PaginaNaoEncontradaComponent
   ],
   imports: [
     BrowserModule,
