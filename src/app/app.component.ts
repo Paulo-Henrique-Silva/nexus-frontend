@@ -3,9 +3,8 @@ import { AuthService } from './login/auth/auth.service';
 import { Router } from '@angular/router';
 import { SessaoService } from './compartilhado/services/sessao/sessao.service';
 import { UsuariosService } from './login/usuarios.service';
-import { EMPTY, catchError, combineLatest, delay, forkJoin, merge, of, switchMap, throwError } from 'rxjs';
+import { EMPTY, combineLatest, switchMap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UsuarioPerfilService } from './configuracoes/usuario-perfil.service';
 
 @Component({
   selector: 'app-root',

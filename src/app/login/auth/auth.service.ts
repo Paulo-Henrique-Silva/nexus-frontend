@@ -12,7 +12,7 @@ import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 export class AuthService {
   private _loginSucedido: boolean = false;
 
-  usuarioAutenticado$: Subject<any> = new Subject<any>();
+  usuarioAutenticado$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private usuarioService: UsuariosService,

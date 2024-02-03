@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 
 @Component({
   selector: 'nexus-ativos',

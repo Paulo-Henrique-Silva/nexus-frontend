@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { NexusEnvio } from "../../models/nexus-envio";
 import { NexusResposta } from "../../models/nexus-resposta";
 import { Observable, take } from "rxjs";
-import { AuthService } from "../../../login/auth/auth.service";
 import { SessaoService } from "../sessao/sessao.service";
 import { NexusListaResposta } from "../../models/nexus-lista-resposta";
 

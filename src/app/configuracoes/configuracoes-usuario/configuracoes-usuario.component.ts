@@ -7,7 +7,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { delay, take } from 'rxjs';
 
 @Component({
   selector: 'app-configuracoes-usuario',

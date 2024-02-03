@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NexusService } from '../compartilhado/services/nexus-service/nexus-service';
 import { UsuarioEnvio } from './models/usuario-envio';
 import { UsuarioResposta } from './models/usuario-resposta';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, map, take } from 'rxjs';
 import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 

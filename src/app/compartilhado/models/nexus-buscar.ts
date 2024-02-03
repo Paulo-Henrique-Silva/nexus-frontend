@@ -1,14 +1,10 @@
 import { DatePipe } from "@angular/common";
-import { AfterViewInit, Component, DoCheck, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, DoCheck, OnInit, ViewChild } from "@angular/core";
 import { MatPaginatorIntl, MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
-import { Subscription, map } from "rxjs";
-import { LocalizacoesService } from "../../localizacoes/localizacoes.service";
+import { Subscription } from "rxjs";
 import { ReferenciaObjeto } from "./referencia-objeto";
-import { NexusService } from "../services/nexus-service/nexus-service";
-import { NexusEnvio } from "./nexus-envio";
-import { NexusResposta } from "./nexus-resposta";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SessaoService } from "../services/sessao/sessao.service";
 
@@ -96,11 +92,11 @@ extends MatPaginatorIntl implements OnInit, DoCheck {
       next: (dados: any) => {
         const pipe = new DatePipe('en-US');
 
-        let dadosTratados: any[] = dados.itens;
+        const dadosTratados: any[] = dados.itens;
         this.totalItens = dados.totalItens;
       
         dadosTratados.forEach(dado => {
-          for (let propriedade in dado) {
+          for (const propriedade in dado) {
             //Se for data, converte para uma string legível.
             if (this.eData(dado[propriedade])) {
               dado[propriedade] = pipe
@@ -147,7 +143,7 @@ extends MatPaginatorIntl implements OnInit, DoCheck {
 
   mudarPagina(event: any): void {
     this.selecionouObjeto = false;
-    let paginaIndex = event.pageIndex;
+    const paginaIndex = event.pageIndex;
 
     if (paginaIndex == 0) {
       this.paginaAtual = 0;
