@@ -17,7 +17,10 @@ export class AtivosAcoesComponent {
 
   @Input('textoDeletado')
   textoObjetoDeletado: string = 'Objeto deletado com sucesso!';
-  
+
+  @Input()
+  service: any;
+
   @Output() 
   deletou = new EventEmitter<any>();
 
@@ -25,10 +28,9 @@ export class AtivosAcoesComponent {
   fechou = new EventEmitter<any>();
 
   constructor(
-    private localizacoService: LocalizacoesService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog
-  ) { 
+  ) {
   }
 
   deletarObjeto(): void {
@@ -40,7 +42,7 @@ export class AtivosAcoesComponent {
     .pipe(
       take(1),
       switchMap(deletou => {
-          return deletou ? this.localizacoService.deletar(this.objeto.uid) : EMPTY;
+          return deletou ? this.service.deletar(this.objeto.uid) : EMPTY;
       })
     )
     .subscribe({

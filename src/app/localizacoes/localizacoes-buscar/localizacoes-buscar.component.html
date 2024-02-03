@@ -2,7 +2,8 @@
     <mat-sidenav mode="side" class="w-25" [opened]="selecionouObjeto">
 
         <nexus-ativos-acoes [objeto]="objetoSelecionado" (deletou)="carregarTabela()"
-        (fechou)="selecionouObjeto = false" textoDeletado="Localização deletada com sucesso!">
+        (fechou)="selecionouObjeto = false" textoDeletado="Localização deletada com sucesso!"
+        [service]="service">
         </nexus-ativos-acoes>
         
     </mat-sidenav>
