@@ -29,6 +29,8 @@ export class ComponentesAdicionarComponent extends NexusFormulario {
       snackBar, usuarioSessaoService);
       
     this.formulario = this.formBuilder.group({
+      nome: ['', Validators.required],
+      descricao: ['', Validators.required],
       numeroSerie: ['', Validators.required],
       marca: ['', Validators.required],
       modelo: ['', Validators.required],

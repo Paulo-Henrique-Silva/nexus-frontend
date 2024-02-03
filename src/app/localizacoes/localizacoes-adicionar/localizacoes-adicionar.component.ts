@@ -8,7 +8,6 @@ import { LocalizacoesService } from '../localizacoes.service';
 import { LocalizacaoEnvio } from '../models/localizacao-envio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { switchMap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-localizacoes-adicionar',
@@ -31,8 +30,8 @@ export class LocalizacoesAdicionarComponent extends NexusFormulario {
       snackBar, usuarioSessaoService);
       
     this.formulario = this.formBuilder.group({
-      nome: ['', Validators.required],
-      descricao: ['', Validators.required]
+      nome: ['', [Validators.required, Validators.maxLength(200)]],
+      descricao: ['', [Validators.required, Validators.maxLength(400)]]
     })
   }
 
@@ -60,5 +59,5 @@ export class LocalizacoesAdicionarComponent extends NexusFormulario {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
         }
       })
-    }
+  }
 }

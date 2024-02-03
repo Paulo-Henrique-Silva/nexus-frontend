@@ -15,6 +15,15 @@ import { NexusBuscar } from '../../compartilhado/models/nexus-buscar';
 })
 export class LocalizacoesBuscarComponent extends NexusBuscar {
 
+  override colunas: string[] = [ 
+    'nome', 'atualizadoPor', 'dataUltimaAtualizacao',
+    'usuarioCriador', 'dataCriacao'
+  ];
+  override colunasMostrarComo : string[] = [ 
+    'Nome', 'Atualizado por', 'Data Última Atualização',
+    'Usuário Criador', 'Data Criação'
+  ];
+
   constructor(
     snackBar: MatSnackBar,
     sessaoService: SessaoService,

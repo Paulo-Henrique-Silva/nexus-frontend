@@ -18,6 +18,9 @@ export class MensagensValidacaoService {
       return 'Os campos devem ter valores iguais.';
     }
 
+    if (control.hasError('maxlength')) {
+      return 'O campo ultrapassa o limite de caracteres.';
+    }
 
     return ''
   }
