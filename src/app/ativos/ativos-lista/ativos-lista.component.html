@@ -1,4 +1,5 @@
-<div class="d-flex flex-row flex-wrap">
+<!--Lista de ativos-->
+<div *ngIf="perfil != null; else telaSelecionarPerfil" class="d-flex flex-row flex-wrap">
     <nexus-ativos-card class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" 
     icone="desktop_windows" nome="Componentes" routerLink="/ativos/componentes">
     </nexus-ativos-card>
@@ -27,3 +28,17 @@
     icone="domain" nome="Administração" routerLink="/ativos/administracao">
     </nexus-ativos-card>
 </div>
+
+<!--Aviso para selecionar perfil-->
+<ng-template #telaSelecionarPerfil>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <img src="../../../assets/perfil-nao-selecionado.svg" class="me-3" width="150px" height="150px"/>
+        <h2>Perfil não configurado...</h2>
+        <p class="mb-3">Por favor, selecione um perfil para ver o conteúdo.</p>
+
+        <button mat-raised-button color="primary" routerLink="/configuracoes/perfil">
+            <mat-icon matPrefix>launch</mat-icon>
+            Selecionar perfil
+        </button>
+    </div>
+</ng-template>

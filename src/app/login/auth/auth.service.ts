@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Subject, delay, switchMap } from 'rxjs';
+import { Subject, switchMap } from 'rxjs';
 import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { UsuarioPerfilService } from '../../configuracoes/service/usuario-perfil.service';
+import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,12 @@ export class AuthService {
 
               this.sessaoService.perfilSelecionado = usuarioPerfilAtivado.perfil;
               this.sessaoService.projetoSelecionado = usuarioPerfilAtivado.projeto;
+            }
+            else {
+              this.sessaoService.perfilSelecionado$.next(null);
+              this.sessaoService.projetoSelecionado$.next(null);
+              this.sessaoService.perfilSelecionado = new ReferenciaObjeto();
+              this.sessaoService.projetoSelecionado = new ReferenciaObjeto();
             }
           },
           error: (error: any) => {

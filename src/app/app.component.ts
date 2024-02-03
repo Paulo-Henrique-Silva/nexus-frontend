@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
     private authService: AuthService,
     private sessaoService: SessaoService,
     private usuarioService: UsuariosService,
-    private usuarioPerfilService: UsuarioPerfilService,
     private router: Router,
     private snackBar: MatSnackBar
     ) { }
@@ -64,7 +63,14 @@ export class AppComponent implements OnInit {
     combineLatest([this.sessaoService.projetoSelecionado$, this.sessaoService.perfilSelecionado$])
     .subscribe({
       next: ([projeto, perfil]) => {
-        this.projetoEPerfil = `${projeto.nome} - ${perfil.nome}`;
+
+        if (projeto && perfil) {
+          this.projetoEPerfil = `${projeto.nome} - ${perfil.nome}`;
+        }
+        else {
+          this.projetoEPerfil = 'Não configurado'
+        }
+
         this.carregandoInfoUsuario = false;
       },
       error: () => {

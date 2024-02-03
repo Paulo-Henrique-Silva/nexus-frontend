@@ -21,6 +21,17 @@
             <div class="d-flex flex-column">
             <mat-radio-group  formControlName="perfilAtivado">
                 <mat-accordion>
+
+                    <!--Caso nenhum perfil foi configurado-->
+                    <div class="d-flex flex-column justify-content-center align-items-center" 
+                    *ngIf="projetosChaves.length == 0">
+
+                        <mat-icon class="icone">contact_support</mat-icon>
+                        <h2>Perfis não atribuidos...</h2>
+                        <p>Nenhum perfil atribuído. Por favor, contate um administrador.</p>
+
+                    </div>
+
                     <!--Paineis-->
                     <!--Itera pelos projetos disponíveis par ao usuário.-->
                     <mat-expansion-panel *ngFor="let projetoChave of projetosChaves; 

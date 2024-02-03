@@ -22,7 +22,7 @@
                     </mat-form-field>
     
                     <button mat-fab color="primary" matTooltip="Pesquisar" 
-                    [disabled]="nomePesquisa.trim().length < 3" 
+                    [disabled]="nomePesquisa.trim().length < 3 && !carregando" 
                     (click)="carregarTabela(nomePesquisa.trim())">
                         <mat-icon>search</mat-icon>
                     </button>

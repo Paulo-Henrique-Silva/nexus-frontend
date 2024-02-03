@@ -9,8 +9,8 @@ export class SessaoService {
   private _uidUsuario: string = '';
   private _token: string = '';
 
-  private _perfilSelecionado$: Subject<ReferenciaObjeto> = new Subject<ReferenciaObjeto>();
-  private _projetoSelecionado$: Subject<ReferenciaObjeto> = new Subject<ReferenciaObjeto>();
+  private _perfilSelecionado$: Subject<ReferenciaObjeto | null> = new Subject<ReferenciaObjeto | null>();
+  private _projetoSelecionado$: Subject<ReferenciaObjeto | null> = new Subject<ReferenciaObjeto | null>();
 
   private _perfilSelecionado: ReferenciaObjeto = new ReferenciaObjeto();
   private _projetoSelecionado: ReferenciaObjeto = new ReferenciaObjeto();
@@ -31,19 +31,19 @@ export class SessaoService {
     this._token = value;
   }
 
-  public get projetoSelecionado$(): Subject<ReferenciaObjeto> {
+  public get projetoSelecionado$(): Subject<ReferenciaObjeto | null> {
     return this._projetoSelecionado$;
   }
 
-  public set projetoSelecionado$(value: Subject<ReferenciaObjeto>) {
+  public set projetoSelecionado$(value: Subject<ReferenciaObjeto | null>) {
     this._projetoSelecionado$ = value;
   }
 
-  public get perfilSelecionado$(): Subject<ReferenciaObjeto> {
+  public get perfilSelecionado$(): Subject<ReferenciaObjeto | null> {
     return this._perfilSelecionado$;
   }
 
-  public set perfilSelecionado$(value: Subject<ReferenciaObjeto>) {
+  public set perfilSelecionado$(value: Subject<ReferenciaObjeto | null>) {
     this._perfilSelecionado$ = value;
   }
     
