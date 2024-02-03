@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 
 @Component({
   selector: 'app-componentes-menu',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './componentes-menu.component.scss'
 })
 export class ComponentesMenuComponent {
+  perfil: ReferenciaObjeto = new ReferenciaObjeto();
 
+  constructor(
+    sessaoService: SessaoService
+  ) {
+    this.perfil = sessaoService.perfilSelecionado;
+  }
 }

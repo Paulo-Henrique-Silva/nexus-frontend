@@ -6,18 +6,31 @@ import { ComponentesMenuComponent } from './componentes-menu/componentes-menu.co
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { MaterialModule } from '../compartilhado/material/material.module';
 import { ComponentesComponent } from './componentes.component';
+import { ComponentesBuscarComponent } from './componentes-buscar/componentes-buscar.component';
+import { ComponentesAdicionarComponent } from './componentes-adicionar/componentes-adicionar.component';
+import { ComponentesEditarComponent } from './componentes-editar/componentes-editar.component';
+import { ComponentesDetalhesComponent } from './componentes-detalhes/componentes-detalhes.component';
+import { ComponentesAcoesComponent } from './componentes-acoes/componentes-acoes.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     ComponentesMenuComponent,
-    ComponentesComponent
+    ComponentesComponent,
+    ComponentesBuscarComponent,
+    ComponentesAdicionarComponent,
+    ComponentesEditarComponent,
+    ComponentesDetalhesComponent,
+    ComponentesAcoesComponent
   ],
   imports: [
     CommonModule,
     CompartilhadoModule,
     MaterialModule,
-    ComponentesRoutingModule
+    ComponentesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class ComponentesModule { }

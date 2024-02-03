@@ -8,14 +8,11 @@ import { SessaoService } from '../../compartilhado/services/sessao/sessao.servic
   styleUrl: './localizacoes-menu.component.scss'
 })
 export class LocalizacoesMenuComponent {
-  perfil: ReferenciaObjeto | null = null;
+  perfil: ReferenciaObjeto = new ReferenciaObjeto();
 
   constructor(
     sessaoService: SessaoService
   ) {
-    //Caso o UID seja uma string vazia, significa que não perfil selecionado.
-    this.perfil = sessaoService.perfilSelecionado.uid.length == 0 
-    ? null 
-    : sessaoService.perfilSelecionado;
+    this.perfil = sessaoService.perfilSelecionado;
   }
 }

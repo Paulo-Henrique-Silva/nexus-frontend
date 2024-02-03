@@ -4,15 +4,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { take, switchMap, EMPTY } from 'rxjs';
 import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialog-deletar.component';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
-import { LocalizacoesService } from '../localizacoes.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
+import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
 
 @Component({
-  selector: 'nexus-localizacoes-acoes',
-  templateUrl: './localizacoes-acoes.component.html',
-  styleUrl: './localizacoes-acoes.component.scss'
+  selector: 'nexus-componentes-acoes',
+  templateUrl: './componentes-acoes.component.html',
+  styleUrl: './componentes-acoes.component.scss'
 })
-export class LocalizacoesAcoesComponent {
+export class ComponentesAcoesComponent {
   @Input()
   objeto: ReferenciaObjeto = new ReferenciaObjeto();
 
