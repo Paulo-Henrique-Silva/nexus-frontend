@@ -3,7 +3,7 @@ import { Subject, switchMap } from 'rxjs';
 import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { UsuarioPerfilService } from '../../configuracoes/service/usuario-perfil.service';
+import { UsuarioPerfilService } from '../../configuracoes/usuario-perfil.service';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 
 @Injectable({

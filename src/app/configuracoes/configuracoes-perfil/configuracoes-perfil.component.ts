@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { UsuarioPerfilService } from '../service/usuario-perfil.service';
+import { UsuarioPerfilService } from '../usuario-perfil.service';
 import { UsuarioPerfilResposta } from '../model/usuario-perfil-resposta';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { MatSnackBar } from '@angular/material/snack-bar';

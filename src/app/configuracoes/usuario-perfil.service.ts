@@ -1,9 +1,9 @@
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { UsuarioPerfilResposta } from '../model/usuario-perfil-resposta';
-import { UsuarioPerfilEnvio } from '../model/usuario-perfil-envio';
+import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
+import { UsuarioPerfilResposta } from './model/usuario-perfil-resposta';
+import { UsuarioPerfilEnvio } from './model/usuario-perfil-envio';
 
 //Não extende a classe NexusService por se tratar de uma classe de relacionamento.
 @Injectable({
