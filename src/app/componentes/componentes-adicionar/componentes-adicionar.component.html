@@ -74,11 +74,10 @@
                             <mat-option>
                                 <ngx-mat-select-search placeholderLabel="Buscar..." 
                                 noEntriesFoundLabel="Nenhum resultado foi encontrado."
-                                #iptLocalizacao
-                                (ngModelChange)="onKey(iptLocalizacao)">
+                                [formControl]="localizacoesFiltro">
                             </ngx-mat-select-search>
                             </mat-option>
-                            <mat-option *ngFor="let l of localizacoes" [value]="l.uid">
+                            <mat-option *ngFor="let l of subject | async" [value]="l.uid">
                                 {{ l.nome }}
                             </mat-option>
                         </mat-select>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
@@ -10,6 +10,7 @@ import { LocalizacaoEnvio } from '../../localizacoes/models/localizacao-envio';
 import { AuthService } from '../../login/auth/auth.service';
 import { ComponentesService } from '../componentes.service';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-componentes-adicionar',
@@ -19,6 +20,9 @@ import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 export class ComponentesAdicionarComponent extends NexusFormulario implements OnInit {
 
   tipo: ReferenciaObjeto[] = []
+
+  subject = new Subject<ReferenciaObjeto[]>();
+  localizacoesFiltro: FormControl = new FormControl<string>('');
 
   localizacoes: ReferenciaObjeto[] = []
 
@@ -49,9 +53,11 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
   }
 
   ngOnInit(): void {
+    this.localizacoesFiltro.valueChanges
+      .subscribe(() => this.localizacoesFiltradas())
   }
 
-  onKey(texto: any) {
+  protected localizacoesFiltradas() {
     let localizacoesFiltradas: ReferenciaObjeto[] = [
       { uid: '1', nome: 'SAL1'}, 
       { uid: '2', nome: 'SAL2'}, 
@@ -60,10 +66,14 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
       { uid: '5', nome: 'BIB'},
     ]
 
-    console.log(texto)
-    console.log(localizacoesFiltradas.filter(l => l.nome.includes(texto)))
+    const filtroLocalizacoes: string = this.localizacoesFiltro.value;
 
-    //this.localizacoes = ;
+    /* if (filtroLocalizacoes.trim().length == 0) {
+      this.subject.next([]);
+    }
+    else {
+    } */
+    this.subject.next(localizacoesFiltradas.filter(l => l.nome.includes(filtroLocalizacoes)));
   }
 
   override onSubmit(): void {
