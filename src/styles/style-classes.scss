@@ -5,6 +5,10 @@
     background-color: v.$background-color;
 }
 
+.buscar-table tr.linha-selecionada {
+    background-color: v.$primary-light1;
+}
+
 .text-ellipis {
     white-space: nowrap; 
     overflow: hidden; 

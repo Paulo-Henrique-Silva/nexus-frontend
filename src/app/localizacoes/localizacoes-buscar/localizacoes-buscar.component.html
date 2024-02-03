@@ -47,7 +47,7 @@
         </div>
         
         <!--Tabela de resultados-->
-        <div class="mat-elevation-z8" *ngIf="!carregando && totalItens != 0">
+        <div #tabela class="mat-elevation-z8" *ngIf="!carregando && totalItens != 0">
             <table class="buscar-table" mat-table [dataSource]="dadosTabela" matSort>
 
                 <ng-container *ngFor="let coluna of colunas; let i = index;" 
@@ -58,21 +58,24 @@
                 
                 <tr mat-header-row *matHeaderRowDef="colunas"></tr>
                 <tr mat-row *matRowDef="let linha; columns: colunas; let i = index;" 
-                (click)="mostrarAcoes(linha, i)" [class.selecionada]="i == indexLinhaSelecionada">
+                (click)="mostrarAcoes(linha, i)" [class.linha-selecionada]="i == indexLinhaSelecionada">
                 </tr>
             </table>
-            
+
             <mat-paginator [pageSize]="tamanhoPagina" [length]="totalItens" showFirstLastButtons
-                    aria-label="Página selecionada de tarefas." 
+                    aria-label="Página selecionada de tarefas."
                     (page)="mudarPagina($event)" [pageIndex]="paginaAtual">
             </mat-paginator>
-        </div> 
+        </div>
         
+        <!--Zero resultados encontrados.-->
         <div class="d-flex flex-column justify-content-center align-items-center" 
         *ngIf="!carregando && totalItens == 0">
+
             <img src="../../../assets/no-results.svg" class="me-3" width="150px" height="150px"/>
             <h2>Vazio...</h2>
             <p>Nenhum resultado foi encontrado.</p>
+
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
