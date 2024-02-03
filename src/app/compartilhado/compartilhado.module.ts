@@ -9,6 +9,7 @@ import { AtivosVoltarComponent } from './ativos-voltar/ativos-voltar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogDeletarComponent } from './dialog-deletar/dialog-deletar.component';
 import { BotaoAcoesComponent } from './botao-acoes/botao-acoes.component';
+import { AtivosAcoesComponent } from './ativos-acoes/ativos-acoes.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { BotaoAcoesComponent } from './botao-acoes/botao-acoes.component';
     AtivosVoltarComponent,
     DialogDeletarComponent,
     BotaoAcoesComponent,
+    AtivosAcoesComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { BotaoAcoesComponent } from './botao-acoes/botao-acoes.component';
     AtivosVoltarComponent,
     DialogDeletarComponent,
     BotaoAcoesComponent,
+    AtivosAcoesComponent,
   ]
 })
 export class CompartilhadoModule { }

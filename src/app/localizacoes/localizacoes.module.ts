@@ -9,7 +9,6 @@ import { MaterialModule } from '../compartilhado/material/material.module';
 import { LocalizacoesAdicionarComponent } from './localizacoes-adicionar/localizacoes-adicionar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocalizacoesBuscarComponent } from './localizacoes-buscar/localizacoes-buscar.component';
-import { LocalizacoesAcoesComponent } from './localizacoes-acoes/localizacoes-acoes.component';
 import { LocalizacoesDetalhesComponent } from './localizacoes-detalhes/localizacoes-detalhes.component';
 import { LocalizacoesEditarComponent } from './localizacoes-editar/localizacoes-editar.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,7 +20,6 @@ import { HttpClientModule } from '@angular/common/http';
     LocalizacoesMenuComponent,
     LocalizacoesAdicionarComponent,
     LocalizacoesBuscarComponent,
-    LocalizacoesAcoesComponent,
     LocalizacoesDetalhesComponent,
     LocalizacoesEditarComponent
   ],

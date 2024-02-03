@@ -1,28 +1,28 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
-import { LocalizacoesService } from '../localizacoes.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialog-deletar.component';
-import { Router } from '@angular/router';
-import { EMPTY, switchMap, take } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { take, switchMap, EMPTY } from 'rxjs';
+import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
+import { DialogDeletarComponent } from '../dialog-deletar/dialog-deletar.component';
+import { ReferenciaObjeto } from '../models/referencia-objeto';
 
 @Component({
-  selector: 'nexus-localizacoes-acoes',
-  templateUrl: './localizacoes-acoes.component.html',
-  styleUrl: './localizacoes-acoes.component.scss'
+  selector: 'nexus-ativos-acoes',
+  templateUrl: './ativos-acoes.component.html',
+  styleUrl: './ativos-acoes.component.scss'
 })
-export class LocalizacoesAcoesComponent {
+export class AtivosAcoesComponent {
   @Input()
   objeto: ReferenciaObjeto = new ReferenciaObjeto();
+
+  @Input('textoDeletado')
+  textoObjetoDeletado: string = 'Objeto deletado com sucesso!';
   
   @Output() 
   deletou = new EventEmitter<any>();
 
   @Output() 
   fechou = new EventEmitter<any>();
-
-  protected textoObjetoDeletado: string = 'Localização deletada com sucesso!';
 
   constructor(
     private localizacoService: LocalizacoesService,
