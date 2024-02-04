@@ -35,13 +35,13 @@ export abstract class NexusFormulario {
   }
   
   campoInvalido(nomeCampo: string): boolean {
-    const campo = this.formulario.get(nomeCampo)
+    const campo = this.formulario.get(nomeCampo);
 
     if (!campo) {
-      throw new Error('Campo não existe.')
+      throw new Error('Campo não existe.');
     }
 
-    return campo.invalid
+    return campo.invalid && campo.touched;
   }
 
   mostrarSnackBarOk(texto: string) {

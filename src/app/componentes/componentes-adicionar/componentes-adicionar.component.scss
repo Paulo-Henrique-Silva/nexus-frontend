@@ -1,20 +1,16 @@
 @use '../../../styles/variables.scss' as v;
 
-.custom-select select {
+.custom-select {
+  position: relative;
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+
+  select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
-  }
-  
-  .custom-select {
-    position: relative;
-    display: inline-block;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  .custom-select select {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -28,24 +24,19 @@
     cursor: pointer;
     outline: none;
     transition: border-color 0.3s ease;
+
+    &:focus { border-color: v.$primary; }
+    
+    option {
+      padding: 1rem;
+
+      &:hover { background-color: v.$background-color; }
+    }
+    
+    &:active, &:focus {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 0 5px rgba(33, 150, 243, 0.4);
+    }
   }
-  
-  .custom-select select:focus {
-    border-color: v.$primary; 
-  }
-  
-  .custom-select select option:hover {
-    background-color: #f2f2f2;
-  }
-  
-  .custom-select select option:checked {
-    background-color: v.$primary;
-    color: #fff;
-  }
-  
-  .custom-select select:active,
-  .custom-select select:focus {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 0 5px rgba(33, 150, 243, 0.4);
-  }
+}
