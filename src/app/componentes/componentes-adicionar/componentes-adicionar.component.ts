@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
@@ -10,7 +10,6 @@ import { LocalizacaoEnvio } from '../../localizacoes/models/localizacao-envio';
 import { AuthService } from '../../login/auth/auth.service';
 import { ComponentesService } from '../componentes.service';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-componentes-adicionar',
@@ -19,12 +18,9 @@ import { Subject } from 'rxjs';
 })
 export class ComponentesAdicionarComponent extends NexusFormulario implements OnInit {
 
-  tipo: ReferenciaObjeto[] = []
+  tipo: ReferenciaObjeto[] = [];
 
-  subject = new Subject<ReferenciaObjeto[]>();
-  localizacoesFiltro: FormControl = new FormControl<string>('');
-
-  localizacoes: ReferenciaObjeto[] = []
+  localizacoes: ReferenciaObjeto[] = [];
 
   constructor(
     authService : AuthService, 
@@ -53,12 +49,11 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
   }
 
   ngOnInit(): void {
-    this.localizacoesFiltro.valueChanges
-      .subscribe(() => this.localizacoesFiltradas())
+
   }
 
-  protected localizacoesFiltradas() {
-    let localizacoesFiltradas: ReferenciaObjeto[] = [
+  pesquisarLocalizacoes(texto: string): void {
+    const localizacoesData: ReferenciaObjeto[] = [
       { uid: '1', nome: 'SAL1'}, 
       { uid: '2', nome: 'SAL2'}, 
       { uid: '3', nome: 'SAL3'},
@@ -66,14 +61,8 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
       { uid: '5', nome: 'BIB'},
     ]
 
-    const filtroLocalizacoes: string = this.localizacoesFiltro.value;
-
-    /* if (filtroLocalizacoes.trim().length == 0) {
-      this.subject.next([]);
-    }
-    else {
-    } */
-    this.subject.next(localizacoesFiltradas.filter(l => l.nome.includes(filtroLocalizacoes)));
+    this.localizacoes = localizacoesData.filter(l => l.nome.includes(texto));
+    this.formulario.get('localizacao')?.setValue(null);
   }
 
   override onSubmit(): void {

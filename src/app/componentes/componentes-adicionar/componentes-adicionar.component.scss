@@ -1,0 +1,51 @@
+@use '../../../styles/variables.scss' as v;
+
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+  }
+  
+  .custom-select {
+    position: relative;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .custom-select select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .custom-select select:focus {
+    border-color: v.$primary; 
+  }
+  
+  .custom-select select option:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .custom-select select option:checked {
+    background-color: v.$primary;
+    color: #fff;
+  }
+  
+  .custom-select select:active,
+  .custom-select select:focus {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 0 5px rgba(33, 150, 243, 0.4);
+  }
