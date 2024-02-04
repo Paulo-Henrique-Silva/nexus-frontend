@@ -18,11 +18,12 @@ import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 })
 export class ComponentesAdicionarComponent extends NexusFormulario implements OnInit {
 
-  tipo: ReferenciaObjeto[] = [];
+  tipos: ReferenciaObjeto[] = [];
 
+  //Localizações
   localizacoes: ReferenciaObjeto[] = [];
-
-  pesquisou: boolean = false;
+  pesquisandoLocalizacao: boolean = false;
+  pesquisouLocalizacao: boolean = false;
 
   constructor(
     authService : AuthService, 
@@ -34,6 +35,7 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
     sessaoService: SessaoService,
     private service: ComponentesService,
     private localizacaoService: LocalizacoesService,
+    private componenteService: ComponentesService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
       snackBar, sessaoService);
@@ -51,31 +53,24 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
   }
 
   ngOnInit(): void {
-
+    this.componenteService.obterTipos()
+      .subscribe(tipos => this.tipos = tipos);
   }
 
   pesquisarLocalizacoes(texto: string): void {
-    const localizacoesData: ReferenciaObjeto[] = [
-      { uid: '1', nome: 'SAL1' }, 
-      { uid: '2', nome: 'SAL2' }, 
-      { uid: '3', nome: 'SAL3' },
-      { uid: '4', nome: 'SEE' },
-      { uid: '5', nome: 'BIB' },
-      { uid: '6', nome: 'AUD' },
-      { uid: '7', nome: 'LIB' },
-      { uid: '8', nome: 'NEW1' },
-      { uid: '9', nome: 'NEW2' },
-      { uid: '10', nome: 'NEW3' },
-      { uid: '11', nome: 'NEW4' },
-      { uid: '12', nome: 'NEW5' },
-      { uid: '13', nome: 'NEW6' }
-    ]
-
-    this.localizacoes = localizacoesData
-      .filter(l => l.nome.toLowerCase().includes(texto.toLowerCase()));
-
+    this.localizacoes = [];
+    this.pesquisandoLocalizacao = true;
     this.formulario.get('localizacao')?.setValue(null);
-    this.pesquisou = true;
+
+    //Sempre obtém apenas da primeira página, por questões de performace.
+    this.localizacaoService.obterTudoPorProjetoUID(1, this.sessaoService.projetoSelecionado.uid,
+    texto)
+    .subscribe(dados =>
+    {
+      dados.itens.forEach(d => this.localizacoes.push({ uid: d.uid, nome: d.nome }));
+      this.pesquisandoLocalizacao = false;
+      this.pesquisouLocalizacao = true;
+    });
   }
 
   override onSubmit(): void {

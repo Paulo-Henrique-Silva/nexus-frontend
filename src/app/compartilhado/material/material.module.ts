@@ -34,6 +34,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
@@ -52,6 +54,7 @@ const materialModules = [
   MatListModule,
   MatMenuModule,
   MatProgressSpinnerModule,
+  MatProgressBarModule,
   MatPaginatorModule,
   MatRippleModule,
   MatSelectModule,
