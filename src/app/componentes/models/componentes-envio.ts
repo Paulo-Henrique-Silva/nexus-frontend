@@ -1,5 +1,19 @@
 import { NexusEnvio } from "../../compartilhado/models/nexus-envio"
 
 export class ComponenteEnvio extends NexusEnvio {
-    projetoUID: string = ''
+    numeroSerie: string = '';
+
+    localizacaoUID: string = '';
+
+    status: number = -1;
+
+    marca: string = '';
+
+    modelo: string = '';
+
+    projetoUID: string = '';
+
+    tipo: number = -1;
+
+    dataAquisicao: Date = new Date();
 }

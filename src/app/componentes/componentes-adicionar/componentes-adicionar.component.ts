@@ -10,6 +10,7 @@ import { LocalizacaoEnvio } from '../../localizacoes/models/localizacao-envio';
 import { AuthService } from '../../login/auth/auth.service';
 import { ComponentesService } from '../componentes.service';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { ComponenteEnvio } from '../models/componentes-envio';
 
 @Component({
   selector: 'app-componentes-adicionar',
@@ -77,21 +78,34 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
     this.carregando = true;
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;
+    const numeroSerie: string = this.formulario.get('numeroSerie')?.value;
+    const marca: string = this.formulario.get('marca')?.value;
+    const modelo: string = this.formulario.get('modelo')?.value;
+    const tipo: number = this.formulario.get('tipo')?.value;
+    const localizacao: string = this.formulario.get('localizacao')?.value;
+    const dataAquisicao: Date = this.formulario.get('dataAquisicao')?.value;
 
-    const projetoUID = this.sessaoService.projetoSelecionado.uid;
-    
-    const localizacao: LocalizacaoEnvio = {
+    const componente: ComponenteEnvio = {
       nome: nome,
       descricao: descricao,
-      projetoUID: projetoUID
+      numeroSerie: numeroSerie,
+      localizacaoUID: localizacao,
+      status: 0,
+      marca: marca,
+      modelo: modelo,
+      projetoUID: this.sessaoService.projetoSelecionado.uid,
+      tipo: tipo,
+      dataAquisicao: dataAquisicao
     };
+
+    console.log(componente);
     
-    this.service.adicionar(localizacao)
+    this.service.adicionar(componente)
       .subscribe({
         next: () => {
-          this.mostrarSnackBarOk('Localização adicionada com sucesso!');
+          this.mostrarSnackBarOk('Componente adicionado com sucesso!');
           this.carregando = false;
-          this.router.navigate(['/ativos/localizacoes']);
+          this.router.navigate(['/ativos/componentes']);
         },
         error: () => {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
