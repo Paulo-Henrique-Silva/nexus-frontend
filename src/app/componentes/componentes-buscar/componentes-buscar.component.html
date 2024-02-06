@@ -1,5 +1,6 @@
 <mat-sidenav-container>
-    <mat-sidenav mode="over" class="w-25" [opened]="selecionouObjeto">
+    <mat-sidenav mode="over" [autoFocus]="false" class="w-25" [opened]="selecionouObjeto"
+    (closed)="selecionouObjeto = false">
 
         <!--Ações-->
         <nexus-componentes-acoes [objeto]="objetoSelecionado" (deletou)="carregarTabela()"

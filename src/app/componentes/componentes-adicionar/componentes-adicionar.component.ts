@@ -69,6 +69,7 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
     .subscribe(dados =>
     {
       dados.itens.forEach(d => this.localizacoes.push({ uid: d.uid, nome: d.nome }));
+      this.localizacoes.sort((a, b) => a.nome < b.nome ? -1 : 1);
       this.pesquisandoLocalizacao = false;
       this.pesquisouLocalizacao = true;
     });
