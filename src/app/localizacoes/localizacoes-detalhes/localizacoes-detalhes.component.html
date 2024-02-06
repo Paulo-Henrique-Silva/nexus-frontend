@@ -1,6 +1,6 @@
 <nexus-botao-voltar caminho="/ativos/localizacoes/buscar"></nexus-botao-voltar>
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mb-5">
     <mat-card class="col-12 col-md-6 p-3">
         <mat-card-header class="mb-4">
             <mat-card-title>Detalhes Localização</mat-card-title>
@@ -30,8 +30,8 @@
 
                     <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
                         <mat-label>Data Última Atualização</mat-label>
-                        <input formControlName="dataUltimaAtualizacao" matInput [matDatepicker]="picker" readonly>
-                        <mat-datepicker #picker></mat-datepicker>
+                        <input formControlName="dataUltimaAtualizacao" matInput [matDatepicker]="p1" readonly>
+                        <mat-datepicker #p1></mat-datepicker>
                     </mat-form-field>
 
                     <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
@@ -41,8 +41,8 @@
 
                     <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
                         <mat-label>Data de Criação</mat-label>
-                        <input formControlName="dataCriacao" matInput [matDatepicker]="picker" readonly>
-                        <mat-datepicker #picker></mat-datepicker>
+                        <input formControlName="dataCriacao" matInput [matDatepicker]="p2" readonly>
+                        <mat-datepicker #p2></mat-datepicker>
                     </mat-form-field>
                 </form>
             </ng-template>

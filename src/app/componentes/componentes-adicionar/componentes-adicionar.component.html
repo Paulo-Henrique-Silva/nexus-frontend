@@ -31,42 +31,6 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field class="mb-3">
-                        <mat-label>Número de série</mat-label>
-                        <input type="text" matInput formControlName="numeroSerie">
-                        <mat-error *ngIf="campoInvalido('numeroSerie')">
-                            {{ obterMensagemErro('numeroSerie') }}
-                        </mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field class="mb-3">
-                        <mat-label>Marca</mat-label>
-                        <input type="text" matInput formControlName="marca">
-                        <mat-error *ngIf="campoInvalido('marca')">
-                            {{ obterMensagemErro('marca') }}
-                        </mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field class="mb-3">
-                        <mat-label>Modelo</mat-label>
-                        <input type="text" matInput formControlName="modelo">
-                        <mat-error *ngIf="campoInvalido('modelo')">
-                            {{ obterMensagemErro('modelo') }}
-                        </mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field class="mb-3">
-                        <mat-label>Tipo</mat-label>
-                        <mat-select formControlName="tipo">
-                            <mat-option *ngFor="let t of tipos" [value]="t.uid">
-                                {{ t.nome }}
-                            </mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="campoInvalido('tipo')">
-                            {{ obterMensagemErro('tipo') }}
-                        </mat-error>
-                    </mat-form-field>
-
                     <!--Localizações-->
                     <mat-card class="mb-5">
                         <mat-card-header class="mb-3">
@@ -112,6 +76,42 @@
                             </mat-form-field>
                         </mat-card-content>
                     </mat-card>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Tipo</mat-label>
+                        <mat-select formControlName="tipo">
+                            <mat-option *ngFor="let t of tipos" [value]="t.uid">
+                                {{ t.nome }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="campoInvalido('tipo')">
+                            {{ obterMensagemErro('tipo') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Número de série</mat-label>
+                        <input type="text" matInput formControlName="numeroSerie">
+                        <mat-error *ngIf="campoInvalido('numeroSerie')">
+                            {{ obterMensagemErro('numeroSerie') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Marca</mat-label>
+                        <input type="text" matInput formControlName="marca">
+                        <mat-error *ngIf="campoInvalido('marca')">
+                            {{ obterMensagemErro('marca') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Modelo</mat-label>
+                        <input type="text" matInput formControlName="modelo">
+                        <mat-error *ngIf="campoInvalido('modelo')">
+                            {{ obterMensagemErro('modelo') }}
+                        </mat-error>
+                    </mat-form-field>
 
                     <mat-form-field class="mb-3">
                         <mat-label>Data de Aquisição</mat-label>

@@ -1,1 +1,82 @@
-<p>componentes-detalhes works!</p>
+<nexus-botao-voltar caminho="/ativos/componentes/buscar"></nexus-botao-voltar>
+
+<div class="d-flex justify-content-center mb-5">
+    <mat-card class="col-12 col-md-6 p-3">
+        <mat-card-header class="mb-4">
+            <mat-card-title>Detalhes Componente</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngIf="carregando; else telaPrincipal" 
+            class="d-flex flex-column justify-content-center align-items-center h-100">
+                <mat-spinner></mat-spinner>
+            </div>
+
+            <ng-template #telaPrincipal>
+                <form [formGroup]="formulario" class="d-flex flex-column">
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="nome" readonly>
+                    </mat-form-field>
+        
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Descrição</mat-label>
+                        <input matInput formControlName="descricao" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Localização</mat-label>
+                        <input matInput formControlName="localizacao" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Tipo</mat-label>
+                        <input matInput formControlName="tipo" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Número de Série</mat-label>
+                        <input matInput formControlName="numeroSerie" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Marca</mat-label>
+                        <input matInput formControlName="marca" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Modelo</mat-label>
+                        <input matInput formControlName="modelo" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Data Aquisição</mat-label>
+                        <input formControlName="dataAquisicao" matInput [matDatepicker]="p0" readonly>
+                        <mat-datepicker #p0></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Atualizado por</mat-label>
+                        <input matInput formControlName="atualizadoPor" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Data Última Atualização</mat-label>
+                        <input formControlName="dataUltimaAtualizacao" matInput [matDatepicker]="p1" readonly>
+                        <mat-datepicker #p1></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Usuário Criador</mat-label>
+                        <input matInput formControlName="usuarioCriador" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Data de Criação</mat-label>
+                        <input formControlName="dataCriacao" matInput [matDatepicker]="p2" readonly>
+                        <mat-datepicker #p2></mat-datepicker>
+                    </mat-form-field>
+                </form>
+            </ng-template>
+        </mat-card-content>
+    </mat-card>
+</div>

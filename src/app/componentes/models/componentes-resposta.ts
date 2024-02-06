@@ -6,7 +6,7 @@ export class ComponenteResposta extends NexusResposta {
 
     localizacao: ReferenciaObjeto = new ReferenciaObjeto();
 
-    status: number = -1;
+    status: ReferenciaObjeto = new ReferenciaObjeto();
 
     marca: string = '';
 
@@ -14,7 +14,7 @@ export class ComponenteResposta extends NexusResposta {
 
     projeto: ReferenciaObjeto = new ReferenciaObjeto();
 
-    tipo: number = -1;
+    tipo: ReferenciaObjeto = new ReferenciaObjeto();
 
     dataAquisicao: Date = new Date();
 }
