@@ -13,20 +13,36 @@
 
             <ng-template #telaPrincipal>
                 <form [formGroup]="formulario" class="d-flex flex-column">
-                    <mat-form-field class="mb-3" appearance="outline">
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
                         <mat-label>Nome</mat-label>
                         <input type="text" matInput formControlName="nome" readonly>
-                        <mat-error *ngIf="campoInvalido('nome')">
-                            {{ obterMensagemErro('nome') }}
-                        </mat-error>
                     </mat-form-field>
         
-                    <mat-form-field class="mb-3" appearance="outline">
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
                         <mat-label>Descrição</mat-label>
                         <input type="text" matInput formControlName="descricao" readonly>
-                        <mat-error *ngIf="campoInvalido('descricao')">
-                            {{ obterMensagemErro('descricao') }}
-                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Atualizado por</mat-label>
+                        <input type="text" matInput formControlName="atualizadoPor" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Data Última Atualização</mat-label>
+                        <input formControlName="dataUltimaAtualizacao" matInput [matDatepicker]="picker" readonly>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Usuário Criador</mat-label>
+                        <input type="text" matInput formControlName="usuarioCriador" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
+                        <mat-label>Data de Criação</mat-label>
+                        <input formControlName="dataCriacao" matInput [matDatepicker]="picker" readonly>
+                        <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </form>
             </ng-template>

@@ -30,7 +30,11 @@ export class LocalizacoesDetalhesComponent extends NexusFormulario {
 
     this.formulario = this.formBuilder.group({
       nome: [''],
-      descricao: ['']
+      descricao: [''],
+      atualizadoPor: [''],
+      dataUltimaAtualizacao: [''],
+      usuarioCriador: [''],
+      dataCriacao: ['']
     });
   }
 
@@ -47,7 +51,11 @@ export class LocalizacoesDetalhesComponent extends NexusFormulario {
     
         this.formulario.setValue({
           nome: localizacao.nome,
-          descricao: localizacao.descricao
+          descricao: localizacao.descricao,
+          atualizadoPor: localizacao.atualizadoPor?.nome,
+          dataUltimaAtualizacao: localizacao.dataUltimaAtualizacao,
+          usuarioCriador: localizacao.usuarioCriador?.nome,
+          dataCriacao: localizacao.dataCriacao,
         })
 
         this.carregando = false;

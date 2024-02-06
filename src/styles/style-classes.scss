@@ -9,6 +9,23 @@
     background-color: v.$primary-light1;
 }
 
+.plain-text {
+    font-size: 1.25rem;
+
+    * {
+        font: inherit;
+    }
+
+    input {
+        border: none;
+        background-color: transparent;
+
+        &:focus {
+            border: none;
+        }
+    }
+}
+
 .text-ellipis {
     white-space: nowrap; 
     overflow: hidden; 
