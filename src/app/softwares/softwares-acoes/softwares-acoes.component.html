@@ -1,1 +1,31 @@
-<p>softwares-acoes works!</p>
+<div>
+    <div class="d-flex justify-content-between align-items-center p-3">
+        <h2 class="text-ellipis" style="margin-bottom: 0;">
+           {{ objeto.nome }}
+        </h2>
+
+        <button mat-icon-button (click)="fecharAcoes()" matTooltip="Fechar">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="p-3">
+        
+        <div class="d-flex flex-column">
+            <nexus-botao-acoes icone="edit" texto="Editar" 
+            [link]="['/ativos/softwares/editar', objeto.uid]"
+            *ngIf="!perfil.nome.includes('Leitor')">
+            </nexus-botao-acoes>
+            
+            <nexus-botao-acoes icone="delete" texto="Deletar" (click)="deletarObjeto()"
+            *ngIf="perfil.nome.includes('Administrador')">
+            </nexus-botao-acoes>
+            
+            <nexus-botao-acoes icone="info" texto="Ver Detalhes" 
+            [link]="['/ativos/softwares/detalhes', objeto.uid]">
+            </nexus-botao-acoes>
+        </div>
+    </div>
+</div>

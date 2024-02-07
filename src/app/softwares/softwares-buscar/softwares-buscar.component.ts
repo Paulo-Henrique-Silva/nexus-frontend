@@ -14,13 +14,13 @@ export class SoftwaresBuscarComponent extends NexusBuscar {
 
   override colunas: string[] = [ 
     'nome',
-    'localizacao',
+    'componente',
     'atualizadoPor', 'dataUltimaAtualizacao',
     'usuarioCriador', 'dataCriacao'
   ];
   override colunasMostrarComo : string[] = [ 
     'Nome',
-    'Localização',
+    'Componente',
     'Atualizado por', 'Data Última Atualização',
     'Usuário Criador', 'Data Criação'
   ];
