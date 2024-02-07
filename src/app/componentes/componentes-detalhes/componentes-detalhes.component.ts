@@ -25,7 +25,6 @@ export class ComponentesDetalhesComponent extends NexusFormulario {
     snackBar: MatSnackBar,
     usuarioSessaoService: SessaoService,
     private componenteService: ComponentesService,
-    private localizacaoService: LocalizacoesService
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
       snackBar, usuarioSessaoService);
@@ -34,6 +33,7 @@ export class ComponentesDetalhesComponent extends NexusFormulario {
       nome: [''],
       descricao: [''],
       localizacao: [''],
+      status: [''],
       tipo: [''],
       numeroSerie: [''],
       marca: [''],
@@ -61,6 +61,7 @@ export class ComponentesDetalhesComponent extends NexusFormulario {
           nome: componente.nome,
           descricao: componente.descricao,
           localizacao: componente.localizacao.nome,
+          status: componente.status.nome,
           tipo: componente.tipo.nome,
           numeroSerie: componente.numeroSerie,
           marca: componente.marca,

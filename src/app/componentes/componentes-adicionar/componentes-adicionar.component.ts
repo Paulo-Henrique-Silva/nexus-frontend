@@ -54,8 +54,13 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
   }
 
   ngOnInit(): void {
+    this.carregando = true;
+
     this.componenteService.obterTipos()
-      .subscribe(tipos => this.tipos = tipos);
+      .subscribe(tipos => {
+        this.tipos = tipos
+        this.carregando = false;
+      });
   }
 
   pesquisarLocalizacoes(texto: string): void {
@@ -99,8 +104,6 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
       dataAquisicao: dataAquisicao
     };
 
-    console.log(componente);
-    
     this.service.adicionar(componente)
       .subscribe({
         next: () => {
