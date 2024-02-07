@@ -46,12 +46,17 @@ class="d-flex flex-column justify-content-center align-items-center h-100">
         <nexus-botao-menu routerLink="/ativos" routerLinkActive="active" nome="Ativos"
         icone="device_hub">
         </nexus-botao-menu>
-        <nexus-botao-menu routerLink="/atribuicoes" routerLinkActive="active" nome="Atribuições" 
+
+        <!--Não disponível para leitor.-->
+        <nexus-botao-menu routerLink="/atribuicoes" routerLinkActive="active" nome="Atribuições"
+        *ngIf="!perfil.nome.includes('Leitor')" 
         icone="view_list">
         </nexus-botao-menu>
+
         <nexus-botao-menu routerLink="/notificacoes" routerLinkActive="active" nome="Notificações"
         icone="notifications">
         </nexus-botao-menu>
+        
         <nexus-botao-menu routerLink="/configuracoes" routerLinkActive="active" 
         nome="Configurações" icone="settings">
         </nexus-botao-menu>
