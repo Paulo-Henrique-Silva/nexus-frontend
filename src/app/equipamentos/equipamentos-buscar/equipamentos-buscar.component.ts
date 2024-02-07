@@ -34,5 +34,4 @@ export class EquipamentosBuscarComponent extends NexusBuscar {
     super(snackBar, sessaoService);
     this.service = service;
   } 
-
 }

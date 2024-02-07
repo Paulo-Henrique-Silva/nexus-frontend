@@ -11,6 +11,7 @@ import { SoftwaresAcoesComponent } from './softwares-acoes/softwares-acoes.compo
 import { SoftwaresEditarComponent } from './softwares-editar/softwares-editar.component';
 import { SoftwaresDetalhesComponent } from './softwares-detalhes/softwares-detalhes.component';
 import { SoftwaresBuscarComponent } from './softwares-buscar/softwares-buscar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,7 +28,9 @@ import { SoftwaresBuscarComponent } from './softwares-buscar/softwares-buscar.co
     CommonModule,
     CompartilhadoModule,
     MaterialModule,
-    SoftwaresRoutingModule
+    SoftwaresRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SoftwaresModule { }

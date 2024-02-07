@@ -1,28 +1,22 @@
-import { Injectable } from '@angular/core';
-import { EquipamentoEnvio } from './models/equipamentos-envio';
-import { EquipamentoResposta } from './models/equipamentos-resposta';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { NexusListaResposta } from '../compartilhado/models/nexus-lista-resposta';
-import { ReferenciaObjeto } from '../compartilhado/models/referencia-objeto';
 import { NexusService } from '../compartilhado/services/nexus-service/nexus-service';
 import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 import { LocalizacaoResposta } from '../localizacoes/models/localizacao-resposta';
+import { SoftwareResposta } from './models/softwares-resposta';
+import { SoftwareEnvio } from './models/softwares-envio';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EquipamentosService extends NexusService<EquipamentoEnvio, EquipamentoResposta> {
+export class SoftwaresService extends NexusService<SoftwareEnvio, SoftwareResposta> {
   constructor(
     http: HttpClient,
     sessaoService: SessaoService
   ) {
-    super(http, sessaoService, 'https://localhost:7172/api/Equipamento');
-  }
-
-  obterTipos(): Observable<ReferenciaObjeto[]> {
-    return this.http.get<ReferenciaObjeto[]>(this.url + '/Tipos', 
-    { headers: this.header }).pipe(take(1));
+    super(http, sessaoService, 'https://localhost:7172/api/Software');
   }
 
   obterTudoPorProjetoUID(pagina: number, projetoUID: string, nome: string | null = null): 
