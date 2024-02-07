@@ -10,6 +10,8 @@ import { EquipamentosAdicionarComponent } from './equipamentos-adicionar/equipam
 import { EquipamentosEditarComponent } from './equipamentos-editar/equipamentos-editar.component';
 import { EquipamentosBuscarComponent } from './equipamentos-buscar/equipamentos-buscar.component';
 import { EquipamentosDetalhesComponent } from './equipamentos-detalhes/equipamentos-detalhes.component';
+import { EquipamentosAcoesComponent } from './equipamentos-acoes/equipamentos-acoes.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,13 +21,16 @@ import { EquipamentosDetalhesComponent } from './equipamentos-detalhes/equipamen
     EquipamentosAdicionarComponent,
     EquipamentosEditarComponent,
     EquipamentosBuscarComponent,
-    EquipamentosDetalhesComponent
+    EquipamentosDetalhesComponent,
+    EquipamentosAcoesComponent
   ],
   imports: [
     CommonModule,
     CompartilhadoModule,
     MaterialModule,
-    EquipamentosRoutingModule
+    EquipamentosRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class EquipamentosModule { }
