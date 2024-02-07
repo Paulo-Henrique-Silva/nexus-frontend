@@ -47,9 +47,9 @@ class="d-flex flex-column justify-content-center align-items-center h-100">
         icone="device_hub">
         </nexus-botao-menu>
 
-        <!--Não disponível para leitor.-->
+        <!--Não disponível para leitor ou perfil não configurado.-->
         <nexus-botao-menu routerLink="/atribuicoes" routerLinkActive="active" nome="Atribuições"
-        *ngIf="!perfil.nome.includes('Leitor')" 
+        *ngIf="perfil != null && !perfil.nome.includes('Leitor')" 
         icone="view_list">
         </nexus-botao-menu>
 

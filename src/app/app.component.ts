@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   usuarioAutenticado: boolean = false;
   nomeAcesso: string = '';
   projetoEPerfil: string = '';
-  perfil: ReferenciaObjeto = new ReferenciaObjeto();
+  perfil: ReferenciaObjeto | null = null;
 
   //Se a aplicação está obtendo ou não o nome de acesso do usuário.
   carregandoInfoUsuario: boolean = false;
@@ -83,6 +83,7 @@ export class AppComponent implements OnInit {
         }
         else {
           this.projetoEPerfil = 'Não configurado'
+          this.perfil = null;
         }
 
         this.carregandoInfoUsuario = false;
