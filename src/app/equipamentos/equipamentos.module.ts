@@ -6,12 +6,20 @@ import { EquipamentosMenuComponent } from './equipamentos-menu/equipamentos-menu
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { MaterialModule } from '../compartilhado/material/material.module';
 import { EquipamentosComponent } from './equipamentos.component';
+import { EquipamentosAdicionarComponent } from './equipamentos-adicionar/equipamentos-adicionar.component';
+import { EquipamentosEditarComponent } from './equipamentos-editar/equipamentos-editar.component';
+import { EquipamentosBuscarComponent } from './equipamentos-buscar/equipamentos-buscar.component';
+import { EquipamentosDetalhesComponent } from './equipamentos-detalhes/equipamentos-detalhes.component';
 
 
 @NgModule({
   declarations: [
     EquipamentosMenuComponent,
-    EquipamentosComponent
+    EquipamentosComponent,
+    EquipamentosAdicionarComponent,
+    EquipamentosEditarComponent,
+    EquipamentosBuscarComponent,
+    EquipamentosDetalhesComponent
   ],
   imports: [
     CommonModule,

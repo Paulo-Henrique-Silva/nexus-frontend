@@ -35,7 +35,7 @@
                     <!--Paineis-->
                     <!--Itera pelos projetos disponíveis par ao usuário.-->
                     <mat-expansion-panel *ngFor="let projetoChave of projetosChaves; 
-                    let i = index;" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+                    let i = index;" [expanded]="step === i" (opened)="setStep(i)">
                         <mat-expansion-panel-header>
                         <mat-panel-title>
                             <!--Obtém o segundo da array item, pois é o nome do projeto.-->
