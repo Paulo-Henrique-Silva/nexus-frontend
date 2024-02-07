@@ -18,8 +18,16 @@ export class MensagensValidacaoService {
       return 'Os campos devem ter valores iguais.';
     }
 
+    if (control.hasError('minlength')) {
+      const requiredLength = control.getError('minlength').requiredLength;
+
+      return `O campo deve ter no mínimo ${requiredLength} caracteres.`;
+    }
+
     if (control.hasError('maxlength')) {
-      return 'O campo ultrapassa o limite de caracteres.';
+      const requiredLength = control.getError('maxlength').requiredLength;
+
+      return `O campo ultrapassa o limite de ${requiredLength} caracteres.`;
     }
 
     return ''

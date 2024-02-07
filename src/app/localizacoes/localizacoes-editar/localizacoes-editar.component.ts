@@ -32,7 +32,7 @@ export class LocalizacoesEditarComponent extends NexusFormulario {
       snackBar, usuarioSessaoService);
 
     this.formulario = this.formBuilder.group({
-      nome: ['', [Validators.required, Validators.maxLength(200)]],
+      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
       descricao: ['', [Validators.required, Validators.maxLength(400)]]
     })
 

@@ -49,7 +49,7 @@ export class EquipamentosEditarComponent extends NexusFormulario implements OnIn
       snackBar, sessaoService);
       
     this.formulario = this.formBuilder.group({
-      nome: ['', [Validators.required, Validators.maxLength(200)]],
+      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
       descricao: ['', [Validators.required, Validators.maxLength(400)]],
       numeroSerie: ['', [Validators.required, Validators.maxLength(200)]],
       marca: ['', [Validators.required, Validators.maxLength(200)]],
