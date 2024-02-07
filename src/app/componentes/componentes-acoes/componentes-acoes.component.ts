@@ -6,6 +6,7 @@ import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialo
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
+import { ComponentesService } from '../componentes.service';
 
 @Component({
   selector: 'nexus-componentes-acoes',
@@ -25,7 +26,7 @@ export class ComponentesAcoesComponent {
   perfil: ReferenciaObjeto = new ReferenciaObjeto();
 
   constructor(
-    private service: LocalizacoesService,
+    private service: ComponentesService,
     sessaoService: SessaoService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog
@@ -49,7 +50,7 @@ export class ComponentesAcoesComponent {
       next: () => {
         //emite para carregar a tabela novamente.
         this.deletou.emit();
-        this.mostrarSnackBarOk('Localização deletada com sucesso!');
+        this.mostrarSnackBarOk('Componente deletado com sucesso!');
       },
       error: () => this.mostrarSnackBarOk('Não foi possível excluir!')
     })
