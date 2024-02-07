@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NexusBuscar } from '../../compartilhado/models/nexus-buscar';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { ComponentesService } from '../../componentes.service';
 import { EquipamentosService } from '../equipamentos.service';
 
 @Component({

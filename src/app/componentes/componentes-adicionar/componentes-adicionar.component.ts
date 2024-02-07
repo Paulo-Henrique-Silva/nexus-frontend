@@ -36,7 +36,6 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
     sessaoService: SessaoService,
     private service: ComponentesService,
     private localizacaoService: LocalizacoesService,
-    private componenteService: ComponentesService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
       snackBar, sessaoService);
@@ -56,7 +55,7 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
   ngOnInit(): void {
     this.carregando = true;
 
-    this.componenteService.obterTipos()
+    this.service.obterTipos()
       .subscribe(tipos => {
         this.tipos = tipos
         this.carregando = false;
