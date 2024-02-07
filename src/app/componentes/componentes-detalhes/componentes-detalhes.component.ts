@@ -54,7 +54,7 @@ export class ComponentesDetalhesComponent extends NexusFormulario {
     .subscribe({
       next: (componente) => {
         if (!componente) {
-          throwError(() => Error('Localização não encontrada.'));
+          throwError(() => Error('Componente não encontrada.'));
         }
     
         this.formulario.setValue({
