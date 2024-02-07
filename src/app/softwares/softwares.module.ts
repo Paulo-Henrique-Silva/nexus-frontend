@@ -6,12 +6,22 @@ import { SoftwaresMenuComponent } from './softwares-menu/softwares-menu.componen
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { MaterialModule } from '../compartilhado/material/material.module';
 import { SoftwaresComponent } from './softwares.component';
+import { SoftwaresAdicionarComponent } from './softwares-adicionar/softwares-adicionar.component';
+import { SoftwaresAcoesComponent } from './softwares-acoes/softwares-acoes.component';
+import { SoftwaresEditarComponent } from './softwares-editar/softwares-editar.component';
+import { SoftwaresDetalhesComponent } from './softwares-detalhes/softwares-detalhes.component';
+import { SoftwaresBuscarComponent } from './softwares-buscar/softwares-buscar.component';
 
 
 @NgModule({
   declarations: [
     SoftwaresMenuComponent,
-    SoftwaresComponent
+    SoftwaresComponent,
+    SoftwaresAdicionarComponent,
+    SoftwaresAcoesComponent,
+    SoftwaresEditarComponent,
+    SoftwaresDetalhesComponent,
+    SoftwaresBuscarComponent
   ],
   imports: [
     CommonModule,
