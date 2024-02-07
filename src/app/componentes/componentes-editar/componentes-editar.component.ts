@@ -36,7 +36,6 @@ export class ComponentesEditarComponent extends NexusFormulario implements OnIni
     sessaoService: SessaoService,
     private service: ComponentesService,
     private localizacaoService: LocalizacoesService,
-    private componenteService: ComponentesService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
       snackBar, sessaoService);
@@ -57,11 +56,11 @@ export class ComponentesEditarComponent extends NexusFormulario implements OnIni
     this.carregando = true;
     const uid = this.activatedRoute.snapshot.params['uid'];
 
-    this.componenteService.obterTipos()
+    this.service.obterTipos()
     .pipe(
     switchMap((tipos) => {
       this.tipos = tipos
-      return this.componenteService.obterPorUID(uid);
+      return this.service.obterPorUID(uid);
     }))
     .subscribe({
       next: (componente) => {

@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-center mb-5">
     <mat-card class="col-12 col-md-6 p-3">
         <mat-card-header class="mb-4">
-            <mat-card-title>Adicionar Componente</mat-card-title>
+            <mat-card-title>Editar Componente</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <div *ngIf="carregando; else telaPrincipal" 
@@ -32,7 +32,7 @@
                     </mat-form-field>
 
                     <!--Localizações-->
-                    <mat-card class="mb-5">
+                    <mat-card class="campo-pesquisa mb-5">
                         <mat-card-header class="mb-3">
                             <mat-card-subtitle>Localização*</mat-card-subtitle>
                         </mat-card-header>
@@ -126,7 +126,7 @@
                     <mat-card-actions [align]="'end'">
                         <button type="submit" mat-raised-button color="primary" (click)="onSubmit()" 
                         [disabled]="formulario.invalid">
-                            Atualizar
+                            Editar
                         </button>
                     </mat-card-actions>
                 </form>
