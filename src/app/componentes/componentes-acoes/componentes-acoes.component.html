@@ -18,6 +18,16 @@
             [link]="['/ativos/componentes/editar', objeto.uid]"
             *ngIf="!perfil.nome.includes('Leitor')">
             </nexus-botao-acoes>
+
+            <nexus-botao-acoes icone="build" texto="Adicionar Manutenção" 
+            [link]="['/ativos/manutencoes/adicionar']"
+            *ngIf="!perfil.nome.includes('Leitor')">
+            </nexus-botao-acoes>
+
+            <nexus-botao-acoes icone="apps" texto="Adicionar Software" 
+            [link]="['/ativos/softwares/adicionar']"
+            *ngIf="!perfil.nome.includes('Leitor')">
+            </nexus-botao-acoes>
             
             <nexus-botao-acoes icone="delete" texto="Deletar" (click)="deletarObjeto()"
             *ngIf="perfil.nome.includes('Administrador')">
