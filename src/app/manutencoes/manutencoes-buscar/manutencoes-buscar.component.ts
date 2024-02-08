@@ -15,12 +15,14 @@ export class ManutencoesBuscarComponent extends NexusBuscar {
   override colunas: string[] = [ 
     'nome',
     'componente',
+    'responsavel',
     'atualizadoPor', 'dataUltimaAtualizacao',
     'usuarioCriador', 'dataCriacao'
   ];
   override colunasMostrarComo : string[] = [ 
     'Nome',
     'Componente',
+    'Responsável',
     'Atualizado por', 'Data Última Atualização',
     'Usuário Criador', 'Data Criação'
   ];

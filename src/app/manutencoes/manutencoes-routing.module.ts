@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'ativos/manutencoes', component: ManutencoesComponent, canActivate:[conferirAutenticacao],
   children: [
     { path: '', component: ManutencoesMenuComponent },
-    { path: 'adicionar', component: ManutencoesAdicionarComponent },
+    { path: 'adicionar/:componente-uid', component: ManutencoesAdicionarComponent },
     { path: 'buscar', component: ManutencoesBuscarComponent },
     { path: 'detalhes/:uid', component: ManutencoesDetalhesComponent },
     { path: 'editar/:uid', component: ManutencoesEditarComponent },

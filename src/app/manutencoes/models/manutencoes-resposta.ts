@@ -10,5 +10,7 @@ export class ManutencaoResposta extends NexusResposta {
 
     dataTermino: Date = new Date();
 
+    responsavel: ReferenciaObjeto = new ReferenciaObjeto();
+
     solucao: string = '';
 }

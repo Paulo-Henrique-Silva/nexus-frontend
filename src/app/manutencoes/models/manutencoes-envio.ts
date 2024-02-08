@@ -7,7 +7,9 @@ export class ManutencaoEnvio extends NexusEnvio {
 
     dataInicio: Date = new Date();
 
-    dataTermino: Date = new Date();
+    dataTermino: Date | null = null;
 
-    solucao: string = '';
+    responsavelUID: string = '';
+
+    solucao: string | null = null;
 }

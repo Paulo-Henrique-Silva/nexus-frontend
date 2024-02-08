@@ -20,7 +20,7 @@
             </nexus-botao-acoes>
 
             <nexus-botao-acoes icone="build" texto="Adicionar Manutenção" 
-            [link]="['/ativos/manutencoes/adicionar']"
+            [link]="['/ativos/manutencoes/adicionar', objeto.uid]"
             *ngIf="!perfil.nome.includes('Leitor')">
             </nexus-botao-acoes>
 
