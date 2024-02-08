@@ -5,7 +5,7 @@ import { take, switchMap, EMPTY } from 'rxjs';
 import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialog-deletar.component';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { SoftwaresService } from '../../softwares/softwares.service';
+import { ManutencoesService } from '../manutencoes.service';
 
 @Component({
   selector: 'nexus-manutencoes-acoes',
@@ -25,7 +25,7 @@ export class ManutencoesAcoesComponent {
   perfil: ReferenciaObjeto = new ReferenciaObjeto();
 
   constructor(
-    private service: SoftwaresService,
+    private service: ManutencoesService,
     sessaoService: SessaoService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog
@@ -49,7 +49,7 @@ export class ManutencoesAcoesComponent {
       next: () => {
         //emite para carregar a tabela novamente.
         this.deletou.emit();
-        this.mostrarSnackBarOk('Software deletado com sucesso!');
+        this.mostrarSnackBarOk('Manutenção adicionada com sucesso!');
       },
       error: () => this.mostrarSnackBarOk('Não foi possível excluir!')
     })
