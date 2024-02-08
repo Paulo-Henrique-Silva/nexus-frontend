@@ -20,10 +20,7 @@ export class SoftwaresAdicionarComponent extends NexusFormulario implements OnIn
 
   tipos: ReferenciaObjeto[] = [];
 
-  //componentes
-  componentes: ReferenciaObjeto[] = [];
-  pesquisandoComponente: boolean = false;
-  pesquisouComponente: boolean = false;
+  componente: ReferenciaObjeto = new ReferenciaObjeto();
 
   constructor(
     authService : AuthService, 
@@ -42,35 +39,28 @@ export class SoftwaresAdicionarComponent extends NexusFormulario implements OnIn
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
       descricao: ['', [Validators.required, Validators.maxLength(400)]],
-      componente: ['', [Validators.required]],
+      componente: [{ value: '', disabled:true }, [Validators.required]],
       chaveLicenca: ['', [Validators.required, Validators.maxLength(200)]],
       dataVencimento: ['', [Validators.required]],
     })
   }
 
   ngOnInit(): void {
-      
+    this.carregando = true;
+    const componenteUID: string = this.activatedRoute.snapshot.params['componente-uid'];
+
+    this.componenteService.obterPorUID(componenteUID)
+      .subscribe({
+      next: (dados) => {
+        this.componente.uid = dados.uid;
+        this.componente.nome = dados.nome;
+        this.formulario.patchValue({ componente: componenteUID });
+        this.carregando = false;
+      },
+      error: () => {
+        this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
+      }});
   }
-
-  pesquisarComponentes(texto: string): void {
-    this.componentes = [];
-    this.pesquisandoComponente = true;
-    this.formulario.get('componente')?.setValue(null);
-
-    //Sempre obtém apenas da primeira página, por questões de performace.
-    this.componenteService.obterTudoPorProjetoUID(1, this.sessaoService.projetoSelecionado.uid,
-    texto)
-    .subscribe(dados =>
-    {
-      dados.itens.forEach(d => this.componentes.push({ uid: d.uid, nome: d.nome }));
-
-      //Ordena por nome.
-      this.componentes.sort((a, b) => a.nome < b.nome ? -1 : 1);
-      this.pesquisandoComponente = false;
-      this.pesquisouComponente = true;
-    });
-  }
-
   override onSubmit(): void {
     this.carregando = true;
     const nome: string = this.formulario.get('nome')?.value;

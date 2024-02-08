@@ -25,7 +25,7 @@
             </nexus-botao-acoes>
 
             <nexus-botao-acoes icone="apps" texto="Adicionar Software" 
-            [link]="['/ativos/softwares/adicionar']"
+            [link]="['/ativos/softwares/adicionar', objeto.uid]"
             *ngIf="!perfil.nome.includes('Leitor')">
             </nexus-botao-acoes>
             

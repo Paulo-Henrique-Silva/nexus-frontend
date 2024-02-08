@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'ativos/softwares', component: SoftwaresComponent, canActivate:[conferirAutenticacao],
   children: [
     { path: '', component: SoftwaresMenuComponent },
-    { path: 'adicionar', component: SoftwaresAdicionarComponent },
+    { path: 'adicionar/:componente-uid', component: SoftwaresAdicionarComponent },
     { path: 'buscar', component: SoftwaresBuscarComponent },
     { path: 'detalhes/:uid', component: SoftwaresDetalhesComponent },
     { path: 'editar/:uid', component: SoftwaresEditarComponent },
