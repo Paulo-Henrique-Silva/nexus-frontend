@@ -6,8 +6,9 @@
 
 <div class="d-flex flex-row flex-wrap">
     <nexus-ativos-opcoes class="col-12 col-sm-6 col-md-4 col-lg-3" nome="Buscar Requisições" 
-    icone="search"></nexus-ativos-opcoes>
+    icone="search" routerLink="/ativos/requisicoes/buscar"></nexus-ativos-opcoes>
 
     <nexus-ativos-opcoes class="col-12 col-sm-6 col-md-4 col-lg-3" nome="Adicionar Requisição" 
-    icone="add"></nexus-ativos-opcoes>
+    icone="add" *ngIf="!perfil.nome.includes('Leitor')"
+    routerLink="/ativos/requisicoes/adicionar"></nexus-ativos-opcoes>
 </div>
