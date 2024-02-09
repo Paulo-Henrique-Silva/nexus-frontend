@@ -54,12 +54,12 @@
                             <form class="d-flex flex-row">
                                 <mat-form-field class="col-11">
                                     <mat-label>Pesquisar</mat-label>
-                                    <input type="text" matInput #iptLocalizacao>
+                                    <input type="text" matInput #iptResponsavel>
                                 </mat-form-field>
         
                                 <button class="col-1" type="submit" mat-fab
-                                [disabled]="iptLocalizacao.value.trim().length < 3"
-                                (click)="pesquisarUsuarios(iptLocalizacao.value.trim())">
+                                [disabled]="iptResponsavel.value.trim().length < 3"
+                                (click)="pesquisarUsuarios(iptResponsavel.value.trim())">
                                     <mat-icon>search</mat-icon>
                                 </button>
                             </form>

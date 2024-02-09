@@ -8,7 +8,6 @@ import { MensagensValidacaoService } from '../../compartilhado/services/mensagen
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { ComponentesService } from '../../componentes/componentes.service';
 import { AuthService } from '../../login/auth/auth.service';
-import { SoftwareEnvio } from '../../softwares/models/softwares-envio';
 import { ManutencoesService } from '../manutencoes.service';
 import { ManutencaoEnvio } from '../models/manutencoes-envio';
 import { UsuariosService } from '../../login/usuarios.service';
