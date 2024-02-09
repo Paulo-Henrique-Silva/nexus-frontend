@@ -6,6 +6,7 @@ import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialo
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
+import { RequisicoesService } from '../requisicoes.service';
 
 @Component({
   selector: 'nexus-requisicoes-acoes',
@@ -25,7 +26,7 @@ export class RequisicoesAcoesComponent {
   perfil: ReferenciaObjeto = new ReferenciaObjeto();
 
   constructor(
-    private service: LocalizacoesService,
+    private service: RequisicoesService,
     sessaoService: SessaoService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog
