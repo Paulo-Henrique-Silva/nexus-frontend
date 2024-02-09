@@ -5,14 +5,14 @@ import { take, switchMap, EMPTY } from 'rxjs';
 import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialog-deletar.component';
 import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { ManutencoesService } from '../manutencoes.service';
+import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
 
 @Component({
-  selector: 'nexus-manutencoes-acoes',
-  templateUrl: './manutencoes-acoes.component.html',
-  styleUrl: './manutencoes-acoes.component.scss'
+  selector: 'app-requisicoes-acoes',
+  templateUrl: './requisicoes-acoes.component.html',
+  styleUrl: './requisicoes-acoes.component.scss'
 })
-export class ManutencoesAcoesComponent {
+export class RequisicoesAcoesComponent {
   @Input()
   objeto: ReferenciaObjeto = new ReferenciaObjeto();
 
@@ -25,7 +25,7 @@ export class ManutencoesAcoesComponent {
   perfil: ReferenciaObjeto = new ReferenciaObjeto();
 
   constructor(
-    private service: ManutencoesService,
+    private service: LocalizacoesService,
     sessaoService: SessaoService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog
@@ -49,7 +49,7 @@ export class ManutencoesAcoesComponent {
       next: () => {
         //emite para carregar a tabela novamente.
         this.deletou.emit();
-        this.mostrarSnackBarOk('Manutenção deletada com sucesso!');
+        this.mostrarSnackBarOk('Requisição deletada com sucesso!');
       },
       error: () => this.mostrarSnackBarOk('Não foi possível excluir!')
     })
