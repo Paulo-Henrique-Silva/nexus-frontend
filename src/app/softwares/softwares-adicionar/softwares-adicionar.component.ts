@@ -38,7 +38,7 @@ export class SoftwaresAdicionarComponent extends NexusFormulario implements OnIn
       
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
-      descricao: ['', [Validators.required, Validators.maxLength(400)]],
+      descricao: ['', Validators.maxLength(400)],
       componente: [{ value: '', disabled:true }, [Validators.required]],
       chaveLicenca: ['', [Validators.required, Validators.maxLength(200)]],
       dataVencimento: ['', [Validators.required]],

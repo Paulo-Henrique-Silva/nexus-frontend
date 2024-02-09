@@ -47,7 +47,7 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
       
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
-      descricao: ['', [Validators.required, Validators.maxLength(400)]],
+      descricao: ['', Validators.maxLength(400)],
       componente: [{ value: '', disabled:true }, [Validators.required]],
       responsavel: ['', [Validators.required]],
     })
