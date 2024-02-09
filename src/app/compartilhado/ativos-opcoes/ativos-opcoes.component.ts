@@ -10,6 +10,9 @@ export class AtivosOpcoesComponent {
   @Input()
   icone: string = ''
 
+  @Input()
+  iconeExtra: string = ''
+
   //Nome do conjunto de ativos.
   @Input()
   nome: string = ''
