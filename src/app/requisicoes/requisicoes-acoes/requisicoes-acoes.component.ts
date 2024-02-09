@@ -8,7 +8,7 @@ import { SessaoService } from '../../compartilhado/services/sessao/sessao.servic
 import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
 
 @Component({
-  selector: 'app-requisicoes-acoes',
+  selector: 'nexus-requisicoes-acoes',
   templateUrl: './requisicoes-acoes.component.html',
   styleUrl: './requisicoes-acoes.component.scss'
 })

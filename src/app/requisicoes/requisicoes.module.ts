@@ -11,6 +11,7 @@ import { RequisicoesBuscarComponent } from './requisicoes-buscar/requisicoes-bus
 import { RequisicoesDetalhesComponent } from './requisicoes-detalhes/requisicoes-detalhes.component';
 import { RequisicoesEditarComponent } from './requisicoes-editar/requisicoes-editar.component';
 import { RequisicoesAcoesComponent } from './requisicoes-acoes/requisicoes-acoes.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,7 +28,9 @@ import { RequisicoesAcoesComponent } from './requisicoes-acoes/requisicoes-acoes
     CommonModule,
     CompartilhadoModule,
     MaterialModule,
-    RequisicoesRoutingModule
+    RequisicoesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class RequisicoesModule { }
