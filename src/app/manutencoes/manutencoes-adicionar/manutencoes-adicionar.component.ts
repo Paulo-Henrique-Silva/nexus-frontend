@@ -71,8 +71,8 @@ export class ManutencoesAdicionarComponent extends NexusFormulario implements On
   pesquisarUsuarios(texto: string): void {
     this.usuarios = [];
     this.pesquisandoUsuario = true;
-    this.formulario.get('localizacao')?.setValue(null);
-
+    this.formulario.get('responsavel')?.setValue(null);
+    
     //Sempre obtém apenas da primeira página, por questões de performace.
     this.usuarioService.obterTudo(1, texto)
     .subscribe(dados =>
