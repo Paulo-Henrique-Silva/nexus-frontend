@@ -20,8 +20,6 @@ import { ManutencaoEnvio } from '../models/manutencoes-envio';
 })
 export class ManutencoesEditarComponent extends NexusFormulario implements OnInit {
 
-  tipos: ReferenciaObjeto[] = [];
-
   //componentes
   componentes: ReferenciaObjeto[] = [];
   pesquisandoComponente: boolean = false;
@@ -61,20 +59,20 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
 
     this.service.obterPorUID(uid)
     .subscribe({
-      next: (componente) => {
-        if (!componente) {
-          throwError(() => Error('Componente não encontrado.'));
+      next: (manutencoes) => {
+        if (!manutencoes) {
+          throwError(() => Error('Requisição não encontrada.'));
         }
     
         this.formulario.setValue({
-          nome: componente.nome,
-          descricao: componente.descricao,
-          componente: componente.componente.uid,
-          responsavel: componente.responsavel.uid
+          nome: manutencoes.nome,
+          descricao: manutencoes.descricao,
+          componente: manutencoes.componente.uid,
+          responsavel: manutencoes.responsavel.uid
         })
 
-        this.componentes.push(componente.componente);
-        this.usuarios.push(componente.responsavel);
+        this.componentes.push(manutencoes.componente);
+        this.usuarios.push(manutencoes.responsavel);
 
         this.carregando = false;
       },
@@ -136,12 +134,10 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
       solucao: null
     };
 
-    console.log(manutencao);
-
     this.service.editar(uid, manutencao)
       .subscribe({
         next: () => {
-          this.mostrarSnackBarOk('Manutenções editada com sucesso!');
+          this.mostrarSnackBarOk('Manutenção editada com sucesso!');
           this.carregando = false;
           this.router.navigate(['/ativos/manutencoes']);
         },
