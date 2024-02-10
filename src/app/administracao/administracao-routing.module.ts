@@ -20,7 +20,7 @@ const routes: Routes = [
     
     //usuários
     { path: 'usuarios/adicionar', component: UsuariosAdicionarComponent },
-    { path: 'usuarios/gerenciar-perfis', component: UsuariosGerenciarPerfisComponent },
+    { path: 'usuarios/gerenciar-perfis/:usuario-uid', component: UsuariosGerenciarPerfisComponent },
     { path: 'usuarios/buscar', component: UsuariosBuscarComponent },
     { path: 'usuarios/detalhes/:uid', component: UsuariosDetalhesComponent },
     { path: 'usuarios/editar/:uid', component: UsuariosEditarComponent },

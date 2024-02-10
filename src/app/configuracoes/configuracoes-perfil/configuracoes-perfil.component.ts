@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UsuarioPerfilService } from '../usuario-perfil.service';
-import { UsuarioPerfilResposta } from '../model/usuario-perfil-resposta';
+import { UsuarioPerfilResposta } from '../../administracao/models/usuario-perfil/usuario-perfil-resposta';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
@@ -8,7 +8,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { AuthService } from '../../login/auth/auth.service';
-import { UsuarioPerfilEnvio } from '../model/usuario-perfil-envio';
+import { UsuarioPerfilEnvio } from '../../administracao/models/usuario-perfil/usuario-perfil-envio';
 
 @Component({
   selector: 'app-configuracoes-perfil',
@@ -99,7 +99,7 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
     if (perfilAtivado && !this.marcouPerfilPadrao) {
       this.marcouPerfilPadrao = true;
       this.step = index;
-      this.cdr.detectChanges(); //Evita erros não detecção de mudanças.
+      this.cdr.detectChanges(); //Evita erros de não detecção de mudanças.
     }
     
     return perfilAtivado;

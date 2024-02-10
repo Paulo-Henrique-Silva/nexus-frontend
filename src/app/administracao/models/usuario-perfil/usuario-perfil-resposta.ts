@@ -1,4 +1,4 @@
-import { ReferenciaObjeto } from "../../compartilhado/models/referencia-objeto";
+import { ReferenciaObjeto } from "../../../compartilhado/models/referencia-objeto";
 
 export class UsuarioPerfilResposta {
     constructor(

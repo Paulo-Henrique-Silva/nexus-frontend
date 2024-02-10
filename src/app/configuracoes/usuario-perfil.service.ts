@@ -2,8 +2,9 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
-import { UsuarioPerfilResposta } from './model/usuario-perfil-resposta';
-import { UsuarioPerfilEnvio } from './model/usuario-perfil-envio';
+import { UsuarioPerfilResposta } from '../administracao/models/usuario-perfil/usuario-perfil-resposta';
+import { UsuarioPerfilEnvio } from '../administracao/models/usuario-perfil/usuario-perfil-envio';
+import { UsuarioPerfilUIDs } from '../administracao/models/usuario-perfil/usuario-perfil-uids';
 
 //Não extende a classe NexusService por se tratar de uma classe de relacionamento.
 @Injectable({
@@ -40,6 +41,11 @@ export class UsuarioPerfilService {
           .pipe(take(1));
   }
 
+  adicionarTudo(envio: UsuarioPerfilEnvio[]): Observable<UsuarioPerfilResposta> {
+    return this.http.post<UsuarioPerfilResposta>(this.url + '/todos', envio, { headers: this.header })
+        .pipe(take(1));
+  }
+
   editar(envio: UsuarioPerfilEnvio): Observable<UsuarioPerfilResposta> {
     const uids = `${envio.usuarioUID},${envio.projetoUID},${envio.perfilUID}`;
 
@@ -47,10 +53,14 @@ export class UsuarioPerfilService {
       envio, { headers: this.header }).pipe(take(1));
   }
 
-  deletar(envio: UsuarioPerfilEnvio): void {
-    const uids = `${envio.usuarioUID},${envio.projetoUID},${envio.perfilUID}`;
+  deletar(envio: UsuarioPerfilUIDs): Observable<void> {
 
-    this.http.delete<UsuarioPerfilResposta>(this.url + '/' + uids, { headers: this.header })
+    return this.http.delete<void>(this.url + '/todos', { headers: this.header, body: envio })
+        .pipe(take(1));
+  }
+
+  deletarTudo(envios: UsuarioPerfilUIDs[]): Observable<void> {
+    return this.http.delete<void>(this.url + '/todos', { headers: this.header, body: envios })
         .pipe(take(1));
   }
 

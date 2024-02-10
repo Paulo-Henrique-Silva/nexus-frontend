@@ -1,1 +1,67 @@
-<p>usuarios-gerenciar-perfis works!</p>
+<nexus-botao-voltar caminho="/ativos/administracao"></nexus-botao-voltar>
+
+<div class="d-flex justify-content-center">
+<mat-card class="col-12 col-md-6 p-3 mb-5">
+    <!--Spinner de carregando.-->
+    <div *ngIf="carregando; else telaPrincipal" 
+    class="d-flex flex-column justify-content-center align-items-center h-100">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <ng-template #telaPrincipal>
+    <!--Formulário-->
+    <form [formGroup]="formulario">
+        <!--Header-->
+        <mat-card-header class="mb-4">
+            <mat-card-title>Gerenciar Perfis</mat-card-title>
+        </mat-card-header>
+
+        <!--Contéudo-->
+        <mat-card-content class="mb-3">
+        <h3>{{ usuario.nome }}</h3>
+        <div class="d-flex flex-column">
+            <form [formGroup]="formulario">
+                <table class="w-100">
+                    <tr>
+                        <th class="text-start">Projeto</th>
+                        <th *ngFor="let perfil of perfis" class="text-start">{{ perfil.nome }}</th>
+                    </tr>
+                  
+                    <tr *ngFor="let projeto of projetos">
+                        <td> {{ projeto.nome }}</td>
+                        <td *ngFor="let perfil of perfis">
+
+                            <mat-checkbox #cbxPerfil 
+                            (change)="alterarPerfis(cbxPerfil, projeto.uid, perfil.uid)"
+                            *ngIf="perfisAtivadosPadrao.includes(projeto.uid + splitter + perfil.uid);
+                            else cbxFalso" [checked]="true">
+                            </mat-checkbox>
+                            
+                            <ng-template #cbxFalso>
+                                <mat-checkbox #cbxPerfil 
+                                (change)="alterarPerfis(cbxPerfil, projeto.uid, perfil.uid)">
+                                </mat-checkbox>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        </mat-card-content>
+
+        <!--Ações-->
+        <mat-card-actions [align]="'end'">
+            <button mat-button class="me-3" (click)="carregarPerfis()" [disabled]="naoAlterouPerfil">
+                Resetar
+            </button>
+            <button mat-raised-button color="primary" [disabled]="naoAlterouPerfil"
+            (click)="onSubmit()">
+                Editar
+            </button>
+        </mat-card-actions>
+    </form>
+    </ng-template>
+</mat-card>
+</div>
+
+<pre>{{ formulario.value | json }}</pre>
