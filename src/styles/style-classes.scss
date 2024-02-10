@@ -2,7 +2,7 @@
 
 .buscar-table tr:hover {
     cursor: pointer;
-    background-color: v.$background-color;
+    background-color: v.$gray;
 }
 
 .buscar-table tr.linha-selecionada {
@@ -42,4 +42,8 @@
 
 .bg-primary {
     background-color: v.$primary;
+}
+
+.bg-gray {
+    background-color: v.$gray;
 }

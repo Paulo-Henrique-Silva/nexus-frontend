@@ -6,31 +6,40 @@ import { AdministracaoMenuComponent } from './administracao-menu/administracao-m
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { MaterialModule } from '../compartilhado/material/material.module';
 import { AdministracaoComponent } from './administracao.component';
-import { AdministracaoUsuariosBuscarComponent } from './administracao-usuarios-buscar/administracao-usuarios-buscar.component';
-import { AdministracaoUsuariosAdicionarComponent } from './administracao-usuarios-adicionar/administracao-usuarios-adicionar.component';
-import { AdministracaoUsuariosEditarComponent } from './administracao-usuarios-editar/administracao-usuarios-editar.component';
-import { AdministracaoUsuariosGerenciarPerfisComponent } from './administracao-usuarios-gerenciar-perfis/administracao-usuarios-gerenciar-perfis.component';
-import { AdministracaoProjetosBuscarComponent } from './administracao-projetos-buscar/administracao-projetos-buscar.component';
-import { AdministracaoProjetosAdicionarComponent } from './administracao-projetos-adicionar/administracao-projetos-adicionar.component';
-import { AdministracaoProjetosEditarComponent } from './administracao-projetos-editar/administracao-projetos-editar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsuariosBuscarComponent } from './usuarios-buscar/usuarios-buscar.component';
+import { UsuariosEditarComponent } from './usuarios-editar/usuarios-editar.component';
+import { UsuariosAdicionarComponent } from './usuarios-adicionar/usuarios-adicionar.component';
+import { UsuariosAcoesComponent } from './usuarios-acoes/usuarios-acoes.component';
+import { UsuariosDetalhesComponent } from './usuarios-detalhes/usuarios-detalhes.component';
+import { ProjetosDetalhesComponent } from './projetos-detalhes/projetos-detalhes.component';
+import { ProjetosEditarComponent } from './projetos-editar/projetos-editar.component';
+import { ProjetosAdicionarComponent } from './projetos-adicionar/projetos-adicionar.component';
+import { ProjetosAcoesComponent } from './projetos-acoes/projetos-acoes.component';
+import { ProjetosBuscarComponent } from './projetos-buscar/projetos-buscar.component';
 
 @NgModule({
   declarations: [
     AdministracaoMenuComponent,
     AdministracaoComponent,
-    AdministracaoUsuariosBuscarComponent,
-    AdministracaoUsuariosAdicionarComponent,
-    AdministracaoUsuariosEditarComponent,
-    AdministracaoUsuariosGerenciarPerfisComponent,
-    AdministracaoProjetosBuscarComponent,
-    AdministracaoProjetosAdicionarComponent,
-    AdministracaoProjetosEditarComponent,
+    UsuariosBuscarComponent,
+    UsuariosEditarComponent,
+    UsuariosAdicionarComponent,
+    UsuariosAcoesComponent,
+    UsuariosDetalhesComponent,
+    ProjetosDetalhesComponent,
+    ProjetosEditarComponent,
+    ProjetosAdicionarComponent,
+    ProjetosAcoesComponent,
+    ProjetosBuscarComponent,
   ],
   imports: [
     CommonModule,
     CompartilhadoModule,
     MaterialModule,
-    AdministracaoRoutingModule
+    AdministracaoRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdministracaoModule { }
