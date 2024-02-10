@@ -1,1 +1,84 @@
-<p>usuarios-buscar works!</p>
+<mat-sidenav-container>
+    <mat-sidenav mode="over" [autoFocus]="false" class="w-25" [opened]="selecionouObjeto"
+    (closed)="selecionouObjeto = false">
+
+        <!--Ações-->
+        <nexus-usuarios-acoes [objeto]="objetoSelecionado" (deletou)="carregarTabela()"
+        (fechou)="selecionouObjeto = false" >
+        </nexus-usuarios-acoes>
+
+    </mat-sidenav>
+    <mat-sidenav-content class="p-3">
+        <!--Header da pesquisa-->
+        <div class="d-flex justify-content-between align-items-center">
+            <nexus-botao-voltar caminho="/ativos/administracao"></nexus-botao-voltar>
+
+            <h2>Usuários<mat-icon class="ms-1">person</mat-icon></h2>
+            
+            <div class="d-flex justify-content-between align-items-center"> 
+                
+                <form #myForm="ngForm" class="d-flex justify-content-between align-items-center">
+                    <mat-form-field class="mt-3" appearance="outline">
+                        <input type="text" matInput placeholder="Pesquisar por nome..." 
+                        [(ngModel)]="nomePesquisa" name="nomePesquisa"/>
+                    </mat-form-field>
+    
+                    <button mat-fab color="primary" matTooltip="Pesquisar" 
+                    [disabled]="nomePesquisa.trim().length < 3 && !carregando" 
+                    (click)="carregarTabela(nomePesquisa.trim())">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!--Chip de filtro-->
+        <mat-chip-listbox class="mb-3" *ngIf="tabelaFoiFiltrada">
+            <mat-chip-option selectable="false" (removed)="removerFiltro()">
+                Resultados para "{{ nomeFiltro }}"
+                <button matChipRemove>
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-chip-option>
+        </mat-chip-listbox>
+
+        <!--Tela de carregamento-->
+        <div *ngIf="carregando" 
+        class="d-flex flex-column justify-content-center align-items-center h-100">
+            <mat-spinner></mat-spinner>
+        </div>
+        
+        <!--Tabela de resultados-->
+        <div class="mat-elevation-z8" *ngIf="!carregando && totalItens != 0">
+            <table class="buscar-table" mat-table [dataSource]="dadosTabela" matSort>
+
+                <ng-container *ngFor="let coluna of colunas; let i = index;" 
+                [matColumnDef]="coluna">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ colunasMostrarComo[i] }} </th>
+                    <td [style.max-width]="'35px'" mat-cell *matCellDef="let element">{{ element[coluna] }}</td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+                <tr mat-row *matRowDef="let linha; columns: colunas; let i = index;" 
+                (click)="mostrarAcoes(linha, i)" [class.linha-selecionada]="i == indexLinhaSelecionada">
+                </tr>
+            </table>
+
+            <mat-paginator [pageSize]="tamanhoPagina" [length]="totalItens" showFirstLastButtons
+                    aria-label="Página selecionada de tarefas."
+                    (page)="mudarPagina($event)" [pageIndex]="paginaAtual">
+            </mat-paginator>
+        </div>
+        
+        <!--Zero resultados encontrados.-->
+        <div class="d-flex flex-column justify-content-center align-items-center" 
+        *ngIf="!carregando && totalItens == 0">
+
+            <img src="../../../assets/no-results.svg" class="mb-3" width="150px" height="150px"/>
+            <h2>Vazio...</h2>
+            <p>Nenhum resultado foi encontrado.</p>
+
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+  
