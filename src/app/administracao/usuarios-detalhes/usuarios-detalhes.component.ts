@@ -46,18 +46,19 @@ export class UsuariosDetalhesComponent extends NexusFormulario {
 
     this.service.obterPorUID(uid)
     .subscribe({
-      next: (localizacao) => {
-        if (!localizacao) {
-          throwError(() => Error('Localização não encontrada.'));
+      next: (usuario) => {
+        if (!usuario) {
+          throwError(() => Error('Objeto não encontrado.'));
         }
     
         this.formulario.setValue({
-          nome: localizacao.nome,
-          descricao: localizacao.descricao,
-          atualizadoPor: localizacao.atualizadoPor?.nome,
-          dataUltimaAtualizacao: localizacao.dataUltimaAtualizacao,
-          usuarioCriador: localizacao.usuarioCriador?.nome,
-          dataCriacao: localizacao.dataCriacao,
+          nome: usuario.nome,
+          descricao: usuario.descricao,
+          nomeAcesso: usuario.nomeAcesso,
+          atualizadoPor: usuario.atualizadoPor?.nome,
+          dataUltimaAtualizacao: usuario.dataUltimaAtualizacao,
+          usuarioCriador: usuario.usuarioCriador?.nome,
+          dataCriacao: usuario.dataCriacao,
         })
 
         this.carregando = false;
