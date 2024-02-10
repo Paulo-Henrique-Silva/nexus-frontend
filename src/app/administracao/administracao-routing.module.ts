@@ -11,6 +11,7 @@ import { ProjetosAdicionarComponent } from './projetos-adicionar/projetos-adicio
 import { ProjetosBuscarComponent } from './projetos-buscar/projetos-buscar.component';
 import { ProjetosDetalhesComponent } from './projetos-detalhes/projetos-detalhes.component';
 import { ProjetosEditarComponent } from './projetos-editar/projetos-editar.component';
+import { UsuariosGerenciarPerfisComponent } from './usuarios-gerenciar-perfis/usuarios-gerenciar-perfis.component';
 
 const routes: Routes = [
   { path: 'ativos/administracao', component: AdministracaoComponent, canActivate:[conferirAutenticacao],
@@ -19,6 +20,7 @@ const routes: Routes = [
     
     //usuários
     { path: 'usuarios/adicionar', component: UsuariosAdicionarComponent },
+    { path: 'usuarios/gerenciar-perfis', component: UsuariosGerenciarPerfisComponent },
     { path: 'usuarios/buscar', component: UsuariosBuscarComponent },
     { path: 'usuarios/detalhes/:uid', component: UsuariosDetalhesComponent },
     { path: 'usuarios/editar/:uid', component: UsuariosEditarComponent },

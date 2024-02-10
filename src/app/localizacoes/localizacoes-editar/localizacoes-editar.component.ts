@@ -53,6 +53,8 @@ export class LocalizacoesEditarComponent extends NexusFormulario {
           nome: localizacao.nome,
           descricao: localizacao.descricao
         })
+
+        this.carregando = false;
       },
       error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
     });

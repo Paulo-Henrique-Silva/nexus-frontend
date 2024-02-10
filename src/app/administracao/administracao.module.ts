@@ -17,6 +17,7 @@ import { ProjetosEditarComponent } from './projetos-editar/projetos-editar.compo
 import { ProjetosAdicionarComponent } from './projetos-adicionar/projetos-adicionar.component';
 import { ProjetosAcoesComponent } from './projetos-acoes/projetos-acoes.component';
 import { ProjetosBuscarComponent } from './projetos-buscar/projetos-buscar.component';
+import { UsuariosGerenciarPerfisComponent } from './usuarios-gerenciar-perfis/usuarios-gerenciar-perfis.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ProjetosBuscarComponent } from './projetos-buscar/projetos-buscar.compo
     ProjetosAdicionarComponent,
     ProjetosAcoesComponent,
     ProjetosBuscarComponent,
+    UsuariosGerenciarPerfisComponent,
   ],
   imports: [
     CommonModule,
