@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { NexusService } from '../compartilhado/services/nexus-service/nexus-service';
 import { UsuarioEnvio } from './models/usuario-envio';
 import { UsuarioResposta } from './models/usuario-resposta';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map, take } from 'rxjs';
 import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
+import { AtribuicaoResposta } from '../atribuicoes/models/atribuicao-resposta';
+import { NexusListaResposta } from '../compartilhado/models/nexus-lista-resposta';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +32,14 @@ export class UsuariosService extends NexusService<UsuarioEnvio, UsuarioResposta>
         map((resposta) : any => resposta),
         map(resposta => (resposta.senhaCorreta))
       );
+  }
+
+  obterAtribuicoesPorUsuarioUID(pagina: number, usuarioUID: string): 
+  Observable<NexusListaResposta<AtribuicaoResposta>> {
+    const params = new HttpParams()
+      .set('pagina', pagina.toString());
+
+    return this.http.get<NexusListaResposta<AtribuicaoResposta>>(this.url + '/' + usuarioUID + '/Atribuicoes', 
+    { params: params, headers: this.header }).pipe(take(1));
   }
 }
