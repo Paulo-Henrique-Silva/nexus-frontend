@@ -30,7 +30,7 @@
             </nexus-botao-acoes>
             
             <nexus-botao-acoes icone="delete" texto="Deletar" (click)="deletarObjeto()"
-            *ngIf="perfil.nome.includes('Administrador')">
+            *ngIf="perfil.nome.includes('Administrador') || perfil.nome.includes('Oráculo')">
             </nexus-botao-acoes>
             
             <nexus-botao-acoes icone="info" texto="Ver Detalhes" 

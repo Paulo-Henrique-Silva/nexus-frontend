@@ -88,6 +88,10 @@ export class UsuariosGerenciarPerfisComponent extends NexusFormulario implements
         this.projetos = projetoResposta.itens.sort((a, b) => a.nome < b.nome ? -1 : 1);
         this.perfis = perfilResposta.itens.sort((a, b) => a.nome < b.nome ? -1 : 1);
         this.carregando = false;
+
+        if (!this.sessaoService.uidUsuario.includes('oraculo')) {
+          this.perfis.splice(this.perfis.findIndex(p => p.nome.includes('Oráculo')), 1);
+        }
         
         this.cdr.detectChanges();
       },

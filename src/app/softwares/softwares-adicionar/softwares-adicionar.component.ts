@@ -83,7 +83,7 @@ export class SoftwaresAdicionarComponent extends NexusFormulario implements OnIn
         next: () => {
           this.mostrarSnackBarOk('Software adicionado com sucesso!');
           this.carregando = false;
-          this.router.navigate(['/ativos/softwares']);
+          this.router.navigate(['/ativos/componentes']);
         },
         error: () => {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');

@@ -107,7 +107,7 @@ export class ManutencoesAdicionarComponent extends NexusFormulario implements On
         next: () => {
           this.mostrarSnackBarOk('Manutenção adicionada com sucesso!');
           this.carregando = false;
-          this.router.navigate(['/ativos/manutencoes']);
+          this.router.navigate(['/ativos/componentes']);
         },
         error: () => {
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');

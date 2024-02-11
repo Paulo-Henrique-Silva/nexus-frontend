@@ -25,7 +25,7 @@
     </nexus-ativos-card>
 
     <nexus-ativos-card class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"
-    *ngIf="perfil.nome.includes('Administrador')"
+    *ngIf="perfil.nome.includes('Administrador') || perfil.nome.includes('Oráculo')"
     icone="domain" nome="Administração" routerLink="/ativos/administracao">
     </nexus-ativos-card>
 </div>
