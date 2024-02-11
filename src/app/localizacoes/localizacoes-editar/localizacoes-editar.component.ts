@@ -8,8 +8,6 @@ import { LocalizacoesService } from '../localizacoes.service';
 import { LocalizacaoEnvio } from '../models/localizacao-envio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { last, switchMap, throwError } from 'rxjs';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 
 @Component({
   selector: 'app-localizacoes-editar',
