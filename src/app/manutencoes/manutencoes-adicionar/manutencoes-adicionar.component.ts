@@ -11,6 +11,9 @@ import { AuthService } from '../../login/auth/auth.service';
 import { ManutencoesService } from '../manutencoes.service';
 import { ManutencaoEnvio } from '../models/manutencoes-envio';
 import { UsuariosService } from '../../login/usuarios.service';
+import { switchMap } from 'rxjs';
+import { NexusCicloVidaService } from '../../compartilhado/services/nexus-ciclo-vida-service/nexus-ciclo-vida-service';
+import { VerificacaoManutencaoService } from '../ciclo-vida/verificacao-manutencao.service';
 
 @Component({
   selector: 'app-manutencoes-adicionar',
@@ -39,6 +42,7 @@ export class ManutencoesAdicionarComponent extends NexusFormulario implements On
     private service: ManutencoesService,
     private componenteService: ComponentesService,
     private usuarioService: UsuariosService,
+    private verificacaoManutencaoService: VerificacaoManutencaoService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
       snackBar, sessaoService);
@@ -103,15 +107,19 @@ export class ManutencoesAdicionarComponent extends NexusFormulario implements On
     };
 
     this.service.adicionar(manutencao)
-      .subscribe({
-        next: () => {
-          this.mostrarSnackBarOk('Manutenção adicionada com sucesso!');
-          this.carregando = false;
-          this.router.navigate(['/ativos/componentes']);
-        },
-        error: () => {
-          this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
-        }
-      })
-    }
+    .pipe(
+      switchMap((manutencao) => this.verificacaoManutencaoService
+        .iniciar({ objetoUID: manutencao.uid }))
+    )
+    .subscribe({
+      next: () => {
+        this.mostrarSnackBarOk('Manutenção adicionada com sucesso!');
+        this.carregando = false;
+        this.router.navigate(['/ativos/componentes']);
+      },
+      error: () => {
+        this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
+      }
+    })
+  }
 }
