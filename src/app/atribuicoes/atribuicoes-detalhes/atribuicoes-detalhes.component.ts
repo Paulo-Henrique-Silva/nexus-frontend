@@ -1,36 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AtribuicaoResposta } from '../models/atribuicao-resposta';
+import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { AtribuicoesService } from '../atribuicoes.service';
+import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'nexus-atribuicoes-detalhes',
   templateUrl: './atribuicoes-detalhes.component.html',
   styleUrl: './atribuicoes-detalhes.component.scss'
 })
-export class AtribuicoesDetalhesComponent {
-  atribuicao: AtribuicaoResposta = { 
-    uid: "1",
-    nome: "Aprovar requisição",
-    descricao: "Aprove a descrição conforme dito.",
-    usuario: {
-      uid: '1',
-      nome: 'PAUlO SILVA'
-    },
-    tipoAtribuicao: 0,
-    concluida: false,
-    cicloVida: {
-      uid: '1',
-      nome: 'Análise do Coordenador'
-    },
-    dataVencimento: new Date(2024, 5, 7),
-    dataUltimaAtualizacao: new Date(2024, 1, 20),
-    atualizadoPor: {
-      uid: '',
-      nome: ''
-    },
-    usuarioCriador: {
-      uid: '',
-      nome: ''
-    },
-    dataCriacao: new Date(2024, 1, 20)
+export class AtribuicoesDetalhesComponent implements OnInit {
+  atribuicaoRef: ReferenciaObjeto = new ReferenciaObjeto();
+  atribuicao: AtribuicaoResposta = new AtribuicaoResposta();
+  dataVencimentoFormatada: string | null = '';
+
+  carregando: boolean = false;
+
+  constructor(
+    private atribuicaoService: AtribuicoesService,
+    private activatedRoute: ActivatedRoute,
+  ) {}
+
+  ngOnInit(): void {
+    this.carregando = true;
+    const pipe = new DatePipe('en-US');
+    const atribuicaoUID = this.activatedRoute.snapshot.params['uid'];
+
+    this.atribuicaoService.obterPorUID(atribuicaoUID)
+      .subscribe({
+        next: (atribuicao) => {
+
+          this.carregando = false;
+          this.atribuicao = atribuicao;
+          this.atribuicaoRef = { uid: atribuicao.uid, nome: atribuicao.nome };
+          this.dataVencimentoFormatada = pipe.transform(this.atribuicao.dataVencimento, 'dd/MM/yyyy HH:mm');
+
+          if (this.dataVencimentoFormatada) {
+            this.dataVencimentoFormatada = this.dataVencimentoFormatada.replace(' ', ' às ');
+          }
+        }
+      })
   }
 }

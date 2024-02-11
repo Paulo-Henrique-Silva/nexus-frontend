@@ -1,14 +1,17 @@
-<div class="p-3">
-    <div class="mb-3">
-        <h2 class="text-center">Ações</h2>
-        <mat-divider></mat-divider>
+<div>
+    <div class="d-flex justify-content-between align-items-center p-3">
+        <h2 class="text-ellipis" style="margin-bottom: 0;">
+           {{ objeto.nome }}
+        </h2>
     </div>
-    <div class="d-flex flex-column">
-        <button mat-button>
-            Aprovar
-        </button>
-        <button mat-button>
-            Reprovar
-        </button>
+
+    <mat-divider></mat-divider>
+
+    <div class="p-3">
+        
+        <div class="d-flex flex-column">
+            <nexus-botao-acoes icone="done" texto="Completar">
+            </nexus-botao-acoes>
+        </div>
     </div>
 </div>
