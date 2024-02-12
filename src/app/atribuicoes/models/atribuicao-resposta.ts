@@ -1,14 +1,14 @@
 import { NexusResposta } from "../../compartilhado/models/nexus-resposta";
-import { ReferenciaObjeto } from "../../compartilhado/models/referencia-objeto";
+import { NexusReferenciaObjeto } from "../../compartilhado/models/nexus-referencia-objeto";
 
 export class AtribuicaoResposta extends NexusResposta {
-    public usuario: ReferenciaObjeto = new ReferenciaObjeto();
+    public usuario: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
-    public tipo: ReferenciaObjeto = new ReferenciaObjeto();
+    public tipo: NexusReferenciaObjeto = new NexusReferenciaObjeto();
     
     public dataVencimento: Date = new Date();
 
     public concluida: boolean = false;
 
-    public cicloVida: ReferenciaObjeto = new ReferenciaObjeto();
+    public cicloVida: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 }

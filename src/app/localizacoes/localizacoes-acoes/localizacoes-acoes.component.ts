@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { take, switchMap, EMPTY } from 'rxjs';
 import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialog-deletar.component';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
 import { LocalizacoesService } from '../localizacoes.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 
@@ -14,7 +14,7 @@ import { SessaoService } from '../../compartilhado/services/sessao/sessao.servic
 })
 export class LocalizacoesAcoesComponent {
   @Input()
-  objeto: ReferenciaObjeto = new ReferenciaObjeto();
+  objeto: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
   @Output() 
   deletou = new EventEmitter<any>();
@@ -22,7 +22,7 @@ export class LocalizacoesAcoesComponent {
   @Output() 
   fechou = new EventEmitter<any>();
 
-  perfil: ReferenciaObjeto = new ReferenciaObjeto();
+  perfil: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
   constructor(
     private service: LocalizacoesService,

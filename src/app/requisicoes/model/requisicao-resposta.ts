@@ -1,8 +1,8 @@
 import { NexusResposta } from "../../compartilhado/models/nexus-resposta"
-import { ReferenciaObjeto } from "../../compartilhado/models/referencia-objeto"
+import { NexusReferenciaObjeto } from "../../compartilhado/models/nexus-referencia-objeto"
 
 export class RequisicaoResposta extends NexusResposta {
-    projeto: ReferenciaObjeto = new ReferenciaObjeto();
+    projeto: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
-    coordenador: ReferenciaObjeto = new ReferenciaObjeto();
+    coordenador: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 }

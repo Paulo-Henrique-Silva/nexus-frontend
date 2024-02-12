@@ -4,7 +4,7 @@ import { EquipamentoResposta } from './models/equipamentos-resposta';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, take } from 'rxjs';
 import { NexusListaResposta } from '../compartilhado/models/nexus-lista-resposta';
-import { ReferenciaObjeto } from '../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../compartilhado/models/nexus-referencia-objeto';
 import { NexusService } from '../compartilhado/services/nexus-service/nexus-service';
 import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 import { LocalizacaoResposta } from '../localizacoes/models/localizacao-resposta';
@@ -20,8 +20,8 @@ export class EquipamentosService extends NexusService<EquipamentoEnvio, Equipame
     super(http, sessaoService, 'https://localhost:7172/api/Equipamento');
   }
 
-  obterTipos(): Observable<ReferenciaObjeto[]> {
-    return this.http.get<ReferenciaObjeto[]>(this.url + '/Tipos', 
+  obterTipos(): Observable<NexusReferenciaObjeto[]> {
+    return this.http.get<NexusReferenciaObjeto[]>(this.url + '/Tipos', 
     { headers: this.header }).pipe(take(1));
   }
 

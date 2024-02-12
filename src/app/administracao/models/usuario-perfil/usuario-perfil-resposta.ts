@@ -1,14 +1,14 @@
-import { ReferenciaObjeto } from "../../../compartilhado/models/referencia-objeto";
+import { NexusReferenciaObjeto } from "../../../compartilhado/models/nexus-referencia-objeto";
 
 export class UsuarioPerfilResposta {
     constructor(
-        public usuario: ReferenciaObjeto,
-        public projeto: ReferenciaObjeto,
-        public perfil: ReferenciaObjeto,
+        public usuario: NexusReferenciaObjeto,
+        public projeto: NexusReferenciaObjeto,
+        public perfil: NexusReferenciaObjeto,
         public ativado: boolean,
         public dataUltimaAtualizacao: Date,
-        public atualizadoPor: ReferenciaObjeto,
-        public usuarioCriador: ReferenciaObjeto,
+        public atualizadoPor: NexusReferenciaObjeto,
+        public usuarioCriador: NexusReferenciaObjeto,
         public dataCriacao: Date
     ){}
 }

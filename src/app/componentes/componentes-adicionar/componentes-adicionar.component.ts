@@ -9,7 +9,7 @@ import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
 import { LocalizacaoEnvio } from '../../localizacoes/models/localizacao-envio';
 import { AuthService } from '../../login/auth/auth.service';
 import { ComponentesService } from '../componentes.service';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
 import { ComponenteEnvio } from '../models/componentes-envio';
 
 @Component({
@@ -19,10 +19,10 @@ import { ComponenteEnvio } from '../models/componentes-envio';
 })
 export class ComponentesAdicionarComponent extends NexusFormulario implements OnInit {
 
-  tipos: ReferenciaObjeto[] = [];
+  tipos: NexusReferenciaObjeto[] = [];
 
   //Localizações
-  localizacoes: ReferenciaObjeto[] = [];
+  localizacoes: NexusReferenciaObjeto[] = [];
   pesquisandoLocalizacao: boolean = false;
   pesquisouLocalizacao: boolean = false;
 

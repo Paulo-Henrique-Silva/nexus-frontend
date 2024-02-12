@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { throwError } from 'rxjs';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { ComponentesService } from '../../componentes/componentes.service';
@@ -23,7 +23,7 @@ import { RequisicoesService } from '../requisicoes.service';
 export class RequisicoesEditarComponent extends NexusFormulario implements OnInit {
 
   //usuários
-  usuarios: ReferenciaObjeto[] = [];
+  usuarios: NexusReferenciaObjeto[] = [];
   pesquisandoUsuario: boolean = false;
   pesquisouUsuario: boolean = false;
 

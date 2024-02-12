@@ -1,16 +1,16 @@
 import { NexusResposta } from "../../compartilhado/models/nexus-resposta"
-import { ReferenciaObjeto } from "../../compartilhado/models/referencia-objeto"
+import { NexusReferenciaObjeto } from "../../compartilhado/models/nexus-referencia-objeto"
 
 export class ManutencaoResposta extends NexusResposta {
-    componente: ReferenciaObjeto = new ReferenciaObjeto();
+    componente: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
-    projeto: ReferenciaObjeto = new ReferenciaObjeto();
+    projeto: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
     dataInicio: Date = new Date();
 
     dataTermino: Date = new Date();
 
-    responsavel: ReferenciaObjeto = new ReferenciaObjeto();
+    responsavel: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
     solucao: string = '';
 }

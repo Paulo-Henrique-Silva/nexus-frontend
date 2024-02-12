@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { ComponentesService } from '../../componentes/componentes.service';
@@ -18,9 +18,9 @@ import { SoftwareEnvio } from '../models/softwares-envio';
 })
 export class SoftwaresAdicionarComponent extends NexusFormulario implements OnInit {
 
-  tipos: ReferenciaObjeto[] = [];
+  tipos: NexusReferenciaObjeto[] = [];
 
-  componente: ReferenciaObjeto = new ReferenciaObjeto();
+  componente: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
   constructor(
     authService : AuthService, 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
 
 @Component({
   selector: 'nexus-ativos-lista',
@@ -9,7 +9,7 @@ import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
 })
 export class AtivosListaComponent {
 
-  perfil: ReferenciaObjeto | null = null;
+  perfil: NexusReferenciaObjeto | null = null;
 
   constructor(
     sessaoService: SessaoService

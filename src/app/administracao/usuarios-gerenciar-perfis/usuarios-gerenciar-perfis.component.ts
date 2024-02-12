@@ -9,7 +9,7 @@ import { AuthService } from '../../login/auth/auth.service';
 import { ProjetoService } from '../services/projeto/projeto.service';
 import { PerfilService } from '../services/perfil/perfil.service';
 import { EMPTY, combineLatest, switchMap } from 'rxjs';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { UsuariosService } from '../../login/usuarios.service';
 import { UsuarioPerfilService } from '../../configuracoes/usuario-perfil.service';
@@ -23,11 +23,11 @@ import { UsuarioPerfilUIDs } from '../models/usuario-perfil/usuario-perfil-uids'
 })
 export class UsuariosGerenciarPerfisComponent extends NexusFormulario implements OnInit {
 
-  projetos: ReferenciaObjeto[] = [];
+  projetos: NexusReferenciaObjeto[] = [];
 
-  perfis: ReferenciaObjeto[] = [];
+  perfis: NexusReferenciaObjeto[] = [];
 
-  usuario: ReferenciaObjeto = new ReferenciaObjeto();
+  usuario: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
   perfisAtivadosPadrao: string[] = [];
 

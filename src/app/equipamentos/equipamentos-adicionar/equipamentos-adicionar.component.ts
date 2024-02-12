@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
@@ -19,15 +19,15 @@ import { ComponentesService } from '../../componentes/componentes.service';
 })
 export class EquipamentosAdicionarComponent extends NexusFormulario implements OnInit {
 
-  tipos: ReferenciaObjeto[] = [];
+  tipos: NexusReferenciaObjeto[] = [];
 
   //Localizações
-  localizacoes: ReferenciaObjeto[] = [];
+  localizacoes: NexusReferenciaObjeto[] = [];
   pesquisandoLocalizacao: boolean = false;
   pesquisouLocalizacao: boolean = false;
 
   //componentes
-  componentes: ReferenciaObjeto[] = [];
+  componentes: NexusReferenciaObjeto[] = [];
   pesquisandoComponente: boolean = false;
   pesquisouComponente: boolean = false;
 

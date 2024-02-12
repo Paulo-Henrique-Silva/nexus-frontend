@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { AuthService } from '../../login/auth/auth.service';
@@ -19,7 +19,7 @@ import { RequisicaoEnvio } from '../model/requisicao-envio';
 export class RequisicoesAdicionarComponent extends NexusFormulario implements OnInit {
 
   //usuários
-  usuarios: ReferenciaObjeto[] = [];
+  usuarios: NexusReferenciaObjeto[] = [];
   pesquisandoUsuario: boolean = false;
   pesquisouUsuario: boolean = false;
 

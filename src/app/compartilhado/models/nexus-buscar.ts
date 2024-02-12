@@ -4,7 +4,7 @@ import { MatPaginatorIntl, MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Subscription } from "rxjs";
-import { ReferenciaObjeto } from "./referencia-objeto";
+import { NexusReferenciaObjeto } from "./nexus-referencia-objeto";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SessaoService } from "../services/sessao/sessao.service";
 
@@ -37,7 +37,7 @@ extends MatPaginatorIntl implements OnInit, DoCheck {
   override firstPageLabel = 'Primeira página';
   override lastPageLabel = 'Última página';
   
-  objetoSelecionado: ReferenciaObjeto = new ReferenciaObjeto();
+  objetoSelecionado: NexusReferenciaObjeto = new NexusReferenciaObjeto();
   selecionouObjeto: boolean = false;
 
   //Guarda a página para fazer requisições.

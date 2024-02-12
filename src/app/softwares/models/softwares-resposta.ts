@@ -1,10 +1,10 @@
 import { NexusResposta } from "../../compartilhado/models/nexus-resposta"
-import { ReferenciaObjeto } from "../../compartilhado/models/referencia-objeto"
+import { NexusReferenciaObjeto } from "../../compartilhado/models/nexus-referencia-objeto"
 
 export class SoftwareResposta extends NexusResposta {
-    componente: ReferenciaObjeto = new ReferenciaObjeto();
+    componente: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
-    projeto: ReferenciaObjeto = new ReferenciaObjeto();
+    projeto: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
     chaveLicenca: string = '';
 

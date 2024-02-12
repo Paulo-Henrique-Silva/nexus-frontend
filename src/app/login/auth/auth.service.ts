@@ -4,7 +4,7 @@ import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { UsuarioPerfilService } from '../../configuracoes/usuario-perfil.service';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
 
 @Injectable({
   providedIn: 'root'
@@ -49,8 +49,8 @@ export class AuthService {
             else {
               this.sessaoService.perfilSelecionado$.next(null);
               this.sessaoService.projetoSelecionado$.next(null);
-              this.sessaoService.perfilSelecionado = new ReferenciaObjeto();
-              this.sessaoService.projetoSelecionado = new ReferenciaObjeto();
+              this.sessaoService.perfilSelecionado = new NexusReferenciaObjeto();
+              this.sessaoService.projetoSelecionado = new NexusReferenciaObjeto();
             }
           },
           error: (error: any) => {

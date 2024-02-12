@@ -5,7 +5,7 @@ import { SessaoService } from './compartilhado/services/sessao/sessao.service';
 import { UsuariosService } from './login/usuarios.service';
 import { EMPTY, combineLatest, switchMap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ReferenciaObjeto } from './compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from './compartilhado/models/nexus-referencia-objeto';
 
 export const MY_FORMATS = {
   parse: {
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   usuarioAutenticado: boolean = false;
   nomeAcesso: string = '';
   projetoEPerfil: string = '';
-  perfil: ReferenciaObjeto | null = null;
+  perfil: NexusReferenciaObjeto | null = null;
 
   //Se a aplicação está obtendo ou não o nome de acesso do usuário.
   carregandoInfoUsuario: boolean = false;

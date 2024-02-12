@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReferenciaObjeto } from '../../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { SessaoService } from '../../compartilhado/services/sessao/sessao.servic
   styleUrl: './administracao-menu.component.scss'
 })
 export class AdministracaoMenuComponent {
-  perfil: ReferenciaObjeto = new ReferenciaObjeto();
+  perfil: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
   constructor(
     sessaoService: SessaoService

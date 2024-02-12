@@ -1,8 +1,8 @@
 import { NexusResposta } from "../../compartilhado/models/nexus-resposta";
-import { ReferenciaObjeto } from "../../compartilhado/models/referencia-objeto";
+import { NexusReferenciaObjeto } from "../../compartilhado/models/nexus-referencia-objeto";
 
 export class NotificacaoResposta extends NexusResposta {
-    public usuario: ReferenciaObjeto = new ReferenciaObjeto()
+    public usuario: NexusReferenciaObjeto = new NexusReferenciaObjeto()
     
     public vista: boolean = false
 }

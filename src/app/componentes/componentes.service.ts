@@ -7,7 +7,7 @@ import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 import { Observable, take } from 'rxjs';
 import { NexusListaResposta } from '../compartilhado/models/nexus-lista-resposta';
 import { LocalizacaoResposta } from '../localizacoes/models/localizacao-resposta';
-import { ReferenciaObjeto } from '../compartilhado/models/referencia-objeto';
+import { NexusReferenciaObjeto } from '../compartilhado/models/nexus-referencia-objeto';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,8 @@ export class ComponentesService extends NexusService<ComponenteEnvio, Componente
     super(http, sessaoService, 'https://localhost:7172/api/Componente');
   }
 
-  obterTipos(): Observable<ReferenciaObjeto[]> {
-    return this.http.get<ReferenciaObjeto[]>(this.url + '/Tipos', 
+  obterTipos(): Observable<NexusReferenciaObjeto[]> {
+    return this.http.get<NexusReferenciaObjeto[]>(this.url + '/Tipos', 
     { headers: this.header }).pipe(take(1));
   }
 
