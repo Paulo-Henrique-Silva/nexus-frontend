@@ -1,24 +1,32 @@
 <div>
-    <div class="p-3">
-        <nexus-atribuicoes-botao-voltar></nexus-atribuicoes-botao-voltar>
+    <div *ngIf="carregando; else telaPrincipal" 
+    class="d-flex flex-column justify-content-center align-items-center h-100 p-3">
+        <mat-spinner class="mb-3"></mat-spinner>
+        <h3>Carregando Ações...</h3>
     </div>
 
-    <mat-divider></mat-divider>
-
-    <div class="p-3">
-        <button class="text-ellipis" mat-button color="primary" matTooltip="Ver Manutenção"
-        [routerLink]="['/ativos/manutencoes/detalhes/', atribuicao.objeto.uid]">
-            <mat-icon matPrefix>launch</mat-icon>
-            {{ atribuicao.objeto.nome }}
-        </button>
-    </div>
-
-    <mat-divider></mat-divider>
-
-    <div class="p-3">
-        <div class="d-flex flex-column">
-            <nexus-botao-acoes icone="done" texto="Completar">
-            </nexus-botao-acoes>
+    <ng-template #telaPrincipal>
+        <div class="p-3">
+            <nexus-atribuicoes-botao-voltar></nexus-atribuicoes-botao-voltar>
         </div>
-    </div>
+    
+        <mat-divider></mat-divider>
+    
+        <div class="p-3">
+            <button class="text-ellipis" mat-button color="primary" matTooltip="Ver Manutenção"
+            [routerLink]="['/ativos/manutencoes/editar/', atribuicao.objeto.uid]">
+                <mat-icon matPrefix>launch</mat-icon>
+                {{ atribuicao.objeto.nome }}
+            </button>
+        </div>
+    
+        <mat-divider></mat-divider>
+    
+        <div class="p-3">
+            <div class="d-flex flex-column">
+                <nexus-botao-acoes *ngIf="manutencao.solucao != null && manutencao.solucao.length != 0" icone="done" texto="Completar">
+                </nexus-botao-acoes>
+            </div>
+        </div>
+    </ng-template>
 </div>

@@ -123,6 +123,14 @@
                         </mat-card-content>
                     </mat-card>
 
+                    <mat-form-field class="mb-3">
+                        <mat-label>Solução</mat-label>
+                        <input type="text" matInput formControlName="solucao">
+                        <mat-error *ngIf="campoInvalido('solucao')">
+                            {{ obterMensagemErro('solucao') }}
+                        </mat-error>
+                    </mat-form-field>
+
                     <mat-card-actions [align]="'end'">
                         <button type="submit" mat-raised-button color="primary" (click)="onSubmit()" 
                         [disabled]="formulario.invalid">

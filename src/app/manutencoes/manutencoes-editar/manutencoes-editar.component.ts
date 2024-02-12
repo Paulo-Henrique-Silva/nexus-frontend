@@ -50,6 +50,7 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
       descricao: ['', Validators.maxLength(400)],
       componente: [{ value: '', disabled:true }, [Validators.required]],
       responsavel: ['', [Validators.required]],
+      solucao: ['', [Validators.maxLength(200)]],
     })
   }
 
@@ -68,7 +69,8 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
           nome: manutencoes.nome,
           descricao: manutencoes.descricao,
           componente: manutencoes.componente.uid,
-          responsavel: manutencoes.responsavel.uid
+          responsavel: manutencoes.responsavel.uid,
+          solucao: manutencoes.solucao,
         })
 
         this.componentes.push(manutencoes.componente);
@@ -122,6 +124,7 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
     const descricao: string = this.formulario.get('descricao')?.value;
     const componente: string = this.formulario.get('componente')?.value;
     const responsavel: string = this.formulario.get('responsavel')?.value;
+    const solucao: string = this.formulario.get('solucao')?.value;
 
     const manutencao: ManutencaoEnvio = {
       nome: nome,
@@ -131,8 +134,10 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
       dataInicio: new Date(),
       dataTermino: null,
       responsavelUID: responsavel,
-      solucao: null
+      solucao: solucao
     };
+
+    console.log(manutencao);
 
     this.service.editar(uid, manutencao)
       .subscribe({
