@@ -10,10 +10,13 @@
     <mat-tab-group dynamicHeight>
         <mat-tab label="Em Andamento">
             <div class="m-3">
-                <h2>19 de Janeiro - Hoje</h2>
-                <nexus-atribuicoes-card *ngFor="let atribuicao of atribuicoes" [atribuicao]="atribuicao">
-                </nexus-atribuicoes-card>
-                <mat-divider></mat-divider>
+                <div *ngFor="let data of chavesAgrupadas">
+                    <h2>{{ data }}</h2>
+                    <nexus-atribuicoes-card *ngFor="let atribuicao of atribuicoesAgrupadas[data]" 
+                    [atribuicao]="atribuicao">
+                    </nexus-atribuicoes-card>
+                    <mat-divider></mat-divider>
+                </div>
             </div>
         
         </mat-tab>

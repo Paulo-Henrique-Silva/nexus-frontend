@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { take, switchMap, EMPTY } from 'rxjs';
@@ -6,15 +6,18 @@ import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialo
 import { NexusReferenciaObjeto } from '../../compartilhado/models/dtos/nexus-referencia-objeto';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { ManutencoesService } from '../manutencoes.service';
+import { ManutencaoResposta } from '../models/manutencoes-resposta';
 
 @Component({
   selector: 'nexus-manutencoes-acoes',
   templateUrl: './manutencoes-acoes.component.html',
   styleUrl: './manutencoes-acoes.component.scss'
 })
-export class ManutencoesAcoesComponent {
+export class ManutencoesAcoesComponent implements OnInit {
   @Input()
   objeto: NexusReferenciaObjeto = new NexusReferenciaObjeto();
+
+  manutencao: ManutencaoResposta = new ManutencaoResposta();
 
   @Output() 
   deletou = new EventEmitter<any>();
@@ -28,9 +31,18 @@ export class ManutencoesAcoesComponent {
     private service: ManutencoesService,
     sessaoService: SessaoService,
     private snackbar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private manutencaoService: ManutencoesService
   ) {
     this.perfil = sessaoService.perfilSelecionado;
+  }
+
+  ngOnInit(): void {
+    this.manutencaoService.obterPorUID(this.objeto.uid)
+      .subscribe({
+        next: (manutencao) => this.manutencao = manutencao,
+        error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
+      })
   }
 
   deletarObjeto(): void {
