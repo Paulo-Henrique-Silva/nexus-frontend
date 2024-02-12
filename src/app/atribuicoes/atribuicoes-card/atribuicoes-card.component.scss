@@ -2,5 +2,6 @@
 
 mat-card:hover {
     box-shadow: v.$shadow;
+    background-color: v.$gray;
     cursor: pointer
 }

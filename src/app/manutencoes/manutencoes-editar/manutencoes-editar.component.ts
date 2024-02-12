@@ -137,8 +137,6 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
       solucao: solucao
     };
 
-    console.log(manutencao);
-
     this.service.editar(uid, manutencao)
       .subscribe({
         next: () => {

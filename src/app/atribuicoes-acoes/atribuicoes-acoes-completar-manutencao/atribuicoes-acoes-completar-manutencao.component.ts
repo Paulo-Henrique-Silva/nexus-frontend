@@ -31,7 +31,6 @@ export class AtribuicoesAcoesCompletarManutencaoComponent implements OnInit {
         next: (manutencao) => {
           this.carregando = false;
           this.manutencao = manutencao;
-          console.log(manutencao);
         },
         error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu.')
       })
