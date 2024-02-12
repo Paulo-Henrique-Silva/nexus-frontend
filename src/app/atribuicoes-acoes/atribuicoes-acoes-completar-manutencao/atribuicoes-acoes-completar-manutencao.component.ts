@@ -3,7 +3,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AtribuicaoResposta } from '../../atribuicoes/models/atribuicao-resposta';
 import { ManutencoesService } from '../../manutencoes/manutencoes.service';
 import { ManutencaoResposta } from '../../manutencoes/models/manutencoes-resposta';
-import { delay } from 'rxjs';
 import { Router } from '@angular/router';
 import { VerificacaoManutencaoService } from '../../manutencoes/ciclo-vida/verificacao-manutencao.service';
 
@@ -41,7 +40,14 @@ export class AtribuicoesAcoesCompletarManutencaoComponent implements OnInit {
   }
 
   completar(): void {
-    console.log('Hello World!');
+    this.verificacaoManutencao.usuarioConcluiu({ sucesso: true, atribuicaoUID: this.atribuicao.uid })
+      .subscribe({
+        next: () => {
+          this.mostrarSnackBarOk('Manutenção completada!');
+          this.router.navigate(['/atribuicoes']);
+        },
+        error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu.')
+      })
   }
 
   mostrarSnackBarOk(texto: string): void {
