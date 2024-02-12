@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AtribuicoesAcoesCompletarManutencaoComponent } from './atribuicoes-acoes-completar-manutencao/atribuicoes-acoes-completar-manutencao.component';
 import { MaterialModule } from '../compartilhado/material/material.module';
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
+import { RouterModule } from '@angular/router';
+import { AtribuicoesBotaoVoltarComponent } from './atribuicoes-botao-voltar/atribuicoes-botao-voltar.component';
 
 const components = [
   AtribuicoesAcoesCompletarManutencaoComponent
@@ -10,12 +12,14 @@ const components = [
 
 @NgModule({
   declarations: [
-    components
+    components,
+    AtribuicoesBotaoVoltarComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    CompartilhadoModule
+    CompartilhadoModule,
+    RouterModule,
   ],
   exports: [
     components
