@@ -4,9 +4,9 @@ import { MatPaginatorIntl, MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Subscription } from "rxjs";
-import { NexusReferenciaObjeto } from "./nexus-referencia-objeto";
+import { NexusReferenciaObjeto } from "../dtos/nexus-referencia-objeto";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { SessaoService } from "../services/sessao/sessao.service";
+import { SessaoService } from "../../services/sessao/sessao.service";
 
 @Component({
     selector: 'nexus-buscar',

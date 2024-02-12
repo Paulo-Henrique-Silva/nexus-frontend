@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, take } from "rxjs";
 import { SessaoService } from "../sessao/sessao.service";
-import { NexusIniciarCicloVida } from "../../models/nexus-iniciar-ciclo-vida";
+import { NexusIniciarCicloVida } from "../../models/ciclo-vida/nexus-iniciar-ciclo-vida";
 
 export class NexusCicloVidaService {
     protected url: string = ''

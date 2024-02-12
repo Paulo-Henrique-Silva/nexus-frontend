@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AtribuicaoResposta } from '../models/atribuicao-resposta';
-import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/dtos/nexus-referencia-objeto';
 import { AtribuicoesService } from '../atribuicoes.service';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';

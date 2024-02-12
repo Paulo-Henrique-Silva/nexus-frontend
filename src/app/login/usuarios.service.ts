@@ -6,7 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map, take } from 'rxjs';
 import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 import { AtribuicaoResposta } from '../atribuicoes/models/atribuicao-resposta';
-import { NexusListaResposta } from '../compartilhado/models/nexus-lista-resposta';
+import { NexusListaResposta } from '../compartilhado/models/dtos/nexus-lista-resposta';
 
 @Injectable({
   providedIn: 'root'

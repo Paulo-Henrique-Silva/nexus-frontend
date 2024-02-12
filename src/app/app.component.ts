@@ -5,7 +5,7 @@ import { SessaoService } from './compartilhado/services/sessao/sessao.service';
 import { UsuariosService } from './login/usuarios.service';
 import { EMPTY, combineLatest, switchMap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NexusReferenciaObjeto } from './compartilhado/models/nexus-referencia-objeto';
+import { NexusReferenciaObjeto } from './compartilhado/models/dtos/nexus-referencia-objeto';
 
 export const MY_FORMATS = {
   parse: {

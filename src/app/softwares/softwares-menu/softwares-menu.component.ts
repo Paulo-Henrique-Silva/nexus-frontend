@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/dtos/nexus-referencia-objeto';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 
 @Component({

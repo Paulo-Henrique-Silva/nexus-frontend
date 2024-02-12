@@ -5,9 +5,9 @@ import { ComponenteResposta } from './models/componentes-resposta';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 import { Observable, take } from 'rxjs';
-import { NexusListaResposta } from '../compartilhado/models/nexus-lista-resposta';
+import { NexusListaResposta } from '../compartilhado/models/dtos/nexus-lista-resposta';
 import { LocalizacaoResposta } from '../localizacoes/models/localizacao-resposta';
-import { NexusReferenciaObjeto } from '../compartilhado/models/nexus-referencia-objeto';
+import { NexusReferenciaObjeto } from '../compartilhado/models/dtos/nexus-referencia-objeto';
 
 @Injectable({
   providedIn: 'root'

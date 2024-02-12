@@ -1,4 +1,4 @@
-import { NexusReferenciaObjeto } from "../../../compartilhado/models/nexus-referencia-objeto";
+import { NexusReferenciaObjeto } from "../../../compartilhado/models/dtos/nexus-referencia-objeto";
 
 export class UsuarioPerfilResposta {
     constructor(

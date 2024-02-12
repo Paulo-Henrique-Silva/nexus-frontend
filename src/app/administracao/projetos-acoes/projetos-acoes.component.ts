@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { take, switchMap, EMPTY } from 'rxjs';
 import { DialogDeletarComponent } from '../../compartilhado/dialog-deletar/dialog-deletar.component';
-import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/dtos/nexus-referencia-objeto';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { ProjetoService } from '../services/projeto/projeto.service';
 

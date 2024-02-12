@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NexusBuscar } from '../../compartilhado/models/nexus-buscar';
+import { NexusBuscar } from '../../compartilhado/models/componentes/nexus-buscar';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { SoftwaresService } from '../../softwares/softwares.service';
 import { ManutencoesService } from '../manutencoes.service';

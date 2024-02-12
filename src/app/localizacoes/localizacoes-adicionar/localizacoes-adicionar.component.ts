@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
+import { NexusFormulario } from '../../compartilhado/models/componentes/nexus-formulario';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';

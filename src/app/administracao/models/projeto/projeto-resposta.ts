@@ -1,4 +1,4 @@
-import { NexusResposta } from "../../../compartilhado/models/nexus-resposta";
+import { NexusResposta } from "../../../compartilhado/models/dtos/nexus-resposta";
 
 export class ProjetoResposta extends NexusResposta {
 

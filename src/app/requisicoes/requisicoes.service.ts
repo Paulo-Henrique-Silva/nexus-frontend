@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { NexusListaResposta } from '../compartilhado/models/nexus-lista-resposta';
+import { NexusListaResposta } from '../compartilhado/models/dtos/nexus-lista-resposta';
 import { NexusService } from '../compartilhado/services/nexus-service/nexus-service';
 import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 import { LocalizacaoEnvio } from '../localizacoes/models/localizacao-envio';

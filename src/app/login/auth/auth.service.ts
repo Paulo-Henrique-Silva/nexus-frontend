@@ -4,7 +4,7 @@ import { UsuarioEnvio } from '../models/usuario-envio';
 import { UsuariosService } from '../usuarios.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { UsuarioPerfilService } from '../../configuracoes/usuario-perfil.service';
-import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/dtos/nexus-referencia-objeto';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
+import { NexusFormulario } from '../../compartilhado/models/componentes/nexus-formulario';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';

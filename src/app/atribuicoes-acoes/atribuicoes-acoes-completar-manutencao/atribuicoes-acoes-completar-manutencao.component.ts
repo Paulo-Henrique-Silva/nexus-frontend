@@ -4,6 +4,8 @@ import { AtribuicaoResposta } from '../../atribuicoes/models/atribuicao-resposta
 import { ManutencoesService } from '../../manutencoes/manutencoes.service';
 import { ManutencaoResposta } from '../../manutencoes/models/manutencoes-resposta';
 import { delay } from 'rxjs';
+import { Router } from '@angular/router';
+import { VerificacaoManutencaoService } from '../../manutencoes/ciclo-vida/verificacao-manutencao.service';
 
 @Component({
   selector: 'nexus-atribuicoes-acoes-completar-manutencao',
@@ -20,7 +22,9 @@ export class AtribuicoesAcoesCompletarManutencaoComponent implements OnInit {
 
   constructor(
     private snackbar: MatSnackBar,
-    private manutencaoService: ManutencoesService
+    private manutencaoService: ManutencoesService,
+    private verificacaoManutencao: VerificacaoManutencaoService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +38,10 @@ export class AtribuicoesAcoesCompletarManutencaoComponent implements OnInit {
         },
         error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu.')
       })
+  }
+
+  completar(): void {
+    console.log('Hello World!');
   }
 
   mostrarSnackBarOk(texto: string): void {

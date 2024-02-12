@@ -1,9 +1,9 @@
 import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from "@angular/forms"
 import { ActivatedRoute, Router } from "@angular/router"
-import { AuthService } from "../../login/auth/auth.service"
-import { MensagensValidacaoService } from "../services/mensagens-validacao/mensagens-validacao.service"
+import { AuthService } from "../../../login/auth/auth.service"
+import { MensagensValidacaoService } from "../../services/mensagens-validacao/mensagens-validacao.service"
 import { MatSnackBar } from "@angular/material/snack-bar"
-import { SessaoService } from "../services/sessao/sessao.service"
+import { SessaoService } from "../../services/sessao/sessao.service"
 
 export abstract class NexusFormulario {
     public formulario: FormGroup = this.formBuilder.group({ });

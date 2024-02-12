@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { NexusReferenciaObjeto } from '../../models/nexus-referencia-objeto';
+import { NexusReferenciaObjeto } from '../../models/dtos/nexus-referencia-objeto';
 
 @Injectable({
   providedIn: 'root'

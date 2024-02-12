@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { UsuariosService } from '../../login/usuarios.service';
-import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
+import { NexusFormulario } from '../../compartilhado/models/componentes/nexus-formulario';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
+import { NexusFormulario } from '../../compartilhado/models/componentes/nexus-formulario';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { AuthService } from '../../login/auth/auth.service';
 import { ProjetoService } from '../services/projeto/projeto.service';
 import { PerfilService } from '../services/perfil/perfil.service';
 import { EMPTY, combineLatest, switchMap } from 'rxjs';
-import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referencia-objeto';
+import { NexusReferenciaObjeto } from '../../compartilhado/models/dtos/nexus-referencia-objeto';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { UsuariosService } from '../../login/usuarios.service';
 import { UsuarioPerfilService } from '../../configuracoes/usuario-perfil.service';

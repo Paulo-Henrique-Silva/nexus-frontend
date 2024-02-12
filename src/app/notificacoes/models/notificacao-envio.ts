@@ -1,4 +1,4 @@
-import { NexusEnvio } from "../../compartilhado/models/nexus-envio";
+import { NexusEnvio } from "../../compartilhado/models/dtos/nexus-envio";
 
 export class NotificacaoEnvio extends NexusEnvio {
     public usuarioUID: string = ''

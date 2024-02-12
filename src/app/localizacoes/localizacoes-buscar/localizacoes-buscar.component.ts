@@ -3,7 +3,7 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { LocalizacoesService } from '../localizacoes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { NexusBuscar } from '../../compartilhado/models/nexus-buscar';
+import { NexusBuscar } from '../../compartilhado/models/componentes/nexus-buscar';
 
 @Component({
   selector: 'app-localizacoes-buscar',

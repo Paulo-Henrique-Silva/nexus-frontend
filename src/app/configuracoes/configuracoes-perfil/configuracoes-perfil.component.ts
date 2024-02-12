@@ -3,7 +3,7 @@ import { UsuarioPerfilService } from '../usuario-perfil.service';
 import { UsuarioPerfilResposta } from '../../administracao/models/usuario-perfil/usuario-perfil-resposta';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NexusFormulario } from '../../compartilhado/models/nexus-formulario';
+import { NexusFormulario } from '../../compartilhado/models/componentes/nexus-formulario';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';

@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { LocalizacaoResposta } from './models/localizacao-resposta';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { LocalizacaoEnvio } from './models/localizacao-envio';
-import { NexusReferenciaObjeto } from '../compartilhado/models/nexus-referencia-objeto';
+import { NexusReferenciaObjeto } from '../compartilhado/models/dtos/nexus-referencia-objeto';
 import { NexusService } from '../compartilhado/services/nexus-service/nexus-service';
 import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
 import { Observable, take } from 'rxjs';
-import { NexusListaResposta } from '../compartilhado/models/nexus-lista-resposta';
+import { NexusListaResposta } from '../compartilhado/models/dtos/nexus-lista-resposta';
 
 @Injectable({
   providedIn: 'root'
