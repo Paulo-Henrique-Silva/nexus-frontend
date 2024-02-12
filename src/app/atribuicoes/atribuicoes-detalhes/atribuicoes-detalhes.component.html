@@ -1,6 +1,10 @@
 <mat-sidenav-container>
     <mat-sidenav mode="side" opened class="w-25">
-        <nexus-atribuicoes-acoes [objeto]="atribuicaoRef"></nexus-atribuicoes-acoes>
+        <div [ngSwitch]="atribuicao.tipo.nome">
+            <nexus-atribuicoes-acoes-completar-manutencao [atribuicao]="atribuicao" 
+            *ngSwitchCase="'CompletarManutencao'">
+            </nexus-atribuicoes-acoes-completar-manutencao>
+        </div>
     </mat-sidenav>
     <mat-sidenav-content class="p-3">
         <div class="d-flex justify-content-between mb-3 me-3">

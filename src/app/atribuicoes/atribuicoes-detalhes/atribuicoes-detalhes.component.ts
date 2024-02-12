@@ -11,7 +11,6 @@ import { DatePipe } from '@angular/common';
   styleUrl: './atribuicoes-detalhes.component.scss'
 })
 export class AtribuicoesDetalhesComponent implements OnInit {
-  atribuicaoRef: ReferenciaObjeto = new ReferenciaObjeto();
   atribuicao: AtribuicaoResposta = new AtribuicaoResposta();
   dataVencimentoFormatada: string | null = '';
 
@@ -30,12 +29,11 @@ export class AtribuicoesDetalhesComponent implements OnInit {
     this.atribuicaoService.obterPorUID(atribuicaoUID)
       .subscribe({
         next: (atribuicao) => {
-
           this.carregando = false;
           this.atribuicao = atribuicao;
-          this.atribuicaoRef = { uid: atribuicao.uid, nome: atribuicao.nome };
-          this.dataVencimentoFormatada = pipe.transform(this.atribuicao.dataVencimento, 'dd/MM/yyyy HH:mm');
 
+          //formatar data
+          this.dataVencimentoFormatada = pipe.transform(this.atribuicao.dataVencimento, 'dd/MM/yyyy HH:mm');
           if (this.dataVencimentoFormatada) {
             this.dataVencimentoFormatada = this.dataVencimentoFormatada.replace(' ', ' às ');
           }

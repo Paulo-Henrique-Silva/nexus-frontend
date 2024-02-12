@@ -3,7 +3,7 @@ import { NexusEnvio } from "../../compartilhado/models/nexus-envio";
 export class AtribuicaoEnvio extends NexusEnvio {
     public usuarioUID: string = ''
 
-    public tipoAtribuicao: number = 0
+    public tipo: number = 0
     
     public dataVencimento: Date = new Date();
 
