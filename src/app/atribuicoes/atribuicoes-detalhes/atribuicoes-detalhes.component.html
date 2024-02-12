@@ -1,22 +1,30 @@
-<mat-sidenav-container>
-    <mat-sidenav mode="side" opened class="w-25">
-        <div [ngSwitch]="atribuicao.tipo.nome">
-            <nexus-atribuicoes-acoes-completar-manutencao [atribuicao]="atribuicao" 
-            *ngSwitchCase="'CompletarManutencao'">
-            </nexus-atribuicoes-acoes-completar-manutencao>
-        </div>
-    </mat-sidenav>
-    <mat-sidenav-content class="p-3">
-        <div class="d-flex justify-content-between mb-3 me-3">
-            <div>
-                <h2>{{ atribuicao.nome }}</h2>
-                <div>{{ atribuicao.cicloVida.nome }}</div>
+<div *ngIf="carregando; else telaPrincipal" 
+    class="d-flex flex-column justify-content-center align-items-center h-100">
+    <mat-spinner class="mb-3"></mat-spinner>
+    <h3>Carregando atribuição...</h3>
+</div>
+
+<ng-template #telaPrincipal>
+    <mat-sidenav-container>
+        <mat-sidenav mode="side" opened class="w-25">
+            <div [ngSwitch]="atribuicao.tipo.nome">
+                <nexus-atribuicoes-acoes-completar-manutencao [atribuicao]="atribuicao" 
+                *ngSwitchCase="'CompletarManutencao'">
+                </nexus-atribuicoes-acoes-completar-manutencao>
             </div>
-            <div><strong>Vence {{ dataVencimentoFormatada }}</strong></div>
-        </div>
-    
-        <div>
-            <p>{{ atribuicao.descricao }}</p>
-        </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+        </mat-sidenav>
+        <mat-sidenav-content class="p-3">
+            <div class="d-flex justify-content-between mb-3 me-3">
+                <div>
+                    <h2>{{ atribuicao.nome }}</h2>
+                    <div>{{ atribuicao.cicloVida.nome }}</div>
+                </div>
+                <div><strong>Vence {{ dataVencimentoFormatada }}</strong></div>
+            </div>
+        
+            <div>
+                <p>{{ atribuicao.descricao }}</p>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</ng-template>

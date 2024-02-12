@@ -4,6 +4,8 @@ import { NexusReferenciaObjeto } from '../../compartilhado/models/nexus-referenc
 import { AtribuicoesService } from '../atribuicoes.service';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { delay } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'nexus-atribuicoes-detalhes',
@@ -19,6 +21,7 @@ export class AtribuicoesDetalhesComponent implements OnInit {
   constructor(
     private atribuicaoService: AtribuicoesService,
     private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +40,12 @@ export class AtribuicoesDetalhesComponent implements OnInit {
           if (this.dataVencimentoFormatada) {
             this.dataVencimentoFormatada = this.dataVencimentoFormatada.replace(' ', ' às ');
           }
-        }
+        },
+        error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
       })
+  }
+
+  mostrarSnackBarOk(texto: string): void {
+    this.snackBar.open(texto, 'Ok')._dismissAfter(3000);
   }
 }

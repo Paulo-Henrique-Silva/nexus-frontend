@@ -11,4 +11,6 @@ export class AtribuicaoResposta extends NexusResposta {
     public concluida: boolean = false;
 
     public cicloVida: NexusReferenciaObjeto = new NexusReferenciaObjeto();
+
+    public objeto: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 }
