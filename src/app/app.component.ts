@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   perfil: NexusReferenciaObjeto | null = null;
 
   existemAtribuicoes: boolean = false;
+  existemNotificacoes: boolean = false;
 
   //Se a aplicação está obtendo ou não informações do usuário.
   carregandoInfoUsuario: boolean = false;
@@ -64,19 +65,25 @@ export class AppComponent implements OnInit {
 
         return EMPTY; //encera a execução dos observables.
       }),
-      switchMap((usuario) => {
+      switchMap(usuario => {
         //Obtém informações do usuário.
         if (usuario) {
           this.nomeAcesso = usuario.nomeAcesso;
-          return this.usuarioService.obterAtribuicoesPorUsuarioUID(this.sessaoService.uidUsuario);
+          return combineLatest([
+            this.usuarioService.obterAtribuicoesPorUsuarioUID(this.sessaoService.uidUsuario), 
+            this.usuarioService.obterNotificacoesPorUsuarioUID(this.sessaoService.uidUsuario)
+          ]);
         }
         
         return throwError(() => Error('Usuário não encontrado!'));
       }
       ))
       .subscribe({
-        next: (atribuicoes) => {
-        this.existemAtribuicoes = atribuicoes.itens.filter(a => !a.concluida).length > 0;
+        next: ([atribuicoes, notificacoes]) => {
+          //procura por atribuições não concluídas e
+          //notificaçoes não vistas.
+          this.existemAtribuicoes = atribuicoes.itens.filter(a => !a.concluida).length > 0;
+          this.existemNotificacoes = notificacoes.itens.filter(a => !a.vista).length > 0;
       },
       error: () => {
         this.tratarErroCarregamentoUsuario();
