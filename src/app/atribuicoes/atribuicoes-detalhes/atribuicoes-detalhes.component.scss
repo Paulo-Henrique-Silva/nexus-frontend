@@ -1,0 +1,26 @@
+@use "../../../styles/variables.scss" as v;
+
+.alert-danger {
+    border-color: v.$warn;
+    color: v.$warn;
+}
+
+.alert-success {
+    border-color: v.$success;  
+    color: v.$success;  
+} 
+
+.alert {
+    padding: 1.25rem;
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.color-success {
+    color: v.$success;
+}
+
+.color-warn {
+    color: v.$warn;
+}

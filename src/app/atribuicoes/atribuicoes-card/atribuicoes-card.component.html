@@ -1,5 +1,5 @@
 <div class="mb-3">
-    <mat-card>
+    <mat-card  [routerLink]="['/atribuicoes', atribuicao.uid]">
         <mat-card-header class="mb-2">
             <mat-card-title>{{ atribuicao.nome }}</mat-card-title>
             <mat-card-subtitle class="color-success" *ngIf="atribuicao.concluida">

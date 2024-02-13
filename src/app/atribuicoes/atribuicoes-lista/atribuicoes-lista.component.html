@@ -21,7 +21,7 @@
                     <h2 [class.color-primary]="data.includes('Hoje')">{{ data }}</h2>
 
                     <nexus-atribuicoes-card *ngFor="let atribuicao of atribuicoesAgrupadasEmAndamento[data]" 
-                    [atribuicao]="atribuicao" [routerLink]="['/atribuicoes', atribuicao.uid]">
+                    [atribuicao]="atribuicao">
                     </nexus-atribuicoes-card>
 
                     <mat-divider></mat-divider>
