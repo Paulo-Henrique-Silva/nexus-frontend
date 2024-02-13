@@ -11,6 +11,12 @@
         <!--Em andamento-->
         <mat-tab label="Em Andamento">
             <div class="m-3">
+
+                <nexus-atribuicoes-lista-vazia *ngIf="chavesAgrupadasEmAndamento.length == 0"
+                titulo="Sem atribuições em andamento..." 
+                caminhoImagem="../../../assets/atribuicoes.svg">
+                </nexus-atribuicoes-lista-vazia>
+
                 <div *ngFor="let data of chavesAgrupadasEmAndamento" class="mb-3">
                     <h2 [class.color-primary]="data.includes('Hoje')">{{ data }}</h2>
 
@@ -25,9 +31,22 @@
 
         <!--Em atraso-->
         <mat-tab label="Em Atraso">
-            <div class="m-3" >
+
+            <ng-template mat-tab-label *ngIf="chavesAgrupadasEmAtraso.length != 0">
+                <span matBadge="!" matBadgeOverlap="false" matBadgeSize="small" 
+                matBadgeColor="warn">
+                    Em Atraso
+                </span>
+            </ng-template>
+
+            <div class="m-3">
+                <nexus-atribuicoes-lista-vazia *ngIf="chavesAgrupadasEmAtraso.length == 0"
+                titulo="Atribuições dentro do prazo..."
+                caminhoImagem="../../../assets/atribuicoes-em-atraso.svg">
+                </nexus-atribuicoes-lista-vazia>
+
                 <div *ngFor="let data of chavesAgrupadasEmAtraso" class="mb-3">
-                    <h2 [class.color-primary]="data.includes('Hoje')">{{ data }}</h2>
+                    <h2>{{ data }}</h2>
 
                     <nexus-atribuicoes-card *ngFor="let atribuicao of atribuicoesAgrupadasEmAtraso[data]" 
                     [atribuicao]="atribuicao">
@@ -40,9 +59,14 @@
 
         <!--Concluídas-->
         <mat-tab label="Concluída">
-            <div class="m-3" >
+            <div class="m-3">
+                <nexus-atribuicoes-lista-vazia *ngIf="chavesAgrupadasConcluidas.length == 0"
+                titulo="Nenhuma atribuição foi concluída..."
+                caminhoImagem="../../../assets/atribuicoes-em-dia.svg">
+
+                </nexus-atribuicoes-lista-vazia>
                 <div *ngFor="let data of chavesAgrupadasConcluidas" class="mb-3">
-                    <h2 [class.color-primary]="data.includes('Hoje')">{{ data }}</h2>
+                    <h2>{{ data }}</h2>
 
                     <nexus-atribuicoes-card *ngFor="let atribuicao of atribuicoesAgrupadasConcluidas[data]" 
                     [atribuicao]="atribuicao">

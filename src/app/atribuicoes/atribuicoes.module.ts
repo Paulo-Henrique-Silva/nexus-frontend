@@ -9,6 +9,7 @@ import { MaterialModule } from '../compartilhado/material/material.module';
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { AtribuicoesCardComponent } from './atribuicoes-card/atribuicoes-card.component';
 import { AtribuicoesAcoesModule } from '../atribuicoes-acoes/atribuicoes-acoes.module';
+import { AtribuicoesListaVaziaComponent } from './atribuicoes-lista-vazia/atribuicoes-lista-vazia.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AtribuicoesAcoesModule } from '../atribuicoes-acoes/atribuicoes-acoes.m
     AtribuicoesListaComponent,
     AtribuicoesDetalhesComponent,
     AtribuicoesCardComponent,
+    AtribuicoesListaVaziaComponent,
   ],
   imports: [
     CommonModule,
