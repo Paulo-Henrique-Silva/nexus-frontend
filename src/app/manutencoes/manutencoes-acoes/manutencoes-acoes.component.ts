@@ -40,14 +40,17 @@ export class ManutencoesAcoesComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    this.manutencaoService.obterPorUID(this.objeto.uid)
-      .subscribe({
-        next: (manutencao) => {
-          this.manutencao = manutencao;
-          this.usuarioEoResponsavel = this.sessaoService.uidUsuario == manutencao.responsavel.uid;
-        },
-        error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
-      })
+    //Se o objeto já foi selecionado.
+    if (this.objeto.uid.length > 0) {
+      this.manutencaoService.obterPorUID(this.objeto.uid)
+        .subscribe({
+          next: (manutencao) => {
+            this.manutencao = manutencao;
+            this.usuarioEoResponsavel = this.sessaoService.uidUsuario == manutencao.responsavel.uid;
+          },
+          error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
+        })
+    }
   }
 
   deletarObjeto(): void {

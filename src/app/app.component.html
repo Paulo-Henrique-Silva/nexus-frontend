@@ -50,7 +50,7 @@ class="d-flex flex-column justify-content-center align-items-center h-100">
         <!--Não disponível para leitor ou perfil não configurado.-->
         <nexus-botao-menu routerLink="/atribuicoes" routerLinkActive="active" nome="Atribuições"
         *ngIf="perfil != null && !perfil.nome.includes('Leitor')"
-        icone="view_list">
+        icone="view_list" [mostrarBagde]="existemAtribuicoes">
         </nexus-botao-menu>
 
         <nexus-botao-menu routerLink="/notificacoes" routerLinkActive="active" nome="Notificações"

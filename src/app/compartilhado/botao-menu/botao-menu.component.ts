@@ -11,4 +11,7 @@ export class BotaoMenuComponent {
 
   @Input()
   icone: string = ''
+
+  @Input()
+  mostrarBagde: boolean = false;
 }

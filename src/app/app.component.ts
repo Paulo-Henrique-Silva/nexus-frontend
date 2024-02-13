@@ -6,7 +6,9 @@ import { UsuariosService } from './login/usuarios.service';
 import { EMPTY, combineLatest, switchMap, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NexusReferenciaObjeto } from './compartilhado/models/dtos/nexus-referencia-objeto';
+import { AtribuicoesService } from './atribuicoes/atribuicoes.service';
 
+//Muda o formato de data da aplicação para DD/MM/YYYY
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',
@@ -28,10 +30,13 @@ export class AppComponent implements OnInit {
 
   usuarioAutenticado: boolean = false;
   nomeAcesso: string = '';
+
   projetoEPerfil: string = '';
   perfil: NexusReferenciaObjeto | null = null;
 
-  //Se a aplicação está obtendo ou não o nome de acesso do usuário.
+  existemAtribuicoes: boolean = false;
+
+  //Se a aplicação está obtendo ou não informações do usuário.
   carregandoInfoUsuario: boolean = false;
 
   constructor(
@@ -39,7 +44,7 @@ export class AppComponent implements OnInit {
     private sessaoService: SessaoService,
     private usuarioService: UsuariosService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
     ) { }
 
   ngOnInit(): void {
@@ -58,15 +63,20 @@ export class AppComponent implements OnInit {
         }
 
         return EMPTY; //encera a execução dos observables.
-      }))
-      .subscribe({
-        next: (usuario) => {
+      }),
+      switchMap((usuario) => {
         //Obtém informações do usuário.
         if (usuario) {
-          this.nomeAcesso = usuario.nomeAcesso
+          this.nomeAcesso = usuario.nomeAcesso;
+          return this.usuarioService.obterAtribuicoesPorUsuarioUID(1, this.sessaoService.uidUsuario);
         }
         
         return throwError(() => Error('Usuário não encontrado!'));
+      }
+      ))
+      .subscribe({
+        next: (atribuicoes) => {
+        this.existemAtribuicoes = atribuicoes.itens.filter(a => !a.concluida).length > 0;
       },
       error: () => {
         this.tratarErroCarregamentoUsuario();

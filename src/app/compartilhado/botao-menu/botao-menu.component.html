@@ -1,6 +1,11 @@
 <mat-card class="p-2">
     <div class="text-center">
-        <mat-icon>{{ icone }}</mat-icon>
+
+        <mat-icon *ngIf="mostrarBagde" matBadge="&#8288;" matBadgeSize="small" >
+            {{ icone }}
+        </mat-icon>
+        <mat-icon *ngIf="!mostrarBagde">{{ icone }}</mat-icon>
+
         <mat-card-title>{{ nome }}</mat-card-title>
     </div>
 </mat-card>
