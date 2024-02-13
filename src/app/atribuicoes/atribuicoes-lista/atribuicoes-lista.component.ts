@@ -12,8 +12,15 @@ import { DatePipe } from '@angular/common';
 })
 export class AtribuicoesListaComponent implements OnInit {
   atribuicoes: AtribuicaoResposta[] = [];
-  atribuicoesAgrupadas: any = {};
-  chavesAgrupadas: string[] = [];
+
+  atribuicoesAgrupadasEmAndamento: any = {};
+  chavesAgrupadasEmAndamento: string[] = [];
+
+  atribuicoesAgrupadasEmAtraso: any = {};
+  chavesAgrupadasEmAtraso: string[] = [];
+
+  atribuicoesAgrupadasConcluidas: any = {};
+  chavesAgrupadasConcluidas: string[] = [];
 
   carregando: boolean = false;
 
@@ -32,26 +39,53 @@ export class AtribuicoesListaComponent implements OnInit {
           this.atribuicoes = atribuicoes.itens;
           this.agruparPorDataVencimento();
           this.carregando = false;
-
-          console.log(this.atribuicoesAgrupadas);
         },
         error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
       });
   }
 
   agruparPorDataVencimento(): void {
-    this.atribuicoesAgrupadas = {};
+    this.atribuicoesAgrupadasEmAndamento = {};
 
     this.atribuicoes.forEach(objeto => {
-      const data = this.formatarDataVencimento(objeto.dataVencimento);
+      const dataAtual = new Date();
+      dataAtual.setHours(17, 59, 0); //coloca como fim do horário comercial.
+      
+      const dataVencimento = new Date(objeto.dataVencimento);
+      const dataChave = this.formatarDataVencimento(objeto.dataVencimento);
 
-      if (!this.atribuicoesAgrupadas[data]) {
-        this.atribuicoesAgrupadas[data] = [];
+      //Agrupa atribuições concluídas.
+      if (objeto.concluida) {
+        if (!this.atribuicoesAgrupadasConcluidas[dataChave]) {
+          this.atribuicoesAgrupadasConcluidas[dataChave] = [];
+        }
+
+        this.atribuicoesAgrupadasConcluidas[dataChave].push(objeto);
       }
-      this.atribuicoesAgrupadas[data].push(objeto);
+      //Agrupa atribuições concluídas e não vencidas.
+      else if (dataVencimento >= dataAtual) {
+        if (!this.atribuicoesAgrupadasEmAndamento[dataChave]) {
+          this.atribuicoesAgrupadasEmAndamento[dataChave] = [];
+        }
+
+        this.atribuicoesAgrupadasEmAndamento[dataChave].push(objeto);
+      }
+      else {
+        if (!this.atribuicoesAgrupadasEmAtraso[dataChave]) {
+          this.atribuicoesAgrupadasEmAtraso[dataChave] = [];
+        }
+
+        this.atribuicoesAgrupadasEmAtraso[dataChave].push(objeto);
+      }
     });
 
-    this.chavesAgrupadas = Object.keys(this.atribuicoesAgrupadas);
+    this.chavesAgrupadasConcluidas = Object.keys(this.atribuicoesAgrupadasConcluidas);
+    this.chavesAgrupadasEmAndamento = Object.keys(this.atribuicoesAgrupadasEmAndamento);
+    this.chavesAgrupadasEmAtraso = Object.keys(this.atribuicoesAgrupadasEmAtraso);
+    
+    this.chavesAgrupadasConcluidas.sort();
+    this.chavesAgrupadasEmAndamento.sort();
+    this.chavesAgrupadasEmAtraso.sort();
   }
 
   mostrarSnackBarOk(texto: string): void {
@@ -59,7 +93,21 @@ export class AtribuicoesListaComponent implements OnInit {
   }
 
   formatarDataVencimento(dataVencimento: Date): string {
-    const pipe = new DatePipe('de-at');
-    return pipe.transform(dataVencimento, "dd \'de\' MMMM") ?? '';
+    const pipe = new DatePipe('en-US');
+    const dataConvertida = new Date(dataVencimento);
+    const diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+    
+    //Converte data para dd/mm
+    let dataStr = pipe.transform(dataConvertida, "dd/MM") ?? '';
+
+    //Adiciona o dia da semana da data vencimento ou a palavra hoje se for para o mesmo dia.
+    if (dataConvertida.getDay() == new Date().getDay()) {
+      dataStr += ' - Hoje';
+    }
+    else {
+      dataStr += ' - ' + diasDaSemana[dataConvertida.getDay()];
+    }
+
+    return dataStr;
   }
 }

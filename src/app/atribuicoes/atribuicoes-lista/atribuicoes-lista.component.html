@@ -8,49 +8,49 @@
 
 <ng-template #telaPrincipal>
     <mat-tab-group dynamicHeight>
+        <!--Em andamento-->
         <mat-tab label="Em Andamento">
             <div class="m-3">
-                <div *ngFor="let data of chavesAgrupadas">
-                    <h2>{{ data }}</h2>
-                    <nexus-atribuicoes-card *ngFor="let atribuicao of atribuicoesAgrupadas[data]" 
+                <div *ngFor="let data of chavesAgrupadasEmAndamento" class="mb-3">
+                    <h2 [class.color-primary]="data.includes('Hoje')">{{ data }}</h2>
+
+                    <nexus-atribuicoes-card *ngFor="let atribuicao of atribuicoesAgrupadasEmAndamento[data]" 
                     [atribuicao]="atribuicao">
                     </nexus-atribuicoes-card>
+
                     <mat-divider></mat-divider>
                 </div>
             </div>
-        
-        </mat-tab>
+        </mat-tab> 
+
+        <!--Em atraso-->
         <mat-tab label="Em Atraso">
             <div class="m-3" >
-                <h2>1 de Novembro - Venceu há 1 mês</h2>
-    
-                <mat-card matBadge="!" matBadgeOverlap="true" matBadgeColor="warn">
-                    <mat-card-header class="mb-2">
-                        <mat-card-title>Nome do Passo</mat-card-title>
-                        <mat-card-subtitle style="color: red">Prazo para avaliação às 23:59</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p class="mb-3">Nome do Objeto em Fluxo</p>
-                    </mat-card-content>
-                </mat-card>
+                <div *ngFor="let data of chavesAgrupadasEmAtraso" class="mb-3">
+                    <h2 [class.color-primary]="data.includes('Hoje')">{{ data }}</h2>
+
+                    <nexus-atribuicoes-card *ngFor="let atribuicao of atribuicoesAgrupadasEmAtraso[data]" 
+                    [atribuicao]="atribuicao">
+                    </nexus-atribuicoes-card>
+                    
+                    <mat-divider></mat-divider>
+                </div>
             </div>
         </mat-tab>
+
+        <!--Concluídas-->
         <mat-tab label="Concluída">
             <div class="m-3" >
-                <h2>28 de Novembro - Quinta-feira</h2>
-    
-                <mat-card>
-                    <mat-card-header class="mb-2">
-                        <mat-card-title>Nome do Passo</mat-card-title>
-                        <mat-card-subtitle style="color: green">Concluído às 14:34</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>Nome do Objeto em Fluxo</p>
-                    </mat-card-content>
-                </mat-card>
+                <div *ngFor="let data of chavesAgrupadasConcluidas" class="mb-3">
+                    <h2 [class.color-primary]="data.includes('Hoje')">{{ data }}</h2>
+
+                    <nexus-atribuicoes-card *ngFor="let atribuicao of atribuicoesAgrupadasConcluidas[data]" 
+                    [atribuicao]="atribuicao">
+                    </nexus-atribuicoes-card>
+                    
+                    <mat-divider></mat-divider>
+                </div>
             </div>
-    
-            <mat-divider></mat-divider>
         </mat-tab>
     </mat-tab-group>
 </ng-template>
