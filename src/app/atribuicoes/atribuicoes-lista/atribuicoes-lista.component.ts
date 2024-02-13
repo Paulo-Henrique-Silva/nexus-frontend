@@ -55,12 +55,15 @@ export class AtribuicoesListaComponent implements OnInit {
       const dataChave = this.formatarDataVencimento(objeto.dataVencimento);
 
       //Agrupa atribuições concluídas.
-      if (objeto.concluida) {
-        if (!this.atribuicoesAgrupadasConcluidas[dataChave]) {
-          this.atribuicoesAgrupadasConcluidas[dataChave] = [];
+      if (objeto.concluida && objeto.dataUltimaAtualizacao) {
+        //cria chaves a partir da ultima att e não data de vencimento.
+
+        const dataChaveUltimaAtt = this.formatarDataVencimento(objeto.dataUltimaAtualizacao);
+        if (!this.atribuicoesAgrupadasConcluidas[dataChaveUltimaAtt]) {
+          this.atribuicoesAgrupadasConcluidas[dataChaveUltimaAtt] = [];
         }
 
-        this.atribuicoesAgrupadasConcluidas[dataChave].push(objeto);
+        this.atribuicoesAgrupadasConcluidas[dataChaveUltimaAtt].push(objeto);
       }
       //Agrupa atribuições concluídas e não vencidas.
       else if (dataVencimento >= dataAtual) {
@@ -83,7 +86,7 @@ export class AtribuicoesListaComponent implements OnInit {
     this.chavesAgrupadasEmAndamento = Object.keys(this.atribuicoesAgrupadasEmAndamento);
     this.chavesAgrupadasEmAtraso = Object.keys(this.atribuicoesAgrupadasEmAtraso);
     
-    this.chavesAgrupadasConcluidas.sort();
+    this.chavesAgrupadasConcluidas.sort((a, b) => a > b ? -1 : 1);
     this.chavesAgrupadasEmAndamento.sort();
     this.chavesAgrupadasEmAtraso.sort();
   }

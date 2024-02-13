@@ -1,9 +1,17 @@
 <div class="mb-3">
-    <mat-card [routerLink]="['/atribuicoes', atribuicao.uid]">
+    <mat-card>
         <mat-card-header class="mb-2">
             <mat-card-title>{{ atribuicao.nome }}</mat-card-title>
-            <mat-card-subtitle>
+            <mat-card-subtitle class="color-success" *ngIf="atribuicao.concluida">
+                {{ 'Concluído ' + dataUltimaAtualizacaoFormatada }}
+            </mat-card-subtitle>
+
+            <mat-card-subtitle *ngIf="!emAtraso && !atribuicao.concluida">
                 {{ 'Prazo para ' + dataVencimentoFormatada }}
+            </mat-card-subtitle>
+
+            <mat-card-subtitle class="color-warn" *ngIf="emAtraso && !atribuicao.concluida">
+                {{ 'Venceu ' + dataVencimentoFormatada }}
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
