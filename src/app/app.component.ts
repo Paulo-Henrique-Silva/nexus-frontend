@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
         //Obtém informações do usuário.
         if (usuario) {
           this.nomeAcesso = usuario.nomeAcesso;
-          return this.usuarioService.obterAtribuicoesPorUsuarioUID(1, this.sessaoService.uidUsuario);
+          return this.usuarioService.obterAtribuicoesPorUsuarioUID(this.sessaoService.uidUsuario);
         }
         
         return throwError(() => Error('Usuário não encontrado!'));

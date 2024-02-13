@@ -33,7 +33,7 @@ export class AtribuicoesListaComponent implements OnInit {
   ngOnInit(): void {
     this.carregando = true;
 
-    this.usuarioService.obterAtribuicoesPorUsuarioUID(1, this.sessaoService.uidUsuario)
+    this.usuarioService.obterAtribuicoesPorUsuarioUID(this.sessaoService.uidUsuario)
       .subscribe({
         next: (atribuicoes) => {
           this.atribuicoes = atribuicoes.itens;

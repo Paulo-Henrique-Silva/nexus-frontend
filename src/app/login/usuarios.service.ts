@@ -34,12 +34,12 @@ export class UsuariosService extends NexusService<UsuarioEnvio, UsuarioResposta>
       );
   }
 
-  obterAtribuicoesPorUsuarioUID(pagina: number, usuarioUID: string): 
+  //Obtém atribuições por usuário especificado.
+  //Endpoint não possui paginação para facilitar o desenvolvimento deste protótipo.
+  obterAtribuicoesPorUsuarioUID(usuarioUID: string): 
   Observable<NexusListaResposta<AtribuicaoResposta>> {
-    const params = new HttpParams()
-      .set('pagina', pagina.toString());
 
     return this.http.get<NexusListaResposta<AtribuicaoResposta>>(this.url + '/' + usuarioUID + '/Atribuicoes', 
-    { params: params, headers: this.header }).pipe(take(1));
+    { headers: this.header }).pipe(take(1));
   }
 }

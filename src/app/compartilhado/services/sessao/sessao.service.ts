@@ -9,8 +9,6 @@ export class SessaoService {
   private _uidUsuario: string = '';
   private _token: string = '';
 
-  private _existemAtribuicoes$: Subject<boolean> = new Subject<boolean>();
-
   private _perfilSelecionado$: Subject<NexusReferenciaObjeto | null> = new Subject<NexusReferenciaObjeto | null>();
   private _projetoSelecionado$: Subject<NexusReferenciaObjeto | null> = new Subject<NexusReferenciaObjeto | null>();
 
@@ -31,14 +29,6 @@ export class SessaoService {
   
   public set token(value: string) {
     this._token = value;
-  }
-
-  public get existemAtribuicoes$(): Subject<boolean> {
-    return this._existemAtribuicoes$;
-  }
-  
-  public set existemAtribuicoes$(value: Subject<boolean>) {
-    this._existemAtribuicoes$ = value;
   }
 
   public get projetoSelecionado$(): Subject<NexusReferenciaObjeto | null> {
