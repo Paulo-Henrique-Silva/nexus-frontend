@@ -2,18 +2,22 @@
 
 mat-card {
   background-color: v.$primary-light2;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: v.$primary-light1;
+  }
 }
 
-mat-card:hover {
-  cursor: pointer;
-  background-color: v.$primary-light1;
-}
 
 .vista {
   background-color: white;
-}
 
-.vista:hover {
-  cursor: pointer;
-  background-color: v.$gray;
+  &:hover {
+    cursor: pointer;
+    background-color: v.$gray;
+  }
 }
