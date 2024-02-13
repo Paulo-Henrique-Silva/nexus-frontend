@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewChecked, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { take, switchMap, EMPTY } from 'rxjs';
@@ -13,11 +13,13 @@ import { ManutencaoResposta } from '../models/manutencoes-resposta';
   templateUrl: './manutencoes-acoes.component.html',
   styleUrl: './manutencoes-acoes.component.scss'
 })
-export class ManutencoesAcoesComponent implements OnInit {
+export class ManutencoesAcoesComponent implements OnChanges {
   @Input()
   objeto: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
   manutencao: ManutencaoResposta = new ManutencaoResposta();
+
+  usuarioEoResponsavel: boolean = false;
 
   @Output() 
   deletou = new EventEmitter<any>();
@@ -29,7 +31,7 @@ export class ManutencoesAcoesComponent implements OnInit {
 
   constructor(
     private service: ManutencoesService,
-    sessaoService: SessaoService,
+    private sessaoService: SessaoService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
     private manutencaoService: ManutencoesService
@@ -37,10 +39,13 @@ export class ManutencoesAcoesComponent implements OnInit {
     this.perfil = sessaoService.perfilSelecionado;
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.manutencaoService.obterPorUID(this.objeto.uid)
       .subscribe({
-        next: (manutencao) => this.manutencao = manutencao,
+        next: (manutencao) => {
+          this.manutencao = manutencao;
+          this.usuarioEoResponsavel = this.sessaoService.uidUsuario == manutencao.responsavel.uid;
+        },
         error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
       })
   }

@@ -57,8 +57,8 @@ export class AtribuicoesListaComponent implements OnInit {
       //Agrupa atribuições concluídas.
       if (objeto.concluida && objeto.dataUltimaAtualizacao) {
         //cria chaves a partir da ultima att e não data de vencimento.
-
         const dataChaveUltimaAtt = this.formatarDataVencimento(objeto.dataUltimaAtualizacao);
+
         if (!this.atribuicoesAgrupadasConcluidas[dataChaveUltimaAtt]) {
           this.atribuicoesAgrupadasConcluidas[dataChaveUltimaAtt] = [];
         }
@@ -103,7 +103,7 @@ export class AtribuicoesListaComponent implements OnInit {
     //Converte data para dd/mm
     let dataStr = pipe.transform(dataConvertida, "dd/MM") ?? '';
 
-    //Adiciona o dia da semana da data vencimento ou a palavra hoje se for para o mesmo dia.
+    //Adiciona o dia da semana na data vencimento ou a palavra "hoje" se for para o mesmo dia.
     if (dataConvertida.getDay() == new Date().getDay()) {
       dataStr += ' - Hoje';
     }

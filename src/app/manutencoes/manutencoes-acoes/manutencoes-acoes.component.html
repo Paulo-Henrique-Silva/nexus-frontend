@@ -16,7 +16,7 @@
         <div class="d-flex flex-column">
             <nexus-botao-acoes icone="edit" texto="Editar" 
             [link]="['/ativos/manutencoes/editar', objeto.uid]"
-            *ngIf="!perfil.nome.includes('Leitor') && manutencao.dataTermino != null">
+            *ngIf="!perfil.nome.includes('Leitor') && manutencao.dataTermino == null && usuarioEoResponsavel">
             </nexus-botao-acoes>
             
             <nexus-botao-acoes icone="delete" texto="Deletar" (click)="deletarObjeto()"
