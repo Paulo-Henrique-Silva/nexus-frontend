@@ -24,6 +24,8 @@
                     <h2>{{ atribuicao.nome }}</h2>
                     <h3>{{ atribuicao.cicloVida.nome }}</h3>
                 </div>
+                
+                <!--datas de vencimento-->
                 <div *ngIf="!emAtraso && !atribuicao.concluida">
                     <strong>
                         Vence em {{ dataVencimentoFormatada }}

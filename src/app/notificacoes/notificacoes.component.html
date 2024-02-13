@@ -1,13 +1,41 @@
 <mat-sidenav-container class="example-container">
     <mat-sidenav mode="side" opened class="w-25">
       <div class="d-flex flex-column">
-        <nexus-notificacoes-card *ngFor="let notificacao of notificacoes" 
-        [notificacao]="notificacao">
-        </nexus-notificacoes-card>
+        <!--Tela de carregamento-->
+        <div *ngIf="carregando; else telaPrincipal" 
+          class="d-flex flex-column justify-content-center align-items-center h-100 p-3">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <!--Conteúdo principal-->
+        <ng-template #telaPrincipal>
+          <!--Sem notificações-->
+          <div *ngIf="notificacoes.length == 0"
+          class="d-flex flex-column justify-content-center align-items-center h-100 p-3">
+            <img src="../../assets/sem-notificacoes.svg" class="me-3" width="80px" height="80px" 
+              alt="Sem notificações."/>
+              <h2>Que vazio...</h2>
+              <p>Não há notificações.</p>
+          </div>
+
+          <nexus-notificacoes-card *ngFor="let notificacao of notificacoes" 
+          [notificacao]="notificacao">
+          </nexus-notificacoes-card>
+        </ng-template>
       </div>
     </mat-sidenav>
     <mat-sidenav-content class="p-3">
         <nexus-botao-voltar caminho="/ativos"></nexus-botao-voltar>
+
+        <!--Sem notificações-->
+        <div *ngIf="notificacoes.length == 0 && !carregando"
+        class="d-flex flex-column justify-content-center align-items-center h-100">
+          <img src="../../assets/silencio.svg" class="me-3" width="150px" height="150px" 
+            alt="Sem notificações."/>
+            <h2>Sem notificações...</h2>
+            <p>Nenhum atividade detectada.</p>
+        </div>
+        
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

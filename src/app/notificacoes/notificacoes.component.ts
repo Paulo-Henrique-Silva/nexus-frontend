@@ -1,52 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NotificacaoResposta } from './models/notificacao-resposta';
+import { UsuariosService } from '../login/usuarios.service';
+import { SessaoService } from '../compartilhado/services/sessao/sessao.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'nexus-notificacoes',
   templateUrl: './notificacoes.component.html',
   styleUrl: './notificacoes.component.scss'
 })
-export class NotificacoesComponent {
-  notificacoes: NotificacaoResposta[] = [
-    { 
-      uid: "1",
-      nome: "Requisição aprovada",
-      descricao: "A abordagem de ter DTOs separados para operações de envio e resposta é comum em muitos sistemas, incluindo .NET. Essa prática ajuda a manter uma clara separação de responsabilidades entre o que o cliente envia e o que o servidor retorna. Essa separação também facilita a evolução independente dos modelos de envio e resposta ao longo do tempo.",
-      usuario: {
-        uid: '1',
-        nome: 'PAUlO SILVA'
+export class NotificacoesComponent implements OnInit {
+  notificacoes: NotificacaoResposta[] = [];
+  carregando: boolean = false;
+
+  constructor(
+    private usuarioService: UsuariosService,
+    private sessaoService: SessaoService,
+    private snackBar: MatSnackBar
+  ) {}
+
+  ngOnInit(): void {
+    this.carregando = true;
+
+    this.usuarioService.obterNotificacoesPorUsuarioUID(this.sessaoService.uidUsuario)
+    .subscribe({
+      next: (notificacoes) => {
+        this.notificacoes = notificacoes.itens;
+        this.carregando = false;
       },
-      vista: true,
-      dataUltimaAtualizacao: new Date(2024, 1, 20),
-      atualizadoPor: {
-        uid: '',
-        nome: ''
-      },
-      usuarioCriador: {
-        uid: '',
-        nome: ''
-      },
-      dataCriacao: new Date(2024, 1, 20)
-    },
-    { 
-      uid: "1",
-      nome: "Coordenador completou a manutenção.",
-      descricao: "Aprove a descrição conforme dito.",
-      usuario: {
-        uid: '1',
-        nome: 'PAUlO SILVA'
-      },
-      vista: false,
-      dataUltimaAtualizacao: new Date(2024, 1, 20),
-      atualizadoPor: {
-        uid: '',
-        nome: ''
-      },
-      usuarioCriador: {
-        uid: '',
-        nome: ''
-      },
-      dataCriacao: new Date(2024, 1, 20)
-    }
-  ]
+      error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
+    });
+  }
+
+  mostrarSnackBarOk(texto: string): void {
+    this.snackBar.open(texto, 'Ok')._dismissAfter(3000);
+  }
 }
