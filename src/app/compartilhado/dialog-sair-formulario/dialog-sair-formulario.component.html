@@ -3,6 +3,6 @@
   Tem certeza que deseja sair? Suas alterações serão perdidas.
 </div>
 <div mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="cancelar()">Cancelar</button>
   <button mat-button mat-dialog-close color="primary" (click)="sair()">Sim</button>
 </div>

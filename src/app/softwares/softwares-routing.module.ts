@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SoftwaresMenuComponent } from './softwares-menu/softwares-menu.component';
-import { conferirAutenticacao } from '../login/guard/guard';
+import { conferirAutenticacao, sairFormulario } from '../login/guard/guard';
 import { SoftwaresComponent } from './softwares.component';
 import { SoftwaresAdicionarComponent } from './softwares-adicionar/softwares-adicionar.component';
 import { SoftwaresBuscarComponent } from './softwares-buscar/softwares-buscar.component';
@@ -12,10 +12,10 @@ const routes: Routes = [
   { path: 'ativos/softwares', component: SoftwaresComponent, canActivate:[conferirAutenticacao],
   children: [
     { path: '', component: SoftwaresMenuComponent },
-    { path: 'adicionar/:componente-uid', component: SoftwaresAdicionarComponent },
+    { path: 'adicionar/:componente-uid', canDeactivate:[sairFormulario], component: SoftwaresAdicionarComponent },
     { path: 'buscar', component: SoftwaresBuscarComponent },
     { path: 'detalhes/:uid', component: SoftwaresDetalhesComponent },
-    { path: 'editar/:uid', component: SoftwaresEditarComponent },
+    { path: 'editar/:uid', canDeactivate:[sairFormulario], component: SoftwaresEditarComponent },
   ]}
 ];
 

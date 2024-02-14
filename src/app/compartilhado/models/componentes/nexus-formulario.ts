@@ -5,11 +5,10 @@ import { MensagensValidacaoService } from "../../services/mensagens-validacao/me
 import { MatSnackBar } from "@angular/material/snack-bar"
 import { SessaoService } from "../../services/sessao/sessao.service"
 import { Observable, take } from "rxjs"
-import { CanDeactivateFormulario } from "../../../login/guard/can-deactivate-formulario"
 import { MatDialog } from "@angular/material/dialog"
 import { DialogSairFormularioComponent } from "../../dialog-sair-formulario/dialog-sair-formulario.component"
 
-export abstract class NexusFormulario implements CanDeactivateFormulario {
+export abstract class NexusFormulario {
     public formulario: FormGroup = this.formBuilder.group({ });
 
     public carregando: boolean = false;

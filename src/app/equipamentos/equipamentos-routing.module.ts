@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EquipamentosComponent } from './equipamentos.component';
-import { conferirAutenticacao } from '../login/guard/guard';
+import { conferirAutenticacao, sairFormulario } from '../login/guard/guard';
 import { EquipamentosMenuComponent } from './equipamentos-menu/equipamentos-menu.component';
 import { EquipamentosAdicionarComponent } from './equipamentos-adicionar/equipamentos-adicionar.component';
 import { EquipamentosBuscarComponent } from './equipamentos-buscar/equipamentos-buscar.component';
@@ -12,10 +12,10 @@ const routes: Routes = [
   { path: 'ativos/equipamentos', component: EquipamentosComponent, canActivate:[conferirAutenticacao],
   children: [
     { path: '', component: EquipamentosMenuComponent },
-    { path: 'adicionar', component: EquipamentosAdicionarComponent },
+    { path: 'adicionar', canDeactivate:[sairFormulario], component: EquipamentosAdicionarComponent },
     { path: 'buscar', component: EquipamentosBuscarComponent },
     { path: 'detalhes/:uid', component: EquipamentosDetalhesComponent },
-    { path: 'editar/:uid', component: EquipamentosEditarComponent },
+    { path: 'editar/:uid', canDeactivate:[sairFormulario], component: EquipamentosEditarComponent },
   ]}
 ];
 

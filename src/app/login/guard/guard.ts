@@ -2,7 +2,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, CanDeactivateFn, Router, RouterS
 import { AuthService } from "../auth/auth.service";
 import { inject } from "@angular/core";
 import { Observable } from "rxjs";
-import { CanDeactivateFormulario } from "./can-deactivate-formulario";
+import { NexusFormulario } from "../../compartilhado/models/componentes/nexus-formulario";
 
 export const conferirAutenticacao: CanActivateFn = (
     route: ActivatedRouteSnapshot,
@@ -22,8 +22,8 @@ export const conferirAutenticacao: CanActivateFn = (
 };
 
 //verifica se pode sair da rota.
-export const sairFormulario: CanDeactivateFn<CanDeactivateFormulario> = (
-    component: CanDeactivateFormulario, 
+export const sairFormulario: CanDeactivateFn<NexusFormulario> = (
+    component: NexusFormulario, 
     currentRoute: ActivatedRouteSnapshot, 
     currentState: RouterStateSnapshot, 
     nextState: RouterStateSnapshot

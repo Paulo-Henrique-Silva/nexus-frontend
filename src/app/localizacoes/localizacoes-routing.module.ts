@@ -12,10 +12,10 @@ const routes: Routes = [
   { path: 'ativos/localizacoes', component: LocalizacoesComponent, canActivate:[conferirAutenticacao],
   children: [
     { path: '', component: LocalizacoesMenuComponent },
-    { path: 'adicionar', component: LocalizacoesAdicionarComponent, canDeactivate:[sairFormulario] },
+    { path: 'adicionar', canDeactivate:[sairFormulario], component: LocalizacoesAdicionarComponent },
     { path: 'buscar', component: LocalizacoesBuscarComponent },
     { path: 'detalhes/:uid', component: LocalizacoesDetalhesComponent },
-    { path: 'editar/:uid', component: LocalizacoesEditarComponent, canDeactivate:[sairFormulario] },
+    { path: 'editar/:uid', canDeactivate:[sairFormulario], component: LocalizacoesEditarComponent},
   ]}
 ];
 

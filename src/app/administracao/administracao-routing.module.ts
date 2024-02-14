@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministracaoComponent } from './administracao.component';
 import { AdministracaoMenuComponent } from './administracao-menu/administracao-menu.component';
-import { conferirAutenticacao } from '../login/guard/guard';
+import { conferirAutenticacao, sairFormulario } from '../login/guard/guard';
 import { UsuariosAdicionarComponent } from './usuarios-adicionar/usuarios-adicionar.component';
 import { UsuariosBuscarComponent } from './usuarios-buscar/usuarios-buscar.component';
 import { UsuariosDetalhesComponent } from './usuarios-detalhes/usuarios-detalhes.component';
@@ -19,17 +19,17 @@ const routes: Routes = [
     { path: '', component: AdministracaoMenuComponent},
     
     //usuários
-    { path: 'usuarios/adicionar', component: UsuariosAdicionarComponent },
-    { path: 'usuarios/gerenciar-perfis/:usuario-uid', component: UsuariosGerenciarPerfisComponent },
+    { path: 'usuarios/adicionar', canDeactivate:[sairFormulario], component: UsuariosAdicionarComponent },
+    { path: 'usuarios/gerenciar-perfis/:usuario-uid', canDeactivate:[sairFormulario], component: UsuariosGerenciarPerfisComponent },
     { path: 'usuarios/buscar', component: UsuariosBuscarComponent },
     { path: 'usuarios/detalhes/:uid', component: UsuariosDetalhesComponent },
-    { path: 'usuarios/editar/:uid', component: UsuariosEditarComponent },
+    { path: 'usuarios/editar/:uid', canDeactivate:[sairFormulario], component: UsuariosEditarComponent },
 
     //projetos
-    { path: 'projetos/adicionar', component: ProjetosAdicionarComponent },
+    { path: 'projetos/adicionar', canDeactivate:[sairFormulario], component: ProjetosAdicionarComponent },
     { path: 'projetos/buscar', component: ProjetosBuscarComponent },
     { path: 'projetos/detalhes/:uid', component: ProjetosDetalhesComponent },
-    { path: 'projetos/editar/:uid', component: ProjetosEditarComponent },
+    { path: 'projetos/editar/:uid', canDeactivate:[sairFormulario], component: ProjetosEditarComponent },
   ]}
 ];
 

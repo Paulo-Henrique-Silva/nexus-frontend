@@ -12,8 +12,12 @@ export class DialogSairFormularioComponent {
     @Inject(MAT_DIALOG_DATA) public nomeObjeto: string,
   ) {}
 
+  cancelar(): void {
+    this.dialogRef.close(false);
+  }
+
   sair(): void {
-    //Retorna true caso tenha deletado o objeto.
+    //Retorna true caso tenha saído
     this.dialogRef.close(true);
   }
 }
