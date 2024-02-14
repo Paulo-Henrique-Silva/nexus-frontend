@@ -10,8 +10,16 @@ mat-card {
     cursor: pointer;
     background-color: v.$primary-light1;
   }
-}
 
+  &.active {
+    background-color: v.$primary;
+    color: white;
+    
+    &:hover {
+      background-color: v.$primary;
+    }
+  }
+}
 
 .vista {
   background-color: white;

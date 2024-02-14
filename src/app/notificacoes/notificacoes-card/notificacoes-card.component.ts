@@ -9,5 +9,9 @@ import { NexusReferenciaObjeto } from '../../compartilhado/models/dtos/nexus-ref
 })
 export class NotificacoesCardComponent {
   @Input()
-  notificacao: NotificacaoResposta = new NotificacaoResposta()
+  notificacao: NotificacaoResposta = new NotificacaoResposta();
+
+  verNotificacao(): void {
+    this.notificacao.vista = true;
+  }
 }

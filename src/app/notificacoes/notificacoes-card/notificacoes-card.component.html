@@ -1,22 +1,24 @@
 <!--Notificação vista-->
-<mat-card [routerLink]="['/notificacoes', notificacao.uid]" 
-*ngIf="notificacao.vista; else notificacaoNaoVista" class="vista">
-    <mat-card-header>
-        <span class="text-ellipis">{{ notificacao.nome }}</span>
-    </mat-card-header>
+<mat-card [routerLink]="['/notificacoes', notificacao.uid]" (click)="verNotificacao()"
+routerLinkActive="active" *ngIf="notificacao.vista; else notificacaoNaoVista" class="vista">
     <mat-card-content>
+        <h3 class="nome text-ellipis">
+            <strong>{{ notificacao.nome }}</strong>
+        </h3>
         <p class="text-ellipis">{{notificacao.descricao }}</p>
     </mat-card-content>
 </mat-card>
 
 <!--Notificação não vista-->
 <ng-template #notificacaoNaoVista>
-    <mat-card [routerLink]="['/notificacoes', notificacao.uid]">
+    <mat-card [routerLink]="['/notificacoes', notificacao.uid]" (click)="verNotificacao()" 
+    routerLinkActive="active">
         <mat-card-content>
-            <h2 class="text-ellipis">
-                <mat-icon color="primary">info</mat-icon>
-                {{ notificacao.nome }}
-            </h2>
+            <h3 class="nome text-ellipis">
+                <strong>
+                    {{ notificacao.nome }}
+                </strong>
+            </h3>
             <p class="text-ellipis">{{notificacao.descricao }}</p>
         </mat-card-content>
     </mat-card>
