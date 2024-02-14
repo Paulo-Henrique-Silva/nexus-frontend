@@ -7,13 +7,15 @@ import { NotificacoesDetalhesComponent } from './notificacoes-detalhes/notificac
 import { MaterialModule } from '../compartilhado/material/material.module';
 import { NotificacoesCardComponent } from './notificacoes-card/notificacoes-card.component';
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
+import { NotificacoesBotaoVoltarComponent } from './notificacoes-botao-voltar/notificacoes-botao-voltar.component';
 
 
 @NgModule({
   declarations: [
     NotificacoesComponent,
     NotificacoesDetalhesComponent,
-    NotificacoesCardComponent
+    NotificacoesCardComponent,
+    NotificacoesBotaoVoltarComponent
   ],
   imports: [
     CommonModule,
