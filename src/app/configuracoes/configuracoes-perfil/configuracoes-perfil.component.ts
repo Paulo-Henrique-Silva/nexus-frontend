@@ -108,6 +108,7 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
   }
 
   override onSubmit(): void {
+    this.formularioEnviado = true;
     const perfilPorProjetoChave: string = this.formulario.get('perfilAtivado')?.value;
 
     if (perfilPorProjetoChave) {

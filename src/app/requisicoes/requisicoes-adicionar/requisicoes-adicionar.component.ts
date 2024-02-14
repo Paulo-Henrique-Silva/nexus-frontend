@@ -65,7 +65,9 @@ export class RequisicoesAdicionarComponent extends NexusFormulario implements On
   }
   
   override onSubmit(): void {
+    this.formularioEnviado = true;
     this.carregando = true;
+    
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;
     const coordenador: string = this.formulario.get('coordenador')?.value;

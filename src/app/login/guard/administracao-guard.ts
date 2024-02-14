@@ -22,3 +22,19 @@ export const conferirAdministracao: CanActivateFn = (
             ._dismissAfter(3000);
     return false;
 };
+
+export const conferirProjeto: CanActivateFn = (
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+): Observable<boolean> | boolean => {
+    const sessaoService = inject(SessaoService);
+    const snackBar = inject(MatSnackBar);
+
+    if (sessaoService.perfilSelecionado.nome.includes('Oráculo')) {
+        return true;
+    }
+
+    snackBar.open('Você não tem autorização para acessar esse contéudo.', 'Ok')
+            ._dismissAfter(3000);
+    return false;
+};

@@ -53,6 +53,8 @@ export class LoginComponent extends NexusFormulario implements OnDestroy {
   }
   
   override onSubmit(): void {
+    this.formularioEnviado = true;
+    
     const usuario: UsuarioEnvio = new UsuarioEnvio();
     usuario.nomeAcesso = this.formulario.get('usuario')?.value;
     usuario.senha = this.formulario.get('senha')?.value;

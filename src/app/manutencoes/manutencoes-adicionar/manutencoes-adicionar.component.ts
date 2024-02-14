@@ -91,7 +91,9 @@ export class ManutencoesAdicionarComponent extends NexusFormulario implements On
   }
   
   override onSubmit(): void {
+    this.formularioEnviado = true;
     this.carregando = true;
+    
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;
     const componente: string = this.formulario.get('componente')?.value;

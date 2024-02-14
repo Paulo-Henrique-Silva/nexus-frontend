@@ -12,7 +12,7 @@ import { ProjetosBuscarComponent } from './projetos-buscar/projetos-buscar.compo
 import { ProjetosDetalhesComponent } from './projetos-detalhes/projetos-detalhes.component';
 import { ProjetosEditarComponent } from './projetos-editar/projetos-editar.component';
 import { UsuariosGerenciarPerfisComponent } from './usuarios-gerenciar-perfis/usuarios-gerenciar-perfis.component';
-import { conferirAdministracao } from '../login/guard/administracao-guard';
+import { conferirAdministracao, conferirProjeto } from '../login/guard/administracao-guard';
 
 const routes: Routes = [
   { path: 'ativos/administracao', component: AdministracaoComponent, canActivate:[conferirAutenticacao, conferirAdministracao],
@@ -27,10 +27,10 @@ const routes: Routes = [
     { path: 'usuarios/editar/:uid', canDeactivate:[sairFormulario], component: UsuariosEditarComponent },
 
     //projetos
-    { path: 'projetos/adicionar', canDeactivate:[sairFormulario], component: ProjetosAdicionarComponent },
-    { path: 'projetos/buscar', component: ProjetosBuscarComponent },
-    { path: 'projetos/detalhes/:uid', component: ProjetosDetalhesComponent },
-    { path: 'projetos/editar/:uid', canDeactivate:[sairFormulario], component: ProjetosEditarComponent },
+    { path: 'projetos/adicionar', canActivate:[conferirProjeto], canDeactivate:[sairFormulario], component: ProjetosAdicionarComponent },
+    { path: 'projetos/buscar', canActivate:[conferirProjeto], component: ProjetosBuscarComponent },
+    { path: 'projetos/detalhes/:uid', canActivate:[conferirProjeto], component: ProjetosDetalhesComponent },
+    { path: 'projetos/editar/:uid', canActivate:[conferirProjeto], canDeactivate:[sairFormulario], component: ProjetosEditarComponent },
   ]}
 ];
 

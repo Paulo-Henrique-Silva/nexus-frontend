@@ -107,6 +107,7 @@ export class ComponentesEditarComponent extends NexusFormulario implements OnIni
   }
 
   override onSubmit(): void {
+    this.formularioEnviado = true;
     this.carregando = true;
     const uid = this.activatedRoute.snapshot.params['uid'];
     const nome: string = this.formulario.get('nome')?.value;

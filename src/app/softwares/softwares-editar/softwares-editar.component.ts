@@ -99,6 +99,8 @@ export class SoftwaresEditarComponent extends NexusFormulario implements OnInit 
 
   override onSubmit(): void {
     this.carregando = true;
+    this.formularioEnviado = true;
+    
     const uid = this.activatedRoute.snapshot.params['uid'];
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;

@@ -9,23 +9,24 @@ import { MatDialog } from "@angular/material/dialog"
 import { DialogSairFormularioComponent } from "../../dialog-sair-formulario/dialog-sair-formulario.component"
 
 export abstract class NexusFormulario {
-    public formulario: FormGroup = this.formBuilder.group({ });
+  public formulario: FormGroup = this.formBuilder.group({ });
 
-    public carregando: boolean = false;
-    
-    constructor(
-      protected authService : AuthService, 
-      protected formBuilder: FormBuilder,
-      protected router: Router,
-      protected mensagemValidacaoService: MensagensValidacaoService,
-      protected activatedRoute: ActivatedRoute,
-      protected snackBar: MatSnackBar,
-      protected sessaoService: SessaoService,
-      protected dialog: MatDialog
-    ) {}
+  public carregando: boolean = false;
+
+  protected formularioEnviado: boolean = false;
   
-    abstract onSubmit(): void
+  constructor(
+    protected authService : AuthService, 
+    protected formBuilder: FormBuilder,
+    protected router: Router,
+    protected mensagemValidacaoService: MensagensValidacaoService,
+    protected activatedRoute: ActivatedRoute,
+    protected snackBar: MatSnackBar,
+    protected sessaoService: SessaoService,
+    protected dialog: MatDialog
+  ) {}
 
+  abstract onSubmit(): void
     
   obterMensagemErro(nomeCampo: string): string {
     const campo = this.formulario.get(nomeCampo)
@@ -53,7 +54,7 @@ export abstract class NexusFormulario {
   }
 
   sairFormulario(): boolean | Observable<boolean> {
-    if (this.formulario.dirty) {
+    if (this.formulario.dirty && !this.formularioEnviado) {
       const dialogSair = this.dialog.open(DialogSairFormularioComponent);
   
       return dialogSair.afterClosed().pipe(take(1));

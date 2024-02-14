@@ -65,6 +65,8 @@ export class SoftwaresAdicionarComponent extends NexusFormulario implements OnIn
   }
   override onSubmit(): void {
     this.carregando = true;
+    this.formularioEnviado = true;
+    
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;
     const componente: string = this.formulario.get('componente')?.value;

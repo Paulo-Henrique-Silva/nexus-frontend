@@ -42,6 +42,7 @@ export class ConfiguracoesEditarSenhaComponent extends NexusFormulario {
       }
 
   override onSubmit(): void {
+    this.formularioEnviado = true;
     this.carregando = true;
 
     const senhaAtual = this.formulario.get('senhaAtual')?.value;

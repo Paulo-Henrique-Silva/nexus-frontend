@@ -140,6 +140,7 @@ export class UsuariosGerenciarPerfisComponent extends NexusFormulario implements
   }
 
   override onSubmit(): void {
+    this.formularioEnviado = true;
     const perfisAtivados: string[] = this.formulario.get('perfisAtivados')?.value;
     let novosPerfis: UsuarioPerfilEnvio[] = [];
     let perfisExcluidos: UsuarioPerfilUIDs[] = [];

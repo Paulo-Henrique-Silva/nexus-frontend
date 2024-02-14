@@ -110,7 +110,9 @@ export class EquipamentosAdicionarComponent extends NexusFormulario implements O
   }
 
   override onSubmit(): void {
+    this.formularioEnviado = true;
     this.carregando = true;
+    
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;
     const numeroSerie: string = this.formulario.get('numeroSerie')?.value;
