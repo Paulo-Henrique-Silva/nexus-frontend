@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SoftwaresMenuComponent } from './softwares-menu/softwares-menu.component';
-import { conferirAutenticacao } from '../login/guard/login-guard';
+import { conferirAutenticacao } from '../login/guard/guard';
 import { SoftwaresComponent } from './softwares.component';
 import { SoftwaresAdicionarComponent } from './softwares-adicionar/softwares-adicionar.component';
 import { SoftwaresBuscarComponent } from './softwares-buscar/softwares-buscar.component';

@@ -11,6 +11,7 @@ import { AuthService } from '../../login/auth/auth.service';
 import { ComponentesService } from '../componentes.service';
 import { ComponenteEnvio } from '../models/componentes-envio';
 import { switchMap, throwError } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-componentes-editar',
@@ -34,11 +35,12 @@ export class ComponentesEditarComponent extends NexusFormulario implements OnIni
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
+    dialog: MatDialog,
     private service: ComponentesService,
     private localizacaoService: LocalizacoesService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, sessaoService);
+      snackBar, sessaoService, dialog);
       
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],

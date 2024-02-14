@@ -10,6 +10,7 @@ import { SessaoService } from '../../compartilhado/services/sessao/sessao.servic
 import { AuthService } from '../../login/auth/auth.service';
 import { ManutencoesService } from '../manutencoes.service';
 import { ManutencaoEnvio } from '../models/manutencoes-envio';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-manutencoes-editar',
@@ -32,10 +33,11 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
+    dialog: MatDialog,
     private service: ManutencoesService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, sessaoService);
+      snackBar, sessaoService, dialog);
       
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],

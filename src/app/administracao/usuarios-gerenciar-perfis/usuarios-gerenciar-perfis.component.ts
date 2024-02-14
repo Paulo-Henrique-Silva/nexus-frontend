@@ -15,6 +15,7 @@ import { UsuariosService } from '../../login/usuarios.service';
 import { UsuarioPerfilService } from '../../configuracoes/usuario-perfil.service';
 import { UsuarioPerfilEnvio } from '../models/usuario-perfil/usuario-perfil-envio';
 import { UsuarioPerfilUIDs } from '../models/usuario-perfil/usuario-perfil-uids';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuarios-gerenciar-perfis',
@@ -41,6 +42,7 @@ export class UsuariosGerenciarPerfisComponent extends NexusFormulario implements
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
+    dialog: MatDialog,
     private usuarioService: UsuariosService,
     private usuarioPerfilService: UsuarioPerfilService,
     private projetoService: ProjetoService,
@@ -48,7 +50,7 @@ export class UsuariosGerenciarPerfisComponent extends NexusFormulario implements
     private cdr: ChangeDetectorRef
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, sessaoService);
+      snackBar, sessaoService, dialog);
 
     this.formulario = this.formBuilder.group({
       perfisAtivados: [[ ]] //inicia como array vazia

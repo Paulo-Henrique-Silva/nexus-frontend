@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-configuracoes-usuario',
@@ -23,10 +24,11 @@ export class ConfiguracoesUsuarioComponent extends NexusFormulario implements On
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
+    dialog: MatDialog,
     private usuarioService: UsuariosService
     ) {
       super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-        snackBar, sessaoService);
+        snackBar, sessaoService, dialog);
 
       this.formulario = this.formBuilder.group({
         nome: [''],

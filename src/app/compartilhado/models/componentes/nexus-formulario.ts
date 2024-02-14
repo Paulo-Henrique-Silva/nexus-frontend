@@ -1,11 +1,15 @@
 import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from "@angular/forms"
-import { ActivatedRoute, Router } from "@angular/router"
+import { ActivatedRoute, Router, UrlTree } from "@angular/router"
 import { AuthService } from "../../../login/auth/auth.service"
 import { MensagensValidacaoService } from "../../services/mensagens-validacao/mensagens-validacao.service"
 import { MatSnackBar } from "@angular/material/snack-bar"
 import { SessaoService } from "../../services/sessao/sessao.service"
+import { Observable, take } from "rxjs"
+import { CanDeactivateFormulario } from "../../../login/guard/can-deactivate-formulario"
+import { MatDialog } from "@angular/material/dialog"
+import { DialogSairFormularioComponent } from "../../dialog-sair-formulario/dialog-sair-formulario.component"
 
-export abstract class NexusFormulario {
+export abstract class NexusFormulario implements CanDeactivateFormulario {
     public formulario: FormGroup = this.formBuilder.group({ });
 
     public carregando: boolean = false;
@@ -18,6 +22,7 @@ export abstract class NexusFormulario {
       protected activatedRoute: ActivatedRoute,
       protected snackBar: MatSnackBar,
       protected sessaoService: SessaoService,
+      protected dialog: MatDialog
     ) {}
   
     abstract onSubmit(): void
@@ -47,4 +52,14 @@ export abstract class NexusFormulario {
   mostrarSnackBarOk(texto: string) {
     this.snackBar.open(texto, 'Ok')._dismissAfter(3000);
   }
+
+  sairFormulario(): boolean | Observable<boolean> {
+    if (this.formulario.dirty) {
+      const dialogSair = this.dialog.open(DialogSairFormularioComponent);
+  
+      return dialogSair.afterClosed().pipe(take(1));
+    }
+
+    return true;
+  };
 }

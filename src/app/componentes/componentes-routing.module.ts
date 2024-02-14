@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ComponentesComponent } from './componentes.component';
 import { ComponentesMenuComponent } from './componentes-menu/componentes-menu.component';
-import { conferirAutenticacao } from '../login/guard/login-guard';
+import { conferirAutenticacao } from '../login/guard/guard';
 import { ComponentesAdicionarComponent } from './componentes-adicionar/componentes-adicionar.component';
 import { ComponentesDetalhesComponent } from './componentes-detalhes/componentes-detalhes.component';
 import { ComponentesEditarComponent } from './componentes-editar/componentes-editar.component';

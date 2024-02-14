@@ -8,6 +8,7 @@ import { SessaoService } from '../../compartilhado/services/sessao/sessao.servic
 import { AuthService } from '../../login/auth/auth.service';
 import { ProjetoService } from '../services/projeto/projeto.service';
 import { ProjetoEnvio } from '../models/projeto/projeto-envio';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-projetos-adicionar',
@@ -24,10 +25,11 @@ export class ProjetosAdicionarComponent extends NexusFormulario {
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     usuarioSessaoService: SessaoService,
+    dialog: MatDialog,
     private service: ProjetoService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, usuarioSessaoService);
+      snackBar, usuarioSessaoService, dialog);
       
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],

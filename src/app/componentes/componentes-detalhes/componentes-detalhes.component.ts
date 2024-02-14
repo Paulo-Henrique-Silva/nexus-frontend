@@ -9,6 +9,7 @@ import { SessaoService } from '../../compartilhado/services/sessao/sessao.servic
 import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { ComponentesService } from '../componentes.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-componentes-detalhes',
@@ -24,10 +25,11 @@ export class ComponentesDetalhesComponent extends NexusFormulario {
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     usuarioSessaoService: SessaoService,
+    dialog: MatDialog,
     private componenteService: ComponentesService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, usuarioSessaoService);
+      snackBar, usuarioSessaoService, dialog);
 
     this.formulario = this.formBuilder.group({
       nome: [''],

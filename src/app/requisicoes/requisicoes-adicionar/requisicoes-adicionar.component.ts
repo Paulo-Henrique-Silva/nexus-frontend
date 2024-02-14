@@ -10,6 +10,7 @@ import { AuthService } from '../../login/auth/auth.service';
 import { UsuariosService } from '../../login/usuarios.service';
 import { RequisicoesService } from '../requisicoes.service';
 import { RequisicaoEnvio } from '../model/requisicao-envio';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-requisicoes-adicionar',
@@ -31,11 +32,12 @@ export class RequisicoesAdicionarComponent extends NexusFormulario implements On
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
+    dialog: MatDialog,
     private service: RequisicoesService,
     private usuarioService: UsuariosService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, sessaoService);
+      snackBar, sessaoService, dialog);
       
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],

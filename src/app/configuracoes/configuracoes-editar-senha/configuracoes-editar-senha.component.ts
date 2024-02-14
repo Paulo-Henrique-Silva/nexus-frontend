@@ -9,6 +9,7 @@ import { AuthService } from '../../login/auth/auth.service';
 import { UsuariosService } from '../../login/usuarios.service';
 import { UsuarioEnvio } from '../../login/models/usuario-envio';
 import { EMPTY, catchError, switchMap, throwError } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-configuracoes-editar-senha',
@@ -24,10 +25,11 @@ export class ConfiguracoesEditarSenhaComponent extends NexusFormulario {
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
+    dialog: MatDialog,
     private usuarioService: UsuariosService
     ) {
       super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-        snackBar, sessaoService);
+        snackBar, sessaoService, dialog);
         
         this.formulario = this.formBuilder.group({
           senhaAtual: ['', [Validators.required]],

@@ -8,6 +8,7 @@ import { MensagensValidacaoService } from '../../compartilhado/services/mensagen
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { EquipamentosService } from '../equipamentos.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-equipamentos-detalhes',
@@ -22,11 +23,12 @@ export class EquipamentosDetalhesComponent extends NexusFormulario {
     mensagemValidacaoService: MensagensValidacaoService,
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
+    dialog: MatDialog,
     usuarioSessaoService: SessaoService,
     private service: EquipamentosService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, usuarioSessaoService);
+      snackBar, usuarioSessaoService, dialog);
 
     this.formulario = this.formBuilder.group({
       nome: [''],

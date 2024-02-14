@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { UsuarioPerfilEnvio } from '../../administracao/models/usuario-perfil/usuario-perfil-envio';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-configuracoes-perfil',
@@ -36,11 +37,12 @@ export class ConfiguracoesPerfilComponent extends NexusFormulario implements OnI
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
+    dialog: MatDialog,
     private usuarioPerfilService: UsuarioPerfilService,
     private cdr: ChangeDetectorRef
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, sessaoService);
+      snackBar, sessaoService, dialog);
 
     this.formulario = this.formBuilder.group({
       perfilAtivado: [null]

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EquipamentosComponent } from './equipamentos.component';
-import { conferirAutenticacao } from '../login/guard/login-guard';
+import { conferirAutenticacao } from '../login/guard/guard';
 import { EquipamentosMenuComponent } from './equipamentos-menu/equipamentos-menu.component';
 import { EquipamentosAdicionarComponent } from './equipamentos-adicionar/equipamentos-adicionar.component';
 import { EquipamentosBuscarComponent } from './equipamentos-buscar/equipamentos-buscar.component';

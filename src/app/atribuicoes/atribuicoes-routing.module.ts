@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AtribuicoesComponent } from './atribuicoes.component';
 import { AtribuicoesListaComponent } from './atribuicoes-lista/atribuicoes-lista.component';
 import { AtribuicoesDetalhesComponent } from './atribuicoes-detalhes/atribuicoes-detalhes.component';
-import { conferirAutenticacao } from '../login/guard/login-guard';
+import { conferirAutenticacao } from '../login/guard/guard';
 
 const routes: Routes = [
   { path: 'atribuicoes', component: AtribuicoesComponent, canActivate:[conferirAutenticacao], 

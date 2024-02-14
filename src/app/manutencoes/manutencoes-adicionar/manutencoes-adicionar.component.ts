@@ -14,6 +14,7 @@ import { UsuariosService } from '../../login/usuarios.service';
 import { switchMap } from 'rxjs';
 import { NexusCicloVidaService } from '../../compartilhado/services/nexus-ciclo-vida-service/nexus-ciclo-vida-service';
 import { VerificacaoManutencaoService } from '../ciclo-vida/verificacao-manutencao.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-manutencoes-adicionar',
@@ -39,13 +40,14 @@ export class ManutencoesAdicionarComponent extends NexusFormulario implements On
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
+    dialog: MatDialog,
     private service: ManutencoesService,
     private componenteService: ComponentesService,
     private usuarioService: UsuariosService,
     private verificacaoManutencaoService: VerificacaoManutencaoService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, sessaoService);
+      snackBar, sessaoService, dialog);
       
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],

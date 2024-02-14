@@ -13,6 +13,7 @@ import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { EquipamentosService } from '../equipamentos.service';
 import { EquipamentoEnvio } from '../models/equipamentos-envio';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-equipamentos-editar',
@@ -41,12 +42,13 @@ export class EquipamentosEditarComponent extends NexusFormulario implements OnIn
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
+    dialog: MatDialog,
     private service: EquipamentosService,
     private localizacaoService: LocalizacoesService,
     private componenteService: ComponentesService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, sessaoService);
+      snackBar, sessaoService, dialog);
       
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],

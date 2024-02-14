@@ -11,6 +11,7 @@ import { AuthService } from '../../login/auth/auth.service';
 import { UsuariosService } from '../../login/usuarios.service';
 import { RequisicaoEnvio } from '../model/requisicao-envio';
 import { RequisicoesService } from '../requisicoes.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-requisicoes-editar',
@@ -32,11 +33,12 @@ export class RequisicoesEditarComponent extends NexusFormulario implements OnIni
     activatedRoute: ActivatedRoute,
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
+    dialog: MatDialog,
     private service: RequisicoesService,
     private usuarioService: UsuariosService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
-      snackBar, sessaoService);
+      snackBar, sessaoService, dialog);
       
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
