@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RequisicoesComponent } from './requisicoes.component';
-import { conferirAutenticacao, sairFormulario } from '../login/guard/guard';
+import { conferirAutenticacao, sairFormulario } from '../login/guard/base-guard';
 import { RequisicoesMenuComponent } from './requisicoes-menu/requisicoes-menu.component';
 import { RequisicoesAdicionarComponent } from './requisicoes-adicionar/requisicoes-adicionar.component';
 import { RequisicoesBuscarComponent } from './requisicoes-buscar/requisicoes-buscar.component';

@@ -4,7 +4,7 @@ import { ConfiguracoesComponent } from './configuracoes.component';
 import { ConfiguracoesEditarSenhaComponent } from './configuracoes-editar-senha/configuracoes-editar-senha.component';
 import { ConfiguracoesUsuarioComponent } from './configuracoes-usuario/configuracoes-usuario.component';
 import { ConfiguracoesPerfilComponent } from './configuracoes-perfil/configuracoes-perfil.component';
-import { conferirAutenticacao } from '../login/guard/guard';
+import { conferirAutenticacao } from '../login/guard/base-guard';
 
 const routes: Routes = [
   { path: 'configuracoes', component: ConfiguracoesComponent, canActivate:[conferirAutenticacao],

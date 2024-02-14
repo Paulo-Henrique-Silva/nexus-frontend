@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministracaoComponent } from './administracao.component';
 import { AdministracaoMenuComponent } from './administracao-menu/administracao-menu.component';
-import { conferirAutenticacao, sairFormulario } from '../login/guard/guard';
+import { conferirAutenticacao, sairFormulario } from '../login/guard/base-guard';
 import { UsuariosAdicionarComponent } from './usuarios-adicionar/usuarios-adicionar.component';
 import { UsuariosBuscarComponent } from './usuarios-buscar/usuarios-buscar.component';
 import { UsuariosDetalhesComponent } from './usuarios-detalhes/usuarios-detalhes.component';
