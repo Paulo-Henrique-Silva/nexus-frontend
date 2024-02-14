@@ -7,7 +7,9 @@ export class AtribuicaoEnvio extends NexusEnvio {
     
     public dataVencimento: Date = new Date();
 
-    public concluida: boolean = false
+    public concluida: boolean = false;
 
-    public cicloVidaUID: string = ''
+    public objetoUID: string = '';
+
+    public projetoUID: string = '';
 }

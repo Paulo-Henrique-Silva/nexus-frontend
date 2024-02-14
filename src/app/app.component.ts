@@ -83,6 +83,7 @@ export class AppComponent implements OnInit {
           //procura por atribuições não concluídas e
           //notificaçoes não vistas.
           this.existemAtribuicoes = atribuicoes.itens.filter(a => !a.concluida).length > 0;
+
           this.existemNotificacoes = notificacoes.itens.filter(a => !a.vista).length > 0;
       },
       error: () => {

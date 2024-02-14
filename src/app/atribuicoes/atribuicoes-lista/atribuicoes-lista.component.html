@@ -1,5 +1,10 @@
 <nexus-botao-voltar caminho="/ativos"></nexus-botao-voltar>
 
+<h3 *ngIf="temAtribuicoesEmOutroProjeto" class="color-primary d-flex align-items-center">
+    <mat-icon matPrefix class="me-1">info</mat-icon>
+    Você tem atribuições em outros projetos.
+</h3>
+
 <div *ngIf="carregando; else telaPrincipal" 
     class="d-flex flex-column justify-content-center align-items-center h-100">
     <mat-spinner class="mb-3"></mat-spinner>

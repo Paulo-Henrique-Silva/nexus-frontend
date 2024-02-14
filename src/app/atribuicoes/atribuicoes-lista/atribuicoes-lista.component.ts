@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 })
 export class AtribuicoesListaComponent implements OnInit {
   atribuicoes: AtribuicaoResposta[] = [];
+  temAtribuicoesEmOutroProjeto: boolean = false;
 
   atribuicoesAgrupadasEmAndamento: any = {};
   chavesAgrupadasEmAndamento: string[] = [];
@@ -36,7 +37,12 @@ export class AtribuicoesListaComponent implements OnInit {
     this.usuarioService.obterAtribuicoesPorUsuarioUID(this.sessaoService.uidUsuario)
       .subscribe({
         next: (atribuicoes) => {
-          this.atribuicoes = atribuicoes.itens;
+          this.atribuicoes = atribuicoes.itens
+          .filter(a => a.projeto.uid == this.sessaoService.projetoSelecionado.uid);
+          
+          this.temAtribuicoesEmOutroProjeto = atribuicoes.itens
+            .filter(a => a.projeto.uid != this.sessaoService.projetoSelecionado.uid).length > 0;
+
           this.agruparPorDataVencimento();
           this.carregando = false;
         },
