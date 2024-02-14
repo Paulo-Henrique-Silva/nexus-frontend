@@ -1,7 +1,6 @@
 @use '../../../styles/variables' as v;
 
 mat-card {
-  background-color: v.$primary-light1;
   border: none;
   border-radius: 0;
   box-shadow: none;
@@ -12,7 +11,7 @@ mat-card {
   }
 
   &.active {
-    background-color: v.$gray;
+    /* background-color: v.$gray; */
     border-left: 5px solid v.$primary;
   }
   
@@ -22,8 +21,6 @@ mat-card {
 }
 
 .vista {
-  background-color: white;
-
   &:hover {
     cursor: pointer;
     background-color: v.$gray;
