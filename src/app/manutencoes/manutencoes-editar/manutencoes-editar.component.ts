@@ -22,13 +22,9 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
 
   //componentes
   componentes: NexusReferenciaObjeto[] = [];
-  pesquisandoComponente: boolean = false;
-  pesquisouComponente: boolean = false;
 
   //usuários
   usuarios: NexusReferenciaObjeto[] = [];
-  pesquisandoUsuario: boolean = false;
-  pesquisouUsuario: boolean = false;
 
   constructor(
     authService : AuthService, 
@@ -39,8 +35,6 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
     snackBar: MatSnackBar,
     sessaoService: SessaoService,
     private service: ManutencoesService,
-    private componenteService: ComponentesService,
-    private usuarioService: UsuariosService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
       snackBar, sessaoService);
@@ -48,9 +42,9 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
       descricao: ['', Validators.maxLength(400)],
-      componente: [{ value: '', disabled:true }, [Validators.required]],
-      responsavel: ['', [Validators.required]],
-      solucao: ['', [Validators.maxLength(200)]],
+      componente: [{ value: ''}, [Validators.required]],
+      responsavel: [{ value: '' }, [Validators.required]],
+      solucao: ['', [Validators.required, Validators.maxLength(200)]],
     })
   }
 
@@ -79,41 +73,6 @@ export class ManutencoesEditarComponent extends NexusFormulario implements OnIni
         this.carregando = false;
       },
       error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
-    });
-  }
-
-  pesquisarComponentes(texto: string): void {
-    this.componentes = [];
-    this.pesquisandoComponente = true;
-    this.formulario.get('componente')?.setValue(null);
-
-    //Sempre obtém apenas da primeira página, por questões de performace.
-    this.componenteService.obterTudoPorProjetoUID(1, this.sessaoService.projetoSelecionado.uid,
-    texto)
-    .subscribe(dados =>
-    {
-      dados.itens.forEach(d => this.componentes.push({ uid: d.uid, nome: d.nome }));
-
-      //Ordena por nome.
-      this.componentes.sort((a, b) => a.nome < b.nome ? -1 : 1);
-      this.pesquisandoComponente = false;
-      this.pesquisouComponente = true;
-    });
-  }
-
-  pesquisarUsuarios(texto: string): void {
-    this.usuarios = [];
-    this.pesquisandoUsuario = true;
-    this.formulario.get('responsavel')?.setValue(null);
-
-    //Sempre obtém apenas da primeira página, por questões de performace.
-    this.usuarioService.obterTudo(1, texto)
-    .subscribe(dados =>
-    {
-      dados.itens.forEach(d => this.usuarios.push({ uid: d.uid, nome: d.nome }));
-      this.usuarios.sort((a, b) => a.nome < b.nome ? -1 : 1);
-      this.pesquisandoUsuario = false;
-      this.pesquisouUsuario = true;
     });
   }
 

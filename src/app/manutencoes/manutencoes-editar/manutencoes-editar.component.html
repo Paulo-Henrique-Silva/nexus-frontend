@@ -14,114 +14,33 @@
             <ng-template #telaPrincipal>
                 <form [formGroup]="formulario" class="d-flex flex-column">
 
-                    <mat-form-field class="mb-3">
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
                         <mat-label>Nome</mat-label>
-                        <input type="text" matInput formControlName="nome">
-                        <mat-error *ngIf="campoInvalido('nome')">
-                            {{ obterMensagemErro('nome') }}
-                        </mat-error>
+                        <input matInput formControlName="nome" readonly>
                     </mat-form-field>
         
-                    <mat-form-field class="mb-3">
+                    <mat-form-field class="mb-3" appearance="outline" floatLabel="always">
                         <mat-label>Descrição</mat-label>
-                        <textarea type="text" matInput formControlName="descricao">
-                        </textarea>
-                        <mat-error *ngIf="campoInvalido('descricao')">
-                            {{ obterMensagemErro('descricao') }}
-                        </mat-error>
+                        <input matInput formControlName="descricao" readonly>
                     </mat-form-field>
 
-                    <!--Componentes-->
-                    <mat-card class="campo-pesquisa mb-5">
-                        <mat-card-header class="mb-3">
-                            <mat-card-subtitle>Componente*</mat-card-subtitle>
-                        </mat-card-header>
+                    <mat-form-field class="mb-3" appearance="outline">
+                        <mat-label>Componente</mat-label>
+                        <mat-select formControlName="componente" readonly>
+                            <mat-option *ngFor="let c of componentes" [value]="c.uid">
+                                {{ c.nome }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
 
-                        <mat-card-content>
-                            <!--Pesquisa-->
-                            <form class="d-flex flex-row">
-                                <mat-form-field class="col-11">
-                                    <mat-label>Pesquisar</mat-label>
-                                    <input type="text" matInput #iptComponente>
-                                </mat-form-field>
-        
-                                <button class="col-1" type="submit" mat-fab
-                                [disabled]="iptComponente.value.trim().length < 3"
-                                (click)="pesquisarUsuarios(iptComponente.value.trim())">
-                                    <mat-icon>search</mat-icon>
-                                </button>
-                            </form>
-
-                            <mat-progress-bar *ngIf="pesquisandoComponente"
-                            mode="indeterminate">
-                            </mat-progress-bar>
-
-                            <p *ngIf="componentes.length == 0 && pesquisouComponente &&
-                            !pesquisandoComponente">
-                                Nenhum resultado encontrado.
-                            </p>
-
-                            <!--Opções-->
-                            <mat-form-field class="custom-select w-100 mt-3" 
-                            *ngIf="componentes.length != 0">
-                                <mat-label>Selecione</mat-label>
-                                <mat-select formControlName="componente">
-                                    <mat-option *ngFor="let u of componentes" [value]="u.uid">
-                                        {{ u.nome }}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="campoInvalido('componente')">
-                                    {{ obterMensagemErro('componente') }}
-                                </mat-error>
-                            </mat-form-field>
-                        </mat-card-content>
-                    </mat-card>
-
-                    <!--Responsável-->
-                    <mat-card class="campo-pesquisa mb-5">
-                        <mat-card-header class="mb-3">
-                            <mat-card-subtitle>Responsável*</mat-card-subtitle>
-                        </mat-card-header>
-
-                        <mat-card-content>
-                            <!--Pesquisa-->
-                            <form class="d-flex flex-row">
-                                <mat-form-field class="col-11">
-                                    <mat-label>Pesquisar</mat-label>
-                                    <input type="text" matInput #iptResponsavel>
-                                </mat-form-field>
-        
-                                <button class="col-1" type="submit" mat-fab
-                                [disabled]="iptResponsavel.value.trim().length < 3"
-                                (click)="pesquisarUsuarios(iptResponsavel.value.trim())">
-                                    <mat-icon>search</mat-icon>
-                                </button>
-                            </form>
-
-                            <mat-progress-bar *ngIf="pesquisandoUsuario"
-                            mode="indeterminate">
-                            </mat-progress-bar>
-
-                            <p *ngIf="usuarios.length == 0 && pesquisouUsuario &&
-                            !pesquisandoUsuario">
-                                Nenhum resultado encontrado.
-                            </p>
-
-                            <!--Opções-->
-                            <mat-form-field class="custom-select w-100 mt-3" 
-                            *ngIf="usuarios.length != 0">
-                                <mat-label>Selecione</mat-label>
-                                <mat-select formControlName="responsavel">
-                                    <mat-option *ngFor="let u of usuarios" [value]="u.uid">
-                                        {{ u.nome }}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="campoInvalido('responsavel')">
-                                    {{ obterMensagemErro('responsavel') }}
-                                </mat-error>
-                            </mat-form-field>
-                        </mat-card-content>
-                    </mat-card>
+                    <mat-form-field class="mb-3" appearance="outline">
+                        <mat-label>Responsável</mat-label>
+                        <mat-select formControlName="responsavel" readonly>
+                            <mat-option *ngFor="let u of usuarios" [value]="u.uid">
+                                {{ u.nome }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
 
                     <mat-form-field class="mb-3">
                         <mat-label>Solução</mat-label>
