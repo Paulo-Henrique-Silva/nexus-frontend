@@ -3,7 +3,7 @@
 routerLinkActive="active" *ngIf="notificacao.vista; else notificacaoNaoVista" class="vista">
     <mat-card-content>
         <h3 class="nome text-ellipis">
-            <strong>{{ notificacao.nome }}</strong>
+            {{ notificacao.nome }}
         </h3>
         <p class="text-ellipis">{{notificacao.descricao }}</p>
     </mat-card-content>
@@ -15,9 +15,7 @@ routerLinkActive="active" *ngIf="notificacao.vista; else notificacaoNaoVista" cl
     routerLinkActive="active">
         <mat-card-content>
             <h3 class="nome text-ellipis">
-                <strong>
-                    {{ notificacao.nome }}
-                </strong>
+                {{ notificacao.nome }}
             </h3>
             <p class="text-ellipis">{{notificacao.descricao }}</p>
         </mat-card-content>
