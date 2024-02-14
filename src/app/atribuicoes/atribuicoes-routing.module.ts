@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'atribuicoes', component: AtribuicoesComponent, canActivate:[conferirAutenticacao], 
   children: [
     { path: '', component: AtribuicoesListaComponent },
-    { path: ':uid', component: AtribuicoesDetalhesComponent }
+    { path: ':uid', component: AtribuicoesDetalhesComponent },
   ]}
 ];
 

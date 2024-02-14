@@ -7,9 +7,7 @@ import { NexusFormulario } from '../../compartilhado/models/componentes/nexus-fo
 import { NexusReferenciaObjeto } from '../../compartilhado/models/dtos/nexus-referencia-objeto';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { ComponentesService } from '../../componentes/componentes.service';
 import { AuthService } from '../../login/auth/auth.service';
-import { UsuariosService } from '../../login/usuarios.service';
 import { ManutencoesService } from '../manutencoes.service';
 import { ManutencaoEnvio } from '../models/manutencoes-envio';
 
