@@ -7,15 +7,16 @@ import { SoftwaresAdicionarComponent } from './softwares-adicionar/softwares-adi
 import { SoftwaresBuscarComponent } from './softwares-buscar/softwares-buscar.component';
 import { SoftwaresDetalhesComponent } from './softwares-detalhes/softwares-detalhes.component';
 import { SoftwaresEditarComponent } from './softwares-editar/softwares-editar.component';
+import { conferirSoftwareAdicionar, conferirSoftwareEditar } from '../login/guard/software-guard';
 
 const routes: Routes = [
   { path: 'ativos/softwares', component: SoftwaresComponent, canActivate:[conferirAutenticacao],
   children: [
     { path: '', component: SoftwaresMenuComponent },
-    { path: 'adicionar/:componente-uid', canDeactivate:[sairFormulario], component: SoftwaresAdicionarComponent },
+    { path: 'adicionar/:componente-uid', canActivate:[conferirSoftwareAdicionar], canDeactivate:[sairFormulario], component: SoftwaresAdicionarComponent },
     { path: 'buscar', component: SoftwaresBuscarComponent },
     { path: 'detalhes/:uid', component: SoftwaresDetalhesComponent },
-    { path: 'editar/:uid', canDeactivate:[sairFormulario], component: SoftwaresEditarComponent },
+    { path: 'editar/:uid', canActivate:[conferirSoftwareEditar], canDeactivate:[sairFormulario], component: SoftwaresEditarComponent },
   ]}
 ];
 

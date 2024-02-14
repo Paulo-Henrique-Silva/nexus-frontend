@@ -12,9 +12,10 @@ import { ProjetosBuscarComponent } from './projetos-buscar/projetos-buscar.compo
 import { ProjetosDetalhesComponent } from './projetos-detalhes/projetos-detalhes.component';
 import { ProjetosEditarComponent } from './projetos-editar/projetos-editar.component';
 import { UsuariosGerenciarPerfisComponent } from './usuarios-gerenciar-perfis/usuarios-gerenciar-perfis.component';
+import { conferirAdministracao } from '../login/guard/administracao-guard';
 
 const routes: Routes = [
-  { path: 'ativos/administracao', component: AdministracaoComponent, canActivate:[conferirAutenticacao],
+  { path: 'ativos/administracao', component: AdministracaoComponent, canActivate:[conferirAutenticacao, conferirAdministracao],
   children: [
     { path: '', component: AdministracaoMenuComponent},
     

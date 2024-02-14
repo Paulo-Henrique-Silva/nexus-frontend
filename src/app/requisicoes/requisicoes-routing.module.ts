@@ -7,15 +7,16 @@ import { RequisicoesAdicionarComponent } from './requisicoes-adicionar/requisico
 import { RequisicoesBuscarComponent } from './requisicoes-buscar/requisicoes-buscar.component';
 import { RequisicoesDetalhesComponent } from './requisicoes-detalhes/requisicoes-detalhes.component';
 import { RequisicoesEditarComponent } from './requisicoes-editar/requisicoes-editar.component';
+import { conferirRequisicaoAdicionar, conferirRequisicaoEditar } from '../login/guard/requisicao-guard';
 
 const routes: Routes = [
   { path: 'ativos/requisicoes', component: RequisicoesComponent, canActivate:[conferirAutenticacao],
   children: [
     { path: '', component: RequisicoesMenuComponent },
-    { path: 'adicionar', canDeactivate:[sairFormulario], component: RequisicoesAdicionarComponent },
+    { path: 'adicionar', canActivate:[conferirRequisicaoAdicionar], canDeactivate:[sairFormulario], component: RequisicoesAdicionarComponent },
     { path: 'buscar', component: RequisicoesBuscarComponent },
     { path: 'detalhes/:uid', component: RequisicoesDetalhesComponent },
-    { path: 'editar/:uid', canDeactivate:[sairFormulario], component: RequisicoesEditarComponent },
+    { path: 'editar/:uid', canActivate:[conferirRequisicaoEditar], canDeactivate:[sairFormulario], component: RequisicoesEditarComponent },
   ]}
 ];
 

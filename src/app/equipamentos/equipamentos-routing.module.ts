@@ -7,15 +7,16 @@ import { EquipamentosAdicionarComponent } from './equipamentos-adicionar/equipam
 import { EquipamentosBuscarComponent } from './equipamentos-buscar/equipamentos-buscar.component';
 import { EquipamentosDetalhesComponent } from './equipamentos-detalhes/equipamentos-detalhes.component';
 import { EquipamentosEditarComponent } from './equipamentos-editar/equipamentos-editar.component';
+import { conferirEquipamentoAdicionar, conferirEquipamentoEditar } from '../login/guard/equipamento-guard';
 
 const routes: Routes = [
   { path: 'ativos/equipamentos', component: EquipamentosComponent, canActivate:[conferirAutenticacao],
   children: [
     { path: '', component: EquipamentosMenuComponent },
-    { path: 'adicionar', canDeactivate:[sairFormulario], component: EquipamentosAdicionarComponent },
+    { path: 'adicionar', canActivate:[conferirEquipamentoAdicionar], canDeactivate:[sairFormulario], component: EquipamentosAdicionarComponent },
     { path: 'buscar', component: EquipamentosBuscarComponent },
     { path: 'detalhes/:uid', component: EquipamentosDetalhesComponent },
-    { path: 'editar/:uid', canDeactivate:[sairFormulario], component: EquipamentosEditarComponent },
+    { path: 'editar/:uid', canActivate:[conferirEquipamentoEditar], canDeactivate:[sairFormulario], component: EquipamentosEditarComponent },
   ]}
 ];
 

@@ -7,15 +7,16 @@ import { ComponentesAdicionarComponent } from './componentes-adicionar/component
 import { ComponentesDetalhesComponent } from './componentes-detalhes/componentes-detalhes.component';
 import { ComponentesEditarComponent } from './componentes-editar/componentes-editar.component';
 import { ComponentesBuscarComponent } from './componentes-buscar/componentes-buscar.component';
+import { conferirComponenteAdicionar, conferirComponenteEditar } from '../login/guard/componente-guard';
 
 const routes: Routes = [
   { path: 'ativos/componentes', component: ComponentesComponent, canActivate:[conferirAutenticacao],
   children: [
     { path: '', component: ComponentesMenuComponent },
-    { path: 'adicionar', canDeactivate:[sairFormulario], component: ComponentesAdicionarComponent },
+    { path: 'adicionar', canActivate:[conferirComponenteAdicionar], canDeactivate:[sairFormulario], component: ComponentesAdicionarComponent },
     { path: 'buscar', component: ComponentesBuscarComponent },
     { path: 'detalhes/:uid', component: ComponentesDetalhesComponent },
-    { path: 'editar/:uid', canDeactivate:[sairFormulario], component: ComponentesEditarComponent },
+    { path: 'editar/:uid', canActivate:[conferirComponenteEditar], canDeactivate:[sairFormulario], component: ComponentesEditarComponent },
   ]}
 ];
 
