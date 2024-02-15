@@ -34,11 +34,10 @@ export const conferirRequisicaoEditar: CanActivateFn = (
     return service.obterPorUID(uid)
     .pipe(map((Requisicao: RequisicaoResposta) => {
 
-        //Se o projeto selecionado não for o mesmo, ou o usuário for leitor
+        //Se o projeto selecionado não for o mesmo, ou o usuário não for oráculo
         //não deixa entrar na rota.
         if (Requisicao.projeto.uid === sessaoService.projetoSelecionado.uid &&
-            Requisicao.coordenador.uid === sessaoService.uidUsuario &&
-            !sessaoService.perfilSelecionado.nome.includes('Leitor')) {
+            sessaoService.perfilSelecionado.nome.includes('Oráculo')) {
             return true;
         }
 

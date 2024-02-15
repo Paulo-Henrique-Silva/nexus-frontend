@@ -17,7 +17,7 @@
 
             <nexus-botao-acoes icone="edit" texto="Editar" 
             [link]="['/ativos/requisicoes/editar', objeto.uid]"
-            *ngIf="!perfil.nome.includes('Leitor')">
+            *ngIf="perfil.nome.includes('Oráculo')">
             </nexus-botao-acoes>
             
             <nexus-botao-acoes icone="delete" texto="Deletar" (click)="deletarObjeto()"
