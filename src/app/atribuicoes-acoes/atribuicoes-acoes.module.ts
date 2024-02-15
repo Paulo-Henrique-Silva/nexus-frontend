@@ -5,15 +5,19 @@ import { MaterialModule } from '../compartilhado/material/material.module';
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { RouterModule } from '@angular/router';
 import { AtribuicoesBotaoVoltarComponent } from './atribuicoes-botao-voltar/atribuicoes-botao-voltar.component';
+import { AtribuicoesAcoesAnaliseCoordenadorComponent } from './atribuicoes-acoes-analise-coordenador/atribuicoes-acoes-analise-coordenador.component';
+import { AtribuicoesAcoesCompletarRequisicaoComponent } from './atribuicoes-acoes-completar-requisicao/atribuicoes-acoes-completar-requisicao.component';
 
 const components = [
-  AtribuicoesAcoesCompletarManutencaoComponent
+  AtribuicoesAcoesCompletarManutencaoComponent,
+  AtribuicoesAcoesAnaliseCoordenadorComponent,
+  AtribuicoesAcoesCompletarRequisicaoComponent
 ]
 
 @NgModule({
   declarations: [
     components,
-    AtribuicoesBotaoVoltarComponent
+    AtribuicoesBotaoVoltarComponent,
   ],
   imports: [
     CommonModule,

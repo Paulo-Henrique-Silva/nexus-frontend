@@ -13,6 +13,14 @@
                 <nexus-atribuicoes-acoes-completar-manutencao *ngSwitchCase="'CompletarManutencao'" 
                 [atribuicao]="atribuicao">
                 </nexus-atribuicoes-acoes-completar-manutencao>
+
+                <nexus-atribuicoes-acoes-analise-coordenador *ngSwitchCase="'AnaliseRequisicao'" 
+                [atribuicao]="atribuicao">
+                </nexus-atribuicoes-acoes-analise-coordenador>
+
+               <nexus-atribuicoes-acoes-completar-requisicao *ngSwitchCase="'CompletarRequisicao'" 
+                [atribuicao]="atribuicao">
+                </nexus-atribuicoes-acoes-completar-requisicao>
             </div>
 
         </mat-sidenav>

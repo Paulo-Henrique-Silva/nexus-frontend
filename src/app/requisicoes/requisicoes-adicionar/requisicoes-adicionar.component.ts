@@ -11,6 +11,8 @@ import { UsuariosService } from '../../login/usuarios.service';
 import { RequisicoesService } from '../requisicoes.service';
 import { RequisicaoEnvio } from '../model/requisicao-envio';
 import { MatDialog } from '@angular/material/dialog';
+import { AnaliseRequisicaoService } from '../ciclo-vida/analise-requisicao.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-requisicoes-adicionar',
@@ -35,6 +37,7 @@ export class RequisicoesAdicionarComponent extends NexusFormulario implements On
     dialog: MatDialog,
     private service: RequisicoesService,
     private usuarioService: UsuariosService,
+    private analiseRequisicao: AnaliseRequisicaoService
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
       snackBar, sessaoService, dialog);
@@ -80,15 +83,19 @@ export class RequisicoesAdicionarComponent extends NexusFormulario implements On
     };
 
     this.service.adicionar(requisicao)
-      .subscribe({
-        next: () => {
-          this.mostrarSnackBarOk('Requisição adicionada com sucesso!');
-          this.carregando = false;
-          this.router.navigate(['/ativos/requisicoes']);
-        },
-        error: () => {
-          this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
-        }
-      })
-    }
+    .pipe(
+      switchMap((requisicao) => this.analiseRequisicao
+        .iniciar({ objetoUID: requisicao.uid }))
+    )
+    .subscribe({
+      next: () => {
+        this.mostrarSnackBarOk('Requisição adicionada com sucesso!');
+        this.carregando = false;
+        this.router.navigate(['/ativos/requisicoes']);
+      },
+      error: () => {
+        this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
+      }
+    });
+  }
 }

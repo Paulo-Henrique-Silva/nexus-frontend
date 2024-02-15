@@ -110,7 +110,7 @@ export class AtribuicoesListaComponent implements OnInit {
     let dataStr = pipe.transform(dataConvertida, "dd/MM") ?? '';
 
     //Adiciona o dia da semana na data vencimento ou a palavra "hoje" se for para o mesmo dia.
-    if (dataConvertida.getDay() == new Date().getDay()) {
+    if (this.mesmaData(dataConvertida, new Date())) {
       dataStr += ' - Hoje';
     }
     else {
@@ -118,5 +118,13 @@ export class AtribuicoesListaComponent implements OnInit {
     }
 
     return dataStr;
+  }
+
+  mesmaData(data1: Date, data2: Date): boolean {
+    return (
+      data1.getFullYear() === data2.getFullYear() &&
+      data1.getMonth() === data2.getMonth() &&
+      data1.getDate() === data2.getDate()
+    );
   }
 }
