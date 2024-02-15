@@ -174,8 +174,23 @@ export class UsuariosGerenciarPerfisComponent extends NexusFormulario implements
         .subscribe({ next: () => this.mostrarMensagemSucesso(), error: () => this.mostrarMensagemErro()});
     }
     else if (novosPerfis.length == 0 && perfisExcluidos.length != 0) {
+
       this.usuarioPerfilService.deletarTudo(perfisExcluidos)
-        .subscribe({ next: () => this.mostrarMensagemSucesso(), error: () => this.mostrarMensagemErro()})
+        .subscribe({ next: () => {
+
+          //Se o perfil excluído por o selecionado, remove o perfil atual.
+          if (perfisExcluidos.filter(c => 
+            c.perfilUID == this.sessaoService.perfilSelecionado.uid && 
+            c.projetoUID == this.sessaoService.projetoSelecionado.uid)
+          ) {
+            this.sessaoService.atualizarSessao(null, null);
+            this.authService.sairDaConta();
+
+            this.mostrarSnackBarOk('Perfis alterados! Sua sessão foi encerada pois seu perfil atual foi excluído.');
+            this.router.navigate(['/login']);
+          }
+
+        }, error: () => this.mostrarMensagemErro()})
     }
     else {
       combineLatest([ this.usuarioPerfilService.adicionarTudo(novosPerfis), this.usuarioPerfilService.deletarTudo(perfisExcluidos)])

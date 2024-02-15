@@ -63,5 +63,17 @@ export class SessaoService {
     this._perfilSelecionado = value;
   }
 
+  atualizarSessao(
+    projeto: NexusReferenciaObjeto | null, 
+    perfil: NexusReferenciaObjeto | null): void {
+    this.projetoSelecionado$.next(projeto);
+    this.perfilSelecionado$.next(perfil);
+
+    if (projeto && perfil) {
+      this.perfilSelecionado = perfil;
+      this.projetoSelecionado = projeto;
+    }
+  }
+
   constructor() { }
 }
