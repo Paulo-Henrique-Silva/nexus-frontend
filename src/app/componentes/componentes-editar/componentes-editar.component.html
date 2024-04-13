@@ -31,6 +31,11 @@
                         </mat-error>
                     </mat-form-field>
 
+                    <mat-form-field class="mb-3" appearance="outline" >
+                        <mat-label>Número de série</mat-label>
+                        <input type="text" matInput formControlName="numeroSerie" [disabled]="true">
+                    </mat-form-field>
+
                     <!--Localizações-->
                     <mat-card class="campo-pesquisa mb-5">
                         <mat-card-header class="mb-3">
@@ -86,14 +91,6 @@
                         </mat-select>
                         <mat-error *ngIf="campoInvalido('tipo')">
                             {{ obterMensagemErro('tipo') }}
-                        </mat-error>
-                    </mat-form-field>
-
-                    <mat-form-field class="mb-3">
-                        <mat-label>Número de série</mat-label>
-                        <input type="text" matInput formControlName="numeroSerie">
-                        <mat-error *ngIf="campoInvalido('numeroSerie')">
-                            {{ obterMensagemErro('numeroSerie') }}
                         </mat-error>
                     </mat-form-field>
 

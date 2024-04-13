@@ -113,7 +113,14 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
           this.carregando = false;
           this.router.navigate(['/ativos/componentes']);
         },
-        error: () => {
+        error: (erro) => {
+          if (erro.status) {
+            this.mostrarSnackBarOk('Número de série já cadastrado.');
+            this.formulario.reset();
+            this.carregando = false;
+            return;
+          }
+
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
         }
       })
