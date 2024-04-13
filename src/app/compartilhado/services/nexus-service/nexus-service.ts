@@ -22,15 +22,19 @@ export class NexusService<T extends NexusEnvio, O extends NexusResposta> {
         return this.http.get<O>(this.url + '/' + uid, { headers: this.header }).pipe(take(1));
     }
 
-    obterTudo(pagina: number, nome: string | null = null): Observable<NexusListaResposta<O>> {
+    obterTudo(pagina: number | null = null, nome: string | null = null): Observable<NexusListaResposta<O>> {
         let params;
 
-        if (nome) {
+        if (nome && pagina) {
             params = new HttpParams()
                 .set('pagina', pagina.toString())
                 .set('nome', nome.toString());
         }
-        else {
+        else if (nome) {
+            params = new HttpParams()
+                .set('nome', nome.toString());
+        }
+        else if (pagina) {
             params = new HttpParams()
                 .set('pagina', pagina.toString());
         }

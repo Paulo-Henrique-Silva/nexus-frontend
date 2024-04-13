@@ -44,11 +44,19 @@ export class UsuariosService extends NexusService<UsuarioEnvio, UsuarioResposta>
     { headers: this.header }).pipe(take(1));
   }
 
+  obterCoordenadores(nome: string, projetoUID: string): Observable<NexusListaResposta<UsuarioResposta>> {
+    const params = new HttpParams()
+      .set('nome', nome.toString())
+      .set('projetoUID', projetoUID.toString());
+
+    return this.http.get<NexusListaResposta<UsuarioResposta>>(this.url  + '/Coordenadores', 
+        { params: params, headers: this.header }).pipe(take(1));
+  }
+
   //Obtém atribuições por usuário especificado.
   //Endpoint não possui paginação para facilitar o desenvolvimento deste protótipo.
   obterNotificacoesPorUsuarioUID(usuarioUID: string): 
   Observable<NexusListaResposta<NotificacaoResposta>> {
-
     return this.http.get<NexusListaResposta<NotificacaoResposta>>(this.url + '/' + usuarioUID + '/Notificacoes', 
     { headers: this.header }).pipe(take(1));
   }

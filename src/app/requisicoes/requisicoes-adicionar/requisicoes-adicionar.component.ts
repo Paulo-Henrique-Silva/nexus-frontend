@@ -51,13 +51,12 @@ export class RequisicoesAdicionarComponent extends NexusFormulario implements On
 
   ngOnInit(): void { }
 
-  pesquisarUsuarios(texto: string): void {
+  pesquisarCoordenadores(texto: string): void {
     this.usuarios = [];
     this.pesquisandoUsuario = true;
     this.formulario.get('coordenador')?.setValue(null);
 
-    //Sempre obtém apenas da primeira página, por questões de performace.
-    this.usuarioService.obterTudo(1, texto)
+    this.usuarioService.obterCoordenadores(texto, this.sessaoService.projetoSelecionado.uid)
     .subscribe(dados =>
     {
       dados.itens.forEach(d => this.usuarios.push({ uid: d.uid, nome: d.nome }));
