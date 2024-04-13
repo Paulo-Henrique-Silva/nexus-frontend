@@ -63,7 +63,7 @@ export class UsuariosAdicionarComponent extends NexusFormulario {
         },
         error: (erro) => {
           if (erro.status) {
-            this.mostrarSnackBarOk('Nome de usuário já cadastrado.');
+            this.mostrarSnackBarOk('Nome de acesso já cadastrado.');
             this.formulario.reset();
             this.carregando = false;
             return;
