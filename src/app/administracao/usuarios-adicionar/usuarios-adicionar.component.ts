@@ -61,9 +61,16 @@ export class UsuariosAdicionarComponent extends NexusFormulario {
           this.carregando = false;
           this.router.navigate(['/ativos/administracao']);
         },
-        error: () => {
+        error: (erro) => {
+          if (erro.status) {
+            this.mostrarSnackBarOk('Nome de usuário já cadastrado.');
+            this.formulario.reset();
+            this.carregando = false;
+            return;
+          }
+
           this.mostrarSnackBarOk('Um erro inesperado aconteceu!');
         }
-      })
+      });
   }
 }
