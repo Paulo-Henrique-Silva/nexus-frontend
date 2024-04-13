@@ -49,7 +49,6 @@ export class EquipamentosEditarComponent extends NexusFormulario implements OnIn
       marca: ['', [Validators.required, Validators.maxLength(200)]],
       modelo: ['', [Validators.required, Validators.maxLength(200)]],
       tipo: ['', [Validators.required]],
-      localizacao: ['', [Validators.required]],
       componente: ['', [Validators.required]],
       dataAquisicao: ['', [Validators.required]],
       linkNotaFiscal: ['', [Validators.required, Validators.maxLength(200)]],
