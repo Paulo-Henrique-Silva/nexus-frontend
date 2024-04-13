@@ -51,6 +51,7 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
       tipo: ['', [Validators.required]],
       localizacao: ['', [Validators.required]],
       dataAquisicao: ['', [Validators.required]],
+      linkNotaFiscal: ['', [Validators.required, Validators.maxLength(200)]],
     })
   }
 
@@ -92,6 +93,7 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
     const tipo: number = this.formulario.get('tipo')?.value;
     const localizacao: string = this.formulario.get('localizacao')?.value;
     const dataAquisicao: Date = this.formulario.get('dataAquisicao')?.value;
+    const linkNotaFiscal: string = this.formulario.get('linkNotaFiscal')?.value;
 
     const componente: ComponenteEnvio = {
       nome: nome,
@@ -103,7 +105,8 @@ export class ComponentesAdicionarComponent extends NexusFormulario implements On
       modelo: modelo,
       projetoUID: this.sessaoService.projetoSelecionado.uid,
       tipo: tipo,
-      dataAquisicao: dataAquisicao
+      dataAquisicao: dataAquisicao,
+      linkNotaFiscal: linkNotaFiscal
     };
 
     this.service.adicionar(componente)

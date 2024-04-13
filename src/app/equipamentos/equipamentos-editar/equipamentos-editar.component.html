@@ -35,53 +35,7 @@
                         <mat-label>Número de série</mat-label>
                         <input type="text" matInput formControlName="numeroSerie" [disabled]="true">
                     </mat-form-field>
-
-                    <!--Localizações-->
-                    <mat-card class="campo-pesquisa mb-5">
-                        <mat-card-header class="mb-3">
-                            <mat-card-subtitle>Localização*</mat-card-subtitle>
-                        </mat-card-header>
-
-                        <mat-card-content>
-                            <!--Pesquisa-->
-                            <form class="d-flex flex-row">
-                                <mat-form-field class="col-11">
-                                    <mat-label>Pesquisar</mat-label>
-                                    <input type="text" matInput #iptLocalizacao>
-                                </mat-form-field>
-        
-                                <button class="col-1" type="submit" mat-fab
-                                [disabled]="iptLocalizacao.value.trim().length < 3"
-                                (click)="pesquisarLocalizacoes(iptLocalizacao.value.trim())">
-                                    <mat-icon>search</mat-icon>
-                                </button>
-                            </form>
-
-                            <mat-progress-bar *ngIf="pesquisandoLocalizacao"
-                            mode="indeterminate">
-                            </mat-progress-bar>
-
-                            <p *ngIf="localizacoes.length == 0 && pesquisouLocalizacao &&
-                            !pesquisandoLocalizacao">
-                                Nenhum resultado encontrado.
-                            </p>
-
-                            <!--Opções-->
-                            <mat-form-field class="custom-select w-100 mt-3" 
-                            *ngIf="localizacoes.length != 0">
-                                <mat-label>Selecione</mat-label>
-                                <mat-select formControlName="localizacao">
-                                    <mat-option *ngFor="let l of localizacoes" [value]="l.uid">
-                                        {{ l.nome }}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="campoInvalido('localizacao')">
-                                    {{ obterMensagemErro('localizacao') }}
-                                </mat-error>
-                            </mat-form-field>
-                        </mat-card-content>
-                    </mat-card>
-
+                    
                     <!--Componentes-->
                     <mat-card class="campo-pesquisa mb-5">
                         <mat-card-header class="mb-3">
@@ -163,6 +117,14 @@
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error *ngIf="campoInvalido('dataAquisicao')">
                             {{ obterMensagemErro('dataAquisicao') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb-3">
+                        <mat-label>Link da nota fiscal</mat-label>
+                        <input type="text" matInput formControlName="linkNotaFiscal">
+                        <mat-error *ngIf="campoInvalido('linkNotaFiscal')">
+                            {{ obterMensagemErro('linkNotaFiscal') }}
                         </mat-error>
                     </mat-form-field>
 

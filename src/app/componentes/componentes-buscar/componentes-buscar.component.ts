@@ -13,6 +13,7 @@ export class ComponentesBuscarComponent extends NexusBuscar {
 
   override colunas: string[] = [ 
     'nome',
+    'numeroSerie',
     'localizacao',
     'status',
     'tipo',
@@ -21,6 +22,7 @@ export class ComponentesBuscarComponent extends NexusBuscar {
   ];
   override colunasMostrarComo : string[] = [ 
     'Nome',
+    'Número de série',
     'Localização',
     'Status',
     'Tipo',

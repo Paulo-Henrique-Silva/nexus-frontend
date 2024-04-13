@@ -22,11 +22,6 @@ export class EquipamentosAdicionarComponent extends NexusFormulario implements O
 
   tipos: NexusReferenciaObjeto[] = [];
 
-  //Localizações
-  localizacoes: NexusReferenciaObjeto[] = [];
-  pesquisandoLocalizacao: boolean = false;
-  pesquisouLocalizacao: boolean = false;
-
   //componentes
   componentes: NexusReferenciaObjeto[] = [];
   pesquisandoComponente: boolean = false;
@@ -42,7 +37,6 @@ export class EquipamentosAdicionarComponent extends NexusFormulario implements O
     sessaoService: SessaoService,
     dialog: MatDialog,
     private service: EquipamentosService,
-    private localizacaoService: LocalizacoesService,
     private componenteService: ComponentesService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
@@ -58,6 +52,7 @@ export class EquipamentosAdicionarComponent extends NexusFormulario implements O
       localizacao: ['', [Validators.required]],
       componente: ['', [Validators.required]],
       dataAquisicao: ['', [Validators.required]],
+      linkNotaFiscal: ['', [Validators.required, Validators.maxLength(200)]],
     })
   }
 
@@ -69,25 +64,6 @@ export class EquipamentosAdicionarComponent extends NexusFormulario implements O
         this.tipos = tipos
         this.carregando = false;
       });
-  }
-
-  pesquisarLocalizacoes(texto: string): void {
-    this.localizacoes = [];
-    this.pesquisandoLocalizacao = true;
-    this.formulario.get('localizacao')?.setValue(null);
-
-    //Sempre obtém apenas da primeira página, por questões de performace.
-    this.localizacaoService.obterTudoPorProjetoUID(1, this.sessaoService.projetoSelecionado.uid,
-    texto)
-    .subscribe(dados =>
-    {
-      dados.itens.forEach(d => this.localizacoes.push({ uid: d.uid, nome: d.nome }));
-
-      //Ordena por nome.
-      this.localizacoes.sort((a, b) => a.nome < b.nome ? -1 : 1);
-      this.pesquisandoLocalizacao = false;
-      this.pesquisouLocalizacao = true;
-    });
   }
 
   pesquisarComponentes(texto: string): void {
@@ -119,21 +95,21 @@ export class EquipamentosAdicionarComponent extends NexusFormulario implements O
     const marca: string = this.formulario.get('marca')?.value;
     const modelo: string = this.formulario.get('modelo')?.value;
     const tipo: number = this.formulario.get('tipo')?.value;
-    const localizacao: string = this.formulario.get('localizacao')?.value;
     const componente: string = this.formulario.get('componente')?.value;
     const dataAquisicao: Date = this.formulario.get('dataAquisicao')?.value;
+    const linkNotaFiscal: string = this.formulario.get('linkNotaFiscal')?.value;
 
     const equipamento: EquipamentoEnvio = {
       nome: nome,
       descricao: descricao,
       numeroSerie: numeroSerie,
-      localizacaoUID: localizacao,
       componenteUID: componente,
       marca: marca,
       modelo: modelo,
       projetoUID: this.sessaoService.projetoSelecionado.uid,
       tipo: tipo,
-      dataAquisicao: dataAquisicao
+      dataAquisicao: dataAquisicao,
+      linkNotaFiscal: linkNotaFiscal
     };
 
     this.service.adicionar(equipamento)

@@ -8,8 +8,6 @@ import { NexusReferenciaObjeto } from '../../compartilhado/models/dtos/nexus-ref
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
 import { ComponentesService } from '../../componentes/componentes.service';
-import { ComponenteEnvio } from '../../componentes/models/componentes-envio';
-import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { EquipamentosService } from '../equipamentos.service';
 import { EquipamentoEnvio } from '../models/equipamentos-envio';
@@ -23,11 +21,6 @@ import { MatDialog } from '@angular/material/dialog';
 export class EquipamentosEditarComponent extends NexusFormulario implements OnInit {
 
   tipos: NexusReferenciaObjeto[] = [];
-
-  //Localizações
-  localizacoes: NexusReferenciaObjeto[] = [];
-  pesquisandoLocalizacao: boolean = false;
-  pesquisouLocalizacao: boolean = false;
 
   //componentes
   componentes: NexusReferenciaObjeto[] = [];
@@ -44,7 +37,6 @@ export class EquipamentosEditarComponent extends NexusFormulario implements OnIn
     sessaoService: SessaoService,
     dialog: MatDialog,
     private service: EquipamentosService,
-    private localizacaoService: LocalizacoesService,
     private componenteService: ComponentesService,
   ) {
     super(authService, formBuilder, router, mensagemValidacaoService, activatedRoute, 
@@ -53,13 +45,14 @@ export class EquipamentosEditarComponent extends NexusFormulario implements OnIn
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
       descricao: ['', Validators.maxLength(400)],
-      numeroSerie: ['', [Validators.required, Validators.maxLength(200)]],
+      numeroSerie: [{value: '', disabled: true}, [Validators.required, Validators.maxLength(200)]],
       marca: ['', [Validators.required, Validators.maxLength(200)]],
       modelo: ['', [Validators.required, Validators.maxLength(200)]],
       tipo: ['', [Validators.required]],
       localizacao: ['', [Validators.required]],
       componente: ['', [Validators.required]],
       dataAquisicao: ['', [Validators.required]],
+      linkNotaFiscal: ['', [Validators.required, Validators.maxLength(200)]],
     })
   }
 
@@ -82,38 +75,20 @@ export class EquipamentosEditarComponent extends NexusFormulario implements OnIn
         this.formulario.setValue({
           nome: equipamento.nome,
           descricao: equipamento.descricao,
-          localizacao: equipamento.localizacao.uid,
           componente: equipamento.componente.uid,
           tipo: Number(equipamento.tipo.uid),
           numeroSerie: equipamento.numeroSerie,
           marca: equipamento.marca,
           modelo: equipamento.modelo,
           dataAquisicao: equipamento.dataAquisicao,
+          linkNotaFiscal: equipamento.linkNotaFiscal,
         })
 
-        this.localizacoes.push(equipamento.localizacao);
         this.componentes.push(equipamento.componente);
 
         this.carregando = false;
       },
       error: () => this.mostrarSnackBarOk('Um erro inesperado aconteceu!')
-    });
-  }
-
-  pesquisarLocalizacoes(texto: string): void {
-    this.localizacoes = [];
-    this.pesquisandoLocalizacao = true;
-    this.formulario.get('localizacao')?.setValue(null);
-
-    //Sempre obtém apenas da primeira página, por questões de performace.
-    this.localizacaoService.obterTudoPorProjetoUID(1, this.sessaoService.projetoSelecionado.uid,
-    texto)
-    .subscribe(dados =>
-    {
-      dados.itens.forEach(d => this.localizacoes.push({ uid: d.uid, nome: d.nome }));
-      this.localizacoes.sort((a, b) => a.nome < b.nome ? -1 : 1);
-      this.pesquisandoLocalizacao = false;
-      this.pesquisouLocalizacao = true;
     });
   }
 
@@ -147,21 +122,21 @@ export class EquipamentosEditarComponent extends NexusFormulario implements OnIn
     const marca: string = this.formulario.get('marca')?.value;
     const modelo: string = this.formulario.get('modelo')?.value;
     const tipo: number = this.formulario.get('tipo')?.value;
-    const localizacao: string = this.formulario.get('localizacao')?.value;
     const componente: string = this.formulario.get('componente')?.value;
     const dataAquisicao: Date = this.formulario.get('dataAquisicao')?.value;
+    const linkNotaFiscal: string = this.formulario.get('linkNotaFiscal')?.value;
 
     const equipamento: EquipamentoEnvio = {
       nome: nome,
       descricao: descricao,
       numeroSerie: numeroSerie,
-      localizacaoUID: localizacao,
       componenteUID: componente,
       marca: marca,
       modelo: modelo,
       projetoUID: this.sessaoService.projetoSelecionado.uid,
       tipo: tipo,
-      dataAquisicao: dataAquisicao
+      dataAquisicao: dataAquisicao,
+      linkNotaFiscal: linkNotaFiscal
     };
 
     this.service.editar(uid, equipamento)

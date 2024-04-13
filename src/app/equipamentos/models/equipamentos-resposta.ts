@@ -4,8 +4,6 @@ import { NexusReferenciaObjeto } from "../../compartilhado/models/dtos/nexus-ref
 export class EquipamentoResposta extends NexusResposta {
     numeroSerie: string = '';
 
-    localizacao: NexusReferenciaObjeto = new NexusReferenciaObjeto();
-
     componente: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
     marca: string = '';
@@ -17,4 +15,6 @@ export class EquipamentoResposta extends NexusResposta {
     tipo: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
     dataAquisicao: Date = new Date();
+
+    linkNotaFiscal: string = '';
 }

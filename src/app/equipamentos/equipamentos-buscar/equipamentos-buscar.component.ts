@@ -13,6 +13,7 @@ export class EquipamentosBuscarComponent extends NexusBuscar {
 
   override colunas: string[] = [ 
     'nome',
+    'numeroSerie',
     'localizacao',
     'tipo',
     'atualizadoPor', 'dataUltimaAtualizacao',
@@ -20,6 +21,7 @@ export class EquipamentosBuscarComponent extends NexusBuscar {
   ];
   override colunasMostrarComo : string[] = [ 
     'Nome',
+    'Número de Série',
     'Localização',
     'Tipo',
     'Atualizado por', 'Data Última Atualização',

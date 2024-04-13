@@ -3,8 +3,6 @@ import { NexusEnvio } from "../../compartilhado/models/dtos/nexus-envio"
 export class EquipamentoEnvio extends NexusEnvio {
     numeroSerie: string = '';
 
-    localizacaoUID: string = '';
-
     componenteUID: string = '';
 
     marca: string = '';
@@ -16,4 +14,6 @@ export class EquipamentoEnvio extends NexusEnvio {
     tipo: number = -1;
 
     dataAquisicao: Date = new Date();
+
+    linkNotaFiscal: string = '';
 }

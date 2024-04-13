@@ -45,12 +45,13 @@ export class ComponentesEditarComponent extends NexusFormulario implements OnIni
     this.formulario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
       descricao: ['', Validators.maxLength(400)],
-      numeroSerie: ['', [Validators.required, Validators.maxLength(200)]],
+      numeroSerie: [{value: '', disabled: true}, [Validators.required, Validators.maxLength(200)]],
       marca: ['', [Validators.required, Validators.maxLength(200)]],
       modelo: ['', [Validators.required, Validators.maxLength(200)]],
       tipo: ['', [Validators.required]],
       localizacao: ['', [Validators.required]],
       dataAquisicao: ['', [Validators.required]],
+      linkNotaFiscal: ['', [Validators.required, Validators.maxLength(200)]],
     })
   }
 
@@ -79,6 +80,7 @@ export class ComponentesEditarComponent extends NexusFormulario implements OnIni
           marca: componente.marca,
           modelo: componente.modelo,
           dataAquisicao: componente.dataAquisicao,
+          linkNotaFiscal: componente.linkNotaFiscal,
         })
 
         this.localizacoes.push(componente.localizacao);
@@ -109,6 +111,7 @@ export class ComponentesEditarComponent extends NexusFormulario implements OnIni
   override onSubmit(): void {
     this.formularioEnviado = true;
     this.carregando = true;
+    
     const uid = this.activatedRoute.snapshot.params['uid'];
     const nome: string = this.formulario.get('nome')?.value;
     const descricao: string = this.formulario.get('descricao')?.value;
@@ -118,6 +121,7 @@ export class ComponentesEditarComponent extends NexusFormulario implements OnIni
     const tipo: number = this.formulario.get('tipo')?.value;
     const localizacao: string = this.formulario.get('localizacao')?.value;
     const dataAquisicao: Date = this.formulario.get('dataAquisicao')?.value;
+    const linkNotaFiscal: string = this.formulario.get('linkNotaFiscal')?.value;
 
     const componente: ComponenteEnvio = {
       nome: nome,
@@ -129,7 +133,8 @@ export class ComponentesEditarComponent extends NexusFormulario implements OnIni
       modelo: modelo,
       projetoUID: this.sessaoService.projetoSelecionado.uid,
       tipo: tipo,
-      dataAquisicao: dataAquisicao
+      dataAquisicao: dataAquisicao,
+      linkNotaFiscal: linkNotaFiscal
     };
 
     this.service.editar(uid, componente)

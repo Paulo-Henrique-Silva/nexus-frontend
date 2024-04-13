@@ -16,4 +16,6 @@ export class ComponenteEnvio extends NexusEnvio {
     tipo: number = -1;
 
     dataAquisicao: Date = new Date();
+
+    linkNotaFiscal: string = '';
 }

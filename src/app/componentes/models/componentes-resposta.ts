@@ -17,4 +17,6 @@ export class ComponenteResposta extends NexusResposta {
     tipo: NexusReferenciaObjeto = new NexusReferenciaObjeto();
 
     dataAquisicao: Date = new Date();
+
+    linkNotaFiscal: string = '';
 }

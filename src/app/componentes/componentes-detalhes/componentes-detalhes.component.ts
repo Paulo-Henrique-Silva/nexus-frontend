@@ -6,7 +6,6 @@ import { throwError } from 'rxjs';
 import { NexusFormulario } from '../../compartilhado/models/componentes/nexus-formulario';
 import { MensagensValidacaoService } from '../../compartilhado/services/mensagens-validacao/mensagens-validacao.service';
 import { SessaoService } from '../../compartilhado/services/sessao/sessao.service';
-import { LocalizacoesService } from '../../localizacoes/localizacoes.service';
 import { AuthService } from '../../login/auth/auth.service';
 import { ComponentesService } from '../componentes.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -41,6 +40,7 @@ export class ComponentesDetalhesComponent extends NexusFormulario {
       marca: [''],
       modelo: [''],
       dataAquisicao: [''],
+      linkNotaFiscal: [''],
       atualizadoPor: [''],
       dataUltimaAtualizacao: [''],
       usuarioCriador: [''],
@@ -73,6 +73,7 @@ export class ComponentesDetalhesComponent extends NexusFormulario {
           dataUltimaAtualizacao: componente.dataUltimaAtualizacao,
           usuarioCriador: componente.usuarioCriador?.nome,
           dataCriacao: componente.dataCriacao,
+          linkNotaFiscal: componente.linkNotaFiscal
         })
 
         this.carregando = false;
