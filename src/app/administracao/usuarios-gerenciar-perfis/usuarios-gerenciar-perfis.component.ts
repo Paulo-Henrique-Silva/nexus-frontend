@@ -109,9 +109,7 @@ export class UsuariosGerenciarPerfisComponent extends NexusFormulario implements
 
     //Se o checkbox for ativada, adiciona o perfil e o projeto.
     //senão, remove-o.
-    cbxPerfil.checked
-    ? perfisAtivados.push(projetoEPerfil) 
-    : perfisAtivados.splice(perfisAtivados.indexOf(projetoEPerfil), 1);
+    cbxPerfil.checked ? perfisAtivados.push(projetoEPerfil) : perfisAtivados.splice(perfisAtivados.indexOf(projetoEPerfil), 1);
 
     this.formulario.setValue({
       perfisAtivados: perfisAtivados
@@ -170,31 +168,39 @@ export class UsuariosGerenciarPerfisComponent extends NexusFormulario implements
 
     this.carregando = true;
     if (novosPerfis.length != 0 && perfisExcluidos.length == 0) {
+      console.log(novosPerfis)
       this.usuarioPerfilService.adicionarTudo(novosPerfis)
         .subscribe({ next: () => this.mostrarMensagemSucesso(), error: () => this.mostrarMensagemErro()});
     }
     else if (novosPerfis.length == 0 && perfisExcluidos.length != 0) {
-
       this.usuarioPerfilService.deletarTudo(perfisExcluidos)
         .subscribe({ next: () => {
-
-          //Se o perfil excluído por o selecionado, remove o perfil atual.
-          if (perfisExcluidos.filter(c => 
-            c.perfilUID == this.sessaoService.perfilSelecionado.uid && 
-            c.projetoUID == this.sessaoService.projetoSelecionado.uid)
-          ) {
-            this.sessaoService.atualizarSessao(null, null);
-            this.authService.sairDaConta();
-
-            this.mostrarSnackBarOk('Perfis alterados! Sua sessão foi encerada pois seu perfil atual foi excluído.');
-            this.router.navigate(['/login']);
-          }
-
-        }, error: () => this.mostrarMensagemErro()})
+          this.checarSeRemoveuPerfilAtual(perfisExcluidos)
+        }, 
+        error: () => this.mostrarMensagemErro()})
     }
     else {
       combineLatest([ this.usuarioPerfilService.adicionarTudo(novosPerfis), this.usuarioPerfilService.deletarTudo(perfisExcluidos)])
-      .subscribe({ next: () => this.mostrarMensagemSucesso(), error: () => this.mostrarMensagemErro()});
+        .subscribe({ 
+          next: () => {
+            this.checarSeRemoveuPerfilAtual(perfisExcluidos)
+          }, 
+          error: () => this.mostrarMensagemErro()});
+    }
+  }
+
+  checarSeRemoveuPerfilAtual(perfisExcluidos: UsuarioPerfilUIDs[]): void {
+    //Se um dos perfis excluídos for o selecionado, remove o perfil atual.
+    if (perfisExcluidos.filter(c => c.perfilUID == this.sessaoService.perfilSelecionado.uid && 
+      c.projetoUID == this.sessaoService.projetoSelecionado.uid && c.usuarioUID == this.sessaoService.uidUsuario).length == 1) {
+      this.sessaoService.atualizarSessao(null, null);
+      this.authService.sairDaConta();
+
+      this.mostrarSnackBarOk('Perfis alterados! Sua sessão foi encerada pois seu perfil atual foi excluído.');
+      this.router.navigate(['/login']);
+    }
+    else {
+      this.mostrarMensagemSucesso();
     }
   }
 
